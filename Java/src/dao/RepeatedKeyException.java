@@ -1,4 +1,4 @@
-package DataBase;
+package dao;
 
 public class RepeatedKeyException extends Exception {
 

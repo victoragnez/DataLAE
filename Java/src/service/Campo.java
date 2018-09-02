@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Sistema;
+package service;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -16,6 +16,8 @@ public final class Campo {
     /**
      * Atributos básicos
      */
+    // @TODO gerar criação automática de código
+    private final String codigo;
     private Calendar data; //data da visita
     private ArrayList<String> pesquisador; // pesquisadores que foram no campo
     private Double gastos;
@@ -23,14 +25,16 @@ public final class Campo {
 
     /**
      * Construtor básico
+     * @param codigo o código do campo
      * @param data a data que foi realizado o campo
      * @param pesquisador os pesquisadores que foram ao campo
      * @param gastos o total de gastos com o campo
      * @param convidado Os convidados levados ao campo
      */
-    public Campo ( Calendar data, ArrayList<String> pesquisador, Double gastos,
+    public Campo ( String codigo, Calendar data, ArrayList<String> pesquisador, Double gastos,
             ArrayList<String> convidado)
     {
+        this.codigo = codigo;
         this.data = data;
         this.pesquisador = pesquisador;
         this.gastos = gastos;
@@ -39,12 +43,14 @@ public final class Campo {
     
     /**
      * Construtor básico
+     * @param codigo o codigo do campo
      * @param data a data que o campo foi realizado
      * @param pesquisador um pesquisador que foi ao campo
      * @param gastos O total de gastos com o campo
      */
-    public Campo ( Calendar data, String pesquisador, Double gastos )
+    public Campo ( String codigo, Calendar data, String pesquisador, Double gastos )
     {
+        this.codigo = codigo;
         this.data = data;
         this.pesquisador = new ArrayList<> ();
         this.inserirPesquisador(pesquisador);
