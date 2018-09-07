@@ -80,7 +80,7 @@ public final class Pesquisa {
     { this.campos.add(campo);}        
     
     // Getters and Setters
-    
+       
     /**
      * @return the denomicacao
      */
@@ -163,6 +163,13 @@ public final class Pesquisa {
      */
     public void setCampos(ArrayList<Campo> campos) {
         this.campos = campos;
+    }
+
+    /**
+     * @return the codigo
+     */
+    public String getCodigo() {
+        return codigo;
     }
     
     
