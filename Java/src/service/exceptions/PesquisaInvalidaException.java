@@ -15,4 +15,4 @@ public class PesquisaInvalidaException extends Exception {
     public PesquisaInvalidaException(String msg) {
 	super(msg);
     }
-}
+}   

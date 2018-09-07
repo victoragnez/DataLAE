@@ -5,17 +5,20 @@
  */
 package main;
 
+import gui.TelaPrincipal;
+
 /**
  *
  * @author gabriel
  */
-public class Java {
+public class Main {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) {   
+        TelaPrincipal principal = new TelaPrincipal();
+        principal.setVisible(true);
     }
     
 }
