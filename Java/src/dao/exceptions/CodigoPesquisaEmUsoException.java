@@ -12,6 +12,11 @@ package dao.exceptions;
 public class CodigoPesquisaEmUsoException extends Exception {
     
      /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      *
      * @param msg mensagem de erro
      */

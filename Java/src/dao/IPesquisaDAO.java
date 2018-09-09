@@ -6,11 +6,15 @@
 package dao;
 
 import service.Pesquisa;
+
+import java.util.ArrayList;
+import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
 
 public interface IPesquisaDAO {
-    public void inserirPesquisa(Pesquisa pesquisa);
-    public void alterarPesquisa(Pesquisa pesquisa);
-    public void removerPesquisa(String codigo);
+    public void inserirPesquisa(Pesquisa pesquisa) throws CodigoPesquisaEmUsoException;
+    public void alterarPesquisa(Pesquisa pesquisa) throws PesquisaNaoExistenteException;
+    public void removerPesquisa(String codigo) throws PesquisaNaoExistenteException;
     public Pesquisa consultarPesquisa(String codigo) throws PesquisaNaoExistenteException;
+    public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa);
 }
