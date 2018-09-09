@@ -6,9 +6,8 @@
 package service;
 
 import dao.IPesquisaDAO;
+import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,17 +22,17 @@ public class PesquisaService implements IPesquisaService {
     }
     
     @Override
-    public void inserirPesquisa(Pesquisa pesquisa) {
+    public void inserirPesquisa(Pesquisa pesquisa) throws CodigoPesquisaEmUsoException {
         pesquisaDAO.inserirPesquisa(pesquisa);
     }
 
     @Override
-    public void alterarPesquisa(Pesquisa pesquisa) {
+    public void alterarPesquisa(Pesquisa pesquisa) throws PesquisaNaoExistenteException {
         pesquisaDAO.alterarPesquisa(pesquisa);
     }
 
     @Override
-    public void removerPesquisa(String codigo) {
+    public void removerPesquisa(String codigo) throws PesquisaNaoExistenteException {
         pesquisaDAO.removerPesquisa(codigo);
     }
 
