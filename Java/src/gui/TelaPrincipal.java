@@ -5,12 +5,16 @@
  */
 package gui;
 
+import service.IPesquisaService;
+
 /**
  *
  * @author gabriel
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+	
+	static IPesquisaService pesquisaService;
+	
     /**
 	 * 
 	 */
@@ -18,7 +22,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 	/**
      * Creates new form TelaPrincipal
      */
-    public TelaPrincipal() {
+    public TelaPrincipal(IPesquisaService p) {
+    	pesquisaService = p;
         initComponents();
     }
 
@@ -107,7 +112,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuAddPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddPesquisaActionPerformed
         // TODO add your handling code here:
-        GUIPesquisa guiPesq = new GUIPesquisa();
+        GUIPesquisa guiPesq = new GUIPesquisa(pesquisaService);
         jDesktopPanePrincipal.add(guiPesq);
         guiPesq.setVisible(true);
     }//GEN-LAST:event_jMenuAddPesquisaActionPerformed
@@ -142,7 +147,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                new TelaPrincipal(pesquisaService).setVisible(true);
             }
         });
     }

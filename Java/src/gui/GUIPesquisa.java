@@ -24,7 +24,8 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
 	/**
      * Creates new form GUIPesquisa
      */
-    public GUIPesquisa() {
+    public GUIPesquisa(IPesquisaService p) {
+    	pesquisaService = p;
         initComponents();
     }
 

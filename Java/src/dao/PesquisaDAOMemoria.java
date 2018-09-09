@@ -19,7 +19,7 @@ import service.Pesquisa;
  *
  * @author gabriel
  */
-public abstract class PesquisaDAOMemoria implements IPesquisaDAO {
+public class PesquisaDAOMemoria implements IPesquisaDAO {
     
     private Map<String, Pesquisa> listaPesquisa = new HashMap<String, Pesquisa>(); 
 
