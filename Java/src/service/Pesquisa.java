@@ -36,6 +36,27 @@ public final class Pesquisa {
      * @param financiador o financiador da pesquisa
      * @param coordenador o coordenador da pesquisa
      * @param pesquisador os pesquisadores 
+     */
+    public Pesquisa (String codigo, String denominacao, String sigla, 
+            String financiador, String coordenador, 
+            ArrayList<String> pesquisador)
+    {
+        this.codigo = codigo;
+        this.denomicacao = denominacao;
+        this.sigla = sigla;
+        this.financiador = financiador;
+        this.coordenador = coordenador;
+        this.pesquisador = pesquisador;
+    }
+    
+    /**
+     * Construtor básico
+     * @param codigo o codigo da pesquisa
+     * @param denominacao o título do projeto
+     * @param sigla a sigla do projeto
+     * @param financiador o financiador da pesquisa
+     * @param coordenador o coordenador da pesquisa
+     * @param pesquisador os pesquisadores 
      * @param campos os campos já realizados
      */
     public Pesquisa (String codigo, String denominacao, String sigla, 

@@ -5,30 +5,48 @@
  */
 package service;
 
+import dao.IPesquisaDAO;
+import dao.exceptions.PesquisaNaoExistenteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author gabriel
  */
 public class PesquisaService implements IPesquisaService {
 
+    private IPesquisaDAO pesquisaDAO;
+    
+    public PesquisaService (IPesquisaDAO pesquisaDAO){
+        this.pesquisaDAO = pesquisaDAO;
+    }
+    
     @Override
     public void inserirPesquisa(Pesquisa pesquisa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pesquisaDAO.inserirPesquisa(pesquisa);
     }
 
     @Override
     public void alterarPesquisa(Pesquisa pesquisa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pesquisaDAO.alterarPesquisa(pesquisa);
     }
 
     @Override
     public void removerPesquisa(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pesquisaDAO.removerPesquisa(codigo);
     }
 
     @Override
     public Pesquisa consultarPesquisa(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Pesquisa pesquisa = null;
+        
+        try {
+            pesquisa = pesquisaDAO.consultarPesquisa(codigo);
+        } catch (PesquisaNaoExistenteException ex) {
+            System.out.println(ex);
+        }
+        return pesquisa;
     }
     
-}
+}   
