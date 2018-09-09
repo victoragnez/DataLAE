@@ -13,6 +13,6 @@ public class PesquisaInvalidaException extends Exception {
     private static final long serialVersionUID = 1L;
 
     public PesquisaInvalidaException(String msg) {
-	super(msg);
+    	super(msg);
     }
 }   
