@@ -60,7 +60,7 @@ public abstract class PesquisaDAOMemoria implements IPesquisaDAO {
     }
     
     @Override
-    public Pesquisa consultarAluno(String codigo) throws PesquisaNaoExistenteException {
+    public Pesquisa consultarPesquisa(String codigo) throws PesquisaNaoExistenteException {
         Pesquisa resultado = null;
         
         if (listaPesquisa.containsKey(codigo)){

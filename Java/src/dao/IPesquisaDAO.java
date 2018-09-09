@@ -12,5 +12,5 @@ public interface IPesquisaDAO {
     public void inserirPesquisa(Pesquisa pesquisa);
     public void alterarPesquisa(Pesquisa pesquisa);
     public void removerPesquisa(String codigo);
-    public Pesquisa consultarAluno(String codigo) throws PesquisaNaoExistenteException;
+    public Pesquisa consultarPesquisa(String codigo) throws PesquisaNaoExistenteException;
 }
