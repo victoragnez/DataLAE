@@ -28,6 +28,7 @@ public final class Pesquisa {
     
     private ArrayList<Campo> campos; // Campos realizados na pesquisa
 
+    
     /**
      * Construtor básico
      * @param codigo o codigo da pesquisa
@@ -47,6 +48,17 @@ public final class Pesquisa {
         this.financiador = financiador;
         this.coordenador = coordenador;
         this.pesquisador = pesquisador;
+    }
+    
+    public Pesquisa ()
+    {
+        this.codigo = null;
+        this.denomicacao = null;
+        this.sigla = null;
+        this.financiador = null;
+        this.coordenador = null;
+        this.pesquisador = null;
+        this.campos = null;
     }
     
     /**
@@ -192,6 +204,4 @@ public final class Pesquisa {
     public String getCodigo() {
         return codigo;
     }
-    
-    
 }

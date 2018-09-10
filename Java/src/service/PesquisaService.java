@@ -8,6 +8,7 @@ package service;
 import dao.IPesquisaDAO;
 import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -46,6 +47,10 @@ public class PesquisaService implements IPesquisaService {
             System.out.println(ex);
         }
         return pesquisa;
+    }
+    
+    public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa) {
+        return pesquisaDAO.consultarPesquisa(pesquisa);
     }
     
 }   

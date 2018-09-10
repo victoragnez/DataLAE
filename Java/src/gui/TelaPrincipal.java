@@ -5,7 +5,9 @@
  */
 package gui;
 
+import java.util.ArrayList;
 import service.IPesquisaService;
+import service.Pesquisa;
 
 /**
  *
@@ -15,6 +17,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 	
 	static IPesquisaService pesquisaService;
         private GUIPesquisa guiPesq;    // Tela para adicionar pesquisas
+        private ListaPesquisa listaPesq; // Tela que lista pesquisas
 	
     /**
 	 * 
@@ -28,6 +31,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.guiPesq = new GUIPesquisa(p);
         this.add(guiPesq);
         guiPesq.setVisible(false);
+        
+        this.listaPesq = new ListaPesquisa(p);
+        this.add(listaPesq);
+        listaPesq.setVisible(false);
         
         initComponents();
     }
@@ -91,6 +98,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/book_go.png"))); // NOI18N
         jMenuItem5.setText("Listar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
@@ -119,6 +131,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         guiPesq.setVisible(true);
     }//GEN-LAST:event_jMenuAddPesquisaActionPerformed
+
+    // Listar
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        Pesquisa pesq = new Pesquisa();
+        listaPesq.listarPesquisas( pesquisaService.consultarPesquisa(pesq) );
+        listaPesq.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments

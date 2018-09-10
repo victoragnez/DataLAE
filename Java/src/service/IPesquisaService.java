@@ -7,6 +7,7 @@ package service;
 
 import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,4 +25,6 @@ public interface IPesquisaService {
      * @return A pesquisa que corresponde ao código
      */
     public Pesquisa consultarPesquisa (String codigo);
+    
+    public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa);
 }
