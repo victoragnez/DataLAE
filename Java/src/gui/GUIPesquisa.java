@@ -57,6 +57,8 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         formCadProjetoCodigo = new javax.swing.JTextField();
 
+        setPreferredSize(new java.awt.Dimension(701, 420));
+
         TelaCadastroPesquisa.setPreferredSize(new java.awt.Dimension(700, 420));
 
         jLabel1.setText("Denominação");
@@ -165,7 +167,7 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TelaCadastroPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+            .addComponent(TelaCadastroPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         pack();
