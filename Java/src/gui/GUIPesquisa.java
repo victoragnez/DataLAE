@@ -183,7 +183,16 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         String pesquisador1 = formCadProjetoPesq1.getText();
         String pesquisador2 = formCadProjetoPesq2.getText();
         String pesquisador3 = formCadProjetoPesq3.getText();
-              
+        
+        formCadProjetoCodigo.setText("");
+        formCadProjetoDenominacao.setText("");
+        formCadProjetoSigla.setText("");
+        formCadProjetoFinanciador.setText("");
+        formCadProjetoCoordenador.setText("");
+        formCadProjetoPesq1.setText("");
+        formCadProjetoPesq2.setText("");
+        formCadProjetoPesq3.setText("");
+        
         ArrayList<String> pesquisador = new ArrayList<String>();
         pesquisador.add(pesquisador1);
         pesquisador.add(pesquisador2);
@@ -193,6 +202,7 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
                                           coordenador, pesquisador);
         
         this.inserirPesquisa(pesquisa);
+        this.setVisible(false);
     }//GEN-LAST:event_buttonCadastrarPesquisaActionPerformed
 
 

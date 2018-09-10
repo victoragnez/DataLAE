@@ -14,6 +14,7 @@ import service.IPesquisaService;
 public class TelaPrincipal extends javax.swing.JFrame {
 	
 	static IPesquisaService pesquisaService;
+        private GUIPesquisa guiPesq;    // Tela para adicionar pesquisas
 	
     /**
 	 * 
@@ -24,6 +25,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal(IPesquisaService p) {
     	pesquisaService = p;
+        this.guiPesq = new GUIPesquisa(p);
+        this.add(guiPesq);
+        guiPesq.setVisible(false);
+        
         initComponents();
     }
 
@@ -112,8 +117,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuAddPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAddPesquisaActionPerformed
         // TODO add your handling code here:
-        GUIPesquisa guiPesq = new GUIPesquisa(pesquisaService);
-        jDesktopPanePrincipal.add(guiPesq);
         guiPesq.setVisible(true);
     }//GEN-LAST:event_jMenuAddPesquisaActionPerformed
 
