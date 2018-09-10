@@ -5,7 +5,9 @@
  */
 package gui;
 
+import dao.exceptions.CodigoPesquisaEmUsoException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import service.IPesquisaService;
 import service.Pesquisa;
 
@@ -51,7 +53,7 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         formCadProjetoPesq1 = new javax.swing.JTextField();
         formCadProjetoPesq2 = new javax.swing.JTextField();
         formCadProjetoPesq3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        buttonCadastrarPesquisa = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         formCadProjetoCodigo = new javax.swing.JTextField();
 
@@ -67,10 +69,10 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Pesquisadores");
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonCadastrarPesquisa.setText("Cadastrar");
+        buttonCadastrarPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonCadastrarPesquisaActionPerformed(evt);
             }
         });
 
@@ -84,7 +86,7 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(TelaCadastroPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TelaCadastroPesquisaLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(buttonCadastrarPesquisa)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(TelaCadastroPesquisaLayout.createSequentialGroup()
                         .addGroup(TelaCadastroPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +153,7 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formCadProjetoPesq3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonCadastrarPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -163,13 +165,13 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TelaCadastroPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+            .addComponent(TelaCadastroPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonCadastrarPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarPesquisaActionPerformed
         
         String codigo = formCadProjetoCodigo.getText();
         String denominacao = formCadProjetoDenominacao.getText();
@@ -190,12 +192,13 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         Pesquisa pesquisa = new Pesquisa(codigo, denominacao, sigla, financiador,
                                           coordenador, pesquisador);
         
-        inserirPesquisa(pesquisa);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.inserirPesquisa(pesquisa);
+    }//GEN-LAST:event_buttonCadastrarPesquisaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TelaCadastroPesquisa;
+    private javax.swing.JButton buttonCadastrarPesquisa;
     private javax.swing.JTextField formCadProjetoCodigo;
     private javax.swing.JTextField formCadProjetoCoordenador;
     private javax.swing.JTextField formCadProjetoDenominacao;
@@ -204,7 +207,6 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
     private javax.swing.JTextField formCadProjetoPesq2;
     private javax.swing.JTextField formCadProjetoPesq3;
     private javax.swing.JTextField formCadProjetoSigla;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -213,7 +215,12 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 
-    public void inserirPesquisa (Pesquisa pesquisa) {
-        
+    public void inserirPesquisa (Pesquisa pesquisa){
+        try {
+             pesquisaService.inserirPesquisa(pesquisa);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+     
     }
 }
