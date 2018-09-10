@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Sistema;
+package service;
 
 import java.util.ArrayList;
 
@@ -18,6 +18,8 @@ public final class Pesquisa {
     /**
      * Atributos básicos
      */
+    // @TODO gerar criação automática de código
+    private final String codigo;
     private String denomicacao; // Denominação da pesquisa (título)
     private String sigla; // Sigla da pesquisa (como é mais conhecido)
     private String financiador; // financiador do projeto (pode virar uma nova classe)
@@ -28,6 +30,28 @@ public final class Pesquisa {
 
     /**
      * Construtor básico
+     * @param codigo o codigo da pesquisa
+     * @param denominacao o título do projeto
+     * @param sigla a sigla do projeto
+     * @param financiador o financiador da pesquisa
+     * @param coordenador o coordenador da pesquisa
+     * @param pesquisador os pesquisadores 
+     */
+    public Pesquisa (String codigo, String denominacao, String sigla, 
+            String financiador, String coordenador, 
+            ArrayList<String> pesquisador)
+    {
+        this.codigo = codigo;
+        this.denomicacao = denominacao;
+        this.sigla = sigla;
+        this.financiador = financiador;
+        this.coordenador = coordenador;
+        this.pesquisador = pesquisador;
+    }
+    
+    /**
+     * Construtor básico
+     * @param codigo o codigo da pesquisa
      * @param denominacao o título do projeto
      * @param sigla a sigla do projeto
      * @param financiador o financiador da pesquisa
@@ -35,10 +59,11 @@ public final class Pesquisa {
      * @param pesquisador os pesquisadores 
      * @param campos os campos já realizados
      */
-    public Pesquisa (String denominacao, String sigla, String financiador, 
-            String coordenador, ArrayList<String> pesquisador, 
-            ArrayList<Campo> campos)
+    public Pesquisa (String codigo, String denominacao, String sigla, 
+            String financiador, String coordenador, 
+            ArrayList<String> pesquisador,ArrayList<Campo> campos)
     {
+        this.codigo = codigo;
         this.denomicacao = denominacao;
         this.sigla = sigla;
         this.financiador = financiador;
@@ -49,15 +74,17 @@ public final class Pesquisa {
     
     /**
      * Construtor sem o campo e com inserção de um único pesquisador
+     * @param codigo o codigo da pesquisa
      * @param denominacao o título do projeto
      * @param sigla a sigla do projeto
      * @param financiador o financiador da pesquisa
      * @param coordenador o coordenador da pesquisa
      * @param pesquisador o pesquisador 
      */
-    public Pesquisa (String denominacao, String sigla, String financiador, 
-            String coordenador, String pesquisador)
+    public Pesquisa ( String codigo, String denominacao, String sigla,
+            String financiador, String coordenador, String pesquisador)
     {
+        this.codigo = codigo;
         this.denomicacao = denominacao;
         this.sigla = sigla;
         this.financiador = financiador;
@@ -74,7 +101,7 @@ public final class Pesquisa {
     { this.campos.add(campo);}        
     
     // Getters and Setters
-    
+       
     /**
      * @return the denomicacao
      */
@@ -157,6 +184,13 @@ public final class Pesquisa {
      */
     public void setCampos(ArrayList<Campo> campos) {
         this.campos = campos;
+    }
+
+    /**
+     * @return the codigo
+     */
+    public String getCodigo() {
+        return codigo;
     }
     
     

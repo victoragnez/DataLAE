@@ -3,19 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java;
+package service.exceptions;
 
 /**
  *
  * @author gabriel
  */
-public class Java {
+public class PesquisaInvalidaException extends Exception {
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public PesquisaInvalidaException(String msg) {
+    	super(msg);
     }
-    
-}
+}   
