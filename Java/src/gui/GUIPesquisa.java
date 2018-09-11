@@ -56,6 +56,7 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         buttonCadastrarPesquisa = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         formCadProjetoCodigo = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(701, 420));
 
@@ -80,6 +81,13 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Código");
 
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout TelaCadastroPesquisaLayout = new javax.swing.GroupLayout(TelaCadastroPesquisa);
         TelaCadastroPesquisa.setLayout(TelaCadastroPesquisaLayout);
         TelaCadastroPesquisaLayout.setHorizontalGroup(
@@ -89,6 +97,8 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
                 .addGroup(TelaCadastroPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TelaCadastroPesquisaLayout.createSequentialGroup()
                         .addComponent(buttonCadastrarPesquisa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(TelaCadastroPesquisaLayout.createSequentialGroup()
                         .addGroup(TelaCadastroPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +127,7 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
                                 .addGroup(TelaCadastroPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(TelaCadastroPesquisaLayout.createSequentialGroup()
                                         .addComponent(jLabel3)
-                                        .addGap(0, 440, Short.MAX_VALUE))
+                                        .addGap(0, 448, Short.MAX_VALUE))
                                     .addComponent(formCadProjetoFinanciador))))
                         .addContainerGap())))
         );
@@ -155,8 +165,10 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(formCadProjetoPesq3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonCadastrarPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGroup(TelaCadastroPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonCadastrarPesquisa)
+                    .addComponent(jButton1))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,12 +179,24 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TelaCadastroPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+            .addComponent(TelaCadastroPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void resetFields() {
+        formCadProjetoCodigo.setText("");
+        formCadProjetoDenominacao.setText("");
+        formCadProjetoSigla.setText("");
+        formCadProjetoFinanciador.setText("");
+        formCadProjetoCoordenador.setText("");
+        formCadProjetoPesq1.setText("");
+        formCadProjetoPesq2.setText("");
+        formCadProjetoPesq3.setText("");
+    }
+    
     private void buttonCadastrarPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarPesquisaActionPerformed
         
         String codigo = formCadProjetoCodigo.getText();
@@ -186,14 +210,7 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         String pesquisador2 = formCadProjetoPesq2.getText();
         String pesquisador3 = formCadProjetoPesq3.getText();
         
-        formCadProjetoCodigo.setText("");
-        formCadProjetoDenominacao.setText("");
-        formCadProjetoSigla.setText("");
-        formCadProjetoFinanciador.setText("");
-        formCadProjetoCoordenador.setText("");
-        formCadProjetoPesq1.setText("");
-        formCadProjetoPesq2.setText("");
-        formCadProjetoPesq3.setText("");
+        resetFields();
         
         ArrayList<String> pesquisador = new ArrayList<String>();
         pesquisador.add(pesquisador1);
@@ -207,6 +224,11 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
         this.setVisible(false);
     }//GEN-LAST:event_buttonCadastrarPesquisaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        resetFields();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TelaCadastroPesquisa;
@@ -219,6 +241,7 @@ public class GUIPesquisa extends javax.swing.JInternalFrame {
     private javax.swing.JTextField formCadProjetoPesq2;
     private javax.swing.JTextField formCadProjetoPesq3;
     private javax.swing.JTextField formCadProjetoSigla;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
