@@ -5,6 +5,9 @@
  */
 package dao;
 
+import dao.exceptions.CampoNaoExistenteException;
+import dao.exceptions.CodigoCampoEmUsoException;
+import dao.exceptions.CodigoInvalidoException;
 import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
 
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import service.Campo;
 
 import service.Pesquisa;
 
@@ -19,7 +23,7 @@ import service.Pesquisa;
  *
  * @author gabriel
  */
-public class PesquisaDAOMemoria implements IPesquisaDAO {
+public class DAOMemoria implements IDAO {
     
     private Map<String, Pesquisa> listaPesquisa = new HashMap<String, Pesquisa>(); 
 
@@ -121,5 +125,36 @@ public class PesquisaDAOMemoria implements IPesquisaDAO {
     		}
         }
     	return results;
+    }
+
+    @Override
+    public void inserirCampo(Campo campo, Pesquisa pesquisa) throws 
+            CodigoInvalidoException, PesquisaNaoExistenteException 
+    {
+       
+        if (campo == null || pesquisa == null ){
+            throw new CodigoInvalidoException("campo ou pesquisa inválidos");
+        }
+        
+        Pesquisa pesq = this.consultarPesquisa(pesquisa.getCodigo());           
+        pesq.inserirCampo(campo);
+    
+    }
+
+    @Override
+    public void alterarCampo(Campo campo, Pesquisa pesquisa) throws 
+            CampoNaoExistenteException, PesquisaNaoExistenteException 
+    {
+        //TODO
+    }
+
+    @Override
+    public void removerPesquisa(String codigoCampo, Pesquisa pesquisa) throws CampoNaoExistenteException, PesquisaNaoExistenteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Campo consultarCampo(String codigoCampo, Pesquisa pesquisa) throws CampoNaoExistenteException, PesquisaNaoExistenteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -5,11 +5,13 @@
  */
 package main;
 
-import dao.IPesquisaDAO;
-import dao.PesquisaDAOMemoria;
+import dao.DAOMemoria;
 import gui.TelaPrincipal;
 import service.IPesquisaService;
 import service.PesquisaService;
+import dao.IDAO;
+import service.CampoService;
+import service.ICampoService;
 
 /**
  *
@@ -21,9 +23,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    	IPesquisaDAO dao = new PesquisaDAOMemoria();
-    	IPesquisaService service = new PesquisaService(dao);
-        TelaPrincipal principal = new TelaPrincipal(service);
+    	IDAO dao = new DAOMemoria();
+    	IPesquisaService pesquisaService = new PesquisaService(dao);
+        ICampoService campoService = new CampoService(dao);
+        TelaPrincipal principal = new TelaPrincipal(pesquisaService, campoService);
         principal.setVisible(true);
     }
     

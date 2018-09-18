@@ -6,6 +6,7 @@
 package gui;
 
 import java.util.ArrayList;
+import service.ICampoService;
 import service.IPesquisaService;
 import service.Pesquisa;
 
@@ -16,6 +17,7 @@ import service.Pesquisa;
 public class TelaPrincipal extends javax.swing.JFrame {
 	
 	static IPesquisaService pesquisaService;
+        static ICampoService campoService;
         private GUIPesquisa guiPesq;    // Tela para adicionar pesquisas
         private ListaPesquisa listaPesq; // Tela que lista pesquisas
 	
@@ -26,8 +28,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 	/**
      * Creates new form TelaPrincipal
      */
-    public TelaPrincipal(IPesquisaService p) {
+    public TelaPrincipal(IPesquisaService p, ICampoService c) {
     	pesquisaService = p;
+        campoService = c;
+        
         this.guiPesq = new GUIPesquisa(p);
         this.add(guiPesq);
         guiPesq.setVisible(false);
@@ -159,7 +163,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal(pesquisaService).setVisible(true);
+                new TelaPrincipal(pesquisaService, campoService).setVisible(true);
             }
         });
     }

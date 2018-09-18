@@ -11,9 +11,9 @@ package service;
  */
 public interface ICampoService {
     
-    public void inserirCampo (Campo campo);
-    public void alterarCampo (Campo campo);
-    public void removerCampo (String codigo);
-    public Campo consultarCampo (String codigo);
+    public void inserirCampo (Campo campo, Pesquisa pesquisa);
+    public void alterarCampo (Campo campo, Pesquisa pesquisa);
+    public void removerCampo (String codigo, Pesquisa pesquisa);
+    public Campo consultarCampo (String codigo, Pesquisa pesquisa);
 
 }

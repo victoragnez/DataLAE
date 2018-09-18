@@ -5,10 +5,10 @@
  */
 package service;
 
-import dao.IPesquisaDAO;
 import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
 import java.util.ArrayList;
+import dao.IDAO;
 
 /**
  *
@@ -16,25 +16,25 @@ import java.util.ArrayList;
  */
 public class PesquisaService implements IPesquisaService {
 
-    private IPesquisaDAO pesquisaDAO;
+    private IDAO dao;
     
-    public PesquisaService (IPesquisaDAO pesquisaDAO){
-        this.pesquisaDAO = pesquisaDAO;
+    public PesquisaService (IDAO dao){
+        this.dao = dao;
     }
     
     @Override
     public void inserirPesquisa(Pesquisa pesquisa) throws CodigoPesquisaEmUsoException {
-        pesquisaDAO.inserirPesquisa(pesquisa);
+        dao.inserirPesquisa(pesquisa);
     }
 
     @Override
     public void alterarPesquisa(Pesquisa pesquisa) throws PesquisaNaoExistenteException {
-        pesquisaDAO.alterarPesquisa(pesquisa);
+        dao.alterarPesquisa(pesquisa);
     }
 
     @Override
     public void removerPesquisa(String codigo) throws PesquisaNaoExistenteException {
-        pesquisaDAO.removerPesquisa(codigo);
+        dao.removerPesquisa(codigo);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class PesquisaService implements IPesquisaService {
         Pesquisa pesquisa = null;
         
         try {
-            pesquisa = pesquisaDAO.consultarPesquisa(codigo);
+            pesquisa = dao.consultarPesquisa(codigo);
         } catch (PesquisaNaoExistenteException ex) {
             System.out.println(ex);
         }
@@ -50,7 +50,7 @@ public class PesquisaService implements IPesquisaService {
     }
     
     public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa) {
-        return pesquisaDAO.consultarPesquisa(pesquisa);
+        return dao.consultarPesquisa(pesquisa);
     }
     
 }   

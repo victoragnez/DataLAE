@@ -5,29 +5,37 @@
  */
 package service;
 
+import dao.IDAO;
+
 /**
  *
  * @author gabriel
  */
 public class CampoService implements ICampoService {
+    
+    private IDAO dao;
+    
+    public CampoService (IDAO dao){
+        this.dao = dao;
+    }
+    
+    @Override
+    public void inserirCampo(Campo campo, Pesquisa pesquisa) {
+        
+    }
 
     @Override
-    public void inserirCampo(Campo campo) {
+    public void alterarCampo(Campo campo, Pesquisa pesquisa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterarCampo(Campo campo) {
+    public void removerCampo(String codigo, Pesquisa pesquisa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void removerCampo(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Campo consultarCampo(String codigo) {
+    public Campo consultarCampo(String codigo, Pesquisa pesquisa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
