@@ -7,25 +7,25 @@ package dao;
 
 import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
+import remote.Row;
+import remote.iDAOServer;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import service.Pesquisa;
 
-/**
- *
- * @author gabriel
- */
 public class PesquisaDAOMemoria implements IPesquisaDAO {
 	
 	private Map<String, Pesquisa> listaPesquisa = new HashMap<String, Pesquisa>(); 
@@ -128,6 +128,15 @@ public class PesquisaDAOMemoria implements IPesquisaDAO {
 			}
 		}
 		return results;
+	}
+	
+	public String getStmt(Pesquisa p) {
+		return "select * from projetos";
+	}
+	
+	public ArrayList<Row> query(String user, String password, Pesquisa p) throws MalformedURLException, RemoteException, NotBoundException, ClassNotFoundException, SQLException{
+		iDAOServer stub = (iDAOServer) Naming.lookup("rmi://" + iDAOServer.ip + ":" + iDAOServer.port + "/" + iDAOServer.objectName);
+		return stub.runCommand(user, password, getStmt(p));
 	}
 	
 	public static void main(String[] args) {
