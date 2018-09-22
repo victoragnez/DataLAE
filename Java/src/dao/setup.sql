@@ -93,11 +93,52 @@ create table sigDados (
         proj_id int not null,
         dado_tipo enum('cad', 'imagem', 'modelo', 'planilha', 'shape') not null,
         dado_endereco varchar(300) not null,
-        foreign key fk_relatorios(proj_id)
+        foreign key fk_sigDados(proj_id)
         references projetos(proj_id)
         on update cascade
         on delete cascade
     ) engine=innodb;
+ 
+create table ambiental (
+        ambiental_id int not null auto_increment primary key,
+        viagem_id int not null,
+        ambiental_tipo enum('documentacao', 'imagem', 'report') not null,
+        ambiental_endereco varchar(300) not null,
+        foreign key fk_ambiental(viagem_id)
+        references viagem(viagem_id)
+        on update cascade
+        on delete cascade
+    ) engine=innodb;
 
+create table fotosViagem (
+        foto_id int not null auto_increment primary key,
+        viagem_id int not null,
+        foto_endereco varchar(300) not null,
+        foreign key fk_fotosViagem(viagem_id)
+        references viagem(viagem_id)
+        on update cascade
+        on delete cascade
+    ) engine=innodb;
+
+create table gps (
+        gps_id int not null auto_increment primary key,
+        viagem_id int not null,
+        gps_endereco varchar(300) not null,
+        foreign key fk_gps(viagem_id)
+        references viagem(viagem_id)
+        on update cascade
+        on delete cascade
+    ) engine=innodb;
+
+create table laserScanner (
+        scan_id int not null auto_increment primary key,
+        viagem_id int not null,
+        scan_tipo enum('bruto', 'documentacao', 'imagem', 'processamento', 'report', 'visualizacao') not null,
+        scan_endereco varchar(300) not null,
+        foreign key fk_laserScanner(viagem_id)
+        references viagem(viagem_id)
+        on update cascade
+        on delete cascade
+    ) engine=innodb;
 
 
