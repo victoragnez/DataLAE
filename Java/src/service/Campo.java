@@ -136,6 +136,8 @@ public final class Campo {
         this.convidado = convidado;
     }
     
-    
+    public String getCodigo (){
+        return this.codigo;
+    }
     
 }

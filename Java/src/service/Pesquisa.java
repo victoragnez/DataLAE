@@ -5,6 +5,7 @@
  */
 package service;
 
+import dao.exceptions.CodigoInvalidoException;
 import java.util.ArrayList;
 
 /** 
@@ -203,5 +204,17 @@ public final class Pesquisa {
      */
     public String getCodigo() {
         return codigo;
+    }
+    
+    public Campo getCampo(String codigoCampo) throws CodigoInvalidoException{
+        if (codigoCampo == null) 
+            throw new CodigoInvalidoException("Código do campo inválido!");
+        
+        for (Campo c: campos) {
+            if (c.getCodigo().equals(codigoCampo))
+                return c;
+        }
+        
+        throw new CodigoInvalidoException("Código do campo inválido!");
     }
 }

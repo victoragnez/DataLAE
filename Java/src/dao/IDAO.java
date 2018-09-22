@@ -24,10 +24,10 @@ public interface IDAO {
     public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa);
 
     public void inserirCampo(Campo campo, Pesquisa pesquisa) throws 
-            CodigoInvalidoException, PesquisaNaoExistenteException;
+            CodigoCampoEmUsoException, PesquisaNaoExistenteException;
     public void alterarCampo(Campo campo, Pesquisa pesquisa) throws
             CampoNaoExistenteException, PesquisaNaoExistenteException;
-    public void removerPesquisa(String codigoCampo, Pesquisa pesquisa) throws
+    public void removerCampo(String codigoCampo, Pesquisa pesquisa) throws
             CampoNaoExistenteException, PesquisaNaoExistenteException;
     public Campo consultarCampo(String codigoCampo, Pesquisa pesquisa) throws
             CampoNaoExistenteException, PesquisaNaoExistenteException;           

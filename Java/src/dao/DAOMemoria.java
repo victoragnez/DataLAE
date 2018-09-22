@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import service.Campo;
 
 import service.Pesquisa;
@@ -129,15 +131,18 @@ public class DAOMemoria implements IDAO {
 
     @Override
     public void inserirCampo(Campo campo, Pesquisa pesquisa) throws 
-            CodigoInvalidoException, PesquisaNaoExistenteException 
+            CodigoCampoEmUsoException, PesquisaNaoExistenteException 
     {
-       
-        if (campo == null || pesquisa == null ){
-            throw new CodigoInvalidoException("campo ou pesquisa inválidos");
-        }
-        
+         
         Pesquisa pesq = this.consultarPesquisa(pesquisa.getCodigo());           
-        pesq.inserirCampo(campo);
+        
+        // verifica se já existe o campo
+        try {
+            pesq.getCampo(campo.getCodigo());
+            throw new CodigoCampoEmUsoException ("Código de campo em uso");
+        }catch (CodigoInvalidoException ex){
+            pesq.inserirCampo(campo);
+        }      
     
     }
 
@@ -145,16 +150,48 @@ public class DAOMemoria implements IDAO {
     public void alterarCampo(Campo campo, Pesquisa pesquisa) throws 
             CampoNaoExistenteException, PesquisaNaoExistenteException 
     {
-        //TODO
+        Pesquisa pesq = this.consultarPesquisa(pesquisa.getCodigo());
+        for ( Campo c : pesq.getCampos() )
+        {
+            if (c.getCodigo().equals(campo.getCodigo())){
+               c = campo;
+               break;
+            }
+        }
+        
+        throw new CampoNaoExistenteException("Campo não encontrado");
     }
 
     @Override
-    public void removerPesquisa(String codigoCampo, Pesquisa pesquisa) throws CampoNaoExistenteException, PesquisaNaoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removerCampo(String codigoCampo, Pesquisa pesquisa) throws 
+            CampoNaoExistenteException, PesquisaNaoExistenteException 
+    {
+        Pesquisa pesq = this.consultarPesquisa(pesquisa.getCodigo());
+        for (Campo c : pesq.getCampos())
+        {
+            if (c.getCodigo().equals(codigoCampo))
+            {
+                pesq.getCampos().remove(c);
+                break;
+            }
+        }
+        
+        throw new CampoNaoExistenteException("Campo não encontrado");
     }
 
     @Override
-    public Campo consultarCampo(String codigoCampo, Pesquisa pesquisa) throws CampoNaoExistenteException, PesquisaNaoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Campo consultarCampo(String codigoCampo, Pesquisa pesquisa) throws 
+            CampoNaoExistenteException, PesquisaNaoExistenteException
+    {
+        if (codigoCampo == null) 
+            throw new CampoNaoExistenteException("Código do campo inválido");
+    
+        Pesquisa pesq = this.consultarPesquisa(pesquisa.getCodigo());
+        
+        for (Campo c : pesq.getCampos())
+            if (c.getCodigo().equals(codigoCampo))
+                return c;
+        
+        throw new CampoNaoExistenteException("Campo não encontrado");
     }
 }
