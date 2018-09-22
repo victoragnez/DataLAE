@@ -98,7 +98,17 @@ create table sigDados (
         on update cascade
         on delete cascade
     ) engine=innodb;
- 
+
+create table sigArea(
+        sigArea_id int not null auto_increment primary key,
+        area_id int not null,
+        sigArea_endereco varchar(300) not null,
+        foreign key fk_sigArea(area_id)
+        references area(area_id)
+        on update cascade
+        on delete cascade
+    ) engine=innodb;
+
 create table ambiental (
         ambiental_id int not null auto_increment primary key,
         viagem_id int not null,
@@ -115,6 +125,18 @@ create table fotosViagem (
         viagem_id int not null,
         foto_endereco varchar(300) not null,
         foreign key fk_fotosViagem(viagem_id)
+        references viagem(viagem_id)
+        on update cascade
+        on delete cascade
+    ) engine=innodb;
+
+create table geofisica (
+        geofisica_id int not null auto_increment primary key,
+        viagem_id int not null,
+        geofisica_tipo enum('ert', 'gpr', 'reflexao', 'refracao') not null,
+        geofisica_tipo_dado enum('bruto', 'documentacao', 'imagem', 'processamento', 'report') not null,
+        geofisica_endereco varchar(300) not null,
+        foreign key fk_geofisica(viagem_id)
         references viagem(viagem_id)
         on update cascade
         on delete cascade
