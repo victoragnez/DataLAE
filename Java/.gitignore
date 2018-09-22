@@ -35,6 +35,7 @@ target/
 .settings/
 .classpath
 .project
+.metadata
 
 # NetBeans specific
 nbproject
@@ -44,6 +45,7 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+nbproject
 
 
 # OS
