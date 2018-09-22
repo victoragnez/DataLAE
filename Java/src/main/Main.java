@@ -6,10 +6,10 @@
 package main;
 
 import dao.DAOMemoria;
-import gui.TelaPrincipal;
 import service.IPesquisaService;
 import service.PesquisaService;
 import dao.IDAO;
+import gui.App;
 import service.CampoService;
 import service.ICampoService;
 
@@ -26,8 +26,9 @@ public class Main {
     	IDAO dao = new DAOMemoria();
     	IPesquisaService pesquisaService = new PesquisaService(dao);
         ICampoService campoService = new CampoService(dao);
-        TelaPrincipal principal = new TelaPrincipal(pesquisaService, campoService);
-        principal.setVisible(true);
+        App.launch(args);
+        //TelaPrincipal principal = new TelaPrincipal(pesquisaService, campoService);
+        //principal.setVisible(true);
     }
     
 }
