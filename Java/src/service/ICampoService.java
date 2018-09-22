@@ -5,15 +5,25 @@
  */
 package service;
 
+import dao.exceptions.CampoNaoExistenteException;
+import dao.exceptions.CodigoCampoEmUsoException;
+import dao.exceptions.PesquisaNaoExistenteException;
+import service.exceptions.CampoInvalidoException;
+import service.exceptions.PesquisaInvalidaException;
+
 /**
  * Interface para serviço de acesso ao Campo
  * @author gabriel
  */
 public interface ICampoService {
     
-    public void inserirCampo (Campo campo);
-    public void alterarCampo (Campo campo);
-    public void removerCampo (String codigo);
-    public Campo consultarCampo (String codigo);
+    public void inserirCampo (Campo campo, Pesquisa pesquisa) throws 
+            CodigoCampoEmUsoException, PesquisaNaoExistenteException ;
+    public void alterarCampo (Campo campo, Pesquisa pesquisa) throws 
+            CampoNaoExistenteException, PesquisaNaoExistenteException ;
+    public void removerCampo (String codigo, Pesquisa pesquisa) throws
+            CampoNaoExistenteException, PesquisaNaoExistenteException ;
+    public Campo consultarCampo (String codigo, Pesquisa pesquisa) throws
+            CampoNaoExistenteException, PesquisaNaoExistenteException;
 
 }

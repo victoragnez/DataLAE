@@ -5,6 +5,9 @@
  */
 package dao;
 
+import dao.exceptions.CampoNaoExistenteException;
+import dao.exceptions.CodigoCampoEmUsoException;
+import dao.exceptions.CodigoInvalidoException;
 import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
 
@@ -12,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import service.Campo;
 
 import service.Pesquisa;
 
@@ -19,7 +25,7 @@ import service.Pesquisa;
  *
  * @author gabriel
  */
-public class PesquisaDAOMemoria implements IPesquisaDAO {
+public class DAOMemoria implements IDAO {
     
     private Map<String, Pesquisa> listaPesquisa = new HashMap<String, Pesquisa>(); 
 
@@ -121,5 +127,71 @@ public class PesquisaDAOMemoria implements IPesquisaDAO {
     		}
         }
     	return results;
+    }
+
+    @Override
+    public void inserirCampo(Campo campo, Pesquisa pesquisa) throws 
+            CodigoCampoEmUsoException, PesquisaNaoExistenteException 
+    {
+         
+        Pesquisa pesq = this.consultarPesquisa(pesquisa.getCodigo());           
+        
+        // verifica se já existe o campo
+        try {
+            pesq.getCampo(campo.getCodigo());
+            throw new CodigoCampoEmUsoException ("Código de campo em uso");
+        }catch (CodigoInvalidoException ex){
+            pesq.inserirCampo(campo);
+        }      
+    
+    }
+
+    @Override
+    public void alterarCampo(Campo campo, Pesquisa pesquisa) throws 
+            CampoNaoExistenteException, PesquisaNaoExistenteException 
+    {
+        Pesquisa pesq = this.consultarPesquisa(pesquisa.getCodigo());
+        for ( Campo c : pesq.getCampos() )
+        {
+            if (c.getCodigo().equals(campo.getCodigo())){
+               c = campo;
+               break;
+            }
+        }
+        
+        throw new CampoNaoExistenteException("Campo não encontrado");
+    }
+
+    @Override
+    public void removerCampo(String codigoCampo, Pesquisa pesquisa) throws 
+            CampoNaoExistenteException, PesquisaNaoExistenteException 
+    {
+        Pesquisa pesq = this.consultarPesquisa(pesquisa.getCodigo());
+        for (Campo c : pesq.getCampos())
+        {
+            if (c.getCodigo().equals(codigoCampo))
+            {
+                pesq.getCampos().remove(c);
+                break;
+            }
+        }
+        
+        throw new CampoNaoExistenteException("Campo não encontrado");
+    }
+
+    @Override
+    public Campo consultarCampo(String codigoCampo, Pesquisa pesquisa) throws 
+            CampoNaoExistenteException, PesquisaNaoExistenteException
+    {
+        if (codigoCampo == null) 
+            throw new CampoNaoExistenteException("Código do campo inválido");
+    
+        Pesquisa pesq = this.consultarPesquisa(pesquisa.getCodigo());
+        
+        for (Campo c : pesq.getCampos())
+            if (c.getCodigo().equals(codigoCampo))
+                return c;
+        
+        throw new CampoNaoExistenteException("Campo não encontrado");
     }
 }
