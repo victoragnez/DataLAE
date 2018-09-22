@@ -18,11 +18,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import service.Pesquisa;
 
@@ -130,67 +126,21 @@ public class PesquisaDAOMemoria implements IPesquisaDAO {
 		return results;
 	}
 	
-	public String getStmt(Pesquisa p) {
-		return "select * from projetos";
+	public String getQuery(Pesquisa p) {
+		return "select * from projetos;";
+	}
+	
+	public String getUpd(Pesquisa p) {
+		return "add ...;";
 	}
 	
 	public ArrayList<Row> query(String user, String password, Pesquisa p) throws MalformedURLException, RemoteException, NotBoundException, ClassNotFoundException, SQLException{
 		iDAOServer stub = (iDAOServer) Naming.lookup("rmi://" + iDAOServer.ip + ":" + iDAOServer.port + "/" + iDAOServer.objectName);
-		return stub.runCommand(user, password, getStmt(p));
+		return stub.runQuery(user, password, getQuery(p));
 	}
 	
-	public static void main(String[] args) {
-		Connection connect = null;
-		Statement statement = null;
-		ResultSet resultSet = null;
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager
-					.getConnection("jdbc:mysql://localhost/datalae?"
-							+ "user=adm&password=adm");
-			statement = connect.createStatement();
-			resultSet = statement.executeQuery("select * from datalae.pesquisa");
-			
-			writeResultSet(resultSet);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}finally {
-			if(connect != null) {
-				try {
-					connect.close();
-				} catch(SQLException e) {
-					
-				}
-			}
-			if(statement != null) {
-				try {
-					statement.close();
-				} catch(SQLException e) {
-					
-				}
-			}
-			if(resultSet != null) {
-				try {
-					resultSet.close();
-				} catch(SQLException e) {
-					
-				}
-			}
-		}
+	public void upd(String user, String password, Pesquisa p) throws MalformedURLException, RemoteException, NotBoundException, ClassNotFoundException, SQLException{
+		iDAOServer stub = (iDAOServer) Naming.lookup("rmi://" + iDAOServer.ip + ":" + iDAOServer.port + "/" + iDAOServer.objectName);
+		stub.runUpdate(user, password, getUpd(p));
 	}
-	
-	private static void writeResultSet(ResultSet resultSet) throws SQLException {
-        while (resultSet.next()) {
-            String denominacao = resultSet.getString("denominacao");
-            String sigla = resultSet.getString("sigla");
-            String financiador = resultSet.getString("financiador");
-            String coordenador = resultSet.getString("coordenador");
-            System.out.println("denominacao: " + denominacao);
-            System.out.println("sigla: " + sigla);
-            System.out.println("financiador: " + financiador);
-            System.out.println("coordenador: " + coordenador);
-        }
-    }
 }

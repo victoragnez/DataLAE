@@ -20,7 +20,7 @@ public class Server extends UnicastRemoteObject implements iDAOServer {
 		super(); 
 	}
 	
-	public ArrayList<Row> runCommand(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException{
+	public void runUpdate(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException{
 		Connection connect = null;
 		Statement statement = null;
 		Class.forName("com.mysql.jdbc.Driver");
@@ -28,11 +28,19 @@ public class Server extends UnicastRemoteObject implements iDAOServer {
 				.getConnection("jdbc:mysql://localhost/datalae?"
 						+ "user=" + user + "&password=" + password);
 		statement = connect.createStatement();
-		ArrayList<Row> ret = null;
-		if(statement.execute(sql)) {
-			ret = new ArrayList<Row>();
-			formTable(statement.getResultSet(), ret);
-		}
+		statement.executeUpdate(sql);
+	}
+	
+	public ArrayList<Row> runQuery(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException{
+		Connection connect = null;
+		Statement statement = null;
+		Class.forName("com.mysql.jdbc.Driver");
+		connect = DriverManager
+				.getConnection("jdbc:mysql://localhost/datalae?"
+						+ "user=" + user + "&password=" + password);
+		statement = connect.createStatement();
+		ArrayList<Row> ret = new ArrayList<Row>();
+		formTable(statement.executeQuery(sql), ret);
 		return ret;
 	}
 	
