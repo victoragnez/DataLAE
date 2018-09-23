@@ -15,6 +15,7 @@ create table projetos (
 create table pesquisadorProjeto (
         pesquisadorProjeto_id int not null auto_increment primary key,
         pesquisadorProjeto_nome varchar(200) not null,
+        pesquisadorProjeto_tipo enum('professor', 'doutorando', 'mestrando', 'ic', 'convidado') not null,
         proj_id int not null,
         foreign key fk_pesquisadorProjeto(proj_id)
         references projetos(proj_id)
@@ -36,7 +37,6 @@ create table viagem(
         viagem_id int not null auto_increment primary key,
         area_id int not null,
         viagem_data date not null,
-        gastos float not null,
         foreign key fk_viagem(area_id)
         references area(area_id)
         on update cascade
@@ -46,6 +46,7 @@ create table viagem(
 create table pesquisadorViagem (
         pesquisadorViagem_id int not null auto_increment primary key,
         pesquisadorViagem_nome varchar(200) not null,
+        pesquisadorViagem_tipo enum('professor', 'doutorando', 'mestrando', 'ic', 'convidado') not null,
         proj_id int not null,
         foreign key fk_pesquisadorViagem(proj_id)
         references projetos(proj_id)
