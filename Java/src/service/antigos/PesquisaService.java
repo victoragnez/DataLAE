@@ -56,8 +56,7 @@ public class PesquisaService implements IPesquisaService {
 
 	@Override
 	public void inserirPesquisa(Pesquisa pesquisa) {
-		// TODO Auto-generated method stub
-		
+		pesquisaDAO.criaPesquisa(pesquisa);
 	}
 
 	@Override

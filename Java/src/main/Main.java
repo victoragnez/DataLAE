@@ -25,19 +25,16 @@ import service.IUpdateService;
 import service.QueryService;
 import service.RemoveService;
 import service.UpdateService;
-import service.antigos.ICampoService;
-import service.antigos.IPesquisaService;
-import service.antigos.PesquisaService;
 
 /**
  *
  * @author gabriel
  */
 public class Main extends Application {
-	ICreateService createService;
-	IQueryService queryService;
-	IRemoveService removeService;
-	IUpdateService updateService;
+	private ICreateService createService;
+	private IQueryService queryService;
+	private IRemoveService removeService;
+	private IUpdateService updateService;
 	
 	public Main() {
 		super();
@@ -57,7 +54,7 @@ public class Main extends Application {
 	
     @Override
     public void start(Stage primaryStage) {
-        Scene scene = new Scene(new LoggedIn());
+        Scene scene = new Scene(new LoggedIn(this.queryService));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

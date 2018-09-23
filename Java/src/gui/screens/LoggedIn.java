@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import service.IQueryService;
 
 /**
  * Tela após logar.
@@ -14,7 +15,7 @@ import javafx.scene.layout.HBox;
 public class LoggedIn extends BorderPane {
 	private PesquisaScreen pesqScreen;
 	
-	public LoggedIn() {
+	public LoggedIn(IQueryService queryService) {
 		
 		// Cria duas labels
 		Label dataLAE = new Label("DataLAE");
@@ -49,7 +50,7 @@ public class LoggedIn extends BorderPane {
 		top.setBottom(sep);
 		
 		// Organiza os componentes da parte do centro da tela
-		pesqScreen = new PesquisaScreen();
+		pesqScreen = new PesquisaScreen(queryService);
 		
 		this.setTop(top);
 		this.setCenter(pesqScreen);

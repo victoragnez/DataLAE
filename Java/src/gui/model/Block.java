@@ -1,7 +1,6 @@
 package gui.model;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -9,13 +8,11 @@ import javafx.scene.layout.VBox;
 public abstract class Block extends BorderPane {
 	private Label title;
 	private Label subtitle;
-	private VBox right;
 	
 	public Block(String title, String subtitle) {
 		super();
 		
-		VBox left = new VBox();
-		right = new VBox();
+		VBox center = new VBox();
 		
 		// Cria título e subtítulo
 		this.title = new Label(title);
@@ -25,16 +22,24 @@ public abstract class Block extends BorderPane {
             	+ "-fx-font-size: 24;"
         );
 		this.subtitle = new Label(subtitle);
-		this.subtitle.setStyle("-fx-font-size: 15;"
-        );
-		left.getChildren().add(this.title);
-		left.getChildren().add(this.subtitle);
+		this.subtitle.setStyle("-fx-font-size: 15;");
+		
+		center.getChildren().add(this.title);
+		center.getChildren().add(this.subtitle);
 		
 		this.setStyle("-fx-background-color: rgb(235,235,235);");
 		this.setPrefHeight(100);
-		this.setLeft(left);
-		this.setRight(right);
+		this.setCenter(center);
 		this.setPadding(new Insets(10.0));
+		
+		this.setOnMouseEntered(e -> this.setStyle(
+			"-fx-background-color: rgb(220,220,220);"
+			+ "-fx-cursor: hand"
+		));
+		this.setOnMouseExited(e -> this.setStyle(
+			"-fx-background-color: rgb(235,235,235);"
+		));
+		this.setOnMouseClicked(e-> clickedAction());
 	}
 	
 	public void setTitle(String title) {
@@ -53,9 +58,7 @@ public abstract class Block extends BorderPane {
 		return this.subtitle.getText();
 	}
 	
-	public void addButton(Button button) {
-		button.setPrefSize(90, 15);
-		button.setStyle("-fx-cursor: hand;");
-		right.getChildren().addAll(button);
+	private void clickedAction() {
+		System.out.println("Clicou!");
 	}
 }

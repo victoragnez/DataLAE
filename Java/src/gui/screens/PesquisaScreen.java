@@ -7,13 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import service.IQueryService;
 import service.model.Pesquisa;
 
 public class PesquisaScreen extends BorderPane {
 	Label title;
 	BlockListPanel list;
 	
-	public PesquisaScreen() {
+	public PesquisaScreen(IQueryService queryService) {
 		super();
 		
 		title = new Label("Projetos");
@@ -27,7 +28,7 @@ public class PesquisaScreen extends BorderPane {
 		
 		HBox bottom = new HBox();
 		Button addButton = new Button("Novo Projeto...");
-		addButton.setOnAction(evt -> addButtonAction());
+		addButton.setOnAction(evt -> addButtonAction(queryService));
 		bottom.getChildren().add(addButton);
 		
 		bottom.setPadding(new Insets(10,10,10,0));
@@ -39,27 +40,11 @@ public class PesquisaScreen extends BorderPane {
 		this.setPadding(new Insets(0,20,0,20));
 	}
 	
-	private void addButtonAction() {
+	private void addButtonAction(IQueryService queryService) {
+		list.clear();
 		// Ação do botão adicionar
-		PesquisaBlock block = new PesquisaBlock(new Pesquisa(
-				"1",
-				"Denominação",
-				"Sigla",
-				"Financador",
-				"Coordenador",
-				"Pesquisador"
-		));
-		
-		Button rem = new Button("Remover");
-		rem.setOnAction(evt -> removeButtonAction(block));
-		
-		block.addButton(rem);
-		
-		list.addBlock(block);
-	}
-	
-	private void removeButtonAction(PesquisaBlock block) {
-		// Ação de remover pesquisa aqui!
-		list.removeBlock(block);
+		for (Pesquisa pesq : queryService.queryPesquisas()) {
+			list.addBlock(new PesquisaBlock(pesq));
+		}
 	}
 }

@@ -5,7 +5,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 public class BlockListPanel extends BorderPane {
-	VBox vbox;
+	private VBox vbox;
 	
 	public BlockListPanel() {
 		super();
@@ -25,5 +25,9 @@ public class BlockListPanel extends BorderPane {
 	
 	public void addBlock(Block block) {
 		vbox.getChildren().add(block);
+	}
+	
+	public void clear() {
+		vbox.getChildren().clear();
 	}
 }
