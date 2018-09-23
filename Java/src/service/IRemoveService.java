@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package dao;
+package service;
 
 import service.model.Area;
 import service.model.Pesquisa;
 import service.model.Viagem;
 
-public interface IRemoveDAO {
+public interface IRemoveService {
 	public void removePesquisa(Pesquisa p);
     public void removeArea(Pesquisa p, Area a);
     public void removeViagem(Pesquisa p, Area a, Viagem v);

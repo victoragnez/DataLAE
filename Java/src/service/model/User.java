@@ -1,4 +1,4 @@
-package service;
+package service.model;
 
 public abstract class User {
 	static private String username, password;

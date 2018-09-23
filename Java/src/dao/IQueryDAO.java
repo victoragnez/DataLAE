@@ -5,9 +5,9 @@
  */
 package dao;
 
-import service.Area;
-import service.Pesquisa;
-import service.Viagem;
+import service.model.Area;
+import service.model.Pesquisa;
+import service.model.Viagem;
 
 import java.util.ArrayList;
 

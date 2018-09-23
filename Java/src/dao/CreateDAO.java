@@ -5,22 +5,9 @@
  */
 package dao;
 
-import remote.Row;
-import remote.iDAOServer;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-
-import service.Area;
-import service.Pesquisa;
-import service.Viagem;
+import service.model.Area;
+import service.model.Pesquisa;
+import service.model.Viagem;
 
 public class CreateDAO implements ICreateDAO {
 

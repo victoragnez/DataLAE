@@ -8,6 +8,8 @@ package service;
 import dao.ICreateDAO;
 import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
+import service.model.Pesquisa;
+
 import java.util.ArrayList;
 import dao.IDAO;
 

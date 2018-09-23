@@ -1,6 +1,6 @@
 package gui.model;
 
-import service.Pesquisa;
+import service.model.Pesquisa;
 
 public class PesquisaBlock extends Block {
 	private Pesquisa pesq;

@@ -7,10 +7,8 @@ package main;
 
 import dao.ICreateDAO;
 import dao.CreateDAO;
-import gui.TelaPrincipal;
 import service.IPesquisaService;
 import service.PesquisaService;
-import dao.IDAO;
 import gui.screens.LoggedIn;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -50,8 +48,10 @@ public class Main extends Application {
     public static void main(String[] args) {
     	ICreateDAO dao = new CreateDAO();
     	IPesquisaService service = new PesquisaService(dao);
-        TelaPrincipal principal = new TelaPrincipal(service);
-        principal.setVisible(true);
+    	
+    	launch(args);		// Executa a interface gráfica
+        //TelaPrincipal principal = new TelaPrincipal(service);
+        //principal.setVisible(true);
     }
     
 }

@@ -10,6 +10,7 @@ import dao.exceptions.CodigoCampoEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
 import service.exceptions.CampoInvalidoException;
 import service.exceptions.PesquisaInvalidaException;
+import service.model.Viagem;
 
 /**
  * Interface para serviço de acesso ao Campo

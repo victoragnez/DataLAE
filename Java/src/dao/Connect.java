@@ -1,7 +1,7 @@
 package dao;
 
-import static service.User.getPassword;
-import static service.User.getUsername;
+import static service.model.User.getPassword;
+import static service.model.User.getUsername;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;

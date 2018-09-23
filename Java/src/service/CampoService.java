@@ -9,6 +9,8 @@ import dao.IDAO;
 import dao.exceptions.CampoNaoExistenteException;
 import dao.exceptions.CodigoCampoEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
+import service.model.Pesquisa;
+import service.model.Viagem;
 
 
 /**

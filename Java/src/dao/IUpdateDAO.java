@@ -5,9 +5,9 @@
  */
 package dao;
 
-import service.Pesquisa;
-import service.Area;
-import service.Viagem;
+import service.model.Area;
+import service.model.Pesquisa;
+import service.model.Viagem;
 
 public interface IUpdateDAO {
     public void updatePesquisa(Pesquisa p);

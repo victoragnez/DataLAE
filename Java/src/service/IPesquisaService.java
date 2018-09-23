@@ -5,6 +5,8 @@
  */
 package service;
 
+import service.model.Pesquisa;
+
 /**
  *
  * @author gabriel
