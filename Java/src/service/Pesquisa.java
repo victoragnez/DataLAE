@@ -25,8 +25,6 @@ public final class Pesquisa {
     private String financiador; // financiador do projeto (pode virar uma nova classe)
     private String coordenador; // Coordenador do projeto
     private ArrayList<String> pesquisador; // Pesquisadores envovidos com a pesquisa
-    
-    private ArrayList<Viagem> campos; // Campos realizados na pesquisa
 
     /**
      * Construtor básico
@@ -47,29 +45,6 @@ public final class Pesquisa {
         this.financiador = financiador;
         this.coordenador = coordenador;
         this.pesquisador = pesquisador;
-    }
-    
-    /**
-     * Construtor básico
-     * @param codigo o codigo da pesquisa
-     * @param denominacao o título do projeto
-     * @param sigla a sigla do projeto
-     * @param financiador o financiador da pesquisa
-     * @param coordenador o coordenador da pesquisa
-     * @param pesquisador os pesquisadores 
-     * @param campos os campos já realizados
-     */
-    public Pesquisa (String codigo, String denominacao, String sigla, 
-            String financiador, String coordenador, 
-            ArrayList<String> pesquisador,ArrayList<Viagem> campos)
-    {
-        this.codigo = codigo;
-        this.denomicacao = denominacao;
-        this.sigla = sigla;
-        this.financiador = financiador;
-        this.coordenador = coordenador;
-        this.pesquisador = pesquisador;
-        this.campos = campos;
     }
     
     /**
@@ -95,10 +70,7 @@ public final class Pesquisa {
     }    
     
     public void inserirPesquisador ( String pesquisador )
-    { this.pesquisador.add(pesquisador); }
-    
-    public void inserirCampo ( Viagem campo )
-    { this.campos.add(campo);}        
+    { this.pesquisador.add(pesquisador); }     
     
     // Getters and Setters
        
@@ -170,20 +142,6 @@ public final class Pesquisa {
      */
     public void setPesquisador(ArrayList<String> pesquisador) {
         this.pesquisador = pesquisador;
-    }
-
-    /**
-     * @return the campos
-     */
-    public ArrayList<Viagem> getCampos() {
-        return campos;
-    }
-
-    /**
-     * @param campos the campos to set
-     */
-    public void setCampos(ArrayList<Viagem> campos) {
-        this.campos = campos;
     }
 
     /**

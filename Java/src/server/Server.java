@@ -20,7 +20,7 @@ public class Server extends UnicastRemoteObject implements iDAOServer {
 		super(); 
 	}
 	
-	public void runUpdate(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException{
+	synchronized public void runUpdate(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException{
 		Connection connect = null;
 		Statement statement = null;
 		Class.forName("com.mysql.jdbc.Driver");
@@ -31,7 +31,7 @@ public class Server extends UnicastRemoteObject implements iDAOServer {
 		statement.executeUpdate(sql);
 	}
 	
-	public ArrayList<Row> runQuery(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException{
+	synchronized public ArrayList<Row> runQuery(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException{
 		Connection connect = null;
 		Statement statement = null;
 		Class.forName("com.mysql.jdbc.Driver");
@@ -44,20 +44,32 @@ public class Server extends UnicastRemoteObject implements iDAOServer {
 		return ret;
 	}
 	
-	public static void formTable (ResultSet rs, ArrayList<Row> table) throws SQLException
-    {
+	synchronized public void runUpdate(String user, String password, ArrayList<String> sql) throws RemoteException, ClassNotFoundException, SQLException{
+		Connection connect = null;
+		Statement[] statements = new Statement[sql.size()];
+		Class.forName("com.mysql.jdbc.Driver");
+		connect = DriverManager
+				.getConnection("jdbc:mysql://localhost/datalae?"
+						+ "user=" + user + "&password=" + password);
+		connect.setAutoCommit(false);
+		for(int i = 0; i < sql.size(); i++) {
+			statements[i] = connect.createStatement();
+			statements[i].executeQuery(sql.get(i));
+		}
+		connect.commit();
+	}
+	
+	public static void formTable (ResultSet rs, ArrayList<Row> table) throws SQLException {
         if (rs == null) return;
 
         ResultSetMetaData rsmd = rs.getMetaData();
 
         int NumOfCol = rsmd.getColumnCount();
 
-        while (rs.next())
-        {
+        while (rs.next()) {
             Row row = new Row ();
 
-            for(int i = 1; i <= NumOfCol; i++)
-            {
+            for(int i = 1; i <= NumOfCol; i++) {
                 row.add(rsmd.getColumnName(i), rs.getObject(i), rsmd.getColumnTypeName(i));
             }
 

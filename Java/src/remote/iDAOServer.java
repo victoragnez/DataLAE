@@ -14,6 +14,7 @@ public interface iDAOServer extends Remote {
 	public final String objectName = "DAOServer";
 	
 	public void runUpdate(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException;
+	public void runUpdate(String user, String password, ArrayList<String> sql) throws RemoteException, ClassNotFoundException, SQLException;
 	public ArrayList<Row> runQuery(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException;
 
 }

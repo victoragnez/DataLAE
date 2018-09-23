@@ -14,5 +14,5 @@ import java.util.ArrayList;
 public interface IQueryDAO {
 	public ArrayList<Pesquisa> queryPesquisas();
 	public ArrayList<Area> queryArea(Pesquisa p);
-	public ArrayList<Viagem> queryViagem(Pesquisa p, Area a);
+	public ArrayList<Viagem> queryViagem(Area a);
 }

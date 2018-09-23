@@ -41,7 +41,7 @@ public class QueryDAO implements IQueryDAO {
 	}
 
 	@Override
-	public ArrayList<Viagem> queryViagem(Pesquisa p, Area a) {
+	public ArrayList<Viagem> queryViagem(Area a) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -23,4 +23,9 @@ abstract class Connect {
 		iDAOServer stub = (iDAOServer) Naming.lookup("rmi://" + iDAOServer.ip + ":" + iDAOServer.port + "/" + iDAOServer.objectName);
 		stub.runUpdate(user, password, sql);
 	}
+	
+	public static void upd(String user, String password, ArrayList<String> sql) throws MalformedURLException, RemoteException, NotBoundException, ClassNotFoundException, SQLException{
+		iDAOServer stub = (iDAOServer) Naming.lookup("rmi://" + iDAOServer.ip + ":" + iDAOServer.port + "/" + iDAOServer.objectName);
+		stub.runUpdate(user, password, sql);
+	}
 }
