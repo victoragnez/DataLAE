@@ -1,22 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service.model;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- *
+ * Representa as visitas de campo realizadas.
  * @author gabriel
- * Representa as visitas de campo realizadas
  */
 public final class Viagem {
     /**
      * Atributos básicos
      */
-    // @TODO gerar criação automática de código
     private final String codigo;
     private Calendar data; //data da visita
     private ArrayList<String> pesquisador; // pesquisadores que foram no campo
@@ -29,8 +23,7 @@ public final class Viagem {
      * @param pesquisador os pesquisadores que foram ao campo
      * @param gastos o total de gastos com o campo
      */
-    public Viagem ( String codigo, Calendar data, ArrayList<String> pesquisador, Double gastos)
-    {
+    public Viagem(String codigo, Calendar data, ArrayList<String> pesquisador, Double gastos) {
         this.codigo = codigo;
         this.data = data;
         this.pesquisador = pesquisador;
@@ -44,11 +37,10 @@ public final class Viagem {
      * @param pesquisador um pesquisador que foi ao campo
      * @param gastos O total de gastos com o campo
      */
-    public Viagem ( String codigo, Calendar data, String pesquisador, Double gastos )
-    {
+    public Viagem(String codigo, Calendar data, String pesquisador, Double gastos ) {
         this.codigo = codigo;
         this.data = data;
-        this.pesquisador = new ArrayList<> ();
+        this.pesquisador = new ArrayList<>();
         this.inserirPesquisador(pesquisador);
         this.gastos = gastos;
     }
@@ -57,15 +49,17 @@ public final class Viagem {
      * Adiciona um novo pesquisador a lista de pesquisadores existentes
      * @param novoPesquisador O novo pesquisador
      */
-    public void inserirPesquisador ( String novoPesquisador )
-    {   this.getPesquisador().add(novoPesquisador); }
+    public void inserirPesquisador(String novoPesquisador) {
+    	this.getPesquisador().add(novoPesquisador);
+    }
 
     /**
      * Incrementa mais um gasto nos gastos totais
      * @param gasto 
      */
-    public void incrementaGastos ( Double gasto )
-    {   this.setGastos((Double) (this.getGastos() + gasto)); }
+    public void incrementaGastos(Double gasto) {
+    	this.setGastos((Double) (this.getGastos() + gasto));
+    }
 
     // Getters and Setters
     
@@ -110,8 +104,8 @@ public final class Viagem {
     public void setGastos(Double gastos) {
         this.gastos = gastos;
     }
+    
     public String getCodigo() {
     	return this.codigo;
     }
-    
 }

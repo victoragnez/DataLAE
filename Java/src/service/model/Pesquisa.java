@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service.model;
 
-import dao.exceptions.CodigoInvalidoException;
 import java.util.ArrayList;
 
 /** 
@@ -19,7 +13,6 @@ public final class Pesquisa {
     /**
      * Atributos básicos
      */
-    // @TODO gerar criação automática de código
     private final String codigo;
     private String denomicacao; // Denominação da pesquisa (título)
     private String sigla; // Sigla da pesquisa (como é mais conhecido)
@@ -57,7 +50,7 @@ public final class Pesquisa {
         this.financiador = null;
         this.coordenador = null;
         this.pesquisador = null;
-        this.campos = null;
+        //this.campos = null;
     }
     
     /**
@@ -164,6 +157,7 @@ public final class Pesquisa {
         return codigo;
     }
     
+    /*
     public Campo getCampo(String codigoCampo) throws CodigoInvalidoException{
         if (codigoCampo == null) 
             throw new CodigoInvalidoException("Código do campo inválido!");
@@ -175,4 +169,5 @@ public final class Pesquisa {
         
         throw new CodigoInvalidoException("Código do campo inválido!");
     }
+    */
 }

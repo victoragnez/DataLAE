@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import service.model.Area;
@@ -11,20 +6,19 @@ import service.model.Viagem;
 
 public class CreateDAO implements ICreateDAO {
 
+	// Implementações quebra-galho aqui:
 	@Override
 	public void criaPesquisa(Pesquisa p) {
-		
+		System.out.println("A pesquisa foi criada!");
 	}
 
 	@Override
 	public void criaArea(Pesquisa p, Area a) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("A área foi criada!");
 	}
 
 	@Override
 	public void criaViagem(Pesquisa p, Area a, Viagem v) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("A viagem foi criada!");
 	}
 }

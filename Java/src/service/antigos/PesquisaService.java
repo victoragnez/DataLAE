@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package service.antigos;
 
 import dao.ICreateDAO;
-import dao.exceptions.CodigoPesquisaEmUsoException;
-import dao.exceptions.PesquisaNaoExistenteException;
 import service.model.Pesquisa;
 
 import java.util.ArrayList;
-import dao.IDAO;
 
 /**
  *
@@ -24,7 +21,7 @@ public class PesquisaService implements IPesquisaService {
     public PesquisaService (ICreateDAO pesquisaDAO){
         this.pesquisaDAO = pesquisaDAO;
     }
-    
+    /*
     @Override
     public void inserirPesquisa(Pesquisa pesquisa) throws CodigoPesquisaEmUsoException {
         dao.inserirPesquisa(pesquisa);
@@ -55,5 +52,34 @@ public class PesquisaService implements IPesquisaService {
     public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa) {
         return dao.consultarPesquisa(pesquisa);
     }
-    
+    */
+
+	@Override
+	public void inserirPesquisa(Pesquisa pesquisa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void alterarPesquisa(Pesquisa pesquisa) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removerPesquisa(String codigo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Pesquisa consultarPesquisa(String codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa) {
+		return null;
+	}
 }   

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import service.model.Area;
@@ -11,22 +6,20 @@ import service.model.Viagem;
 
 public class UpdateDAO implements IUpdateDAO {
 
+	// Implementações quebra-galho aqui:
 	@Override
 	public void updatePesquisa(Pesquisa p) {
-		// TODO Auto-generated method stub
-		
+		System.out.println(p.getDenomicacao() + " foi atualizada com sucesso!");
 	}
 
 	@Override
 	public void updateArea(Pesquisa p, Area a) {
-		// TODO Auto-generated method stub
-		
+		System.out.println(a.getLocal() + " foi atualizada com sucesso!");
 	}
 
 	@Override
 	public void updateViagem(Pesquisa p, Area a, Viagem v) {
-		// TODO Auto-generated method stub
-		
+		System.out.println(v.getData().getTime() + " foi atulizada com sucesso!");
 	}
 	
 }
