@@ -8,6 +8,8 @@ package service;
 import dao.ICreateDAO;
 import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
+import java.util.ArrayList;
+import dao.IDAO;
 
 /**
  *
@@ -23,17 +25,17 @@ public class PesquisaService implements IPesquisaService {
     
     @Override
     public void inserirPesquisa(Pesquisa pesquisa) throws CodigoPesquisaEmUsoException {
-        pesquisaDAO.inserirPesquisa(pesquisa);
+        dao.inserirPesquisa(pesquisa);
     }
 
     @Override
     public void alterarPesquisa(Pesquisa pesquisa) throws PesquisaNaoExistenteException {
-        pesquisaDAO.alterarPesquisa(pesquisa);
+        dao.alterarPesquisa(pesquisa);
     }
 
     @Override
     public void removerPesquisa(String codigo) throws PesquisaNaoExistenteException {
-        pesquisaDAO.removerPesquisa(codigo);
+        dao.removerPesquisa(codigo);
     }
 
     @Override
@@ -41,11 +43,15 @@ public class PesquisaService implements IPesquisaService {
         Pesquisa pesquisa = null;
         
         try {
-            pesquisa = pesquisaDAO.consultarPesquisa(codigo);
+            pesquisa = dao.consultarPesquisa(codigo);
         } catch (PesquisaNaoExistenteException ex) {
             System.out.println(ex);
         }
         return pesquisa;
+    }
+    
+    public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa) {
+        return dao.consultarPesquisa(pesquisa);
     }
     
 }   

@@ -1,1 +1,6 @@
-/Java/nbproject/private/
+# eclipse project file
+.settings/
+.classpath
+.project
+./*/.metadata
+.metadata

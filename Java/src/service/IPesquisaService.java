@@ -21,4 +21,6 @@ public interface IPesquisaService {
      * @return A pesquisa que corresponde ao código
      */
     public Pesquisa consultarPesquisa (String codigo);
+    
+    public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa);
 }

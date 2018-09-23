@@ -110,7 +110,6 @@ public final class Viagem {
     public void setGastos(Double gastos) {
         this.gastos = gastos;
     }
-    
     public String getCodigo() {
     	return this.codigo;
     }

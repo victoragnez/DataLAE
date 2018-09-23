@@ -5,6 +5,7 @@
  */
 package service;
 
+import dao.exceptions.CodigoInvalidoException;
 import java.util.ArrayList;
 
 /** 
@@ -26,6 +27,7 @@ public final class Pesquisa {
     private String coordenador; // Coordenador do projeto
     private ArrayList<String> pesquisador; // Pesquisadores envovidos com a pesquisa
 
+    
     /**
      * Construtor básico
      * @param codigo o codigo da pesquisa
@@ -45,6 +47,17 @@ public final class Pesquisa {
         this.financiador = financiador;
         this.coordenador = coordenador;
         this.pesquisador = pesquisador;
+    }
+    
+    public Pesquisa ()
+    {
+        this.codigo = null;
+        this.denomicacao = null;
+        this.sigla = null;
+        this.financiador = null;
+        this.coordenador = null;
+        this.pesquisador = null;
+        this.campos = null;
     }
     
     /**
@@ -151,5 +164,15 @@ public final class Pesquisa {
         return codigo;
     }
     
-    
+    public Campo getCampo(String codigoCampo) throws CodigoInvalidoException{
+        if (codigoCampo == null) 
+            throw new CodigoInvalidoException("Código do campo inválido!");
+        
+        for (Campo c: campos) {
+            if (c.getCodigo().equals(codigoCampo))
+                return c;
+        }
+        
+        throw new CodigoInvalidoException("Código do campo inválido!");
+    }
 }

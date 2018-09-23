@@ -5,11 +5,23 @@
  */
 package service;
 
+import dao.IDAO;
+import dao.exceptions.CampoNaoExistenteException;
+import dao.exceptions.CodigoCampoEmUsoException;
+import dao.exceptions.PesquisaNaoExistenteException;
+
+
 /**
  *
  * @author gabriel
  */
 public class CampoService implements ICampoService {
+    
+    private IDAO dao;
+    
+    public CampoService (IDAO dao){
+        this.dao = dao;
+    }
 
     @Override
     public void inserirCampo(Viagem campo) {
@@ -22,8 +34,8 @@ public class CampoService implements ICampoService {
     }
 
     @Override
-    public void removerCampo(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removerCampo(String codigo, Pesquisa pesquisa) throws CampoNaoExistenteException, PesquisaNaoExistenteException {
+        dao.removerCampo(codigo, pesquisa);
     }
 
     @Override
