@@ -12,12 +12,12 @@ package service;
 public class CampoService implements ICampoService {
 
     @Override
-    public void inserirCampo(Campo campo) {
+    public void inserirCampo(Viagem campo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterarCampo(Campo campo) {
+    public void alterarCampo(Viagem campo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -27,7 +27,7 @@ public class CampoService implements ICampoService {
     }
 
     @Override
-    public Campo consultarCampo(String codigo) {
+    public Viagem consultarCampo(String codigo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

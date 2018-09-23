@@ -5,8 +5,8 @@
  */
 package main;
 
-import dao.IPesquisaDAO;
-import dao.PesquisaDAOMemoria;
+import dao.ICreateDAO;
+import dao.CreateDAO;
 import gui.TelaPrincipal;
 import service.IPesquisaService;
 import service.PesquisaService;
@@ -21,7 +21,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    	IPesquisaDAO dao = new PesquisaDAOMemoria();
+    	ICreateDAO dao = new CreateDAO();
     	IPesquisaService service = new PesquisaService(dao);
         TelaPrincipal principal = new TelaPrincipal(service);
         principal.setVisible(true);

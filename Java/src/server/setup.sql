@@ -12,6 +12,16 @@ create table projetos (
         proj_coordenador varchar(100) not null
     ) engine=innodb;
 
+create table pesquisadorProjeto (
+        pesquisadorProjeto_id int not null auto_increment primary key,
+        pesquisadorProjeto_nome varchar(200) not null,
+        proj_id int not null,
+        foreign key fk_pesquisadorProjeto(proj_id)
+        references projetos(proj_id)
+        on update cascade
+        on delete cascade
+    ) engine=innodb;
+
 create table area (
         area_id int not null auto_increment primary key,
         area_local varchar(300) not null,
@@ -26,8 +36,19 @@ create table viagem(
         viagem_id int not null auto_increment primary key,
         area_id int not null,
         viagem_data date not null,
+        gastos float not null,
         foreign key fk_viagem(area_id)
         references area(area_id)
+        on update cascade
+        on delete cascade
+    ) engine=innodb;
+
+create table pesquisadorViagem (
+        pesquisadorViagem_id int not null auto_increment primary key,
+        pesquisadorViagem_nome varchar(200) not null,
+        proj_id int not null,
+        foreign key fk_pesquisadorViagem(proj_id)
+        references projetos(proj_id)
         on update cascade
         on delete cascade
     ) engine=innodb;
@@ -67,14 +88,14 @@ create table publicacoes (
     ) engine=innodb;
 
 create table autores (
-		autor_id int not null auto_increment primary key,
-		publicacao_id int not null,
-		autor_nome varchar(200) not null,
-		foreign key fk_autores(publicacao_id)
+        autor_id int not null auto_increment primary key,
+        publicacao_id int not null,
+        autor_nome varchar(200) not null,
+        foreign key fk_autores(publicacao_id)
         references publicacoes(publicacao_id)
         on update cascade
         on delete cascade
-	) engine=innodb;
+    ) engine=innodb;
 
 create table relatorios (
         relatorio_id int not null auto_increment primary key,

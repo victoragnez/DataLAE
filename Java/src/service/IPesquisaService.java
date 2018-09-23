@@ -5,18 +5,15 @@
  */
 package service;
 
-import dao.exceptions.CodigoPesquisaEmUsoException;
-import dao.exceptions.PesquisaNaoExistenteException;
-
 /**
  *
  * @author gabriel
  */
 public interface IPesquisaService {
     
-    public void inserirPesquisa (Pesquisa pesquisa) throws CodigoPesquisaEmUsoException;
-    public void alterarPesquisa (Pesquisa pesquisa) throws PesquisaNaoExistenteException;
-    public void removerPesquisa (String codigo) throws PesquisaNaoExistenteException;
+    public void inserirPesquisa (Pesquisa pesquisa);
+    public void alterarPesquisa (Pesquisa pesquisa);
+    public void removerPesquisa (String codigo);
 
     /**
      * Busca uma pesquisa 

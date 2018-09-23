@@ -26,7 +26,7 @@ public final class Pesquisa {
     private String coordenador; // Coordenador do projeto
     private ArrayList<String> pesquisador; // Pesquisadores envovidos com a pesquisa
     
-    private ArrayList<Campo> campos; // Campos realizados na pesquisa
+    private ArrayList<Viagem> campos; // Campos realizados na pesquisa
 
     /**
      * Construtor básico
@@ -61,7 +61,7 @@ public final class Pesquisa {
      */
     public Pesquisa (String codigo, String denominacao, String sigla, 
             String financiador, String coordenador, 
-            ArrayList<String> pesquisador,ArrayList<Campo> campos)
+            ArrayList<String> pesquisador,ArrayList<Viagem> campos)
     {
         this.codigo = codigo;
         this.denomicacao = denominacao;
@@ -97,7 +97,7 @@ public final class Pesquisa {
     public void inserirPesquisador ( String pesquisador )
     { this.pesquisador.add(pesquisador); }
     
-    public void inserirCampo ( Campo campo )
+    public void inserirCampo ( Viagem campo )
     { this.campos.add(campo);}        
     
     // Getters and Setters
@@ -175,14 +175,14 @@ public final class Pesquisa {
     /**
      * @return the campos
      */
-    public ArrayList<Campo> getCampos() {
+    public ArrayList<Viagem> getCampos() {
         return campos;
     }
 
     /**
      * @param campos the campos to set
      */
-    public void setCampos(ArrayList<Campo> campos) {
+    public void setCampos(ArrayList<Viagem> campos) {
         this.campos = campos;
     }
 

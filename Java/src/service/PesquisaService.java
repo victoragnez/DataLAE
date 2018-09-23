@@ -5,7 +5,7 @@
  */
 package service;
 
-import dao.IPesquisaDAO;
+import dao.ICreateDAO;
 import dao.exceptions.CodigoPesquisaEmUsoException;
 import dao.exceptions.PesquisaNaoExistenteException;
 
@@ -15,9 +15,9 @@ import dao.exceptions.PesquisaNaoExistenteException;
  */
 public class PesquisaService implements IPesquisaService {
 
-    private IPesquisaDAO pesquisaDAO;
+    private ICreateDAO pesquisaDAO;
     
-    public PesquisaService (IPesquisaDAO pesquisaDAO){
+    public PesquisaService (ICreateDAO pesquisaDAO){
         this.pesquisaDAO = pesquisaDAO;
     }
     
