@@ -61,8 +61,8 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	
-	public ArrayList<Diretorio> PastasProjeto(Projeto p) {
+	@Override
+	public ArrayList<Diretorio> pastasProjeto(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Área de Pesquisa"));
 		list.add(new Diretorio("Modelagem"));
@@ -73,8 +73,8 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	
-	public ArrayList<Diretorio> PastasModelagem(Projeto p) {
+	@Override
+	public ArrayList<Diretorio> pastasModelagem(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Imagens"));
 		list.add(new Diretorio("Report"));
@@ -84,8 +84,8 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	
-	public ArrayList<Diretorio> PastasModeloIntegrado(Projeto p) {
+	@Override
+	public ArrayList<Diretorio> pastasModeloIntegrado(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Imagens"));
 		list.add(new Diretorio("Report"));
@@ -95,8 +95,8 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	
-	public ArrayList<Diretorio> PastasPublicacoes(Projeto p) {
+	@Override
+	public ArrayList<Diretorio> pastasPublicacoes(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Artigos"));
 		list.add(new Diretorio("Congresso"));
@@ -107,8 +107,8 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	
-	public ArrayList<Diretorio> PastasRelatorios(Projeto p) {
+	@Override
+	public ArrayList<Diretorio> pastasRelatorios(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Final"));
 		list.add(new Diretorio("Parcial"));
@@ -116,8 +116,8 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	
-	public ArrayList<Diretorio> PastasSIG(Projeto p) {
+	@Override
+	public ArrayList<Diretorio> pastasSIG(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Áreas de Estudo"));
 		list.add(new Diretorio("Dados"));
@@ -125,19 +125,19 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	
-	public ArrayList<Diretorio> PastasSIGAreaEstudo(Projeto p) {
-		ArrayList<Diretorio> list = new ArrayList<>();
-		list.add(new Diretorio("Arapuá"));
-		list.add(new Diretorio("Furma Feia"));
-		list.add(new Diretorio("Toca da Barriguda"));
-		list.add(new Diretorio("Toca da Boa Vista"));
+	@Override
+	public ArrayList<Area> pastasSIGAreaEstudo(Projeto p) {
+		ArrayList<Area> list = new ArrayList<>();
+		list.add(new Area("1", "Arapuá"));
+		list.add(new Area("2", "Furma Feia"));
+		list.add(new Area("3", "Toca da Barriguda"));
+		list.add(new Area("4", "Toca da Boa Vista"));
 		
 		return list;
 	}
 
-	
-	public ArrayList<Diretorio> PastasSIGDados(Projeto p) {
+	@Override
+	public ArrayList<Diretorio> pastasSIGDados(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Dados"));
 		list.add(new Diretorio("Imagens Aéreas"));
@@ -232,11 +232,6 @@ public class QueryDAO implements IQueryDAO {
 		return null;
 	}
 
-	@Override
-	public ArrayList<Area> pastasSIGAreaEstudo(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ArrayList<Publicacao> queryPublicacoes(Projeto p, PublicacaoTipo t) {
@@ -249,47 +244,4 @@ public class QueryDAO implements IQueryDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public ArrayList<Diretorio> pastasProjeto(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Diretorio> pastasModelagem(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Diretorio> pastasModeloIntegrado(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Diretorio> pastasPublicacoes(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Diretorio> pastasRelatorios(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Diretorio> pastasSIG(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Diretorio> pastasSIGDados(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
