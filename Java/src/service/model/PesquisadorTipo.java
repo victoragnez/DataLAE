@@ -1,5 +1,5 @@
 package service.model;
 
-public enum TipoPesquisador {
+public enum PesquisadorTipo {
 	Professor, Doutorando, Mestrando, IC, Convidado;
 }

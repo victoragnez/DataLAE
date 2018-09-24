@@ -1,11 +1,14 @@
 package service.model;
 
 public class Diretorio {
-	String nome;
-	Diretorio(){
-		nome = null;
+	private final String nome;
+	
+	public Diretorio(String nome) {
+		this.nome = nome;
 	}
-	Diretorio(String s){
-		nome = s;
+	
+	public String getNome() {
+		return nome;
 	}
+
 }

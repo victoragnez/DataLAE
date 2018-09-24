@@ -1,16 +1,21 @@
 package service.model;
 
-public class Arquivo {
+public class AutorPublicacao {
 	private final String codigo;
 	private String nome;
 	
-	public Arquivo(String codigo, String nome) {
+	public AutorPublicacao(String codigo, String nome) {
 		this.codigo = codigo;
 		this.nome = nome;
 	}
 	
-	public void setNome(String s) {
-		nome = s;
+	public AutorPublicacao(String nome) {
+		this.codigo = null;
+		this.nome = nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	public String getCodigo() {
@@ -20,5 +25,4 @@ public class Arquivo {
 	public String getNome() {
 		return nome;
 	}
-
 }

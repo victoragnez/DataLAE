@@ -13,7 +13,9 @@ import service.model.Geofisica;
 import service.model.LaserScannerTipo;
 import service.model.ModelagemOuModeloIntegrado;
 import service.model.Projeto;
+import service.model.Publicacao;
 import service.model.PublicacaoTipo;
+import service.model.Relatorio;
 import service.model.SIGDadoTipo;
 import service.model.Viagem;
 
@@ -26,6 +28,10 @@ public interface IQueryDAO {
 	public ArrayList<Area> queryAreas(Projeto p);
 	
 	public ArrayList<Viagem> queryViagens(Area a);
+	
+	public ArrayList<Publicacao> queryPublicacoes(Projeto p, PublicacaoTipo t);
+	
+	public ArrayList<Relatorio> queryRelatorios(Projeto p, Boolean Final);
 	
 	public ArrayList<Diretorio> PastasProjeto(Projeto p);
 	public ArrayList<Diretorio> PastasModelagem(Projeto p);
@@ -41,7 +47,6 @@ public interface IQueryDAO {
 	public ArrayList<Diretorio> PastasGeofisica(Viagem v, Geofisica.Metodo m);
 	public ArrayList<Diretorio> PastasLaserScanner(Viagem v);
 	
-	
 	public ArrayList<Arquivo> ArquivosAmbiental(Viagem v, AmbientalTipo t);
 	public ArrayList<Arquivo> ArquivosFotos(Viagem v);
 	public ArrayList<Arquivo> ArquivosGeofisica(Viagem v, Geofisica.Metodo m, Geofisica.Tipo t);
@@ -49,8 +54,7 @@ public interface IQueryDAO {
 	public ArrayList<Arquivo> ArquivosLaserScanner(Viagem v, LaserScannerTipo t);
 	public ArrayList<Arquivo> ArquivosModelagem(Projeto p, ModelagemOuModeloIntegrado t);
 	public ArrayList<Arquivo> ArquivosModeloIntegrado(Projeto p, ModelagemOuModeloIntegrado t);
-	public ArrayList<Arquivo> ArquivosPublicacoes(Projeto p, PublicacaoTipo t);
-	public ArrayList<Arquivo> ArquivosRelatorios(Projeto p, Boolean Final);
 	public ArrayList<Arquivo> ArquivosSIGArea(Area a);
 	public ArrayList<Arquivo> ArquivosSIGDados(Projeto p, SIGDadoTipo t);
+	
 }

@@ -18,7 +18,7 @@ public final class Projeto {
     private String sigla; // Sigla da pesquisa (como é mais conhecido)
     private String financiador; // financiador do projeto (pode virar uma nova classe)
     private String coordenador; // Coordenador do projeto
-    private ArrayList<String> pesquisador; // Pesquisadores envovidos com a pesquisa
+    private ArrayList<Pesquisador> pesquisador; // Pesquisadores envovidos com a pesquisa
 
     
     /**
@@ -32,7 +32,7 @@ public final class Projeto {
      */
     public Projeto (String codigo, String denominacao, String sigla, 
             String financiador, String coordenador, 
-            ArrayList<String> pesquisador)
+            ArrayList<Pesquisador> pesquisador)
     {
         this.codigo = codigo;
         this.denomicacao = denominacao;
@@ -63,7 +63,7 @@ public final class Projeto {
      * @param pesquisador o pesquisador 
      */
     public Projeto ( String codigo, String denominacao, String sigla,
-            String financiador, String coordenador, String pesquisador)
+            String financiador, String coordenador, Pesquisador pesquisador)
     {
         this.codigo = codigo;
         this.denomicacao = denominacao;
@@ -75,7 +75,7 @@ public final class Projeto {
         
     }    
     
-    public void inserirPesquisador ( String pesquisador )
+    public void inserirPesquisador ( Pesquisador pesquisador )
     { this.pesquisador.add(pesquisador); }     
     
     // Getters and Setters
@@ -139,14 +139,14 @@ public final class Projeto {
     /**
      * @return the pesquisador
      */
-    public ArrayList<String> getPesquisador() {
+    public ArrayList<Pesquisador> getPesquisador() {
         return pesquisador;
     }
 
     /**
      * @param pesquisador the pesquisador to set
      */
-    public void setPesquisador(ArrayList<String> pesquisador) {
+    public void setPesquisador(ArrayList<Pesquisador> pesquisador) {
         this.pesquisador = pesquisador;
     }
 
