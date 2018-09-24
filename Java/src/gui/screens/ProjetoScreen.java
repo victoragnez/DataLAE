@@ -5,6 +5,7 @@ import gui.model.Block;
 import gui.model.BlockListPanel;
 import gui.model.DefaultBlock;
 import gui.model.ProjetoBlock;
+import gui.model.ViagemBlock;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -13,6 +14,7 @@ import service.IQueryService;
 import service.model.Area;
 import service.model.Diretorio;
 import service.model.Projeto;
+import service.model.Viagem;
 
 public class ProjetoScreen extends BorderPane {
 	Label title;
@@ -65,6 +67,16 @@ public class ProjetoScreen extends BorderPane {
 		this.title.setText("Areas");
 		for(Area area : queryService.queryArea(proj)) {
 			Block b = new AreaBlock(area);
+			b.setOnMouseClicked(e -> pastasViagens(queryService, area));
+			list.addBlock(b);
+		}
+	}
+	
+	private void pastasViagens(IQueryService queryService, Area area) {
+		list.clear();
+		this.title.setText("Areas");
+		for(Viagem viagem : queryService.queryViagem(area)) {
+			Block b = new ViagemBlock(viagem);
 			list.addBlock(b);
 		}
 	}

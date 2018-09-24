@@ -38,7 +38,7 @@ public class QueryDAO implements IQueryDAO {
 	public ArrayList<Area> queryAreas(Projeto p) {
 		ArrayList<Area> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
-			list.add(new Area(Integer.toString(i), "Área" + i + " da " + p.getDenomicacao()));
+			list.add(new Area(Integer.toString(i), "Área " + i + " da " + p.getDenomicacao()));
 		}
 		return list;
 	}
