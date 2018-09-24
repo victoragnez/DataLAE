@@ -36,4 +36,9 @@ public class QueryService implements IQueryService {
 	public ArrayList<Diretorio> pastasProjetos(Projeto p) {
 		return queryDAO.pastasProjeto(p);
 	}
+	
+	@Override
+	public ArrayList<Diretorio> pastasViagem(Viagem v) {
+		return queryDAO.pastasViagem(v);
+	}
 }

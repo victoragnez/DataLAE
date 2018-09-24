@@ -13,4 +13,5 @@ public interface IQueryService {
 	public ArrayList<Viagem> queryViagem(Area a);
 	
 	public ArrayList<Diretorio> pastasProjetos(Projeto p);
+	public ArrayList<Diretorio> pastasViagem(Viagem v);
 }

@@ -1,13 +1,16 @@
 package gui.screens;
 
+import gui.model.AreaBlock;
 import gui.model.Block;
 import gui.model.BlockListPanel;
+import gui.model.DefaultBlock;
 import gui.model.ProjetoBlock;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import service.IQueryService;
+import service.model.Area;
 import service.model.Diretorio;
 import service.model.Projeto;
 
@@ -48,12 +51,20 @@ public class ProjetoScreen extends BorderPane {
 	
 	private void pastasProjetos(IQueryService queryService, Projeto proj) {
 		list.clear();
+		this.title.setText("Projetos");
 		for(Diretorio dir : queryService.pastasProjetos(proj)) {
-			Projeto p = new Projeto();
-			p.setDenomicacao(dir.getNome());
-			p.setCoordenador("");
-			p.setFinanciador("");
-			Block b = new ProjetoBlock(p);
+			Block b = new DefaultBlock(dir.getNome(), "");
+			if(dir.getNome().equals("Área de Pesquisa"))
+				b.setOnMouseClicked(e -> pastasAreas(queryService, proj));
+			list.addBlock(b);
+		}
+	}
+	
+	private void pastasAreas(IQueryService queryService, Projeto proj) {
+		list.clear();
+		this.title.setText("Areas");
+		for(Area area : queryService.queryArea(proj)) {
+			Block b = new AreaBlock(area);
 			list.addBlock(b);
 		}
 	}
