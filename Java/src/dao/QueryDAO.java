@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import service.model.Area;
-import service.model.Pesquisa;
+import service.model.Projeto;
 import service.model.Viagem;
 
 public class QueryDAO implements IQueryDAO {
 
 	// Implementações quebra-galho abaixo:
 	@Override
-	public ArrayList<Pesquisa> queryPesquisas() {
-		ArrayList<Pesquisa> list = new ArrayList<>();
+	public ArrayList<Projeto> queryProjetos() {
+		ArrayList<Projeto> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
-			Pesquisa pesq = new Pesquisa();
+			Projeto pesq = new Projeto();
 			pesq.setDenomicacao("Pesquisa "+i);
 			pesq.setCoordenador("Coordenador " + i);
 			pesq.setFinanciador("Financiador " + i);
@@ -24,7 +24,7 @@ public class QueryDAO implements IQueryDAO {
 	}
 
 	@Override
-	public ArrayList<Area> queryArea(Pesquisa p) {
+	public ArrayList<Area> queryArea(Projeto p) {
 		ArrayList<Area> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
 			list.add(new Area(Integer.toString(i), "Área" + i + " da " + p.getDenomicacao()));

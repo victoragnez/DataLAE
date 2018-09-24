@@ -6,7 +6,7 @@
 package service.antigos;
 
 import dao.ICreateDAO;
-import service.model.Pesquisa;
+import service.model.Projeto;
 
 import java.util.ArrayList;
 
@@ -55,12 +55,12 @@ public class PesquisaService implements IPesquisaService {
     */
 
 	@Override
-	public void inserirPesquisa(Pesquisa pesquisa) {
-		pesquisaDAO.criaPesquisa(pesquisa);
+	public void inserirPesquisa(Projeto projeto) {
+		pesquisaDAO.criaPesquisa(projeto);
 	}
 
 	@Override
-	public void alterarPesquisa(Pesquisa pesquisa) {
+	public void alterarPesquisa(Projeto projeto) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -72,13 +72,13 @@ public class PesquisaService implements IPesquisaService {
 	}
 
 	@Override
-	public Pesquisa consultarPesquisa(String codigo) {
+	public Projeto consultarPesquisa(String codigo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa) {
+	public ArrayList<Projeto> consultarPesquisa(Projeto projeto) {
 		return null;
 	}
 }   

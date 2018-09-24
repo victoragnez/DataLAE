@@ -8,13 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import service.IQueryService;
-import service.model.Pesquisa;
+import service.model.Projeto;
 
-public class PesquisaScreen extends BorderPane {
+public class ProjetoScreen extends BorderPane {
 	Label title;
 	BlockListPanel list;
 	
-	public PesquisaScreen(IQueryService queryService) {
+	public ProjetoScreen(IQueryService queryService) {
 		super();
 		
 		title = new Label("Projetos");
@@ -43,7 +43,7 @@ public class PesquisaScreen extends BorderPane {
 	private void addButtonAction(IQueryService queryService) {
 		list.clear();
 		// Ação do botão adicionar
-		for (Pesquisa pesq : queryService.queryPesquisas()) {
+		for (Projeto pesq : queryService.queryProjetos()) {
 			list.addBlock(new PesquisaBlock(pesq));
 		}
 	}

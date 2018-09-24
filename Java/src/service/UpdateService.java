@@ -2,7 +2,7 @@ package service;
 
 import dao.IUpdateDAO;
 import service.model.Area;
-import service.model.Pesquisa;
+import service.model.Projeto;
 import service.model.Viagem;
 
 public class UpdateService implements IUpdateService {
@@ -15,17 +15,17 @@ public class UpdateService implements IUpdateService {
 	// ATENÇÃO: Ajeitar regras de negócio para os métodos abaixo depois:
 	
 	@Override
-	public void updatePesquisa(Pesquisa p) {
-		updateDAO.updatePesquisa(p);
+	public void updateProjeto(Projeto p) {
+		updateDAO.updateProjeto(p);
 	}
 
 	@Override
-	public void updateArea(Pesquisa p, Area a) {
+	public void updateArea(Projeto p, Area a) {
 		updateDAO.updateArea(p, a);
 	}
 
 	@Override
-	public void updateViagem(Pesquisa p, Area a, Viagem v) {
+	public void updateViagem(Projeto p, Area a, Viagem v) {
 		updateDAO.updateViagem(p, a, v);
 	}
 }

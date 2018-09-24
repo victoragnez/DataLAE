@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dao.IQueryDAO;
 import service.model.Area;
-import service.model.Pesquisa;
+import service.model.Projeto;
 import service.model.Viagem;
 
 public class QueryService implements IQueryService {
@@ -17,12 +17,12 @@ public class QueryService implements IQueryService {
 	// ATENÇÃO: Ajeitar regras de negócio para os métodos abaixo depois:
 	
 	@Override
-	public ArrayList<Pesquisa> queryPesquisas() {
-		return queryDAO.queryPesquisas();
+	public ArrayList<Projeto> queryProjetos() {
+		return queryDAO.queryProjetos();
 	}
 
 	@Override
-	public ArrayList<Area> queryArea(Pesquisa p) {
+	public ArrayList<Area> queryArea(Projeto p) {
 		return queryDAO.queryArea(p);
 	}
 

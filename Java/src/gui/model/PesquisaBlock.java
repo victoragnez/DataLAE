@@ -1,18 +1,18 @@
 package gui.model;
 
-import service.model.Pesquisa;
+import service.model.Projeto;
 
 public class PesquisaBlock extends Block {
-	private Pesquisa pesq;
+	private Projeto pesq;
 	
-	public PesquisaBlock(Pesquisa pesq) {
+	public PesquisaBlock(Projeto pesq) {
 		super(pesq.getDenomicacao(),
 				"Coordenador: " + pesq.getCoordenador() +
 				"\nFinanciador: " + pesq.getFinanciador());
 		this.pesq = pesq;
 	}
 	
-	public Pesquisa getPesquisa() {
+	public Projeto getPesquisa() {
 		return pesq;
 	}
 }

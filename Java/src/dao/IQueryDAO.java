@@ -6,13 +6,13 @@
 package dao;
 
 import service.model.Area;
-import service.model.Pesquisa;
+import service.model.Projeto;
 import service.model.Viagem;
 
 import java.util.ArrayList;
 
 public interface IQueryDAO {
-	public ArrayList<Pesquisa> queryPesquisas();
-	public ArrayList<Area> queryArea(Pesquisa p);
+	public ArrayList<Projeto> queryProjetos();
+	public ArrayList<Area> queryArea(Projeto p);
 	public ArrayList<Viagem> queryViagem(Area a);
 }

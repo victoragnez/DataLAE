@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Representa a classe Pesquisa com os atributos necessários.
  * Uma pesquisa contém diversos campos realizados
  */
-public final class Pesquisa {
+public final class Projeto {
     
     /**
      * Atributos básicos
@@ -30,7 +30,7 @@ public final class Pesquisa {
      * @param coordenador o coordenador da pesquisa
      * @param pesquisador os pesquisadores 
      */
-    public Pesquisa (String codigo, String denominacao, String sigla, 
+    public Projeto (String codigo, String denominacao, String sigla, 
             String financiador, String coordenador, 
             ArrayList<String> pesquisador)
     {
@@ -42,7 +42,7 @@ public final class Pesquisa {
         this.pesquisador = pesquisador;
     }
     
-    public Pesquisa ()
+    public Projeto ()
     {
         this.codigo = null;
         this.denomicacao = null;
@@ -62,7 +62,7 @@ public final class Pesquisa {
      * @param coordenador o coordenador da pesquisa
      * @param pesquisador o pesquisador 
      */
-    public Pesquisa ( String codigo, String denominacao, String sigla,
+    public Projeto ( String codigo, String denominacao, String sigla,
             String financiador, String coordenador, String pesquisador)
     {
         this.codigo = codigo;

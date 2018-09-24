@@ -2,7 +2,7 @@ package service.antigos;
 
 import java.util.ArrayList;
 
-import service.model.Pesquisa;
+import service.model.Projeto;
 
 /**
  *
@@ -10,8 +10,8 @@ import service.model.Pesquisa;
  */
 public interface IPesquisaService {
     
-    public void inserirPesquisa (Pesquisa pesquisa);
-    public void alterarPesquisa (Pesquisa pesquisa);
+    public void inserirPesquisa (Projeto projeto);
+    public void alterarPesquisa (Projeto projeto);
     public void removerPesquisa (String codigo);
 
     /**
@@ -19,7 +19,7 @@ public interface IPesquisaService {
      * @param codigo o codigo da pesquisa
      * @return A pesquisa que corresponde ao código
      */
-    public Pesquisa consultarPesquisa (String codigo);
+    public Projeto consultarPesquisa (String codigo);
     
-    public ArrayList<Pesquisa> consultarPesquisa(Pesquisa pesquisa);
+    public ArrayList<Projeto> consultarPesquisa(Projeto projeto);
 }

@@ -13,7 +13,7 @@ import service.IQueryService;
  * @author Gilney Junior
  */
 public class LoggedIn extends BorderPane {
-	private PesquisaScreen pesqScreen;
+	private ProjetoScreen pesqScreen;
 	
 	public LoggedIn(IQueryService queryService) {
 		
@@ -50,7 +50,7 @@ public class LoggedIn extends BorderPane {
 		top.setBottom(sep);
 		
 		// Organiza os componentes da parte do centro da tela
-		pesqScreen = new PesquisaScreen(queryService);
+		pesqScreen = new ProjetoScreen(queryService);
 		
 		this.setTop(top);
 		this.setCenter(pesqScreen);
