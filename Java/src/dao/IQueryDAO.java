@@ -26,6 +26,7 @@ public interface IQueryDAO {
 	public ArrayList<Projeto> queryProjetos();
 	
 	public ArrayList<Area> queryAreas(Projeto p);
+	public ArrayList<Area> pastasSIGAreaEstudo(Projeto p);
 	
 	public ArrayList<Viagem> queryViagens(Area a);
 	
@@ -39,7 +40,6 @@ public interface IQueryDAO {
 	public ArrayList<Diretorio> pastasPublicacoes(Projeto p);
 	public ArrayList<Diretorio> pastasRelatorios(Projeto p);
 	public ArrayList<Diretorio> pastasSIG(Projeto p);
-	public ArrayList<Diretorio> pastasSIGAreaEstudo(Projeto p);
 	public ArrayList<Diretorio> pastasSIGDados(Projeto p);
 	public ArrayList<Diretorio> pastasViagem(Viagem v);
 	public ArrayList<Diretorio> pastasAmbiental(Viagem v);

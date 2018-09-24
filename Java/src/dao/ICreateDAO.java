@@ -5,8 +5,6 @@
  */
 package dao;
 
-import java.util.ArrayList;
-
 import service.model.AmbientalTipo;
 import service.model.Area;
 import service.model.Arquivo;
