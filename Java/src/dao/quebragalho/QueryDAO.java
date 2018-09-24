@@ -1,8 +1,9 @@
-package dao;
+package dao.quebragalho;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import dao.IQueryDAO;
 import service.model.Area;
 import service.model.Projeto;
 import service.model.Viagem;
