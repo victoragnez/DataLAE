@@ -33,28 +33,28 @@ public interface IQueryDAO {
 	
 	public ArrayList<Relatorio> queryRelatorios(Projeto p, Boolean Final);
 	
-	public ArrayList<Diretorio> PastasProjeto(Projeto p);
-	public ArrayList<Diretorio> PastasModelagem(Projeto p);
-	public ArrayList<Diretorio> PastasModeloIntegrado(Projeto p);
-	public ArrayList<Diretorio> PastasPublicacoes(Projeto p);
-	public ArrayList<Diretorio> PastasRelatorios(Projeto p);
-	public ArrayList<Diretorio> PastasSIG(Projeto p);
-	public ArrayList<Diretorio> PastasSIGAreaEstudo(Projeto p);
-	public ArrayList<Diretorio> PastasSIGDados(Projeto p);
-	public ArrayList<Diretorio> PastasViagem(Viagem v);
-	public ArrayList<Diretorio> PastasAmbiental(Viagem v);
-	public ArrayList<Diretorio> PastasGeofisica(Viagem v);
-	public ArrayList<Diretorio> PastasGeofisica(Viagem v, Geofisica.Metodo m);
-	public ArrayList<Diretorio> PastasLaserScanner(Viagem v);
+	public ArrayList<Diretorio> pastasProjeto(Projeto p);
+	public ArrayList<Diretorio> pastasModelagem(Projeto p);
+	public ArrayList<Diretorio> pastasModeloIntegrado(Projeto p);
+	public ArrayList<Diretorio> pastasPublicacoes(Projeto p);
+	public ArrayList<Diretorio> pastasRelatorios(Projeto p);
+	public ArrayList<Diretorio> pastasSIG(Projeto p);
+	public ArrayList<Diretorio> pastasSIGAreaEstudo(Projeto p);
+	public ArrayList<Diretorio> pastasSIGDados(Projeto p);
+	public ArrayList<Diretorio> pastasViagem(Viagem v);
+	public ArrayList<Diretorio> pastasAmbiental(Viagem v);
+	public ArrayList<Diretorio> pastasGeofisica(Viagem v);
+	public ArrayList<Diretorio> pastasGeofisica(Viagem v, Geofisica.Metodo m);
+	public ArrayList<Diretorio> pastasLaserScanner(Viagem v);
 	
-	public ArrayList<Arquivo> ArquivosAmbiental(Viagem v, AmbientalTipo t);
-	public ArrayList<Arquivo> ArquivosFotos(Viagem v);
-	public ArrayList<Arquivo> ArquivosGeofisica(Viagem v, Geofisica.Metodo m, Geofisica.Tipo t);
-	public ArrayList<Arquivo> ArquivosGPS(Viagem v);
-	public ArrayList<Arquivo> ArquivosLaserScanner(Viagem v, LaserScannerTipo t);
-	public ArrayList<Arquivo> ArquivosModelagem(Projeto p, ModelagemOuModeloIntegrado t);
-	public ArrayList<Arquivo> ArquivosModeloIntegrado(Projeto p, ModelagemOuModeloIntegrado t);
-	public ArrayList<Arquivo> ArquivosSIGArea(Area a);
-	public ArrayList<Arquivo> ArquivosSIGDados(Projeto p, SIGDadoTipo t);
+	public ArrayList<Arquivo> arquivosAmbiental(Viagem v, AmbientalTipo t);
+	public ArrayList<Arquivo> arquivosFotos(Viagem v);
+	public ArrayList<Arquivo> arquivosGeofisica(Viagem v, Geofisica.Metodo m, Geofisica.Tipo t);
+	public ArrayList<Arquivo> arquivosGPS(Viagem v);
+	public ArrayList<Arquivo> arquivosLaserScanner(Viagem v, LaserScannerTipo t);
+	public ArrayList<Arquivo> arquivosModelagem(Projeto p, ModelagemOuModeloIntegrado t);
+	public ArrayList<Arquivo> arquivosModeloIntegrado(Projeto p, ModelagemOuModeloIntegrado t);
+	public ArrayList<Arquivo> arquivosSIGArea(Area a);
+	public ArrayList<Arquivo> arquivosSIGDados(Projeto p, SIGDadoTipo t);
 	
 }
