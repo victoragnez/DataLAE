@@ -5,29 +5,66 @@
  */
 package main;
 
-import dao.DAOMemoria;
-import gui.TelaPrincipal;
-import service.IPesquisaService;
-import service.PesquisaService;
-import dao.IDAO;
-import service.CampoService;
-import service.ICampoService;
+import dao.ICreateDAO;
+import dao.IQueryDAO;
+import dao.IRemoveDAO;
+import dao.IUpdateDAO;
+import dao.QueryDAO;
+import dao.RemoveDAO;
+import dao.UpdateDAO;
+import dao.CreateDAO;
+import gui.screens.LoggedIn;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import service.CreateService;
+import service.ICreateService;
+import service.IQueryService;
+import service.IRemoveService;
+import service.IUpdateService;
+import service.QueryService;
+import service.RemoveService;
+import service.UpdateService;
 
 /**
  *
  * @author gabriel
  */
-public class Main {
+public class Main extends Application {
+	private ICreateService createService;
+	private IQueryService queryService;
+	private IRemoveService removeService;
+	private IUpdateService updateService;
+	
+	public Main() {
+		super();
+		
+		// Inicializa DAO
+    	ICreateDAO createDAO = new CreateDAO();
+    	IQueryDAO queryDAO = new QueryDAO();
+    	IRemoveDAO removeDAO = new RemoveDAO();
+    	IUpdateDAO updateDAO = new UpdateDAO();
+    	
+    	// Inicializa service
+    	createService = new CreateService(createDAO);
+    	queryService = new QueryService(queryDAO);
+    	removeService = new RemoveService(removeDAO);
+    	updateService = new UpdateService(updateDAO);
+	}
+	
+    @Override
+    public void start(Stage primaryStage) {
+        Scene scene = new Scene(new LoggedIn(this.queryService));
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    	IDAO dao = new DAOMemoria();
-    	IPesquisaService pesquisaService = new PesquisaService(dao);
-        ICampoService campoService = new CampoService(dao);
-        TelaPrincipal principal = new TelaPrincipal(pesquisaService, campoService);
-        principal.setVisible(true);
+    	Main main = new Main();
+    	launch(args);		// Executa a interface gráfica
     }
     
 }
