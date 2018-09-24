@@ -1,5 +1,5 @@
 package service.model;
 
-public enum Publicacao {
+public enum PublicacaoTipo {
 	Artigo, Congresso, Dissertacao, TCC, Tese;
 }

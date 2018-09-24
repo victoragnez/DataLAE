@@ -24,7 +24,7 @@ public class QueryDAO implements IQueryDAO {
 	}
 
 	@Override
-	public ArrayList<Area> queryArea(Projeto p) {
+	public ArrayList<Area> queryAreas(Projeto p) {
 		ArrayList<Area> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
 			list.add(new Area(Integer.toString(i), "Área" + i + " da " + p.getDenomicacao()));
@@ -33,7 +33,7 @@ public class QueryDAO implements IQueryDAO {
 	}
 
 	@Override
-	public ArrayList<Viagem> queryViagem(Area a) {
+	public ArrayList<Viagem> queryViagens(Area a) {
 		ArrayList<Viagem> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
 			Calendar c = Calendar.getInstance();
