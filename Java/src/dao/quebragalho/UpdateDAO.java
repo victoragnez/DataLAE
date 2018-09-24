@@ -1,5 +1,6 @@
-package dao;
+package dao.quebragalho;
 
+import dao.IUpdateDAO;
 import service.model.Area;
 import service.model.Projeto;
 import service.model.Viagem;

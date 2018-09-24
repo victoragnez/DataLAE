@@ -23,11 +23,11 @@ public class QueryService implements IQueryService {
 
 	@Override
 	public ArrayList<Area> queryArea(Projeto p) {
-		return queryDAO.queryArea(p);
+		return queryDAO.queryAreas(p);
 	}
 
 	@Override
 	public ArrayList<Viagem> queryViagem(Area a) {
-		return queryDAO.queryViagem(a);
+		return queryDAO.queryViagens(a);
 	}
 }
