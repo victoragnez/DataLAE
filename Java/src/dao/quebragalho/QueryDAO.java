@@ -13,7 +13,9 @@ import service.model.Geofisica.Tipo;
 import service.model.LaserScannerTipo;
 import service.model.ModelagemOuModeloIntegrado;
 import service.model.Projeto;
+import service.model.Publicacao;
 import service.model.PublicacaoTipo;
+import service.model.Relatorio;
 import service.model.SIGDadoTipo;
 import service.model.Viagem;
 
@@ -148,6 +150,18 @@ public class QueryDAO implements IQueryDAO {
 	}
 
 	@Override
+	public ArrayList<Publicacao> queryPublicacoes(Projeto p, PublicacaoTipo t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Relatorio> queryRelatorios(Projeto p, Boolean Final) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public ArrayList<Diretorio> PastasViagem(Viagem v) {
 		// TODO Auto-generated method stub
 		return null;
@@ -215,18 +229,6 @@ public class QueryDAO implements IQueryDAO {
 
 	@Override
 	public ArrayList<Arquivo> ArquivosModeloIntegrado(Projeto p, ModelagemOuModeloIntegrado t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Arquivo> ArquivosPublicacoes(Projeto p, PublicacaoTipo t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Arquivo> ArquivosRelatorios(Projeto p, Boolean Final) {
 		// TODO Auto-generated method stub
 		return null;
 	}
