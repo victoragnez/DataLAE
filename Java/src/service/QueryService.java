@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dao.IQueryDAO;
 import service.model.Area;
+import service.model.Diretorio;
 import service.model.Projeto;
 import service.model.Viagem;
 
@@ -29,5 +30,10 @@ public class QueryService implements IQueryService {
 	@Override
 	public ArrayList<Viagem> queryViagem(Area a) {
 		return queryDAO.queryViagens(a);
+	}
+
+	@Override
+	public ArrayList<Diretorio> pastasProjetos(Projeto p) {
+		return queryDAO.pastasProjeto(p);
 	}
 }

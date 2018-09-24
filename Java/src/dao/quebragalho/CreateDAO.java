@@ -1,7 +1,5 @@
 package dao.quebragalho;
 
-import java.util.ArrayList;
-
 import dao.ICreateDAO;
 import service.model.AmbientalTipo;
 import service.model.Area;
@@ -11,7 +9,8 @@ import service.model.Geofisica.Tipo;
 import service.model.LaserScannerTipo;
 import service.model.ModelagemOuModeloIntegrado;
 import service.model.Projeto;
-import service.model.PublicacaoTipo;
+import service.model.Publicacao;
+import service.model.Relatorio;
 import service.model.SIGDadoTipo;
 import service.model.Viagem;
 
@@ -34,67 +33,67 @@ public class CreateDAO implements ICreateDAO {
 	}
 
 	@Override
-	public void criaArquivosAmbiental(Viagem v, AmbientalTipo t, ArrayList<Arquivo> vet) {
+	public void criaPublicacao(Projeto p, Publicacao pb) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosFotos(Viagem v, ArrayList<Arquivo> vet) {
+	public void criaRelatorio(Projeto p, Boolean Final, Relatorio r) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosGeofisica(Viagem v, Metodo m, Tipo t, ArrayList<Arquivo> vet) {
+	public void criaArquivosAmbiental(Viagem v, AmbientalTipo t, Arquivo arq) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosGPS(Viagem v, ArrayList<Arquivo> vet) {
+	public void criaArquivosFotos(Viagem v, Arquivo arq) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosLaserScanner(Viagem v, LaserScannerTipo t, ArrayList<Arquivo> vet) {
+	public void criaArquivosGeofisica(Viagem v, Metodo m, Tipo t, Arquivo arq) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosModelagem(Projeto p, ModelagemOuModeloIntegrado t, ArrayList<Arquivo> vet) {
+	public void criaArquivosGPS(Viagem v, Arquivo arq) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosModeloIntegrado(Projeto p, ModelagemOuModeloIntegrado t, ArrayList<Arquivo> vet) {
+	public void criaArquivosLaserScanner(Viagem v, LaserScannerTipo t, Arquivo arq) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosPublicacoes(Projeto p, PublicacaoTipo t, ArrayList<Arquivo> vet) {
+	public void criaArquivosModelagem(Projeto p, ModelagemOuModeloIntegrado t, Arquivo arq) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosRelatorios(Projeto p, Boolean Final, ArrayList<Arquivo> vet) {
+	public void criaArquivosModeloIntegrado(Projeto p, ModelagemOuModeloIntegrado t, Arquivo arq) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosSIGArea(Area a, ArrayList<Arquivo> vet) {
+	public void criaArquivosSIGArea(Area a, Arquivo arq) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void criaArquivosSIGDados(Projeto p, SIGDadoTipo t, ArrayList<Arquivo> vet) {
+	public void criaArquivosSIGDados(Projeto p, SIGDadoTipo t, Arquivo arq) {
 		// TODO Auto-generated method stub
 		
 	}

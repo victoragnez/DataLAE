@@ -1,13 +1,14 @@
 package gui.screens;
 
+import gui.model.Block;
 import gui.model.BlockListPanel;
-import gui.model.PesquisaBlock;
+import gui.model.ProjetoBlock;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import service.IQueryService;
+import service.model.Diretorio;
 import service.model.Projeto;
 
 public class ProjetoScreen extends BorderPane {
@@ -17,6 +18,7 @@ public class ProjetoScreen extends BorderPane {
 	public ProjetoScreen(IQueryService queryService) {
 		super();
 		
+		// Instancia atributos
 		title = new Label("Projetos");
 		list = new BlockListPanel();
 		
@@ -24,27 +26,35 @@ public class ProjetoScreen extends BorderPane {
 		
 		HBox top = new HBox();
 		top.getChildren().add(title);
+
+		//addButton.setOnAction(evt -> addButtonAction(queryService));
 		
-		
-		HBox bottom = new HBox();
-		Button addButton = new Button("Novo Projeto...");
-		addButton.setOnAction(evt -> addButtonAction(queryService));
-		bottom.getChildren().add(addButton);
-		
-		bottom.setPadding(new Insets(10,10,10,0));
 		top.setPadding(new Insets(5,10,5,0));
 		
 		this.setTop(top);
 		this.setCenter(list);
-		this.setBottom(bottom);
-		this.setPadding(new Insets(0,20,0,20));
+		this.setPadding(new Insets(0,20,20,20));
+		initProjetos(queryService);
 	}
 	
-	private void addButtonAction(IQueryService queryService) {
+	private void initProjetos(IQueryService queryService) {
 		list.clear();
-		// Ação do botão adicionar
-		for (Projeto pesq : queryService.queryProjetos()) {
-			list.addBlock(new PesquisaBlock(pesq));
+		for(Projeto proj : queryService.queryProjetos()) {
+			Block b = new ProjetoBlock(proj);
+			b.setOnMouseClicked(e -> pastasProjetos(queryService, proj));
+			list.addBlock(b);
+		}
+	}
+	
+	private void pastasProjetos(IQueryService queryService, Projeto proj) {
+		list.clear();
+		for(Diretorio dir : queryService.pastasProjetos(proj)) {
+			Projeto p = new Projeto();
+			p.setDenomicacao(dir.getNome());
+			p.setCoordenador("");
+			p.setFinanciador("");
+			Block b = new ProjetoBlock(p);
+			list.addBlock(b);
 		}
 	}
 }

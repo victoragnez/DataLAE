@@ -22,7 +22,6 @@ import service.model.Viagem;
 public class QueryDAO implements IQueryDAO {
 
 	// Implementações quebra-galho abaixo:
-	@Override
 	public ArrayList<Projeto> queryProjetos() {
 		ArrayList<Projeto> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
@@ -35,7 +34,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Area> queryAreas(Projeto p) {
 		ArrayList<Area> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
@@ -44,7 +43,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Viagem> queryViagens(Area a) {
 		ArrayList<Viagem> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
@@ -62,7 +61,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Diretorio> PastasProjeto(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Área de Pesquisa"));
@@ -74,7 +73,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Diretorio> PastasModelagem(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Imagens"));
@@ -85,7 +84,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Diretorio> PastasModeloIntegrado(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Imagens"));
@@ -96,7 +95,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Diretorio> PastasPublicacoes(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Artigos"));
@@ -108,7 +107,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Diretorio> PastasRelatorios(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Final"));
@@ -117,7 +116,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Diretorio> PastasSIG(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Áreas de Estudo"));
@@ -126,7 +125,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Diretorio> PastasSIGAreaEstudo(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Arapuá"));
@@ -137,7 +136,7 @@ public class QueryDAO implements IQueryDAO {
 		return list;
 	}
 
-	@Override
+	
 	public ArrayList<Diretorio> PastasSIGDados(Projeto p) {
 		ArrayList<Diretorio> list = new ArrayList<>();
 		list.add(new Diretorio("Dados"));
@@ -147,6 +146,96 @@ public class QueryDAO implements IQueryDAO {
 		list.add(new Diretorio("Shapes"));
 		
 		return list;
+	}
+
+	@Override
+	public ArrayList<Diretorio> pastasViagem(Viagem v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Diretorio> pastasAmbiental(Viagem v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Diretorio> pastasGeofisica(Viagem v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Diretorio> pastasGeofisica(Viagem v, Metodo m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Diretorio> pastasLaserScanner(Viagem v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Arquivo> arquivosAmbiental(Viagem v, AmbientalTipo t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Arquivo> arquivosFotos(Viagem v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Arquivo> arquivosGeofisica(Viagem v, Metodo m, Tipo t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Arquivo> arquivosGPS(Viagem v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Arquivo> arquivosLaserScanner(Viagem v, LaserScannerTipo t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Arquivo> arquivosModelagem(Projeto p, ModelagemOuModeloIntegrado t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Arquivo> arquivosModeloIntegrado(Projeto p, ModelagemOuModeloIntegrado t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Arquivo> arquivosSIGArea(Area a) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Arquivo> arquivosSIGDados(Projeto p, SIGDadoTipo t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Area> pastasSIGAreaEstudo(Projeto p) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -162,86 +251,45 @@ public class QueryDAO implements IQueryDAO {
 	}
 
 	@Override
-	public ArrayList<Diretorio> PastasViagem(Viagem v) {
+	public ArrayList<Diretorio> pastasProjeto(Projeto p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Diretorio> PastasAmbiental(Viagem v) {
+	public ArrayList<Diretorio> pastasModelagem(Projeto p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Diretorio> PastasGeofisica(Viagem v) {
+	public ArrayList<Diretorio> pastasModeloIntegrado(Projeto p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Diretorio> PastasGeofisica(Viagem v, Metodo m) {
+	public ArrayList<Diretorio> pastasPublicacoes(Projeto p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Diretorio> PastasLaserScanner(Viagem v) {
+	public ArrayList<Diretorio> pastasRelatorios(Projeto p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Arquivo> ArquivosAmbiental(Viagem v, AmbientalTipo t) {
+	public ArrayList<Diretorio> pastasSIG(Projeto p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Arquivo> ArquivosFotos(Viagem v) {
+	public ArrayList<Diretorio> pastasSIGDados(Projeto p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public ArrayList<Arquivo> ArquivosGeofisica(Viagem v, Metodo m, Tipo t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Arquivo> ArquivosGPS(Viagem v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Arquivo> ArquivosLaserScanner(Viagem v, LaserScannerTipo t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Arquivo> ArquivosModelagem(Projeto p, ModelagemOuModeloIntegrado t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Arquivo> ArquivosModeloIntegrado(Projeto p, ModelagemOuModeloIntegrado t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Arquivo> ArquivosSIGArea(Area a) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Arquivo> ArquivosSIGDados(Projeto p, SIGDadoTipo t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -39,7 +39,6 @@ public abstract class Block extends BorderPane {
 		this.setOnMouseExited(e -> this.setStyle(
 			"-fx-background-color: rgb(235,235,235);"
 		));
-		this.setOnMouseClicked(e-> clickedAction());
 	}
 	
 	public void setTitle(String title) {
@@ -56,9 +55,5 @@ public abstract class Block extends BorderPane {
 	
 	public String getSubtitle() {
 		return this.subtitle.getText();
-	}
-	
-	private void clickedAction() {
-		System.out.println("Clicou!");
 	}
 }
