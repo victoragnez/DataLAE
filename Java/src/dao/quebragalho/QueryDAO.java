@@ -1,7 +1,7 @@
 package dao.quebragalho;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import dao.IQueryDAO;
 import service.model.AmbientalTipo;
@@ -12,6 +12,8 @@ import service.model.Geofisica.Metodo;
 import service.model.Geofisica.Tipo;
 import service.model.LaserScannerTipo;
 import service.model.ModelagemOuModeloIntegrado;
+import service.model.PesquisadorProjeto;
+import service.model.PesquisadorViagem;
 import service.model.Projeto;
 import service.model.Publicacao;
 import service.model.PublicacaoTipo;
@@ -25,10 +27,8 @@ public class QueryDAO implements IQueryDAO {
 	public ArrayList<Projeto> queryProjetos() {
 		ArrayList<Projeto> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
-			Projeto pesq = new Projeto();
-			pesq.setDenomicacao("Pesquisa "+i);
-			pesq.setCoordenador("Coordenador " + i);
-			pesq.setFinanciador("Financiador " + i);
+			Projeto pesq = new Projeto(""+i+1000, null, "Pesquisa "+i, 
+					"Coordenador " + i, "Financiador " + i, new ArrayList<PesquisadorProjeto>());
 			list.add(pesq);
 		}
 		return list;
@@ -47,19 +47,16 @@ public class QueryDAO implements IQueryDAO {
 	public ArrayList<Viagem> queryViagens(Area a) {
 		ArrayList<Viagem> list = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
-			Calendar c = Calendar.getInstance();
-			c.set(Calendar.DAY_OF_MONTH, 1+i);
-			c.set(Calendar.MONTH, 9);
-			c.set(Calendar.YEAR, 2018);
+			Date c = new Date(2018, 9, 1+i);
 			
 			list.add(new Viagem(
 					Integer.toString(i),
 					c, 
-					"Pesquisador da " + a.getLocal(), 
-					(double)i));
+					new ArrayList<PesquisadorViagem>()));
 		}
 		return list;
 	}
+
 
 	@Override
 	public ArrayList<Diretorio> pastasProjeto(Projeto p) {

@@ -21,6 +21,7 @@ public class Server extends UnicastRemoteObject implements iDAOServer {
 	}
 	
 	synchronized public void runUpdate(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException{
+		System.out.println("Requisição de update");
 		Connection connect = null;
 		Statement statement = null;
 		Class.forName("com.mysql.jdbc.Driver");
@@ -32,6 +33,7 @@ public class Server extends UnicastRemoteObject implements iDAOServer {
 	}
 	
 	synchronized public ArrayList<Row> runQuery(String user, String password, String sql) throws RemoteException, ClassNotFoundException, SQLException{
+		System.out.println("Requisição de query");
 		Connection connect = null;
 		Statement statement = null;
 		Class.forName("com.mysql.jdbc.Driver");
@@ -45,6 +47,7 @@ public class Server extends UnicastRemoteObject implements iDAOServer {
 	}
 	
 	synchronized public void runUpdate(String user, String password, ArrayList<String> sql) throws RemoteException, ClassNotFoundException, SQLException{
+		System.out.println("Requisição de update de vários comandos");
 		Connection connect = null;
 		Statement[] statements = new Statement[sql.size()];
 		Class.forName("com.mysql.jdbc.Driver");

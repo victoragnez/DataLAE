@@ -19,16 +19,20 @@ import service.model.Relatorio;
 import service.model.SIGDadoTipo;
 import service.model.Viagem;
 
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface IQueryDAO {
 	
-	public ArrayList<Projeto> queryProjetos();
+	public ArrayList<Projeto> queryProjetos() throws MalformedURLException, RemoteException, ClassNotFoundException, NotBoundException, SQLException;
 	
-	public ArrayList<Area> queryAreas(Projeto p);
-	public ArrayList<Area> pastasSIGAreaEstudo(Projeto p);
+	public ArrayList<Area> queryAreas(Projeto p) throws MalformedURLException, RemoteException, ClassNotFoundException, NotBoundException, SQLException;
+	public ArrayList<Area> pastasSIGAreaEstudo(Projeto p) throws MalformedURLException, RemoteException, ClassNotFoundException, NotBoundException, SQLException;
 	
-	public ArrayList<Viagem> queryViagens(Area a);
+	public ArrayList<Viagem> queryViagens(Area a) throws MalformedURLException, RemoteException, ClassNotFoundException, NotBoundException, SQLException;
 	
 	public ArrayList<Publicacao> queryPublicacoes(Projeto p, PublicacaoTipo t);
 	

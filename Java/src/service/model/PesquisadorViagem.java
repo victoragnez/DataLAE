@@ -1,17 +1,17 @@
 package service.model;
 
-public class Pesquisador {
+public class PesquisadorViagem {
 	private final String codigo;
 	private String nome;
 	private PesquisadorTipo tipo;
 	
-	public Pesquisador(String codigo, String nome, PesquisadorTipo tipo) {
+	public PesquisadorViagem(String codigo, String nome, PesquisadorTipo tipo) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.tipo = tipo;
 	}
 	
-	public Pesquisador(String nome, PesquisadorTipo tipo) {
+	public PesquisadorViagem(String nome, PesquisadorTipo tipo) {
 		this.codigo = null;
 		this.nome = nome;
 		this.tipo = tipo;

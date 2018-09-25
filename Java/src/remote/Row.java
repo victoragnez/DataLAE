@@ -20,7 +20,7 @@ public class Row implements Serializable{
     {
         TYPE = new HashMap<String, Class<?> >();
 
-        TYPE.put("INTEGER", Integer.class);
+        TYPE.put("INT", Integer.class);
         TYPE.put("TINYINT", Byte.class);
         TYPE.put("SMALLINT", Short.class);
         TYPE.put("BIGINT", Long.class);
@@ -45,6 +45,10 @@ public class Row implements Serializable{
 
     public void add (String name, Object data, String sqlType)
     {
-        row.add(Row.TYPE.get(sqlType).cast(data));
+    	row.add(Row.TYPE.get(sqlType).cast(data));
+    }
+    
+    public Object get(int p) {
+    	return row.get(p);
     }
 }

@@ -5,6 +5,16 @@
  */
 package dao;
 
+/*
+
+insert into projetos set proj_denominacao='abc', proj_financiador='aa', proj_coordenador='cc';
+insert into pesquisadorProjeto set pesquisadorProjeto_nome='joao', pesquisadorProjeto_tipo=1, proj_id = 1;
+insert into area set area_local='currais novos', proj_id=1;
+insert into area set area_local='sao goncalo', proj_id=1;
+insert into viagem set area_id=2, viagem_data='2005-2-18';
+insert into pesquisadorViagem set pesquisadorViagem_nome='joao', pesquisadorViagem_tipo=2, viagem_id = 1;
+ */
+
 import service.model.AmbientalTipo;
 import service.model.Area;
 import service.model.Arquivo;

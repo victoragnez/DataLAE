@@ -1,7 +1,7 @@
 package service.model;
 
 public abstract class User {
-	static private String username, password;
+	static private String username="adm", password="adm";
 	
 	static public String getUsername() {
 		return username;

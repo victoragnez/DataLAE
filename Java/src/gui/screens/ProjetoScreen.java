@@ -1,5 +1,10 @@
 package gui.screens;
 
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+
 import gui.model.AreaBlock;
 import gui.model.Block;
 import gui.model.BlockListPanel;
@@ -44,10 +49,16 @@ public class ProjetoScreen extends BorderPane {
 	
 	private void initProjetos(IQueryService queryService) {
 		list.clear();
-		for(Projeto proj : queryService.queryProjetos()) {
-			Block b = new ProjetoBlock(proj);
-			b.setOnMouseClicked(e -> pastasProjetos(queryService, proj));
-			list.addBlock(b);
+		try { //TODO tratar isso
+			for(Projeto proj : queryService.queryProjetos()) {
+				Block b = new ProjetoBlock(proj);
+				b.setOnMouseClicked(e -> pastasProjetos(queryService, proj));
+				list.addBlock(b);
+			}
+		} catch (MalformedURLException | RemoteException | ClassNotFoundException | NotBoundException
+				| SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -65,19 +76,31 @@ public class ProjetoScreen extends BorderPane {
 	private void pastasAreas(IQueryService queryService, Projeto proj) {
 		list.clear();
 		this.title.setText("Areas");
-		for(Area area : queryService.queryArea(proj)) {
-			Block b = new AreaBlock(area);
-			b.setOnMouseClicked(e -> pastasViagens(queryService, area));
-			list.addBlock(b);
+		try { // TODO tratar exceção
+			for(Area area : queryService.queryArea(proj)) {
+				Block b = new AreaBlock(area);
+				b.setOnMouseClicked(e -> pastasViagens(queryService, area));
+				list.addBlock(b);
+			}
+		} catch (MalformedURLException | RemoteException | ClassNotFoundException | NotBoundException
+				| SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
 	private void pastasViagens(IQueryService queryService, Area area) {
 		list.clear();
 		this.title.setText("Areas");
-		for(Viagem viagem : queryService.queryViagem(area)) {
-			Block b = new ViagemBlock(viagem);
-			list.addBlock(b);
+		try { // TODO tratar exceções
+			for(Viagem viagem : queryService.queryViagem(area)) {
+				Block b = new ViagemBlock(viagem);
+				list.addBlock(b);
+			}
+		} catch (MalformedURLException | RemoteException | ClassNotFoundException | NotBoundException
+				| SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

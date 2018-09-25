@@ -6,7 +6,7 @@ public class ViagemBlock extends Block {
 	private Viagem viagem;
 	
 	public ViagemBlock(Viagem viagem) {
-		super(viagem.getData().getTime().toString(), "");
+		super(viagem.getData().toString(), "");
 		this.viagem = viagem;
 	}
 	

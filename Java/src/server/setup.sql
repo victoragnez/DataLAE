@@ -47,9 +47,9 @@ create table pesquisadorViagem (
         pesquisadorViagem_id int not null auto_increment primary key,
         pesquisadorViagem_nome varchar(200) not null,
         pesquisadorViagem_tipo enum('professor', 'doutorando', 'mestrando', 'ic', 'convidado') not null,
-        proj_id int not null,
-        foreign key fk_pesquisadorViagem(proj_id)
-        references projetos(proj_id)
+        viagem_id int not null,
+        foreign key fk_pesquisadorViagem(viagem_id)
+        references viagem(viagem_id)
         on update cascade
         on delete cascade
     ) engine=innodb;

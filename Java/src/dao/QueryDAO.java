@@ -1,8 +1,14 @@
 package dao;
 
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import remote.Row;
 import service.model.AmbientalTipo;
 import service.model.Area;
 import service.model.Arquivo;
@@ -11,6 +17,9 @@ import service.model.Geofisica.Metodo;
 import service.model.Geofisica.Tipo;
 import service.model.LaserScannerTipo;
 import service.model.ModelagemOuModeloIntegrado;
+import service.model.PesquisadorProjeto;
+import service.model.PesquisadorTipo;
+import service.model.PesquisadorViagem;
 import service.model.Projeto;
 import service.model.Publicacao;
 import service.model.PublicacaoTipo;
@@ -21,27 +30,77 @@ import service.model.Viagem;
 class QueryDAO implements IQueryDAO {
 
 	@Override
-	public ArrayList<Projeto> queryProjetos() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Projeto> queryProjetos() throws MalformedURLException, RemoteException, ClassNotFoundException, NotBoundException, SQLException {
+		ArrayList<Projeto> ret = new ArrayList<Projeto>();
+		ArrayList<Row> vet = Connect.query(
+				"select proj_id, proj_denominacao, proj_sigla, proj_financiador, proj_coordenador from projetos;");
+		for(Row r : vet) {
+			String codigo = r.get(0).toString();
+			String denominacao = (String)r.get(1);
+			String sigla = (String)r.get(2);
+			String financiador = (String)r.get(3);
+			String coordenador = (String)r.get(4);
+			
+			ArrayList<PesquisadorProjeto> membros = new ArrayList<PesquisadorProjeto>();
+			ArrayList<Row> membrosBruto = Connect.query(
+					"select pesquisadorProjeto_id, pesquisadorProjeto_nome, pesquisadorProjeto_tipo from pesquisadorProjeto where proj_id="+codigo);
+			
+			for(Row m : membrosBruto) {
+				String codigoMembro = m.get(0).toString();
+				String nome = (String)m.get(1);
+				PesquisadorTipo tipo = PesquisadorTipo.getPesquisadorTipo((String)m.get(2));
+				membros.add(new PesquisadorProjeto(codigoMembro, nome, tipo));
+			}
+			
+			Projeto p = new Projeto(codigo, denominacao, sigla, financiador, coordenador, membros);
+			ret.add(p);
+		}
+		return ret;
 	}
 
 	@Override
-	public ArrayList<Area> queryAreas(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Area> queryAreas(Projeto p) throws MalformedURLException, RemoteException, ClassNotFoundException, NotBoundException, SQLException {
+		ArrayList<Area> ret = new ArrayList<Area>();
+		ArrayList<Row> vet = Connect.query(
+				"select area_id, area_local from area where proj_id="+p.getCodigo());
+		
+		for(Row r : vet) {
+			String codigo = r.get(0).toString();
+			String local = (String)r.get(1);
+			ret.add(new Area(codigo, local));
+		}
+		return ret;
 	}
 
 	@Override
-	public ArrayList<Area> pastasSIGAreaEstudo(Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Area> pastasSIGAreaEstudo(Projeto p) throws MalformedURLException, RemoteException, ClassNotFoundException, NotBoundException, SQLException {
+		return queryAreas(p);
 	}
 
 	@Override
-	public ArrayList<Viagem> queryViagens(Area a) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Viagem> queryViagens(Area a) throws MalformedURLException, RemoteException, ClassNotFoundException, NotBoundException, SQLException {
+		ArrayList<Viagem> ret = new ArrayList<Viagem>();
+		ArrayList<Row> vet = Connect.query(
+				"select viagem_id, viagem_data from viagem where area_id="+a.getCodigo());
+		
+		for(Row r : vet) {
+			String codigo = r.get(0).toString();
+			Date data = (Date)r.get(1);
+			
+			ArrayList<PesquisadorViagem> membros = new ArrayList<PesquisadorViagem>();
+			ArrayList<Row> membrosBruto = Connect.query(
+					"select pesquisadorViagem_id, pesquisadorViagem_nome, pesquisadorViagem_tipo from pesquisadorViagem where viagem_id="+codigo);
+			
+			for(Row m : membrosBruto) {
+				String codigoMembro = m.get(0).toString();
+				String nome = (String)m.get(1);
+				PesquisadorTipo tipo = PesquisadorTipo.getPesquisadorTipo((String)m.get(2));
+				membros.add(new PesquisadorViagem(codigoMembro, nome, tipo));
+			}
+			
+			ret.add(new Viagem(codigo, data, membros));
+		}
+		return ret;
 	}
 
 	@Override
