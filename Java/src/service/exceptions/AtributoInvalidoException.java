@@ -6,15 +6,13 @@
 package service.exceptions;
 
 /**
- * Exceção para Campo Inválido
+ *
  * @author gabriel
  */
-public class CampoInvalidoException extends Exception {
-    
+public class AtributoInvalidoException extends Exception {
     private static final long serialVersionUID = 1L;
 
-    public CampoInvalidoException(String msg) {
+    public AtributoInvalidoException(String msg) {
     	super(msg);
     }
-    
 }
