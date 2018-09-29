@@ -6,6 +6,7 @@ public class Diretor {
 	private String email;
 	private String telefone;
 	private String cargo;
+	private String codigo;
 	
 	/**
 	 * 
@@ -15,12 +16,13 @@ public class Diretor {
 	 * @param cargo
 	 */
 	public Diretor (String nome, String email, String telefone,
-			String cargo) 
+			String cargo, String codigo) 
 	{
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
 		this.cargo = cargo;
+		this.codigo = codigo;
 	}
 
 	//Getters and Setters
@@ -56,7 +58,9 @@ public class Diretor {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-	
-	
+
+	public String getCodigo() {
+		return codigo;
+	}	
 	
 }
