@@ -65,3 +65,5 @@ G
 src/DAO/ProjetoDAO.java,4/b/4b220c6475792caa963669ba9d010c58d51c2144
 J
 src/GUI/TelaPrincipal.java,4/d/4d961fc0a6ef868bfc4701c99dcaa00043a9f071
+E
+src/GUI/FXMLTela.fxml,2/9/29138433c95dfb7302d21a8f98cebc759d591f2a
