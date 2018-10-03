@@ -21,11 +21,12 @@ public class InicializadorGUI extends Application {
 		
 		// Inicializa tela
 		telaCadastroProjeto = new CadastroProjeto(projService);
+		telaPrincipal = new TelaPrincipal();
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Scene scene = new Scene(telaCadastroProjeto);
+		Scene scene = new Scene(telaPrincipal);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
