@@ -2,24 +2,23 @@ package DAO;
 
 import DAO.Interfaces.ILocalDAO;
 import Model.Local;
-import Model.Projeto;
 
 public class LocalDAO implements ILocalDAO {
 
 	@Override
-	public void inserir(Local l, Projeto p) {
+	public void inserir(Local l) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void remover(Local l, Projeto p) {
+	public void remover(Local l) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Local consultar(String codigoLocal, Projeto p) {
+	public Local consultar(String codigoLocal) {
 		// TODO Auto-generated method stub
 		return null;
 	}

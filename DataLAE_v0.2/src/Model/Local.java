@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.HashMap;
-
 public class Local {
 
 	private String nome;
@@ -9,7 +7,6 @@ public class Local {
 	private String estado;
 	private String cidade;
 	private Integer codigo;
-	private HashMap<Integer, Viagem> viagens;
 	
 	
 	public Local(String nome, String pais, String estado, String cidade, 
@@ -20,31 +17,6 @@ public class Local {
 		this.estado = estado;
 		this.cidade = cidade;
 		this.codigo = codigo;
-	}
-	
-	/**
-	 * Insere uma nova viagem na lista de viagem
-	 * @param viagem  a nova viagem
-	 */
-	public void inserirViagem (Viagem viagem) {
-		viagens.put(viagem.getCodigo(), viagem);
-	}
-	
-	/**
-	 * Remove uma viagem da lista de viagens
-	 * @param viagem  a viagem 
-	 */
-	public void removeViagem (Viagem viagem) {
-		viagens.remove(viagem.getCodigo());
-	}
-
-	/**
-	 * Busca uma viagem na lista de vaigens 
-	 * @param codViagem  o código da viagem buscada
- 	 * @return  a viagem correspondente
-	 */
-	public Viagem getViagem (Integer codViagem) {
-		return viagens.get(codViagem);
 	}
 
 	public String getNome() {
@@ -90,16 +62,4 @@ public class Local {
 	public Integer getCodigo() {
 		return codigo;
 	}
-
-
-	public HashMap<Integer, Viagem> getViagens() {
-		return viagens;
-	}
-
-
-	public void setViagens(HashMap<Integer, Viagem> viagens) {
-		this.viagens = viagens;
-	}
-	
-	
 }

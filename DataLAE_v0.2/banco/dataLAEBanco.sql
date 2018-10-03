@@ -27,9 +27,9 @@ create table Projeto (
 	codigoProjeto int auto_increment not null,
     nome varchar(255),
     sigla varchar(255),
-    nomeCoordenado varchar(255),
-    dataInicio datetime,
-    dataTermino datetime,
+    nomeCoordenador varchar(255),
+    dataInicio date,
+    dataTermino date,
         
     primary key (codigoProjeto)
 ) engine=innodb;

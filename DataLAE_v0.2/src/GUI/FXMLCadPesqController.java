@@ -6,10 +6,8 @@ import java.sql.SQLException;
 //import java.util.List;
 import java.util.ResourceBundle;
 
-import DAO.Exceptions.CampoInvalidoException;
 import Model.Pesquisador;
 import Service.PesquisadorService;
-import Service.Exceptions.AtributoInvalidoException;
 //import Model.Titulacao;
 //import javafx.collections.FXCollections;
 //import javafx.collections.ObservableList;
@@ -58,7 +56,7 @@ public class FXMLCadPesqController implements Initializable {
     	PesquisadorService service = new PesquisadorService();
     	try {
 			service.inserir(p);
-		} catch (AtributoInvalidoException | CampoInvalidoException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

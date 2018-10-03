@@ -2,24 +2,23 @@ package DAO;
 
 import DAO.Interfaces.IFinanciadorDAO;
 import Model.Financiador;
-import Model.Projeto;
 
 public class FinanciadorDAO implements IFinanciadorDAO{
 
 	@Override
-	public void inserir(Financiador f, Projeto p) {
+	public void inserir(Financiador f) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void remover(Financiador f, Projeto p) {
+	public void remover(Financiador f) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Financiador consultar(String codigoFinanciador, Projeto p) {
+	public Financiador consultar(String codigoFinanciador) {
 		// TODO Auto-generated method stub
 		return null;
 	}
