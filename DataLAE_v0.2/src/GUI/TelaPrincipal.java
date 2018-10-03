@@ -2,9 +2,11 @@ package GUI;
 
 import java.io.IOException;
 
-import GUI.cadastro.CadastroProjeto;
 import GUI.model.MyTabPane;
+import GUI.model.SearchTypePane;
+import Service.Interfaces.ILocalService;
 import Service.Interfaces.IProjetoService;
+import Service.Interfaces.IViagemService;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -16,8 +18,13 @@ import javafx.scene.layout.VBox;
 
 public class TelaPrincipal extends BorderPane {
 	private IProjetoService projService;
+	private ILocalService localService;
+	private IViagemService viagemService;
 	
-	public TelaPrincipal() {
+	public TelaPrincipal(IProjetoService projetoService, ILocalService localService, IViagemService viajemService) {
+		this.projService = projetoService;
+		this.localService = localService;
+		this.viagemService = viajemService;
 		this.setMinSize(800, 600);
 		this.setTop(constroiPaneSuperior());
 		this.setCenter(constroiPaneCentral());
@@ -47,6 +54,10 @@ public class TelaPrincipal extends BorderPane {
 		return top;
 	}
 	
+	/**
+	 * Constrói a parte central da tela.
+	 * @return Um Pane contendo a parte central da tela construída.
+	 */
 	private Pane constroiPaneCentral() {
 		MyTabPane tabs = new MyTabPane();
 		try {
@@ -55,7 +66,7 @@ public class TelaPrincipal extends BorderPane {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		tabs.addTab("Cadastrar", new CadastroProjeto(projService));
+		tabs.addTab("Cadastrar", new SearchTypePane(projService, localService, viagemService));
 		
 		tabs.setPadding(new Insets(0,20,20,20));
 		

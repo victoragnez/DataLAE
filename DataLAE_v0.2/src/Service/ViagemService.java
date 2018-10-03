@@ -1,34 +1,34 @@
 package Service;
 
-import Model.Usuario;
-import Service.Interfaces.IUsuarioService;
+import Model.Local;
+import Model.Projeto;
+import Model.Viagem;
+import Service.Interfaces.IViagemService;
 
-public class ViagemService  implements IUsuarioService{
+public class ViagemService implements IViagemService {
 
 	@Override
-	public void inserir(Usuario user) {
+	public void inserir(Viagem v, Local l, Projeto p) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void remover(Usuario user) {
+	public void remover(Viagem v, Local l, Projeto p) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Usuario consultar(String codigoUser) {
+	public Viagem consultar(String codigoViagem, Local l, Projeto p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void alterar(Usuario user) {
+	public void alterar(Viagem v, Local l, Projeto p) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
 	
 }
