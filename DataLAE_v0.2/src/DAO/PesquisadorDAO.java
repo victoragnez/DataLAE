@@ -1,13 +1,20 @@
 package DAO;
 
+import DAO.Exceptions.CampoInvalidoException;
 import DAO.Interfaces.IPesquisadorDAO;
 import Model.Pesquisador;
 
 public class PesquisadorDAO implements IPesquisadorDAO{
 
+	public PesquisadorDAO() {}
+	
 	@Override
-	public void inserir(Pesquisador p) {
-		// TODO Auto-generated method stub
+	public void inserir(Pesquisador p) throws CampoInvalidoException{
+		
+		if (p.getCpf() == null || p.getNome() == null || 
+			p.getUniversidade() == null || p.getTitulacao() == null)
+			throw new CampoInvalidoException("Campo inválido!");
+		
 		
 	}
 
