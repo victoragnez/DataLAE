@@ -68,7 +68,7 @@ final class JDBC {
 		
 		try {
 			connect = DriverManager
-					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123");
+					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=gabriel2010");
 			statement = connect.createStatement();
 			statement.executeUpdate(sql);
 		} catch(SQLException e) {

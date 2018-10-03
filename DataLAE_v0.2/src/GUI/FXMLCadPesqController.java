@@ -2,22 +2,22 @@ package GUI;
 
 import java.net.URL;
 import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import DAO.Exceptions.CampoInvalidoException;
 import Model.Pesquisador;
 import Service.PesquisadorService;
 import Service.Exceptions.AtributoInvalidoException;
-//import Model.Titulacao;
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
+import Model.Titulacao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-//import javafx.scene.control.ComboBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -32,8 +32,8 @@ public class FXMLCadPesqController implements Initializable {
     @FXML
     private TextField txtUniversidadePesquisador;
 
-    //@FXML
-    //private ComboBox<Titulacao> comboTipoPesquisador;
+    @FXML
+    private ComboBox<Titulacao> comboTipoPesquisador;
 
     @FXML
     private TextField txtCPFPesquisador;
@@ -41,19 +41,25 @@ public class FXMLCadPesqController implements Initializable {
     @FXML
     private Button btCadastrarPesquisador;
 	
-    //private List<Titulacao> titulacoes = new ArrayList<>();
-    //private ObservableList<Titulacao> obsTitulacoes;
+    private List<Titulacao> titulacoes = new ArrayList<>();
+    private ObservableList<Titulacao> obsTitulacoes;
     
     @FXML
     void acaoCadastrarPesquisador(ActionEvent event) {
  
-    	String nomePesquisador = txtNomePesquisador.getText();
-    	String cpfPesquisador = txtCPFPesquisador.getText();
-    	String universidadePesquisador = txtUniversidadePesquisador.getText();
-    	//Titulacao titulacaoPesquisador = comboTipoPesquisador.getSelectionModel().getSelectedItem();
+    	String nomePesquisador = txtNomePesquisador.getText().trim();
+    	if (nomePesquisador.equals("")) nomePesquisador = null;
+    	
+    	String cpfPesquisador = txtCPFPesquisador.getText().trim();
+    	if (cpfPesquisador.equals("")) cpfPesquisador = null;
+    	
+    	String universidadePesquisador = txtUniversidadePesquisador.getText().trim();
+    	if (universidadePesquisador.equals("")) universidadePesquisador = null;
+    	
+    	Titulacao titulacaoPesquisador = comboTipoPesquisador.getSelectionModel().getSelectedItem();
     	
     	Pesquisador p = new Pesquisador(universidadePesquisador, 
-    			nomePesquisador, cpfPesquisador);
+    			nomePesquisador, cpfPesquisador, titulacaoPesquisador);
     
     	PesquisadorService service = new PesquisadorService();
     	try {
@@ -66,10 +72,10 @@ public class FXMLCadPesqController implements Initializable {
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//carregarTitulacao();
+		carregarTitulacao();
 	}
 	
-	/*
+
 	public void carregarTitulacao () {
 		
 		Titulacao t1 = new Titulacao(1, "Graduação");
@@ -87,6 +93,6 @@ public class FXMLCadPesqController implements Initializable {
 		obsTitulacoes = FXCollections.observableArrayList(titulacoes);
 		
 		comboTipoPesquisador.setItems(obsTitulacoes);
-	} */
+	}
 
 }

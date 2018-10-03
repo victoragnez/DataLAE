@@ -21,8 +21,6 @@ S
 #src/Service/PesquisadorService.java,4/7/474660c6a7e05bb79bebfd5bdcc6f0fdde191817
 M
 src/Service/LocalService.java,9/3/93aead100c4a20ef68f9a15e96f895fb69131594
-B
-src/Main/Main.java,5/d/5d88ecaa2385c6ca3ecc3bf87a82796206d0a916
 N
 src/Service/ViagemService.java,e/f/efc92679a3be91e8ddc066200c2f9e159f8e7df5
 O
@@ -63,7 +61,3 @@ F
 src/DAO/ViagemDAO.java,4/0/40b9ab5f03d16c677fe186c17eabae1cf9adf280
 G
 src/DAO/ProjetoDAO.java,4/b/4b220c6475792caa963669ba9d010c58d51c2144
-J
-src/GUI/TelaPrincipal.java,4/d/4d961fc0a6ef868bfc4701c99dcaa00043a9f071
-E
-src/GUI/FXMLTela.fxml,2/9/29138433c95dfb7302d21a8f98cebc759d591f2a

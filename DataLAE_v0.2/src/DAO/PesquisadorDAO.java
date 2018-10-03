@@ -16,7 +16,7 @@ public class PesquisadorDAO implements IPesquisadorDAO{
 		ArrayList<String> campos = new ArrayList<String>();
 		
 		if(p.getCodigo() != null)
-				campos.add("codigoPesquisador=" + p.getCodigo());
+			campos.add("codigoPesquisador=" + p.getCodigo());
 		
 		if(p.getCpf() != null && p.getCpf().length() != 0)
 			campos.add("cpfPesquisador='" + p.getCpf() + "'");
@@ -26,6 +26,9 @@ public class PesquisadorDAO implements IPesquisadorDAO{
 		
 		if(p.getNome() != null && p.getNome().length() != 0)
 			campos.add("nome='" + p.getNome()+"'");
+		
+		if(p.getTitulacao() != null && p.getTitulacao().getNome().length() != 0)
+			campos.add("titulacao='" + p.getTitulacao().getNome()+"'");
 		
 		if(campos.isEmpty()) /* nada para adicionar */
 			return;

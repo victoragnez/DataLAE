@@ -79,6 +79,7 @@ create table Pesquisador (
     cpfPesquisador varchar(11),
     universidade varchar(255) not null,
     nome varchar(255) not null,
+	titulacao varchar(50) not null,
     
     primary key (codigoPesquisador)
 ) engine=innodb;
@@ -104,4 +105,12 @@ create table PesquisadorProjeto (
     
     foreign key (codigoPesquisador) references Pesquisador(codigoPesquisador),
     foreign key (codigoProjeto) references Projeto(codigoProjeto)
+) engine=innodb;
+
+create table User (
+	email varchar(255) not null,
+	username varchar(255) not null unique,
+	password varchar(255) not null,
+	
+	primary key (email)	
 ) engine=innodb;
