@@ -80,7 +80,7 @@ public class CadastroLocal extends GridPane {
 		addToGrid(tfCidade, 4, 2, tfMargin);
 		
 		Button bCadastrar = new Button("Cadastrar");
-		bCadastrar.setOnAction(evt -> acaoBotaoCadastrarProjeto(localService));
+		bCadastrar.setOnAction(evt -> acaoBotaoCadastrar(localService));
 		GridPane.setConstraints (
 				bCadastrar,
 				2, 5,
@@ -103,7 +103,7 @@ public class CadastroLocal extends GridPane {
 		);
 	}
 	
-	private void acaoBotaoCadastrarProjeto(ILocalService localService) {
+	private void acaoBotaoCadastrar(ILocalService localService) {
 		System.out.println("Local Cadastrado!");
 	}
 }

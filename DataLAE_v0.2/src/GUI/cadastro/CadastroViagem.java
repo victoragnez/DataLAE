@@ -68,7 +68,7 @@ public class CadastroViagem extends GridPane {
 		addToGrid(tfFim, 2, 2, tfMargin);
 		
 		Button bCadastrar = new Button("Cadastrar");
-		bCadastrar.setOnAction(evt -> acaoBotaoCadastrarProjeto(viagemService));
+		bCadastrar.setOnAction(evt -> acaoBotaoCadastrar(viagemService));
 		GridPane.setConstraints (
 				bCadastrar,
 				2, 3,
@@ -87,7 +87,7 @@ public class CadastroViagem extends GridPane {
 		);
 	}
 	
-	private void acaoBotaoCadastrarProjeto(IViagemService viagemService) {
+	private void acaoBotaoCadastrar(IViagemService viagemService) {
 		System.out.println("Projeto Cadastrado!");
 	}
 }
