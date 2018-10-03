@@ -1,7 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 
 public class Projeto {
@@ -16,6 +16,17 @@ public class Projeto {
 	private HashMap<Integer, Local> locais;
 	private HashMap<Integer, Pesquisador> pesquisadores;
 	
+	
+	
+	public Projeto(String nome, String sigla, String coordenador, Date dataInicio, Date dataTermino) {
+		super();
+		this.nome = nome;
+		this.sigla = sigla;
+		this.coordenador = coordenador;
+		this.dataInicio = dataInicio;
+		this.dataTermino = dataTermino;
+	}
+
 	public Projeto(String nome, String sigla, String coordenador, 
 			Date dataInicio, Date dataTermino, Integer codigo) 
 	{

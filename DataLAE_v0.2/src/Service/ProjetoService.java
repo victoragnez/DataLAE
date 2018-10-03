@@ -1,19 +1,19 @@
 package Service;
 
+import DAO.ProjetoDAO;
 import DAO.Interfaces.IProjetoDAO;
 import Model.Projeto;
 import Service.Interfaces.IProjetoService;
 
 public class ProjetoService implements IProjetoService{
-	private IProjetoDAO projDAO;
 	
-	public ProjetoService(IProjetoDAO projDAO) {
-		this.projDAO = projDAO;
-	}
+	private IProjetoDAO dao = new ProjetoDAO();
+	
+	public ProjetoService() {}
 
 	@Override
 	public void inserir(Projeto p) {
-		// TODO Auto-generated method stub
+		dao.inserir(p);
 		
 	}
 

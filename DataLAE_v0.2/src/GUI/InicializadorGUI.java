@@ -1,6 +1,5 @@
 package GUI;
 
-import DAO.ProjetoDAO;
 import Service.LocalService;
 import Service.ProjetoService;
 import Service.ViagemService;
@@ -19,7 +18,7 @@ public class InicializadorGUI extends Application {
 	private BorderPane telaPrincipal;
 	
 	public InicializadorGUI() {
-		projService = new ProjetoService(new ProjetoDAO());
+		projService = new ProjetoService();
 		localService = new LocalService();
 		viagemService = new ViagemService();
 		
