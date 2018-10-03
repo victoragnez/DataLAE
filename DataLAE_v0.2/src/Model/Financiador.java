@@ -4,10 +4,10 @@ public class Financiador {
 
 	private String nome;
 	private Diretor diretor;
-	private String codigo;
+	private Integer codigo;
 	private String cnpj;
 	
-	public Financiador (String nome, Diretor diretor, String codigo, 
+	public Financiador (String nome, Diretor diretor, Integer codigo, 
 			String cnpj)
 	{
 		this.nome = nome;
@@ -32,7 +32,7 @@ public class Financiador {
 		this.diretor = diretor;
 	}
 
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 

@@ -9,26 +9,59 @@ public class Projeto {
 	private String nome;
 	private String sigla;
 	private String coordenador;
-	private Financiador financiador;
 	private Date dataInicio;
 	private Date dataTermino;
-	private String codigo;
-	private HashMap<String, Local> locais;
-	private HashMap<String, Pesquisador> pesquisadores;
+	private Integer codigo;
+	private HashMap<Integer, Financiador> financiadores;
+	private HashMap<Integer, Local> locais;
+	private HashMap<Integer, Pesquisador> pesquisadores;
 	
-	public Projeto(String nome, String sigla, String coordenador, Financiador financiador, 
-			Date dataInicio, Date dataTermino, String codigo) 
+	public Projeto(String nome, String sigla, String coordenador, 
+			Date dataInicio, Date dataTermino, Integer codigo) 
 	{
 		this.nome = nome;
 		this.sigla = sigla;
 		this.coordenador = coordenador;
-		this.financiador = financiador;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
 		this.codigo = codigo;
 	}
 	
 	// TODO adicionar lançamento de exceções para os métodos que precisam
+	
+	/**
+	 * Adiciona um novo financiador na lista de financiadores
+	 * @param financiador  O novo Financiador
+	 */
+	public void inserirFinanciador ( Financiador financiador )	{
+		financiadores.put(financiador.getCodigo(), financiador);
+	}
+
+	/**
+	 * remove um financiador
+	 * @param financiador  o financiador para ser removido
+	 */
+	public void removerFinanciador ( Financiador financiador ) {
+		financiadores.remove(financiador.getCodigo());
+	}
+	
+	/**
+	 * Retorna um financiador da lista de financiadores
+	 * @param codFinanciador  O código do financiador buscado
+	 * @return O financiador correspondente
+	 */
+	public Financiador getFinanciador ( Integer codFinanciador ) {
+		return financiadores.get(codFinanciador);
+	}
+	
+	/**
+	 * Insere uma lista de financiadores ao projeto
+	 * @param financiadores  A lista com os financiadores
+	 */
+	public void InserirListaFinanciadores (ArrayList<Financiador> financiadores) {
+		for (Financiador l : financiadores)
+			inserirFinanciador(l);
+	}
 	
 	/**
 	 * Adiciona um novo local na lista de locais
@@ -51,7 +84,7 @@ public class Projeto {
 	 * @param codLocal  O código do local buscado
 	 * @return O local correspondente
 	 */
-	public Local getLocal ( String codLocal ) {
+	public Local getLocal ( Integer codLocal ) {
 		return locais.get(codLocal);
 	}
 	
@@ -69,7 +102,7 @@ public class Projeto {
 	 * @param pesquisador  o novo pesquisador
 	 */
 	public void inserirPesquisador ( Pesquisador pesquisador ) {
-		pesquisadores.put(pesquisador.getCpf(), pesquisador);
+		pesquisadores.put(pesquisador.getCodigo(), pesquisador);
 	}
 	
 	/**
@@ -77,16 +110,16 @@ public class Projeto {
 	 * @param pesquisador  o pesquisador a ser removido
 	 */
 	public void removerPesquisador (Pesquisador pesquisador) {
-		pesquisadores.remove(pesquisador.getCpf());
+		pesquisadores.remove(pesquisador.getCodigo());
 	}
 	
 	/**
 	 * Busca um pesquisador da lista de pesquisadores 
-	 * @param cpfPesquisador  o cpf do pesquisador buscado
+	 * @param codigoPesquisador  o codigo do pesquisador buscado
 	 * @return o pesquisador correspondente
 	 */
-	public Pesquisador getPesquisador ( String cpfPesquisador ) {
-		return pesquisadores.get(cpfPesquisador);
+	public Pesquisador getPesquisador ( Integer codigoPesquisador ) {
+		return pesquisadores.get(codigoPesquisador);
 	}
 	
 	/**
@@ -100,11 +133,11 @@ public class Projeto {
 	
 	// Getters and Setters
 	
-	public HashMap<String, Local> getLocais() {
+	public HashMap<Integer, Local> getLocais() {
 		return locais;
 	}
 
-	public void setLocais(HashMap<String, Local> locais) {
+	public void setLocais(HashMap<Integer, Local> locais) {
 		this.locais = locais;
 	}
 
@@ -132,14 +165,6 @@ public class Projeto {
 		this.coordenador = coordenador;
 	}
 
-	public Financiador getFinanciador() {
-		return financiador;
-	}
-
-	public void setFinanciador(Financiador financiador) {
-		this.financiador = financiador;
-	}
-
 	public Date getDataInicio() {
 		return dataInicio;
 	}
@@ -156,15 +181,15 @@ public class Projeto {
 		this.dataTermino = dataTermino;
 	}
 
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 	
-	public HashMap<String, Pesquisador> getPesquisadores() {
+	public HashMap<Integer, Pesquisador> getPesquisadores() {
 		return pesquisadores;
 	}
 
-	public void setPesquisadores(HashMap<String, Pesquisador> pesquisadores) {
+	public void setPesquisadores(HashMap<Integer, Pesquisador> pesquisadores) {
 		this.pesquisadores = pesquisadores;
 	}
 	
