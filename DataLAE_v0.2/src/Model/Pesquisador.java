@@ -2,27 +2,17 @@ package Model;
 
 public class Pesquisador {
 
-	private Titulacao titulacao;
 	private String universidade;
 	private String nome;
 	private String cpf;
-	private String codigo;
+	private Integer codigo;
 	
-	public Pesquisador(Titulacao titulacao, String universidade, String nome, 
+	public Pesquisador(String universidade, String nome, 
 			String cpf) 
 	{
-		this.titulacao = titulacao;
 		this.universidade = universidade;
 		this.nome = nome;
 		this.cpf = cpf;
-	}
-
-	public Titulacao getTitulacao() {
-		return titulacao;
-	}
-
-	public void setTitulacao(Titulacao titulacao) {
-		this.titulacao = titulacao;
 	}
 
 	public String getUniversidade() {
@@ -49,17 +39,17 @@ public class Pesquisador {
 		this.cpf = cpf;
 	}
 
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
 	@Override
 	public String toString() {
-		return "Pesquisador [titulacao=" + titulacao + ", universidade=" + universidade + ", nome=" + nome + ", cpf="
+		return "Pesquisador [universidade=" + universidade + ", nome=" + nome + ", cpf="
 				+ cpf + ", codigo=" + codigo + "]";
 	}
 	

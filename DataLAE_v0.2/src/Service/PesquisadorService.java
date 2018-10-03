@@ -1,5 +1,7 @@
 package Service;
 
+import java.sql.SQLException;
+
 import DAO.PesquisadorDAO;
 import DAO.Exceptions.CampoInvalidoException;
 import DAO.Interfaces.IPesquisadorDAO;
@@ -12,11 +14,14 @@ public class PesquisadorService implements IPesquisadorService {
 	IPesquisadorDAO dao = new PesquisadorDAO();
 	
 	@Override
-	public void inserir(Pesquisador p) throws AtributoInvalidoException, CampoInvalidoException {
+	public void inserir(Pesquisador p) throws AtributoInvalidoException, CampoInvalidoException, SQLException {
 		if ( p == null ) 
 			throw new AtributoInvalidoException("Os campos obrigatórios devem ser preenchidos!"); 
 		
-		dao.inserir(p);		
+		if (p.getNome() == null ||  p.getUniversidade() == null)
+			throw new CampoInvalidoException("Campo inválido!");
+		
+		dao.inserir(p);
 	}
 
 	@Override
