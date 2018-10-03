@@ -1,5 +1,9 @@
 
-nsquid:S2094"BRemove this empty class, write its code or make it an "interface".(¬¤•½HRMINORZ
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(á–Ì“HƒRMINORZ
 CODE_SMELL
-„squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(á–Ì“H	RMINORZ
+®squid:S1319"uThe type of the "participantes" object should be an interface such as "Map" rather than the implementation "HashMap".(ÅèŒÓøÿÿÿÿ8ú”¶¸â,HˆRMINORZ
+CODE_SMELL
+¡squid:S1319M"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(€„®ò8ú”¶¸â,H‰RMINORZ
+CODE_SMELL
+¨squid:S1319Q"uThe type of the "participantes" object should be an interface such as "Map" rather than the implementation "HashMap".(³ëç8ú”¶¸â,HŠRMINORZ
 CODE_SMELL

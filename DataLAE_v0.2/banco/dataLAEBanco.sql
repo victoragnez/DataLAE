@@ -3,8 +3,8 @@ use dataLae;
 
 create table Diretor (
 	
-    codigoDiretor int auto_increment,
-    nome varchar(255),
+    codigoDiretor int auto_increment not null,
+    nome varchar(255) not null,
     email varchar(255),
     telefone varchar(11),
     cargo varchar(255),
@@ -14,8 +14,8 @@ create table Diretor (
 
 create table Financiador (
 
-	codigoFinanciador int auto_increment,
-    nome varchar(255),
+	codigoFinanciador int auto_increment not null,
+    nome varchar(255) not null,
     cnpj varchar(16),
         
     primary key (codigoFinanciador)
@@ -24,7 +24,7 @@ create table Financiador (
 
 create table Projeto (
 
-	codigoProjeto int auto_increment,
+	codigoProjeto int auto_increment not null,
     nome varchar(255),
     sigla varchar(255),
     nomeCoordenado varchar(255),
@@ -35,71 +35,82 @@ create table Projeto (
 ) engine=innodb;
 
 create table FinanciamentoProjeto (
-	codigoProjeto int,
-    codigoFinanciador int,
-    codigoDiretor int,
+	codigoProjeto int not null,
+    codigoFinanciador int not null,
+    codigoDiretor int not null,
     
     constraint codFinanciamentoProjeto 
     primary key (codigoProjeto, codigoFinanciador, codigoDiretor),
     
-    constraint foreign key (codigoProjeto) references Projeto(codigoProjeto),
-	constraint foreign key (codigoFinanciador) references Financiador(codigoFinanciador),
-	constraint foreign key (codigoDiretor) references Diretor(codigoDiretor)
+    foreign key (codigoProjeto) references Projeto(codigoProjeto),
+	foreign key (codigoFinanciador) references Financiador(codigoFinanciador),
+	foreign key (codigoDiretor) references Diretor(codigoDiretor)
 )  engine=innodb;
 
 create table LocalPesquisa (
 
-	codigoLocal int auto_increment,
-    nome varchar(255),
+	codigoLocal int auto_increment not null,
+    nome varchar(255) not null,
     cidade varchar(255),
     estado varchar(255),
     pais varchar(255),
-    codigoProjeto int,
     
-    primary key (codigoLocal),
-    foreign key (codigoProjeto) references Projeto(codigoProjeto)
+    primary key (codigoLocal)
 
 ) engine=innodb;
 
 create table Viagem (
 
-	codigoViagem int auto_increment,
-    dataInicio datetime,
-    dataTermino datetime,
-	codigoLocal int,
+	codigoViagem int auto_increment not null,
+    dataInicio datetime not null,
+    dataTermino datetime not null,
+	codigoLocal int not null,
+    codigoProjeto int not null,
     
     primary key (codigoViagem),
-    foreign key (codigoLocal) references LocalPesquisa(codigoLocal)
+    foreign key (codigoLocal) references LocalPesquisa(codigoLocal),
+    foreign key (codigoProjeto) references Projeto(codigoProjeto)
 
 ) engine=innodb;
 
 create table Pesquisador (
 	
+	codigoPesquisador int auto_increment not null,
     cpfPesquisador varchar(11),
-    titulacao varchar(255),
-    universidade varchar(255),
-    nome varchar(255),
+    universidade varchar(255) not null,
+    nome varchar(255) not null,
+	titulacao varchar(50) not null,
     
-    primary key (cpfPesquisador)
+    primary key (codigoPesquisador)
 ) engine=innodb;
 
 create table PesquisadorViagem(
-	codigoViagem int,
-    cpfPesquisador varchar(255),
+	codigoViagem int not null,
+    codigoPesquisador int not null,
+    titulacao varchar(255) not null,
     
-    primary key (codigoViagem, cpfPesquisador),
+    primary key (codigoViagem, codigoPesquisador),
     
     foreign key (codigoViagem) references Viagem(codigoViagem),
-    foreign key (cpfPesquisador) references Pesquisador(cpfPesquisador)
+    foreign key (codigoPesquisador) references Pesquisador(codigoPesquisador)
 ) engine=innodb;
 
 create table PesquisadorProjeto (
 	
-    cpfPesquisador varchar(11),
-    codigoProjeto int,
+    codigoProjeto int not null,
+    codigoPesquisador int not null,
+    titulacao varchar(255) not null,
     
-    primary key (cpfPesquisador, codigoProjeto),
+    primary key (codigoPesquisador, codigoProjeto),
     
-    foreign key (cpfPesquisador) references Pesquisador(cpfPesquisador),
+    foreign key (codigoPesquisador) references Pesquisador(codigoPesquisador),
     foreign key (codigoProjeto) references Projeto(codigoProjeto)
+) engine=innodb;
+
+create table User (
+	email varchar(255) not null,
+	username varchar(255) not null unique,
+	password varchar(255) not null,
+	
+	primary key (email)	
 ) engine=innodb;
