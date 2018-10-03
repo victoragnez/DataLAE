@@ -54,6 +54,7 @@ create table LocalPesquisa (
     cidade varchar(255),
     estado varchar(255),
     pais varchar(255),
+    coordenadas point,
     
     primary key (codigoLocal)
 

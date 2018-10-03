@@ -6,16 +6,20 @@ public class Local {
 	private String pais;
 	private String estado;
 	private String cidade;
+	private Double latitude;
+	private Double longitude;
 	private Integer codigo;
 	
 	
 	public Local(String nome, String pais, String estado, String cidade, 
-			Integer codigo) 
+			Double latitude, Double longitude, Integer codigo) 
 	{
 		this.nome = nome;
 		this.pais = pais;
 		this.estado = estado;
 		this.cidade = cidade;
+		this.setLatitude(latitude);
+		this.setLongitude(longitude);
 		this.codigo = codigo;
 	}
 
@@ -61,5 +65,21 @@ public class Local {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 }
