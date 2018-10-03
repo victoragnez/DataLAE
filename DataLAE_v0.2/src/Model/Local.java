@@ -8,12 +8,12 @@ public class Local {
 	private String pais;
 	private String estado;
 	private String cidade;
-	private String codigo;
-	private HashMap<String, Viagem> viagens;
+	private Integer codigo;
+	private HashMap<Integer, Viagem> viagens;
 	
 	
 	public Local(String nome, String pais, String estado, String cidade, 
-			String codigo) 
+			Integer codigo) 
 	{
 		this.nome = nome;
 		this.pais = pais;
@@ -43,7 +43,7 @@ public class Local {
 	 * @param codViagem  o código da viagem buscada
  	 * @return  a viagem correspondente
 	 */
-	public Viagem getViagem (String codViagem) {
+	public Viagem getViagem (Integer codViagem) {
 		return viagens.get(codViagem);
 	}
 
@@ -87,17 +87,17 @@ public class Local {
 	}
 
 
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
 
-	public HashMap<String, Viagem> getViagens() {
+	public HashMap<Integer, Viagem> getViagens() {
 		return viagens;
 	}
 
 
-	public void setViagens(HashMap<String, Viagem> viagens) {
+	public void setViagens(HashMap<Integer, Viagem> viagens) {
 		this.viagens = viagens;
 	}
 	

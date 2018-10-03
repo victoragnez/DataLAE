@@ -6,7 +6,7 @@ public class Diretor {
 	private String email;
 	private String telefone;
 	private String cargo;
-	private String codigo;
+	private Integer codigo;
 	
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class Diretor {
 	 * @param cargo
 	 */
 	public Diretor (String nome, String email, String telefone,
-			String cargo, String codigo) 
+			String cargo, Integer codigo) 
 	{
 		this.nome = nome;
 		this.email = email;
@@ -59,7 +59,7 @@ public class Diretor {
 		this.cargo = cargo;
 	}
 
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}	
 	

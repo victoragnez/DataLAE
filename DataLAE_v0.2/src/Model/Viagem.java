@@ -7,11 +7,11 @@ public class Viagem {
 
 	private Date dataInico;
 	private Date dataTermino;
-	private String codigo;
-	private HashMap<String, Pesquisador> participantes;
+	private Integer codigo;
+	private HashMap<Integer, Pesquisador> participantes;
 	
-	public Viagem(Date dataInico, Date dataTermino, String codigo, 
-			HashMap<String, Pesquisador> participantes) 
+	public Viagem(Date dataInico, Date dataTermino, Integer codigo, 
+			HashMap<Integer, Pesquisador> participantes) 
 	{
 		this.dataInico = dataInico;
 		this.dataTermino = dataTermino;
@@ -19,7 +19,7 @@ public class Viagem {
 		this.participantes = participantes;
 	}
 
-	public Viagem(Date dataInico, Date dataTermino, String codigo) 
+	public Viagem(Date dataInico, Date dataTermino, Integer codigo) 
 	{
 		this.dataInico = dataInico;
 		this.dataTermino = dataTermino;
@@ -31,7 +31,7 @@ public class Viagem {
 	 * @param pesquisador o participante
 	 */
 	public void inserirParticapante (Pesquisador pesquisador) {
-		participantes.put(pesquisador.getCpf(), pesquisador);
+		participantes.put(pesquisador.getCodigo(), pesquisador);
 	}
 	
 	/**
@@ -39,16 +39,16 @@ public class Viagem {
 	 * @param pesquisador  o participante
 	 */
 	public void removeParticipante (Pesquisador pesquisador) {
-		participantes.remove(pesquisador.getCpf());
+		participantes.remove(pesquisador.getCodigo());
 	}
 	
 	/**
 	 * busca um pesquisador na lista de participantes da viagem
-	 * @param cpfPesquisador  o cpf do pesquisado que deseja-se buscar
+	 * @param codigoPesquisador  o codigo do pesquisado que deseja-se buscar
 	 * @return  o pesquisador correspondente
 	 */
-	public Pesquisador getPesquisador (String cpfPesquisador) {
-		return participantes.get(cpfPesquisador);
+	public Pesquisador getPesquisador (Integer codigoPesquisador) {
+		return participantes.get(codigoPesquisador);
 	}
 	
 	
@@ -70,15 +70,15 @@ public class Viagem {
 		this.dataTermino = dataTermino;
 	}
 
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public HashMap<String, Pesquisador> getParticipantes() {
+	public HashMap<Integer, Pesquisador> getParticipantes() {
 		return participantes;
 	}
 
-	public void setParticipantes(HashMap<String, Pesquisador> participantes) {
+	public void setParticipantes(HashMap<Integer, Pesquisador> participantes) {
 		this.participantes = participantes;
 	}
 	
