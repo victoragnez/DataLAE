@@ -50,13 +50,22 @@ public class FXMLCadProjController implements Initializable{
     	 if (coordenador.equals("")) coordenador = null;
     	 
     	 LocalDate dataI = dateInicio.getValue();
-    	 Date dInicio = Date.valueOf(dataI);
+    	 Date dInicio;
+    	 if (dataI == null ) dInicio = null;
+    	 else dInicio = Date.valueOf(dataI);
     	 
     	 LocalDate dataT = dateTermino.getValue();
-    	 Date dTermino = Date.valueOf(dataT);
+    	 Date dTermino;
+    	 if (dataT == null ) dTermino = null;
+    	 else dTermino = Date.valueOf(dataT);
     
     	 Projeto p = new Projeto(nome, sigla, coordenador, dInicio, dTermino);
     	 
+    	 try {
+    		 service.inserir(p);
+		 } catch (Exception e) {	
+			// TODO: handle exception
+		 }
     }
 	
 	@Override

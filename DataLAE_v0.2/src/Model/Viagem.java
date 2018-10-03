@@ -8,22 +8,30 @@ public class Viagem {
 	private Date dataInico;
 	private Date dataTermino;
 	private Integer codigo;
+	private Local local;
+	private Projeto projeto;
 	private HashMap<Integer, Pesquisador> participantes;
 	
-	public Viagem(Date dataInico, Date dataTermino, Integer codigo, 
+	public Viagem(Date dataInico, Date dataTermino, Integer codigo,
+			Local local, Projeto projeto,
 			HashMap<Integer, Pesquisador> participantes) 
 	{
 		this.dataInico = dataInico;
 		this.dataTermino = dataTermino;
 		this.codigo = codigo;
+		this.setLocal(local);
+		this.setProjeto(projeto);
 		this.participantes = participantes;
 	}
 
-	public Viagem(Date dataInico, Date dataTermino, Integer codigo) 
+	public Viagem(Date dataInico, Date dataTermino, Integer codigo,
+			Local local, Projeto projeto) 
 	{
 		this.dataInico = dataInico;
 		this.dataTermino = dataTermino;
 		this.codigo = codigo;
+		this.setLocal(local);
+		this.setProjeto(projeto);
 	}
 	
 	/**
@@ -74,6 +82,22 @@ public class Viagem {
 		return codigo;
 	}
 
+	public Local getLocal() {
+		return local;
+	}
+	
+	public void setLocal(Local local) {
+		this.local = local;
+	}
+	
+	public Projeto getProjeto() {
+		return projeto;
+	}
+	
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
+	}
+	
 	public HashMap<Integer, Pesquisador> getParticipantes() {
 		return participantes;
 	}
@@ -81,9 +105,5 @@ public class Viagem {
 	public void setParticipantes(HashMap<Integer, Pesquisador> participantes) {
 		this.participantes = participantes;
 	}
-	
-	
-	
-	
 	
 }

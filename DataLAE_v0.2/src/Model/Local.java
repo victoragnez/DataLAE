@@ -1,50 +1,26 @@
 package Model;
 
-import java.util.HashMap;
-
 public class Local {
 
 	private String nome;
 	private String pais;
 	private String estado;
 	private String cidade;
+	private Double latitude;
+	private Double longitude;
 	private Integer codigo;
-	private HashMap<Integer, Viagem> viagens;
 	
 	
 	public Local(String nome, String pais, String estado, String cidade, 
-			Integer codigo) 
+			Double latitude, Double longitude, Integer codigo) 
 	{
 		this.nome = nome;
 		this.pais = pais;
 		this.estado = estado;
 		this.cidade = cidade;
+		this.setLatitude(latitude);
+		this.setLongitude(longitude);
 		this.codigo = codigo;
-	}
-	
-	/**
-	 * Insere uma nova viagem na lista de viagem
-	 * @param viagem  a nova viagem
-	 */
-	public void inserirViagem (Viagem viagem) {
-		viagens.put(viagem.getCodigo(), viagem);
-	}
-	
-	/**
-	 * Remove uma viagem da lista de viagens
-	 * @param viagem  a viagem 
-	 */
-	public void removeViagem (Viagem viagem) {
-		viagens.remove(viagem.getCodigo());
-	}
-
-	/**
-	 * Busca uma viagem na lista de vaigens 
-	 * @param codViagem  o código da viagem buscada
- 	 * @return  a viagem correspondente
-	 */
-	public Viagem getViagem (Integer codViagem) {
-		return viagens.get(codViagem);
 	}
 
 	public String getNome() {
@@ -91,15 +67,19 @@ public class Local {
 		return codigo;
 	}
 
-
-	public HashMap<Integer, Viagem> getViagens() {
-		return viagens;
+	public Double getLatitude() {
+		return latitude;
 	}
 
-
-	public void setViagens(HashMap<Integer, Viagem> viagens) {
-		this.viagens = viagens;
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
 	}
-	
-	
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
 }

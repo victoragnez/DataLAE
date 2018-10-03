@@ -27,9 +27,9 @@ create table Projeto (
 	codigoProjeto int auto_increment not null,
     nome varchar(255),
     sigla varchar(255),
-    nomeCoordenado varchar(255),
-    dataInicio datetime,
-    dataTermino datetime,
+    nomeCoordenador varchar(255),
+    dataInicio date,
+    dataTermino date,
         
     primary key (codigoProjeto)
 ) engine=innodb;
@@ -54,6 +54,7 @@ create table LocalPesquisa (
     cidade varchar(255),
     estado varchar(255),
     pais varchar(255),
+    coordenadas point,
     
     primary key (codigoLocal)
 

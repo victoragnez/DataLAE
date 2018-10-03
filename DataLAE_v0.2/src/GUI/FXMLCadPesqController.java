@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import DAO.Exceptions.CampoInvalidoException;
 import Model.Pesquisador;
 import Service.PesquisadorService;
-import Service.Exceptions.AtributoInvalidoException;
+import Service.Interfaces.IPesquisadorService;
 import Model.Titulacao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +22,8 @@ import javafx.scene.control.TextField;
 
 public class FXMLCadPesqController implements Initializable {
 
+	IPesquisadorService service = new PesquisadorService();
+	
 	@FXML
 	private Label label;
 	
@@ -61,10 +62,9 @@ public class FXMLCadPesqController implements Initializable {
     	Pesquisador p = new Pesquisador(universidadePesquisador, 
     			nomePesquisador, cpfPesquisador, titulacaoPesquisador);
     
-    	PesquisadorService service = new PesquisadorService();
     	try {
 			service.inserir(p);
-		} catch (AtributoInvalidoException | CampoInvalidoException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
