@@ -1,4 +1,4 @@
-package GUI;
+package GUI.cadastro;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package GUI;
+package GUI.cadastro;
 
 import java.net.URL;
 import java.sql.SQLException;
