@@ -21,12 +21,18 @@ public class Projeto {
 			Date dataInicio, Date dataTermino, Integer codigo) 
 	{
 		this.nome = nome;
-		this.setDescricao(descricao);
+		this.descricao = descricao;
 		this.sigla = sigla;
 		this.coordenador = coordenador;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
-		this.setCodigo(codigo);
+		this.codigo = codigo;
+	}
+	
+	public Projeto(String nome, String descricao, String sigla, String coordenador, 
+			Date dataInicio, Date dataTermino) 
+	{
+		this(nome, descricao, sigla, coordenador, dataInicio, dataTermino, (Integer)null);
 	}
 	
 	// TODO adicionar lançamento de exceções para os métodos que precisam
@@ -220,6 +226,5 @@ public class Projeto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
 	
 }

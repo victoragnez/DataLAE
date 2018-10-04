@@ -7,31 +7,39 @@ public class Viagem {
 
 	private Date dataInicio;
 	private Date dataTermino;
-	private Integer codigo;
 	private Local local;
 	private Projeto projeto;
+	private Integer codigo;
 	private HashMap<Integer, Pesquisador> participantes;
-	
-	public Viagem(Date dataInicio, Date dataTermino, Integer codigo,
-			Local local, Projeto projeto,
-			HashMap<Integer, Pesquisador> participantes) 
+
+	public Viagem(Date dataInicio, Date dataTermino, Local local, Projeto projeto,
+			Integer codigo, HashMap<Integer, Pesquisador> participantes) 
 	{
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
-		this.setCodigo(codigo);
-		this.setLocal(local);
-		this.setProjeto(projeto);
+		this.local = local;
+		this.projeto = projeto;
+		this.codigo = codigo;
 		this.participantes = participantes;
 	}
-
-	public Viagem(Date dataInicio, Date dataTermino, Integer codigo,
-			Local local, Projeto projeto) 
+	
+	public Viagem(Date dataInicio, Date dataTermino, Local local, Projeto projeto,
+			HashMap<Integer, Pesquisador> participantes)
 	{
-		this.dataInicio = dataInicio;
-		this.dataTermino = dataTermino;
-		this.setCodigo(codigo);
-		this.setLocal(local);
-		this.setProjeto(projeto);
+		this(dataInicio, dataTermino, local, projeto, (Integer)null, participantes);
+	}
+	
+	public Viagem(Date dataInicio, Date dataTermino, Local local, 
+			Projeto projeto, Integer codigo)
+	{
+		this(dataInicio, dataTermino, local, projeto, 
+				codigo, (HashMap<Integer, Pesquisador>) null);
+	}
+	
+	public Viagem(Date dataInicio, Date dataTermino, Local local, Projeto projeto)
+	{
+		this(dataInicio, dataTermino, local, projeto, 
+				(Integer)null, (HashMap<Integer, Pesquisador>) null);
 	}
 	
 	/**

@@ -4,10 +4,10 @@ public class Usuario {
 
 	// Atributes
 	
+	private String nome;
+	private String email;
 	private String username;
 	private String password;
-	private String email;
-	private String nome;
 	
 	
 	/**
@@ -53,7 +53,5 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
 	
 }

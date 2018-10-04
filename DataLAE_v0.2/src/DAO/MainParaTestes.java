@@ -17,7 +17,7 @@ class MainParaTestes {
 		LocalDAO localDao = new LocalDAO();
 		
 		try {
-			localDao.inserir(new Local("arara", "br", "estado", "natown", 30., 60., (Integer)null));
+			localDao.inserir(new Local("arara", "br", "estado", "natown", 30., 60.));
 			for(Local l : localDao.listarLocais()) {
 				System.out.println(l.getNome() + " " + l.getPais() + " " + 
 						l.getCidade() + " " + l.getLatitude() + " " + l.getLongitude());
@@ -30,7 +30,7 @@ class MainParaTestes {
 		ProjetoDAO dao = new ProjetoDAO();
 		
 		p = new Projeto("ProjDeGilney", "testando", "sigla", "gilneyjr", 
-				new Date(2018-1900, 9, 20), new Date(2090-1900, 9, 20), null);
+				new Date(2018-1900, 9, 20), new Date(2090-1900, 9, 20));
 		try {
 			dao.inserir(p);
 		} catch(Exception e) {
@@ -38,7 +38,7 @@ class MainParaTestes {
 		}
 
 		p = new Projeto("ProjDeAgnez", "estou testando novamente", "sigla", "victoragnez", 
-				new Date(2015-1900, 9, 20), new Date(2020-1900, 9, 20), null);
+				new Date(2015-1900, 9, 20), new Date(2020-1900, 9, 20));
 		
 		PesquisadorDAO pesqDAO = new PesquisadorDAO();
 		Pesquisador pesq = new Pesquisador("ufrn", "victor", "0000000111", Categoria.IC);
@@ -57,7 +57,7 @@ class MainParaTestes {
 		}
 		
 		p = new Projeto("ProjDeGabriel", null, null, "GabrielAraujo", 
-				new Date(2016-1900, 9, 20), null, null);
+				new Date(2016-1900, 9, 20), null);
 		try {
 			dao.inserir(p);
 		} catch(Exception e) {
@@ -65,7 +65,7 @@ class MainParaTestes {
 		}
 		
 		p = new Projeto("nome", "...", null, "outro coordenador", 
-				new Date(2018-1900, 9, 20), new Date(2090-1900, 9, 20), null);
+				new Date(2018-1900, 9, 20), new Date(2090-1900, 9, 20));
 		try {
 			dao.inserir(p);
 		} catch(Exception e) {

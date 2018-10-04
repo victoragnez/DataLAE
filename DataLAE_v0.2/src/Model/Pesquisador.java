@@ -9,12 +9,19 @@ public class Pesquisador {
 	private Integer codigo;
 	
 	public Pesquisador(String universidade, String nome, 
-			String cpf, Categoria categoria)
+			String cpf, Categoria categoria, Integer codigo)
 	{
 		this.universidade = universidade;
 		this.nome = nome;
 		this.cpf = cpf;
-		this.setCategoria(categoria);
+		this.categoria = categoria;
+		this.codigo = codigo;
+	}
+	
+	public Pesquisador(String universidade, String nome, 
+			String cpf, Categoria categoria)
+	{
+		this(universidade, nome, cpf, categoria, (Integer)null);
 	}
 
 	public String getUniversidade() {
@@ -62,7 +69,5 @@ public class Pesquisador {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-		
 	
 }
