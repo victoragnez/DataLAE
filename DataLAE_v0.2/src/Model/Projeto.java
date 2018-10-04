@@ -24,7 +24,7 @@ public class Projeto {
 		this.coordenador = coordenador;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
-		this.codigo = codigo;
+		this.setCodigo(codigo);
 	}
 	
 	// TODO adicionar lançamento de exceções para os métodos que precisam
@@ -34,7 +34,7 @@ public class Projeto {
 	 * @param financiador  O novo Financiador
 	 */
 	public void inserirFinanciador ( Financiador financiador )	{
-		financiadores.put(financiador.getCodigo(), financiador);
+		getFinanciadores().put(financiador.getCodigo(), financiador);
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class Projeto {
 	 * @param financiador  o financiador para ser removido
 	 */
 	public void removerFinanciador ( Financiador financiador ) {
-		financiadores.remove(financiador.getCodigo());
+		getFinanciadores().remove(financiador.getCodigo());
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class Projeto {
 	 * @return O financiador correspondente
 	 */
 	public Financiador getFinanciador ( Integer codFinanciador ) {
-		return financiadores.get(codFinanciador);
+		return getFinanciadores().get(codFinanciador);
 	}
 	
 	/**
@@ -185,12 +185,24 @@ public class Projeto {
 		return codigo;
 	}
 	
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
 	public HashMap<Integer, Pesquisador> getPesquisadores() {
 		return pesquisadores;
 	}
 
 	public void setPesquisadores(HashMap<Integer, Pesquisador> pesquisadores) {
 		this.pesquisadores = pesquisadores;
+	}
+
+	public HashMap<Integer, Financiador> getFinanciadores() {
+		return financiadores;
+	}
+
+	public void setFinanciadores(HashMap<Integer, Financiador> financiadores) {
+		this.financiadores = financiadores;
 	}
 	
 	

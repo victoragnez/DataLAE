@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  * Class responsible to access the database
- * and run sql commands
+ * and run SQL commands
  *
  */
 
@@ -16,20 +17,61 @@ final class JDBC {
 	
 	/**
 	 * Runs insert command
-	 * @param sql the sql command to insert
+	 * @param sql the SQL command to insert
+	 * @return the auto-generated id of the inserted line or -1 if there's no generated id or its not int 
 	 * @throws SQLException 
 	 */
-	public static void runInsert(String sql) throws SQLException {
+	public static int runInsert(String sql) throws SQLException {
 		
 		if(!sql.startsWith("insert into "))
 			throw new IllegalArgumentException("invalid insert command");
 		
-		runCommand(sql);
+		Connection connect = null;
+		Statement statement = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			connect = DriverManager
+					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123");
+			statement = connect.createStatement();
+			statement.executeUpdate(sql);
+		} catch(SQLException e) {
+			System.err.println(sql);
+			throw e;
+		}
+		
+		try {
+			ResultSet generatedKeys = statement.getGeneratedKeys();
+			if(!generatedKeys.next())
+				return -1;
+			return generatedKeys.getInt(1);
+		} catch(Exception e){
+			return -1;
+		}
+	}
+	
+	/**
+	 * Runs multiple insert commands atomically
+	 * @param commands the ArrayList of sql insert commands
+	 */
+	public static void runMultipleInserts(ArrayList<String> commands) {
+		for(String sql : commands) {
+			if(!sql.startsWith("insert into "))
+				throw new IllegalArgumentException("invalid insert command: " + sql);
+		}
+		
+		runCommands(commands);
+		
 	}
 	
 	/**
 	 * Runs remove command
-	 * @param sql the sql command to remove
+	 * @param sql the SQL command to remove
 	 * @throws SQLException
 	 */
 	public static void runRemove(String sql) throws SQLException {
@@ -50,9 +92,8 @@ final class JDBC {
 	}
 	
 	/**
-	 * runs a sql command with no return
-	 * 
-	 * @param sql the sql command to run
+	 * runs a SQL command with no return
+	 * @param sql the SQL command to run
 	 * @throws SQLException 
 	 */
 	private static void runCommand(String sql) throws SQLException {
@@ -75,5 +116,13 @@ final class JDBC {
 			System.err.println(sql);
 			throw e;
 		}
+	}
+	
+	/**
+	 * Runs a set of SQL commands atomically with no result
+	 * @param commands
+	 */
+	private static void runCommands(ArrayList<String> commands) {
+		
 	}
 }

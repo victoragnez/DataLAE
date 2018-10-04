@@ -5,14 +5,16 @@ public class Pesquisador {
 	private String universidade;
 	private String nome;
 	private String cpf;
+	private Categoria categoria;
 	private Integer codigo;
 	
 	public Pesquisador(String universidade, String nome, 
-			String cpf) 
+			String cpf, Categoria categoria)
 	{
 		this.universidade = universidade;
 		this.nome = nome;
 		this.cpf = cpf;
+		this.setCategoria(categoria);
 	}
 
 	public String getUniversidade() {
@@ -51,6 +53,14 @@ public class Pesquisador {
 	public String toString() {
 		return "Pesquisador [universidade=" + universidade + ", nome=" + nome + ", cpf="
 				+ cpf + ", codigo=" + codigo + "]";
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	
 		
