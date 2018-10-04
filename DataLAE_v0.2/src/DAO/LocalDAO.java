@@ -60,13 +60,15 @@ public class LocalDAO implements ILocalDAO {
 
 	@Override
 	public ArrayList<Local> listarLocais() throws SQLException {
+		
 		ArrayList<Local> retorno = new ArrayList<Local>();
 		String sql = "select codigoLocal, nome, cidade, " + 
 				"estado, pais, x(coordenadas), y(coordenadas) from LocalPesquisa;";
 		ResultSet resultSet = JDBC.runQuery(sql);
-		while(resultSet.next()) {
-			Integer codigo = (Integer)resultSet.getObject("codigoLocal");
 
+		while(resultSet.next()) {
+
+			Integer codigo = (Integer)resultSet.getObject("codigoLocal");
 			String nome = resultSet.getString("nome");
 			String cidade = resultSet.getString("cidade");
 			String estado = resultSet.getString("estado");

@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -45,16 +46,34 @@ public class DiretorDAO implements IDiretorDAO {
 		
 	}
 
+	@Override
 	public void remover(Diretor d) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public Diretor consultar(String codigoFinanciador) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public ArrayList<Diretor> listarDiretores() throws SQLException {
+		
+		ArrayList<Diretor> retorno = new ArrayList<Diretor>();
+		String sql = "select * from Diretor;";
+		ResultSet resultSet = JDBC.runQuery(sql);
+
+		while(resultSet.next()) {
+
+			Integer codigo = (Integer)resultSet.getObject("codigoDiretor");
+			String nome = resultSet.getString("nome");
+			String email = resultSet.getString("email");
+			String telefone = resultSet.getString("telefone");
+			String cargo = resultSet.getString("cargo");
+			
+			retorno.add(new Diretor(nome, email, telefone, cargo, codigo));
+			
+		}
+		return retorno;
 	}
 	
+	@Override
 	public void alterar(Diretor d) {
 		// TODO Auto-generated method stub
 		

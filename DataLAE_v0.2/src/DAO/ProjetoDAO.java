@@ -129,12 +129,14 @@ public class ProjetoDAO  implements IProjetoDAO{
 
 	@Override
 	public ArrayList<Projeto> listarProjetos() throws SQLException {
+		
 		ArrayList<Projeto> retorno = new ArrayList<Projeto>();
 		String sql = "select * from Projeto;";
 		ResultSet resultSet = JDBC.runQuery(sql);
+
 		while(resultSet.next()) {
-			Integer codigo = (Integer)resultSet.getObject("codigoProjeto");
 			
+			Integer codigo = (Integer)resultSet.getObject("codigoProjeto");
 			String nome = resultSet.getString("nome");
 			String descricao = resultSet.getString("descricao");
 			String sigla = resultSet.getString("sigla");

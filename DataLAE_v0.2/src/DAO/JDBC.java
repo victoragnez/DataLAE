@@ -58,6 +58,7 @@ final class JDBC {
 				return -1;
 			return generatedKeys.getInt(1);
 		} catch(Exception e){
+			System.err.println(sql);
 			e.printStackTrace();
 			return -1;
 		}
