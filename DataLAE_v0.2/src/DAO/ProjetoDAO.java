@@ -24,6 +24,9 @@ public class ProjetoDAO  implements IProjetoDAO{
 		if(p.getNome() != null && p.getNome().length() != 0)
 			campos.add("nome='" + p.getNome()+"'");
 		
+		if(p.getDescricao() != null && p.getDescricao().length() != 0)
+			campos.add("descricao='" + p.getDescricao() + "'");
+		
 		if(p.getSigla() != null && p.getSigla().length() != 0)
 			campos.add("sigla='" + p.getSigla()+"'");
 		
@@ -78,7 +81,8 @@ public class ProjetoDAO  implements IProjetoDAO{
 					campos = new ArrayList<String>();
 					campos.add("codigoProjeto=" + p.getCodigo());
 					campos.add("codigoPesquisador=" + pesq.getCodigo());
-					campos.add("categoria=" + pesq.getCategoria());
+					System.out.println("aqui " + pesq.getCodigo());
+					campos.add("categoria='" + pesq.getCategoria() + "'");
 					
 					sql = "insert into PesquisadorProjeto set ";
 					for(int i = 0; i < campos.size(); i++) {
@@ -108,7 +112,7 @@ public class ProjetoDAO  implements IProjetoDAO{
 				}
 			}
 			
-			if(commands.size() > 1) {
+			if(commands.size() > 0) {
 				JDBC.runMultipleInserts(commands);
 			}
 		}

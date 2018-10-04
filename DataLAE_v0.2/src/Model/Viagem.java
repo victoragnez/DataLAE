@@ -39,6 +39,8 @@ public class Viagem {
 	 * @param pesquisador o participante
 	 */
 	public void inserirParticapante (Pesquisador pesquisador) {
+		if(participantes == null)
+			participantes = new HashMap<Integer,Pesquisador>();
 		participantes.put(pesquisador.getCodigo(), pesquisador);
 	}
 	

@@ -36,7 +36,9 @@ public class Projeto {
 	 * @param financiador  O novo Financiador
 	 */
 	public void inserirFinanciador ( Financiador financiador )	{
-		getFinanciadores().put(financiador.getCodigo(), financiador);
+		if(financiadores == null)
+			financiadores = new HashMap<Integer, Financiador>();
+		financiadores.put(financiador.getCodigo(), financiador);
 	}
 
 	/**
@@ -44,7 +46,7 @@ public class Projeto {
 	 * @param financiador  o financiador para ser removido
 	 */
 	public void removerFinanciador ( Financiador financiador ) {
-		getFinanciadores().remove(financiador.getCodigo());
+		financiadores.remove(financiador.getCodigo());
 	}
 	
 	/**
@@ -53,7 +55,7 @@ public class Projeto {
 	 * @return O financiador correspondente
 	 */
 	public Financiador getFinanciador ( Integer codFinanciador ) {
-		return getFinanciadores().get(codFinanciador);
+		return financiadores.get(codFinanciador);
 	}
 	
 	/**
@@ -69,7 +71,9 @@ public class Projeto {
 	 * Adiciona um novo local na lista de locais
 	 * @param local  O novo Local
 	 */
-	public void inserirLocal ( Local local )	{
+	public void inserirLocal ( Local local ) {
+		if(locais == null)
+			locais = new HashMap<Integer, Local>();
 		locais.put(local.getCodigo(), local);
 	}
 
@@ -104,6 +108,8 @@ public class Projeto {
 	 * @param pesquisador  o novo pesquisador
 	 */
 	public void inserirPesquisador ( Pesquisador pesquisador ) {
+		if(pesquisadores == null)
+			pesquisadores = new HashMap<Integer, Pesquisador>();
 		pesquisadores.put(pesquisador.getCodigo(), pesquisador);
 	}
 	

@@ -3,6 +3,8 @@ package DAO;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import Model.Categoria;
+import Model.Pesquisador;
 import Model.Projeto;
 
 class MainParaTestes {
@@ -12,7 +14,7 @@ class MainParaTestes {
 		Projeto p;
 		ProjetoDAO dao = new ProjetoDAO();
 		
-		p = new Projeto("gilney", "testando", "sigla", "coordenador", 
+		p = new Projeto("ProjDeGilney", "testando", "sigla", "gilneyjr", 
 				new Date(2018-1900, 9, 20), new Date(2090-1900, 9, 20), null);
 		try {
 			dao.inserir(p);
@@ -20,15 +22,26 @@ class MainParaTestes {
 			e.printStackTrace();
 		}
 
-		p = new Projeto("agnez", "estou testando novamente", "sigla", "Coordenador", 
+		p = new Projeto("ProjDeAgnez", "estou testando novamente", "sigla", "victoragnez", 
 				new Date(2015-1900, 9, 20), new Date(2020-1900, 9, 20), null);
+		
+		PesquisadorDAO pesqDAO = new PesquisadorDAO();
+		Pesquisador pesq = new Pesquisador("ufrn", "victor", "0000000111", Categoria.IC);
+		try {
+			pesqDAO.inserir(pesq);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		p.inserirPesquisador(pesq);
+		
 		try {
 			dao.inserir(p);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		p = new Projeto("gabriel", null, "sigla", null, 
+		p = new Projeto("ProjDeGabriel", null, null, "GabrielAraujo", 
 				new Date(2016-1900, 9, 20), null, null);
 		try {
 			dao.inserir(p);
@@ -36,15 +49,7 @@ class MainParaTestes {
 			e.printStackTrace();
 		}
 		
-		p = new Projeto("nome", "...", "sigla", "coordenador", 
-				null, new Date(2090-1900, 9, 20), null);
-		try {
-			dao.inserir(p);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		p = new Projeto("nome", "...", null, "coordenador", 
+		p = new Projeto("nome", "...", null, "outro coordenador", 
 				new Date(2018-1900, 9, 20), new Date(2090-1900, 9, 20), null);
 		try {
 			dao.inserir(p);
@@ -62,7 +67,6 @@ class MainParaTestes {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 	}
 
