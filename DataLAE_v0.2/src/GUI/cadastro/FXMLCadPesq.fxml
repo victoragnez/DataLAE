@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="300.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLCadPesqController">
+<AnchorPane prefHeight="300.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.cadastro.FXMLCadPesqController">
    <children>
       <Pane layoutX="14.0" layoutY="2.0" prefHeight="300.0" prefWidth="431.0">
          <children>

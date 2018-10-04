@@ -38,8 +38,7 @@ public class FXMLCadProjController implements Initializable{
     private Button btCadastrar;
 
     @FXML
-    void acaoCadastrarProj(ActionEvent event) {
-    	
+    private void acaoCadastrarProj(ActionEvent event) {
     	 String nome = txNomeProj.getText().trim();
     	 if (nome.equals("")) nome = null;
     	 
@@ -64,14 +63,13 @@ public class FXMLCadProjController implements Initializable{
     	 try {
     		 service.inserir(p);
 		 } catch (Exception e) {	
-			// TODO: handle exception
+			// Avisar ao cliente aqui
 		 }
     }
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		/* Nothing */
 	}
 
 }
