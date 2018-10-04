@@ -10,10 +10,17 @@ import java.util.ArrayList;
 /**
  * Class responsible to access the database
  * and run SQL commands
+ * 
+ * Visible only inside DAO packet
  *
  */
 
 final class JDBC {
+	
+	/**
+	 * Private constructor - use the static methods.
+	 */
+	private JDBC() {}
 	
 	/**
 	 * Runs insert command

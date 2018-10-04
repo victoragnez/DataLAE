@@ -2,8 +2,6 @@ package DAO.Interfaces;
 
 import java.sql.SQLException;
 
-import Model.Local;
-import Model.Projeto;
 import Model.Viagem;
 
 public interface IViagemDAO {
