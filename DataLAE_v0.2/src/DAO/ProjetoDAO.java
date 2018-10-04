@@ -34,17 +34,13 @@ public class ProjetoDAO  implements IProjetoDAO{
 		if(p.getDataTermino() != null)
 			campos.add("dataTermino='" + p.getDataTermino().toString() + "'");
 		
-		if(campos.isEmpty()) /* nada para adicionar */
-			return;
-		
 		String sql = "insert into Projeto set ";
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
 				sql += ", ";
-			else
-				sql += ";";
 		}
+		sql += ";";
 		
 		int id = JDBC.runInsert(sql);
 		
@@ -68,9 +64,8 @@ public class ProjetoDAO  implements IProjetoDAO{
 					sql += campos.get(i);
 					if(i+1 < campos.size())
 						sql += ", ";
-					else
-						sql += ";";
 				}
+				sql += ";";
 				commands.add(sql);
 			}
 			
@@ -85,9 +80,8 @@ public class ProjetoDAO  implements IProjetoDAO{
 					sql += campos.get(i);
 					if(i+1 < campos.size())
 						sql += ", ";
-					else
-						sql += ";";
 				}
+				sql += ";";
 				commands.add(sql);
 			}
 			
@@ -101,9 +95,8 @@ public class ProjetoDAO  implements IProjetoDAO{
 					sql += campos.get(i);
 					if(i+1 < campos.size())
 						sql += ", ";
-					else
-						sql += ";";
 				}
+				sql += ";";
 				commands.add(sql);
 			}
 			

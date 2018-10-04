@@ -32,17 +32,13 @@ public class LocalDAO implements ILocalDAO {
 			campos.add("coordenadas=point(" + String.format("%.8f", l.getLatitude()) + ", " + 
 				String.format("%.8f", l.getLongitude()) + ")");
 		
-		if(campos.isEmpty()) /* nada para adicionar */
-			return;
-		
 		String sql = "insert into LocalPesquisa set ";
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
 				sql += ", ";
-			else
-				sql += ";";
 		}
+		sql += ";";
 		
 		JDBC.runInsert(sql);
 	}

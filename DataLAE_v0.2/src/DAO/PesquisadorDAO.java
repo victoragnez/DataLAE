@@ -27,17 +27,13 @@ public class PesquisadorDAO implements IPesquisadorDAO{
 		if(p.getNome() != null && p.getNome().length() != 0)
 			campos.add("nome='" + p.getNome()+"'");
 		
-		if(campos.isEmpty()) /* nada para adicionar */
-			return;
-		
 		String sql = "insert into Pesquisador set ";
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
 				sql += ", ";
-			else
-				sql += ";";
 		}
+		sql += ";";
 		
 		JDBC.runInsert(sql);
 		

@@ -142,7 +142,7 @@ final class JDBC {
 		connect.setAutoCommit(false);
 		for(int i = 0; i < commands.size(); i++) {
 			statements[i] = connect.createStatement();
-			statements[i].executeQuery(commands.get(i));
+			statements[i].executeUpdate(commands.get(i));
 		}
 		connect.commit();
 	}
