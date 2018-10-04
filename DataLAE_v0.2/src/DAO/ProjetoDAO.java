@@ -78,7 +78,7 @@ public class ProjetoDAO  implements IProjetoDAO{
 					campos = new ArrayList<String>();
 					campos.add("codigoProjeto=" + p.getCodigo());
 					campos.add("codigoPesquisador=" + pesq.getCodigo());
-					campos.add("categoria=" + pesq.getCategoria().getNome());
+					campos.add("categoria=" + pesq.getCategoria());
 					
 					sql = "insert into PesquisadorProjeto set ";
 					for(int i = 0; i < campos.size(); i++) {

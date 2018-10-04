@@ -52,7 +52,7 @@ public class ViagemDAO implements IViagemDAO{
 				campos = new ArrayList<String>();
 				campos.add("codigoViagem=" + v.getCodigo());
 				campos.add("codigoPesquisador=" + pesq.getCodigo());
-				campos.add("categoria=" + pesq.getCategoria().getNome());
+				campos.add("categoria=" + pesq.getCategoria());
 				
 				sql = "insert into PesquisadorViagem set ";
 				for(int i = 0; i < campos.size(); i++) {

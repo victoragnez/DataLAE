@@ -93,7 +93,7 @@ create table Pesquisador (
     cpfPesquisador varchar(11),
     universidade varchar(255) not null,
     nome varchar(255) not null,
-    categoria varchar(255) not null,
+    categoria enum('Professor', 'Mestrando', 'Doutorando', 'IC', 'Convidado') not null,
     
     primary key (codigoPesquisador)
 ) engine=innodb;
@@ -101,7 +101,7 @@ create table Pesquisador (
 create table PesquisadorViagem(
 	codigoViagem int not null,
     codigoPesquisador int not null,
-    categoria varchar(255) not null,
+    categoria enum('Professor', 'Mestrando', 'Doutorando', 'IC', 'Convidado') not null,
     
     primary key (codigoViagem, codigoPesquisador),
     
@@ -113,7 +113,7 @@ create table PesquisadorProjeto (
 	
     codigoProjeto int not null,
     codigoPesquisador int not null,
-    categoria varchar(255) not null,
+    categoria enum('Professor', 'Mestrando', 'Doutorando', 'IC', 'Convidado') not null,
     
     primary key (codigoPesquisador, codigoProjeto),
     
