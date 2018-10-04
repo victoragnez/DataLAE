@@ -35,7 +35,13 @@ public class PesquisadorDAO implements IPesquisadorDAO{
 		}
 		sql += ";";
 		
-		JDBC.runInsert(sql);
+		int id = JDBC.runInsert(sql);
+		
+		if(id == -1) {
+			id = p.getCodigo();
+		} else {
+			p.setCodigo(id);
+		}
 		
 	}
 

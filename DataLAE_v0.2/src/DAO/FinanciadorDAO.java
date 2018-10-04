@@ -30,7 +30,13 @@ public class FinanciadorDAO implements IFinanciadorDAO{
 		}
 		sql += ";";
 		
-		JDBC.runInsert(sql);
+		int id = JDBC.runInsert(sql);
+		
+		if(id == -1) {
+			id = f.getCodigo();
+		} else {
+			f.setCodigo(id);
+		}
 		
 	}
 

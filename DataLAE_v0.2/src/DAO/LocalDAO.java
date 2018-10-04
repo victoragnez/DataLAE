@@ -40,7 +40,13 @@ public class LocalDAO implements ILocalDAO {
 		}
 		sql += ";";
 		
-		JDBC.runInsert(sql);
+		int id = JDBC.runInsert(sql);
+		
+		if(id == -1) {
+			id = l.getCodigo();
+		} else {
+			l.setCodigo(id);
+		}
 	}
 
 	@Override

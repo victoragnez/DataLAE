@@ -35,7 +35,13 @@ public class DiretorDAO implements IDiretorDAO {
 		}
 		sql += ";";
 		
-		JDBC.runInsert(sql);
+		int id = JDBC.runInsert(sql);
+		
+		if(id == -1) {
+			id = d.getCodigo();
+		} else {
+			d.setCodigo(id);
+		}
 		
 	}
 

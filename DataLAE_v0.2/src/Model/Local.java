@@ -20,7 +20,7 @@ public class Local {
 		this.cidade = cidade;
 		this.setLatitude(latitude);
 		this.setLongitude(longitude);
-		this.codigo = codigo;
+		this.setCodigo(codigo);
 	}
 
 	public String getNome() {
@@ -65,6 +65,10 @@ public class Local {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public Double getLatitude() {

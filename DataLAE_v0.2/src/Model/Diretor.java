@@ -22,7 +22,7 @@ public class Diretor {
 		this.email = email;
 		this.telefone = telefone;
 		this.cargo = cargo;
-		this.codigo = codigo;
+		this.setCodigo(codigo);
 	}
 
 	//Getters and Setters
@@ -61,6 +61,10 @@ public class Diretor {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}	
 	
 }

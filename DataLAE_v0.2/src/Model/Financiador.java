@@ -12,7 +12,7 @@ public class Financiador {
 	{
 		this.nome = nome;
 		this.diretor = diretor;
-		this.codigo = codigo;
+		this.setCodigo(codigo);
 		this.cnpj = cnpj;
 	}
 
@@ -34,6 +34,10 @@ public class Financiador {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getCnpj() {

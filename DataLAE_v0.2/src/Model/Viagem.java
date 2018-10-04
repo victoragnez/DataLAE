@@ -5,31 +5,31 @@ import java.util.HashMap;
 
 public class Viagem {
 
-	private Date dataInico;
+	private Date dataInicio;
 	private Date dataTermino;
 	private Integer codigo;
 	private Local local;
 	private Projeto projeto;
 	private HashMap<Integer, Pesquisador> participantes;
 	
-	public Viagem(Date dataInico, Date dataTermino, Integer codigo,
+	public Viagem(Date dataInicio, Date dataTermino, Integer codigo,
 			Local local, Projeto projeto,
 			HashMap<Integer, Pesquisador> participantes) 
 	{
-		this.dataInico = dataInico;
+		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
-		this.codigo = codigo;
+		this.setCodigo(codigo);
 		this.setLocal(local);
 		this.setProjeto(projeto);
 		this.participantes = participantes;
 	}
 
-	public Viagem(Date dataInico, Date dataTermino, Integer codigo,
+	public Viagem(Date dataInicio, Date dataTermino, Integer codigo,
 			Local local, Projeto projeto) 
 	{
-		this.dataInico = dataInico;
+		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
-		this.codigo = codigo;
+		this.setCodigo(codigo);
 		this.setLocal(local);
 		this.setProjeto(projeto);
 	}
@@ -62,12 +62,12 @@ public class Viagem {
 	
 	//Getters and Setters
 
-	public Date getDataInico() {
-		return dataInico;
+	public Date getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setDataInico(Date dataInico) {
-		this.dataInico = dataInico;
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
 	public Date getDataTermino() {
@@ -80,6 +80,10 @@ public class Viagem {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public Local getLocal() {
