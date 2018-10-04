@@ -1,0 +1,8 @@
+
+csquid:S1135B"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿHûRINFOZ
+CODE_SMELL
+Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(İØ˜úÿÿÿÿHüRMINORZ
+CODE_SMELL
+Xsquid:S1148C"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿHıRMINORZVULNERABILITY
+€squid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(â½°ıÿÿÿÿHşRMAJORZ
+CODE_SMELL
