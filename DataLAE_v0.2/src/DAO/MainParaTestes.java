@@ -1,9 +1,11 @@
 package DAO;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Model.Categoria;
+import Model.Local;
 import Model.Pesquisador;
 import Model.Projeto;
 
@@ -11,6 +13,19 @@ class MainParaTestes {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
+		
+		LocalDAO localDao = new LocalDAO();
+		
+		try {
+			localDao.inserir(new Local("arara", "br", "estado", "natown", 30., 60., (Integer)null));
+			for(Local l : localDao.listarLocais()) {
+				System.out.println(l.getNome() + " " + l.getPais() + " " + 
+						l.getCidade() + " " + l.getLatitude() + " " + l.getLongitude());
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
 		Projeto p;
 		ProjetoDAO dao = new ProjetoDAO();
 		

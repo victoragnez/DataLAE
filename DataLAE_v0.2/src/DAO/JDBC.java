@@ -37,14 +37,14 @@ final class JDBC {
 		Statement statement = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 		try {
 			connect = DriverManager
-					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123");
+					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123&useSSL=false");
 			statement = connect.createStatement();
 			statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 		} catch(SQLException e) {
@@ -103,14 +103,14 @@ final class JDBC {
 		Statement statement = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 		try {
 			connect = DriverManager
-					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123");
+					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123&useSSL=false");
 			statement = connect.createStatement();
 			return statement.executeQuery(sql);
 		} catch(SQLException e) {
@@ -135,14 +135,14 @@ final class JDBC {
 		Statement statement = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 		try {
 			connect = DriverManager
-					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123");
+					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123&useSSL=false");
 			statement = connect.createStatement();
 			statement.executeUpdate(sql);
 		} catch(SQLException e) {
@@ -161,13 +161,13 @@ final class JDBC {
 		Statement[] statements = new Statement[commands.size()];
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 		connect = DriverManager
-				.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123");
+				.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123&useSSL=false");
 		connect.setAutoCommit(false);
 		for(int i = 0; i < commands.size(); i++) {
 			statements[i] = connect.createStatement();
