@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Projeto {
 
 	private String nome;
+	private String descricao;
 	private String sigla;
 	private String coordenador;
 	private Date dataInicio;
@@ -16,10 +17,11 @@ public class Projeto {
 	private HashMap<Integer, Local> locais;
 	private HashMap<Integer, Pesquisador> pesquisadores;
 	
-	public Projeto(String nome, String sigla, String coordenador, 
+	public Projeto(String nome, String descricao, String sigla, String coordenador, 
 			Date dataInicio, Date dataTermino, Integer codigo) 
 	{
 		this.nome = nome;
+		this.setDescricao(descricao);
 		this.sigla = sigla;
 		this.coordenador = coordenador;
 		this.dataInicio = dataInicio;
@@ -203,6 +205,14 @@ public class Projeto {
 
 	public void setFinanciadores(HashMap<Integer, Financiador> financiadores) {
 		this.financiadores = financiadores;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	

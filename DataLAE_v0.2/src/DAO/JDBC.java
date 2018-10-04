@@ -39,7 +39,7 @@ final class JDBC {
 			connect = DriverManager
 					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123");
 			statement = connect.createStatement();
-			statement.executeUpdate(sql);
+			statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 		} catch(SQLException e) {
 			System.err.println(sql);
 			throw e;
@@ -51,6 +51,7 @@ final class JDBC {
 				return -1;
 			return generatedKeys.getInt(1);
 		} catch(Exception e){
+			e.printStackTrace();
 			return -1;
 		}
 	}
@@ -76,7 +77,10 @@ final class JDBC {
 	 * @throws SQLException
 	 */
 	public static void runRemove(String sql) throws SQLException {
-		//TODO
+		
+		if(!sql.startsWith("delete from "))
+			throw new IllegalArgumentException("invalid remove command");
+		
 		runCommand(sql);
 	}
 	
@@ -84,10 +88,28 @@ final class JDBC {
 	 * Runs query command
 	 * @param sql
 	 * @return the query result
+	 * @throws SQLException 
 	 */
-	public static ResultSet runQuery(String sql) {
-		//TODO
-		return null;
+	public static ResultSet runQuery(String sql) throws SQLException {
+		
+		Connection connect = null;
+		Statement statement = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			connect = DriverManager
+					.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123");
+			statement = connect.createStatement();
+			return statement.executeQuery(sql);
+		} catch(SQLException e) {
+			System.err.println(sql);
+			throw e;
+		}
 	}
 	
 	public static void runUpdate(String sql) throws SQLException {

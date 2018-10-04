@@ -25,10 +25,11 @@ create table Financiador (
 create table Projeto (
 
 	codigoProjeto int auto_increment not null,
-    nome varchar(255),
+    nome varchar(255) not null,
+    descricao varchar(1000),
     sigla varchar(255),
-    nomeCoordenador varchar(255),
-    dataInicio date,
+    nomeCoordenador varchar(255) not null,
+    dataInicio date not null,
     dataTermino date,
         
     primary key (codigoProjeto)
@@ -62,7 +63,7 @@ create table LocalPesquisa (
 
 create table LocalProjeto (
 
-	codigoLocal not null,
+	codigoLocal int not null,
     codigoProjeto int not null,
     
     constraint codLocalProjeto
