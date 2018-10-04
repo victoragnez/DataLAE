@@ -11,6 +11,16 @@ public class Local {
 	private Integer codigo;
 	
 	
+	public Local(String nome, String pais, String estado, String cidade, Double latitude, Double longitude) {
+		super();
+		this.nome = nome;
+		this.pais = pais;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+
 	public Local(String nome, String pais, String estado, String cidade, 
 			Double latitude, Double longitude, Integer codigo) 
 	{
