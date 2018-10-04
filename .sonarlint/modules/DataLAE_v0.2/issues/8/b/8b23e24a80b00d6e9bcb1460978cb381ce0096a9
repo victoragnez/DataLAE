@@ -1,11 +1,11 @@
 
-‰squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿH-RMINORZ
+Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿHŒ	RMINORZ
 CODE_SMELL
-isquid:S1135	"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8÷Ä¿èá,H2RINFOZ
+jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8÷Ä¿èá,H‹	RINFOZ
 CODE_SMELL
-isquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8÷Ä¿èá,H3RINFOZ
+jsquid:S1135$"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8÷Ä¿èá,H	RINFOZ
 CODE_SMELL
-isquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8÷Ä¿èá,H4RINFOZ
+¸squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡“øÿ8²Â¸Ûã,H˜	RCRITICALZ
 CODE_SMELL
-isquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8÷Ä¿èá,H5RINFOZ
+jsquid:S1135*"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8÷Ä¿èá,H	RINFOZ
 CODE_SMELL

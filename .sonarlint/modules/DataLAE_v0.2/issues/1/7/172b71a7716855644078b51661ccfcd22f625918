@@ -1,19 +1,23 @@
 
-ªsquid:S1319>"qThe type of the "locais" object should be an interface such as "List" rather than the implementation "ArrayList".(˜“¹úÿÿÿÿ8Ÿç‚¸â,HÀRMINORZ
+«squid:S1319H"xThe type of the "financiadores" object should be an interface such as "List" rather than the implementation "ArrayList".(º‘¤8¶ÕæÛã,H®	RMINORZ
 CODE_SMELL
-esquid:S1135"2Complete the task associated to this TODO comment.(å±¤Î8›Ù™¸â,HşRINFOZ
+esquid:S1135)"2Complete the task associated to this TODO comment.(å±¤Î8›Ù™¸â,H«	RINFOZ
 CODE_SMELL
-¢squid:S1319£"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ĞÙƒ8›Ù™¸â,H€RMINORZ
+ªsquid:S1319j"qThe type of the "locais" object should be an interface such as "List" rather than the implementation "ArrayList".(˜“¹úÿÿÿÿ8Ÿç‚¸â,H¬	RMINORZ
 CODE_SMELL
-¬squid:S1319`"xThe type of the "pesquisadores" object should be an interface such as "List" rather than the implementation "ArrayList".(ÒÈÿç8¥à•¸â,HŞRMINORZ
+‚squid:S00100H"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º‘¤8¶ÕæÛã,H³	RMINORZ
 CODE_SMELL
-§squid:S1319k"nThe type of the "locais" object should be an interface such as "Map" rather than the implementation "HashMap".(Éãœşÿÿÿÿ8 ø·â,H¡RMINORZ
+ªsquid:S1319Ë"uThe type of the "pesquisadores" object should be an interface such as "Map" rather than the implementation "HashMap".(¿Åà8¶ÕæÛã,H²	RMINORZ
 CODE_SMELL
-ˆsquid:S00100>"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜“¹úÿÿÿÿ8Ÿç‚¸â,HÁRMINORZ
+ˆsquid:S00100j"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜“¹úÿÿÿÿ8Ÿç‚¸â,H©	RMINORZ
 CODE_SMELL
-¡squid:S1319g"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(‚ş©¹8 ø·â,H RMINORZ
+¡squid:S1319Ç"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(¡ÕÏ8¶ÕæÛã,H±	RMINORZ
 CODE_SMELL
-¯squid:S1319§"uThe type of the "pesquisadores" object should be an interface such as "Map" rather than the implementation "HashMap".(§Èß¸øÿÿÿÿ8›Ù™¸â,HRMINORZ
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(á–Ì“Hª	RMINORZ
 CODE_SMELL
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(á–Ì“HüRMINORZ
+¨squid:S1319—"nThe type of the "locais" object should be an interface such as "Map" rather than the implementation "HashMap".(ÉšŞâıÿÿÿÿ8¶ÕæÛã,H°	RMINORZ
+CODE_SMELL
+§squid:S1319“"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ÇËİ™úÿÿÿÿ8¶ÕæÛã,H¯	RMINORZ
+CODE_SMELL
+­squid:S1319Œ"xThe type of the "pesquisadores" object should be an interface such as "List" rather than the implementation "ArrayList".(ÒÈÿç8¥à•¸â,H­	RMINORZ
 CODE_SMELL
