@@ -58,8 +58,9 @@ final class JDBC {
 	/**
 	 * Runs multiple insert commands atomically
 	 * @param commands the ArrayList of sql insert commands
+	 * @throws SQLException 
 	 */
-	public static void runMultipleInserts(ArrayList<String> commands) {
+	public static void runMultipleInserts(ArrayList<String> commands) throws SQLException {
 		for(String sql : commands) {
 			if(!sql.startsWith("insert into "))
 				throw new IllegalArgumentException("invalid insert command: " + sql);
@@ -75,6 +76,7 @@ final class JDBC {
 	 * @throws SQLException
 	 */
 	public static void runRemove(String sql) throws SQLException {
+		//TODO
 		runCommand(sql);
 	}
 	
@@ -84,10 +86,12 @@ final class JDBC {
 	 * @return the query result
 	 */
 	public static ResultSet runQuery(String sql) {
+		//TODO
 		return null;
 	}
 	
 	public static void runUpdate(String sql) throws SQLException {
+		//TODO
 		runCommand(sql);
 	}
 	
@@ -120,9 +124,26 @@ final class JDBC {
 	
 	/**
 	 * Runs a set of SQL commands atomically with no result
-	 * @param commands
+	 * @param commands the list of sql commands to run
+	 * @throws SQLException 
 	 */
-	private static void runCommands(ArrayList<String> commands) {
+	private static void runCommands(ArrayList<String> commands) throws SQLException {
+		Connection connect = null;
+		Statement[] statements = new Statement[commands.size()];
 		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		connect = DriverManager
+				.getConnection("jdbc:mysql://localhost/dataLae?user=root&password=abc123");
+		connect.setAutoCommit(false);
+		for(int i = 0; i < commands.size(); i++) {
+			statements[i] = connect.createStatement();
+			statements[i].executeQuery(commands.get(i));
+		}
+		connect.commit();
 	}
 }
