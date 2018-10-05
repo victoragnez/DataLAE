@@ -1,8 +1,12 @@
-package GUI.cadastro;
+package GUI.cadastro.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import Model.Local;
+import Service.LocalService;
+import Service.Interfaces.ILocalService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class FXMLCadLocalController implements Initializable{
-
+	
     @FXML
     private TextField txNomeLocal;
 
@@ -47,8 +51,24 @@ public class FXMLCadLocalController implements Initializable{
     	String cidade = txCidadeLocal.getText().trim();
     	if (cidade.equals("")) cidade = null;
     	
-//    	Local l = new Local()
+    	Double latitude;
+    	String lat = txLatitude.getText().trim();
+    	if (lat.equals("")) latitude = null;
+    	else latitude = Double.valueOf(lat);
     	
+    	Double longitude;
+    	String lon = txLongitude.getText().trim();
+    	if (lon.equals("")) longitude = null;
+    	else longitude = Double.valueOf(lon);
+    	
+    	Local l = new Local(nome, pais, estado, cidade, latitude, longitude);
+    	try {
+    		ILocalService service = LocalService.getInstance();
+			service.inserir(l);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 	
 	

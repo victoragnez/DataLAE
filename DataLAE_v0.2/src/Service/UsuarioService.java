@@ -3,8 +3,27 @@ package Service;
 import Model.Usuario;
 import Service.Interfaces.IUsuarioService;
 
-public class UsuarioService implements IUsuarioService {
+public final class UsuarioService implements IUsuarioService {
 
+	private UsuarioService(){}
+	
+	public static UsuarioService getInstance() {
+		Wrapper w = wrapper;
+        if (w == null) { // check 1
+        	synchronized (UsuarioService.class)
+        	{
+        		w = wrapper;
+        		if (w == null) 
+        		{ // check2
+        			w = new Wrapper(new UsuarioService());
+        			wrapper = w;
+        	}
+        }
+        
+        }
+        return w.getInstancia();
+	}
+	
 	@Override
 	public void inserir(Usuario user) {
 		// TODO Auto-generated method stub
@@ -28,5 +47,17 @@ public class UsuarioService implements IUsuarioService {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private static Wrapper wrapper;
+	   
+    private static class Wrapper{
+        public final UsuarioService instancia;
+        public Wrapper(UsuarioService service) {
+            this.instancia = service;
+        }
+        public UsuarioService getInstancia() {
+            return instancia;
+        }
+    }
 
 }

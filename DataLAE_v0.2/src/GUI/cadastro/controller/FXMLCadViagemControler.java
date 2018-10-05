@@ -1,4 +1,4 @@
-package GUI.cadastro;
+package GUI.cadastro.controller;
 
 import java.net.URL;
 import java.sql.Date;
@@ -18,7 +18,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 
 public class FXMLCadViagemControler implements Initializable {
-	private IViagemService service = new ViagemService();
 	
 	@FXML
 	private ComboBox<Local> local;
@@ -53,8 +52,8 @@ public class FXMLCadViagemControler implements Initializable {
 		if(fim != null)
 			dataFim = Date.valueOf(fim);
 		
-		Viagem v = new Viagem(dataInicio, dataFim, local, projeto);
-		service.inserir(v, local, projeto);
+//		Viagem v = new Viagem(dataInicio, dataFim, local, projeto);
+//		service.inserir(v, local, projeto);
 	}
 
 	@Override

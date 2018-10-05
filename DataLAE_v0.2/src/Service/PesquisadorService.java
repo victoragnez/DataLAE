@@ -7,9 +7,29 @@ import DAO.Interfaces.IPesquisadorDAO;
 import Model.Pesquisador;
 import Service.Interfaces.IPesquisadorService;
 
-public class PesquisadorService implements IPesquisadorService {
+public final class PesquisadorService implements IPesquisadorService {
 
-	IPesquisadorDAO dao = new PesquisadorDAO();
+	private IPesquisadorDAO dao = new PesquisadorDAO();
+	
+	private PesquisadorService() {}
+
+	public static PesquisadorService getInstance()
+	{
+		Wrapper w = wrapper;
+        if (w == null) { // check 1
+        	synchronized (PesquisadorService.class)
+        	{
+        		w = wrapper;
+        		if (w == null) 
+        		{ // check2
+        			w = new Wrapper(new PesquisadorService());
+        			wrapper = w;
+        		}
+        	}
+        }
+        
+        return w.getInstancia();
+	}
 	
 	@Override
 	public void inserir(Pesquisador p) throws SQLException {
@@ -39,5 +59,17 @@ public class PesquisadorService implements IPesquisadorService {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private static Wrapper wrapper;
+	   
+    private static class Wrapper{
+        public final PesquisadorService instancia;
+        public Wrapper(PesquisadorService service) {
+            this.instancia = service;
+        }
+        public PesquisadorService getInstancia() {
+            return instancia;
+        }
+    }
 
 }

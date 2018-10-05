@@ -1,10 +1,11 @@
-package GUI.cadastro;
+package GUI.cadastro.controller;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 
 import Model.Categoria;
 import Model.Pesquisador;
@@ -21,8 +22,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class FXMLCadPesqController implements Initializable {
-
-	IPesquisadorService service = new PesquisadorService();
 	
 	@FXML
 	private Label label;
@@ -62,7 +61,8 @@ public class FXMLCadPesqController implements Initializable {
     			nomePesquisador, cpfPesquisador, categoriaPesquisador);
     
     	try {
-			service.inserir(p);
+			IPesquisadorService service = PesquisadorService.getInstance();
+    		service.inserir(p);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-package GUI.cadastro;
+package GUI.cadastro.controller;
 
 import java.net.URL;
 import java.sql.Date;
@@ -17,8 +17,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class FXMLCadProjController implements Initializable{
-
-	IProjetoService service = new ProjetoService();
 
     @FXML
     private TextField txNomeProj;
@@ -68,6 +66,7 @@ public class FXMLCadProjController implements Initializable{
     	Projeto p = new Projeto(nome, descricao, sigla, coordenador, dInicio, dTermino);
     	 
     	 try {
+    		 IProjetoService service = ProjetoService.getInstance();
     		 service.inserir(p);
 		 } catch (Exception e) {	
 			// Avisar ao cliente aqui
