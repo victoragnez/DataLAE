@@ -11,7 +11,7 @@ public class JavaFXCadProj extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		Parent root = FXMLLoader.load(getClass().getResource("FXMLCadProj.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("model/FXMLCadProj.fxml"));
 		
 		Scene scene = new Scene(root);
 		

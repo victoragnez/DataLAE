@@ -1,4 +1,4 @@
-package GUI.cadastro;
+package GUI.cadastro.controller;
 
 import java.net.URL;
 import java.sql.Date;
