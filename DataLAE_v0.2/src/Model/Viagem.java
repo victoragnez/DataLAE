@@ -5,25 +5,41 @@ import java.util.HashMap;
 
 public class Viagem {
 
-	private Date dataInico;
+	private Date dataInicio;
 	private Date dataTermino;
+	private Local local;
+	private Projeto projeto;
 	private Integer codigo;
 	private HashMap<Integer, Pesquisador> participantes;
-	
-	public Viagem(Date dataInico, Date dataTermino, Integer codigo, 
-			HashMap<Integer, Pesquisador> participantes) 
+
+	public Viagem(Date dataInicio, Date dataTermino, Local local, Projeto projeto,
+			Integer codigo, HashMap<Integer, Pesquisador> participantes) 
 	{
-		this.dataInico = dataInico;
+		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
+		this.local = local;
+		this.projeto = projeto;
 		this.codigo = codigo;
 		this.participantes = participantes;
 	}
-
-	public Viagem(Date dataInico, Date dataTermino, Integer codigo) 
+	
+	public Viagem(Date dataInicio, Date dataTermino, Local local, Projeto projeto,
+			HashMap<Integer, Pesquisador> participantes)
 	{
-		this.dataInico = dataInico;
-		this.dataTermino = dataTermino;
-		this.codigo = codigo;
+		this(dataInicio, dataTermino, local, projeto, (Integer)null, participantes);
+	}
+	
+	public Viagem(Date dataInicio, Date dataTermino, Local local, 
+			Projeto projeto, Integer codigo)
+	{
+		this(dataInicio, dataTermino, local, projeto, 
+				codigo, (HashMap<Integer, Pesquisador>) null);
+	}
+	
+	public Viagem(Date dataInicio, Date dataTermino, Local local, Projeto projeto)
+	{
+		this(dataInicio, dataTermino, local, projeto, 
+				(Integer)null, (HashMap<Integer, Pesquisador>) null);
 	}
 	
 	/**
@@ -31,6 +47,8 @@ public class Viagem {
 	 * @param pesquisador o participante
 	 */
 	public void inserirParticapante (Pesquisador pesquisador) {
+		if(participantes == null)
+			participantes = new HashMap<Integer,Pesquisador>();
 		participantes.put(pesquisador.getCodigo(), pesquisador);
 	}
 	
@@ -54,12 +72,12 @@ public class Viagem {
 	
 	//Getters and Setters
 
-	public Date getDataInico() {
-		return dataInico;
+	public Date getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setDataInico(Date dataInico) {
-		this.dataInico = dataInico;
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
 	public Date getDataTermino() {
@@ -74,6 +92,26 @@ public class Viagem {
 		return codigo;
 	}
 
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
+	public Local getLocal() {
+		return local;
+	}
+	
+	public void setLocal(Local local) {
+		this.local = local;
+	}
+	
+	public Projeto getProjeto() {
+		return projeto;
+	}
+	
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
+	}
+	
 	public HashMap<Integer, Pesquisador> getParticipantes() {
 		return participantes;
 	}
@@ -81,9 +119,5 @@ public class Viagem {
 	public void setParticipantes(HashMap<Integer, Pesquisador> participantes) {
 		this.participantes = participantes;
 	}
-	
-	
-	
-	
 	
 }

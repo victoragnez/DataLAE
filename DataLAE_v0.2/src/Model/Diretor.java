@@ -8,13 +8,6 @@ public class Diretor {
 	private String cargo;
 	private Integer codigo;
 	
-	/**
-	 * 
-	 * @param nome
-	 * @param email
-	 * @param telefone
-	 * @param cargo
-	 */
 	public Diretor (String nome, String email, String telefone,
 			String cargo, Integer codigo) 
 	{
@@ -23,6 +16,12 @@ public class Diretor {
 		this.telefone = telefone;
 		this.cargo = cargo;
 		this.codigo = codigo;
+	}
+	
+	public Diretor (String nome, String email, String telefone,
+			String cargo) 
+	{
+		this(nome, email, telefone, cargo, (Integer)null);
 	}
 
 	//Getters and Setters
@@ -61,6 +60,10 @@ public class Diretor {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}	
 	
 }

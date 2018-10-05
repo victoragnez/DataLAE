@@ -1,26 +1,41 @@
-package GUI.model;
+package GUI.principal;
 
-import javafx.geometry.Insets;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
-public class MyTabPane extends BorderPane {
+public class FXMLTelaSecundariaController implements Initializable {
+	@FXML
 	private HBox tabs;
+	
+	@FXML
+	private BorderPane main;
+	
 	private Label current;
 	
-	public MyTabPane() {
-		VBox vbox = new VBox();
-		tabs = new HBox(10);
-		tabs.setPadding(new Insets(5));
-		
-		vbox.getChildren().addAll(tabs);
-		this.setTop(vbox);
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		current = null;
+		
+		try {
+			Pane busca = (Pane) FXMLLoader.load(this.getClass().getResource("../busca/FXMLTelaBuscar.fxml"));
+			addTab("Buscar", busca);
+		} catch (IOException e) {
+			System.out.println("Cheguei");
+			e.printStackTrace();
+			System.exit(0);
+		}
+		
 	}
 	
 	public void addTab(String title, Pane pane) {
@@ -46,6 +61,7 @@ public class MyTabPane extends BorderPane {
 		
 		tabs.getChildren().add(l);
 		
+		pane.setStyle("-fx-border-color: lightgray");
 		if(current == null)
 			setCurrent(l, pane);
 	}
@@ -70,8 +86,7 @@ public class MyTabPane extends BorderPane {
 				+ "-fx-background-color: rgb(220,220,220)"
 		);
 		
-		pane.setStyle("-fx-border-color: lightgray");
-		this.setCenter(pane);
+		main.setCenter(pane);
 	}
 	
 	private void enteredEffect(Label l) {

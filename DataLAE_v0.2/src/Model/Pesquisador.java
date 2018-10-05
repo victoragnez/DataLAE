@@ -5,16 +5,24 @@ public class Pesquisador {
 	private String universidade;
 	private String nome;
 	private String cpf;
+	private Categoria categoria;
 	private Integer codigo;
-	private Titulacao titulacao;
 	
 	public Pesquisador(String universidade, String nome, 
-			String cpf, Titulacao titulacao) 
+			String cpf, Categoria categoria, Integer codigo)
 	{
 		this.universidade = universidade;
 		this.nome = nome;
 		this.cpf = cpf;
-		this.titulacao = titulacao;
+		this.categoria = categoria;
+		this.codigo = codigo;
+	}
+	
+	public Pesquisador(String universidade, String nome, 
+			String cpf, Categoria categoria)
+	{
+		this(universidade, nome, cpf, categoria, (Integer)null);
+
 	}
 
 	public String getUniversidade() {
@@ -55,14 +63,12 @@ public class Pesquisador {
 				+ cpf + ", codigo=" + codigo + "]";
 	}
 
-	public Titulacao getTitulacao() {
-		return titulacao;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setTitulacao(Titulacao titulacao) {
-		this.titulacao = titulacao;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
-	
-		
 	
 }

@@ -1,0 +1,14 @@
+
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHÉRMINORZ
+CODE_SMELL
+Xsquid:S1148B"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿHÊRMINORZVULNERABILITY
+[squid:S2095F".Close this "Connection" in a "finally" clause.(¸‘”øÿÿÿÿHÅRBLOCKERZBUG
+Wsquid:S1172,"*Remove this unused method parameter "sql".(á¯‰£HÈRMAJORZ
+CODE_SMELL
+Zsquid:S2095H"-Close this "Statement" in a "finally" clause.(’ñğ¶úÿÿÿÿHÄRBLOCKERZBUG
+Wsquid:S2068G" Remove this hard-coded password.(´¥§ıÿÿÿÿHÃRBLOCKERZVULNERABILITY
+e
+squid:S106K"9Replace this use of System.out or System.err by a logger.(å¬Ô•HÆRMAJORZ
+CODE_SMELL
+gsquid:S1118":Add a private constructor to hide the implicit public one.(ò­ÄHÇRMAJORZ
+CODE_SMELL

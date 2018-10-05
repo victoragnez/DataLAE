@@ -61,3 +61,13 @@ F
 src/DAO/ViagemDAO.java,4/0/40b9ab5f03d16c677fe186c17eabae1cf9adf280
 G
 src/DAO/ProjetoDAO.java,4/b/4b220c6475792caa963669ba9d010c58d51c2144
+A
+src/DAO/JDBC.java,c/7/c710255a1e58d381ac0cf2d3d2ff338d7dc96002
+Q
+!src/GUI/cadastro/FXMLCadPesq.fxml,3/7/373cfd1707eb5ea33287dbd1dfc0b0ae11cfe876
+Q
+!src/GUI/cadastro/FXMLCadProj.fxml,e/e/ee5f39e2429b9f57cc890ec4f7497304baf95262
+[
++src/GUI/cadastro/FXMLCadPesqController.java,2/f/2f1091bd1739c6450b7af3f0fb9b5d21f0c2b679
+\
+,src/GUI/cadastro/FXMLCadLocalController.java,1/8/1858bf67183081668883f0d57d7af3b598d4f76a

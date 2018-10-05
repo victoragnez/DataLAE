@@ -1,4 +1,4 @@
-package GUI;
+package GUI.cadastro;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,12 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class JavaFXCadPesq extends Application{
+public class JavaFXCadProj extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		Parent root = FXMLLoader.load(getClass().getResource("FXMLCadPesq.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("FXMLCadProj.fxml"));
 		
 		Scene scene = new Scene(root);
 		
@@ -26,4 +26,5 @@ public class JavaFXCadPesq extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }
