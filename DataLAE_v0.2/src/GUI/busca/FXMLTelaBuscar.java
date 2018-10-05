@@ -12,7 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
-public class FXMLTelaEscolherTipoController implements Initializable {
+public class FXMLTelaBuscar implements Initializable {
 	
 	private Pane buscarProjeto;
 	private Pane buscarLocal;
@@ -47,7 +47,7 @@ public class FXMLTelaEscolherTipoController implements Initializable {
 		comboBox.getItems().addAll("Projeto", "Local","Viagem", "Arquivo");
 		
 		try {
-			buscarProjeto = FXMLLoader.load(FXMLTelaEscolherTipoController.class.getResource("./quebragalho/FXMLBuscaProjeto.fxml"));
+			buscarProjeto = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./quebragalho/FXMLBuscaProjeto.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

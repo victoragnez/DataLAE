@@ -28,7 +28,7 @@ public class FXMLTelaSecundariaController implements Initializable {
 		current = null;
 		
 		try {
-			Pane busca = (Pane) FXMLLoader.load(this.getClass().getResource("../busca/FXMLTelaEscolherTipo.fxml"));
+			Pane busca = (Pane) FXMLLoader.load(this.getClass().getResource("../busca/FXMLTelaBuscar.fxml"));
 			addTab("Buscar", busca);
 		} catch (IOException e) {
 			System.out.println("Cheguei");
