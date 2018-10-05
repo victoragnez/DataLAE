@@ -7,8 +7,7 @@ public class Financiador {
 	private String cnpj;
 	private Integer codigo;
 	
-	public Financiador (String nome, Diretor diretor, 
-			String cnpj, Integer codigo)
+	public Financiador (String nome,  String cnpj, Diretor diretor, Integer codigo)
 	{
 		this.nome = nome;
 		this.diretor = diretor;
@@ -16,10 +15,19 @@ public class Financiador {
 		this.codigo = codigo;
 	}
 	
-	public Financiador (String nome, Diretor diretor, 
-			String cnpj)
+	public Financiador (String nome, String cnpj, Diretor diretor)
 	{
-		this(nome, diretor, cnpj, (Integer)null); 
+		this(nome, cnpj, diretor, (Integer)null); 
+	}
+	
+	public Financiador (String nome, String cnpj, Integer codigo)
+	{
+		this(nome, cnpj, (Diretor)null, codigo);
+	}
+	
+	public Financiador (String nome, String cnpj)
+	{
+		this(nome, cnpj, (Diretor)null, (Integer)null);
 	}
 
 	public String getNome() {

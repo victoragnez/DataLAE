@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -47,9 +48,22 @@ public class FinanciadorDAO implements IFinanciadorDAO{
 	}
 
 	@Override
-	public Financiador consultar(String codigoFinanciador) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Financiador> listarFinanciadores() throws SQLException {
+
+		ArrayList<Financiador> retorno = new ArrayList<Financiador>();
+		String sql = "select * from Financiador;";
+		ResultSet resultSet = JDBC.runQuery(sql);
+
+		while(resultSet.next()) {
+
+			Integer codigo = (Integer)resultSet.getObject("codigoFinanciador");
+			String nome = resultSet.getString("nome");
+			String cnpj = resultSet.getString("cnpj");
+			
+			retorno.add(new Financiador(nome, cnpj, codigo));
+			
+		}
+		return retorno;
 	}
 
 	@Override
