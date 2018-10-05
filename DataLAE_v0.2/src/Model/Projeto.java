@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Projeto {
 
 	private String nome;
+	private String descricao;
 	private String sigla;
 	private String coordenador;
 	private Date dataInicio;
@@ -16,26 +17,22 @@ public class Projeto {
 	private HashMap<Integer, Local> locais;
 	private HashMap<Integer, Pesquisador> pesquisadores;
 	
-	
-	
-	public Projeto(String nome, String sigla, String coordenador, Date dataInicio, Date dataTermino) {
-		super();
-		this.nome = nome;
-		this.sigla = sigla;
-		this.coordenador = coordenador;
-		this.dataInicio = dataInicio;
-		this.dataTermino = dataTermino;
-	}
-
-	public Projeto(String nome, String sigla, String coordenador, 
+	public Projeto(String nome, String descricao, String sigla, String coordenador, 
 			Date dataInicio, Date dataTermino, Integer codigo) 
 	{
 		this.nome = nome;
+		this.descricao = descricao;
 		this.sigla = sigla;
 		this.coordenador = coordenador;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
 		this.codigo = codigo;
+	}
+	
+	public Projeto(String nome, String descricao, String sigla, String coordenador, 
+			Date dataInicio, Date dataTermino) 
+	{
+		this(nome, descricao, sigla, coordenador, dataInicio, dataTermino, (Integer)null);
 	}
 	
 	// TODO adicionar lançamento de exceções para os métodos que precisam
@@ -45,6 +42,8 @@ public class Projeto {
 	 * @param financiador  O novo Financiador
 	 */
 	public void inserirFinanciador ( Financiador financiador )	{
+		if(financiadores == null)
+			financiadores = new HashMap<Integer, Financiador>();
 		financiadores.put(financiador.getCodigo(), financiador);
 	}
 
@@ -78,7 +77,9 @@ public class Projeto {
 	 * Adiciona um novo local na lista de locais
 	 * @param local  O novo Local
 	 */
-	public void inserirLocal ( Local local )	{
+	public void inserirLocal ( Local local ) {
+		if(locais == null)
+			locais = new HashMap<Integer, Local>();
 		locais.put(local.getCodigo(), local);
 	}
 
@@ -113,6 +114,8 @@ public class Projeto {
 	 * @param pesquisador  o novo pesquisador
 	 */
 	public void inserirPesquisador ( Pesquisador pesquisador ) {
+		if(pesquisadores == null)
+			pesquisadores = new HashMap<Integer, Pesquisador>();
 		pesquisadores.put(pesquisador.getCodigo(), pesquisador);
 	}
 	
@@ -196,6 +199,10 @@ public class Projeto {
 		return codigo;
 	}
 	
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
 	public HashMap<Integer, Pesquisador> getPesquisadores() {
 		return pesquisadores;
 	}
@@ -203,6 +210,21 @@ public class Projeto {
 	public void setPesquisadores(HashMap<Integer, Pesquisador> pesquisadores) {
 		this.pesquisadores = pesquisadores;
 	}
-	
+
+	public HashMap<Integer, Financiador> getFinanciadores() {
+		return financiadores;
+	}
+
+	public void setFinanciadores(HashMap<Integer, Financiador> financiadores) {
+		this.financiadores = financiadores;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	
 }

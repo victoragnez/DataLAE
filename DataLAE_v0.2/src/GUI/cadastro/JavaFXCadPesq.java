@@ -13,7 +13,7 @@ public class JavaFXCadPesq extends Application{
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		
-		Parent root = FXMLLoader.load(getClass().getResource("FXMLCadViagem.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("FXMLCadPesq.fxml"));
 		
 		Scene scene = new Scene(root);
 		

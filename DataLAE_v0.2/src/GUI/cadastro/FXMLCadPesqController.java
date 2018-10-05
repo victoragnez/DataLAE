@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import Model.Categoria;
 import Model.Pesquisador;
 import Service.PesquisadorService;
 import Service.Interfaces.IPesquisadorService;
-import Model.Titulacao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,7 +34,7 @@ public class FXMLCadPesqController implements Initializable {
     private TextField txtUniversidadePesquisador;
 
     @FXML
-    private ComboBox<Titulacao> comboTipoPesquisador;
+    private ComboBox<Categoria> comboTipoPesquisador;
 
     @FXML
     private TextField txtCPFPesquisador;
@@ -42,8 +42,8 @@ public class FXMLCadPesqController implements Initializable {
     @FXML
     private Button btCadastrarPesquisador;
 	
-    private List<Titulacao> titulacoes = new ArrayList<>();
-    private ObservableList<Titulacao> obsTitulacoes;
+    private List<Categoria> categorias = new ArrayList<>();
+    private ObservableList<Categoria> obsCategorias;
     
     @FXML
     void acaoCadastrarPesquisador(ActionEvent event) {
@@ -57,10 +57,9 @@ public class FXMLCadPesqController implements Initializable {
     	String universidadePesquisador = txtUniversidadePesquisador.getText().trim();
     	if (universidadePesquisador.equals("")) universidadePesquisador = null;
     	
-    	Titulacao titulacaoPesquisador = comboTipoPesquisador.getSelectionModel().getSelectedItem();
-    	
+    	Categoria categoriaPesquisador = comboTipoPesquisador.getSelectionModel().getSelectedItem();
     	Pesquisador p = new Pesquisador(universidadePesquisador, 
-    			nomePesquisador, cpfPesquisador, titulacaoPesquisador);
+    			nomePesquisador, cpfPesquisador, categoriaPesquisador);
     
     	try {
 			service.inserir(p);
@@ -72,27 +71,16 @@ public class FXMLCadPesqController implements Initializable {
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		carregarTitulacao();
+		carregarCategorias();
 	}
 	
-
-	public void carregarTitulacao () {
+	public void carregarCategorias () {
 		
-		Titulacao t1 = new Titulacao(1, "Graduação");
-		Titulacao t2 = new Titulacao(2, "Iniciação Científica");
-		Titulacao t3 = new Titulacao(3, "Mestrado");
-		Titulacao t4 = new Titulacao(4, "Doutorado");
-		Titulacao t5 = new Titulacao(5, "Pós-Doutorado");
-	
-		titulacoes.add(t1);
-		titulacoes.add(t2);
-		titulacoes.add(t3);
-		titulacoes.add(t4);
-		titulacoes.add(t5);
+		for ( Categoria c : Categoria.values() )
+			categorias.add(c);
 		
-		obsTitulacoes = FXCollections.observableArrayList(titulacoes);
-		
-		comboTipoPesquisador.setItems(obsTitulacoes);
+		obsCategorias = FXCollections.observableArrayList(categorias);
+		comboTipoPesquisador.setItems(obsCategorias);
 	}
 
 }

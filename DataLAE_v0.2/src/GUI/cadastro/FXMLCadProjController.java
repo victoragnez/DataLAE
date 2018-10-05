@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class FXMLCadProjController implements Initializable{
@@ -36,6 +37,9 @@ public class FXMLCadProjController implements Initializable{
 
     @FXML
     private Button btCadastrar;
+    
+    @FXML
+    private TextArea txADescricaoProj;
 
     @FXML
     private void acaoCadastrarProj(ActionEvent event) {
@@ -48,6 +52,9 @@ public class FXMLCadProjController implements Initializable{
     	 String coordenador = txCoordenadoProj.getText().trim();
     	 if (coordenador.equals("")) coordenador = null;
     	 
+    	 String descricao = txADescricaoProj.getText().trim();
+    	 if (descricao.equals("")) descricao = null;
+    	 
     	 LocalDate dataI = dateInicio.getValue();
     	 Date dInicio;
     	 if (dataI == null ) dInicio = null;
@@ -58,7 +65,7 @@ public class FXMLCadProjController implements Initializable{
     	 if (dataT == null ) dTermino = null;
     	 else dTermino = Date.valueOf(dataT);
     
-    	 Projeto p = new Projeto(nome, sigla, coordenador, dInicio, dTermino);
+    	Projeto p = new Projeto(nome, descricao, sigla, coordenador, dInicio, dTermino);
     	 
     	 try {
     		 service.inserir(p);

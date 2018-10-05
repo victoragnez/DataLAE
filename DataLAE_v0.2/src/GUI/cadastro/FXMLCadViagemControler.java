@@ -53,9 +53,7 @@ public class FXMLCadViagemControler implements Initializable {
 		if(fim != null)
 			dataFim = Date.valueOf(fim);
 		
-		
-		Viagem v = new Viagem(dataInicio, dataFim, null, local, projeto);
-		
+		Viagem v = new Viagem(dataInicio, dataFim, local, projeto);
 		service.inserir(v, local, projeto);
 	}
 

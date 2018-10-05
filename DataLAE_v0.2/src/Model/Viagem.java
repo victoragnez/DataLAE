@@ -5,33 +5,41 @@ import java.util.HashMap;
 
 public class Viagem {
 
-	private Date dataInico;
+	private Date dataInicio;
 	private Date dataTermino;
-	private Integer codigo;
 	private Local local;
 	private Projeto projeto;
+	private Integer codigo;
 	private HashMap<Integer, Pesquisador> participantes;
-	
-	public Viagem(Date dataInico, Date dataTermino, Integer codigo,
-			Local local, Projeto projeto,
-			HashMap<Integer, Pesquisador> participantes) 
+
+	public Viagem(Date dataInicio, Date dataTermino, Local local, Projeto projeto,
+			Integer codigo, HashMap<Integer, Pesquisador> participantes) 
 	{
-		this.dataInico = dataInico;
+		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
+		this.local = local;
+		this.projeto = projeto;
 		this.codigo = codigo;
-		this.setLocal(local);
-		this.setProjeto(projeto);
 		this.participantes = participantes;
 	}
-
-	public Viagem(Date dataInico, Date dataTermino, Integer codigo,
-			Local local, Projeto projeto) 
+	
+	public Viagem(Date dataInicio, Date dataTermino, Local local, Projeto projeto,
+			HashMap<Integer, Pesquisador> participantes)
 	{
-		this.dataInico = dataInico;
-		this.dataTermino = dataTermino;
-		this.codigo = codigo;
-		this.setLocal(local);
-		this.setProjeto(projeto);
+		this(dataInicio, dataTermino, local, projeto, (Integer)null, participantes);
+	}
+	
+	public Viagem(Date dataInicio, Date dataTermino, Local local, 
+			Projeto projeto, Integer codigo)
+	{
+		this(dataInicio, dataTermino, local, projeto, 
+				codigo, (HashMap<Integer, Pesquisador>) null);
+	}
+	
+	public Viagem(Date dataInicio, Date dataTermino, Local local, Projeto projeto)
+	{
+		this(dataInicio, dataTermino, local, projeto, 
+				(Integer)null, (HashMap<Integer, Pesquisador>) null);
 	}
 	
 	/**
@@ -39,6 +47,8 @@ public class Viagem {
 	 * @param pesquisador o participante
 	 */
 	public void inserirParticapante (Pesquisador pesquisador) {
+		if(participantes == null)
+			participantes = new HashMap<Integer,Pesquisador>();
 		participantes.put(pesquisador.getCodigo(), pesquisador);
 	}
 	
@@ -62,12 +72,12 @@ public class Viagem {
 	
 	//Getters and Setters
 
-	public Date getDataInico() {
-		return dataInico;
+	public Date getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setDataInico(Date dataInico) {
-		this.dataInico = dataInico;
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
 	public Date getDataTermino() {
@@ -80,6 +90,10 @@ public class Viagem {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public Local getLocal() {

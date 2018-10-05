@@ -1,12 +1,0 @@
-
-Xsquid:S1148E"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿHû
-RMINORZVULNERABILITY
-‰squid:S1450."\Remove the "obsTitulacoes" field and declare it as a local variable in the relevant methods.(¦‚İÏHü
-RMINORZ
-CODE_SMELL
-csquid:S1135D"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿHı
-RINFOZ
-CODE_SMELL
-Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(İØ˜úÿÿÿÿHş
-RMINORZ
-CODE_SMELL
