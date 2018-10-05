@@ -1,5 +1,7 @@
 package DAO;
 
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -83,9 +85,22 @@ public class ViagemDAO implements IViagemDAO{
 	}
 
 	@Override
-	public Viagem consultar(String codigoViagem) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Viagem> listarViagens() throws SQLException {
+
+		ArrayList<Viagem> retorno = new ArrayList<Viagem>();
+		String sql = "select * from Viagem;";
+		ResultSet resultSet = JDBC.runQuery(sql);
+
+		while(resultSet.next()) {
+			
+			Integer codigo = (Integer)resultSet.getObject("codigoViagem");
+			Date inicio = resultSet.getDate("dataInicio");
+			Date termino = resultSet.getDate("dataTermino");
+			
+			retorno.add(new Viagem(inicio, termino, null, null, codigo));
+			
+		}
+		return retorno;
 	}
 
 	@Override
