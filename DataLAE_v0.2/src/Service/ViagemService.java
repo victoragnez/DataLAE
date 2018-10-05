@@ -9,7 +9,7 @@ public final class ViagemService implements IViagemService {
 
 	private ViagemService() {}
 	
-	public ViagemService getInstancia() {
+	public static ViagemService getInstancia() {
 		Wrapper w = wrapper;
         if (w == null) { // check 1
         	synchronized (ViagemService.class)

@@ -15,7 +15,7 @@ public final class LocalService implements ILocalService {
 	private LocalService () {}
 	
 	
-	public LocalService getInstance ()
+	public  static LocalService getInstance ()
 	{
 		Wrapper w = wrapper;
         if (w == null) { // check 1

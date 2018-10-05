@@ -13,7 +13,7 @@ public final class ProjetoService implements IProjetoService{
 	
 	private ProjetoService() {}
 	
-	public ProjetoService getInstance () {
+	public static ProjetoService getInstance () {
 		Wrapper w = wrapper;
         if (w == null) { // check 1
         	synchronized (ProjetoService.class)

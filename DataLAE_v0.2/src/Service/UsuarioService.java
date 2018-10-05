@@ -7,7 +7,7 @@ public final class UsuarioService implements IUsuarioService {
 
 	private UsuarioService(){}
 	
-	public UsuarioService getInstance() {
+	public static UsuarioService getInstance() {
 		Wrapper w = wrapper;
         if (w == null) { // check 1
         	synchronized (UsuarioService.class)

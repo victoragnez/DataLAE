@@ -12,7 +12,7 @@ public final class FinanciadorService implements IFinanciadorService{
 
 	private FinanciadorService () {};
 	
-	public FinanciadorService getInstance () {
+	public static FinanciadorService getInstance () {
 		Wrapper w = wrapper;
         if (w == null) { // check 1
         	synchronized (FinanciadorService.class)

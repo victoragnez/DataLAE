@@ -14,8 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class FXMLCadLocalController implements Initializable{
-
-	ILocalService service = new LocalService();
 	
     @FXML
     private TextField txNomeLocal;
@@ -65,6 +63,7 @@ public class FXMLCadLocalController implements Initializable{
     	
     	Local l = new Local(nome, pais, estado, cidade, latitude, longitude);
     	try {
+    		ILocalService service = LocalService.getInstance();
 			service.inserir(l);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
