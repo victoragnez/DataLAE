@@ -8,7 +8,7 @@ import Model.Pesquisador;
 public interface IPesquisadorDAO {
 
 	public void inserir(Pesquisador p) throws SQLException;
-	public void remover(Pesquisador p);
+	public void remover(Pesquisador p) throws SQLException;
 	public ArrayList<Pesquisador> listarPesquisadores() throws SQLException;
 	public void alterar (Pesquisador p);
 	

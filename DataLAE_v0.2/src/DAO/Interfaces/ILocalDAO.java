@@ -8,7 +8,7 @@ import Model.Local;
 public interface ILocalDAO {
 
 	public void inserir(Local l) throws SQLException;
-	public void remover(Local l);
+	public void remover(Local l) throws SQLException;
 	public ArrayList<Local> listarLocais() throws SQLException;
 	public void alterar (Local l);
 	

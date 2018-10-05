@@ -79,9 +79,8 @@ public class ViagemDAO implements IViagemDAO{
 	}
 
 	@Override
-	public void remover(Viagem v) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Viagem v) throws SQLException {
+		JDBC.runRemove("delete from Viagem where codigoViagem=" + v.getCodigo() + ";");
 	}
 
 	@Override

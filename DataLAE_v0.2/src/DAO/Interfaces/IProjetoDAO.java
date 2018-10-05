@@ -8,7 +8,7 @@ import Model.Projeto;
 public interface IProjetoDAO {
 
 	public void inserir(Projeto p) throws SQLException;
-	public void remover(Projeto p);
+	public void remover(Projeto p) throws SQLException;
 	public ArrayList<Projeto> listarProjetos() throws SQLException;
 	public void alterar(Projeto p);
 	

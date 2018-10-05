@@ -122,9 +122,8 @@ public class ProjetoDAO  implements IProjetoDAO{
 	}
 
 	@Override
-	public void remover(Projeto p) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Projeto p) throws SQLException {
+		JDBC.runRemove("delete from Projeto where codigoProjeto=" + p.getCodigo() + ";");		
 	}
 
 	@Override

@@ -53,9 +53,8 @@ public class LocalDAO implements ILocalDAO {
 	}
 
 	@Override
-	public void remover(Local l) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Local l) throws SQLException {
+		JDBC.runRemove("delete from LocalPesquisa where codigoLocal=" + l.getCodigo() + ";");		
 	}
 
 	@Override

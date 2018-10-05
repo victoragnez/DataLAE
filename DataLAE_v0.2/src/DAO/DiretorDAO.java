@@ -47,9 +47,8 @@ public class DiretorDAO implements IDiretorDAO {
 	}
 
 	@Override
-	public void remover(Diretor d) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Diretor d) throws SQLException {
+		JDBC.runRemove("delete from Diretor where codigoDiretor=" + d.getCodigo() + ";");		
 	}
 	
 	@Override

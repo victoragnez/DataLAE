@@ -42,9 +42,8 @@ public class FinanciadorDAO implements IFinanciadorDAO{
 	}
 
 	@Override
-	public void remover(Financiador f) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Financiador f) throws SQLException {
+		JDBC.runRemove("delete from Financiador where codigoFinanciador=" + f.getCodigo() + ";");		
 	}
 
 	@Override

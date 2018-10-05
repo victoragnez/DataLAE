@@ -51,9 +51,8 @@ public class PesquisadorDAO implements IPesquisadorDAO{
 	}
 
 	@Override
-	public void remover(Pesquisador p) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Pesquisador p) throws SQLException {
+		JDBC.runRemove("delete from Pesquisador where codigoPesquisador=" + p.getCodigo() + ";");		
 	}
 
 	@Override
