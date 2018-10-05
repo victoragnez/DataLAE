@@ -49,7 +49,7 @@ public class FXMLTelaCadastroController implements Initializable {
 			System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
 			System.exit(-1);
 		}
-		
+		/*
 		try {
 			cadastrarLocal = FXMLLoader.load(this.getClass().getResource("FXMLCadLocal.fxml"));
 		} catch (IOException e) {
@@ -63,7 +63,7 @@ public class FXMLTelaCadastroController implements Initializable {
 			System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
 			System.exit(-1);
 		}
-		
+		*/
 	}
 
 }
