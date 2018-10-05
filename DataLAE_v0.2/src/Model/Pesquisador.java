@@ -22,7 +22,6 @@ public class Pesquisador {
 			String cpf, Categoria categoria)
 	{
 		this(universidade, nome, cpf, categoria, (Integer)null);
-
 	}
 
 	public String getUniversidade() {

@@ -17,7 +17,10 @@ public class ProjetoDAO  implements IProjetoDAO{
 	public void inserir(Projeto p) throws SQLException {
 		
 		ArrayList<String> campos = new ArrayList<String>();
-				
+		
+		if(p.getCodigo() != null)
+			campos.add("codigoProjeto=" + p.getCodigo());
+		
 		if(p.getNome() != null && p.getNome().length() != 0)
 			campos.add("nome='" + p.getNome()+"'");
 		
