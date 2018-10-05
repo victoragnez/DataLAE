@@ -36,6 +36,15 @@ public class FXMLTelaSecundariaController implements Initializable {
 			System.exit(0);
 		}
 		
+		try {
+			Pane cadastro = (Pane) FXMLLoader.load(this.getClass().getResource("../cadastro/FXMLTelaCadastro.fxml"));
+			addTab("Cadastrar", cadastro);
+		} catch (IOException e) {
+			System.out.println("Cheguei");
+			e.printStackTrace();
+			System.exit(0);
+		}
+		
 	}
 	
 	public void addTab(String title, Pane pane) {
