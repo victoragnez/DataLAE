@@ -7,11 +7,28 @@ import DAO.Interfaces.IProjetoDAO;
 import Model.Projeto;
 import Service.Interfaces.IProjetoService;
 
-public class ProjetoService implements IProjetoService{
+public final class ProjetoService implements IProjetoService{
 	
 	private IProjetoDAO dao = new ProjetoDAO();
 	
-	public ProjetoService() {}
+	private ProjetoService() {}
+	
+	public ProjetoService getInstance () {
+		Wrapper w = wrapper;
+        if (w == null) { // check 1
+        	synchronized (ProjetoService.class)
+        	{
+        		w = wrapper;
+        		if (w == null) 
+        		{ // check2
+        			w = new Wrapper(new ProjetoService());
+        			wrapper = w;
+        		}
+        	}
+        }
+        
+        return w.getInstancia();		
+	}
 
 	@Override
 	public void inserir(Projeto p) throws SQLException{
@@ -42,5 +59,17 @@ public class ProjetoService implements IProjetoService{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private static Wrapper wrapper;
+	   
+    private static class Wrapper{
+        public final ProjetoService instancia;
+        public Wrapper(ProjetoService service) {
+            this.instancia = service;
+        }
+        public ProjetoService getInstancia() {
+            return instancia;
+        }
+    }
 
 }
