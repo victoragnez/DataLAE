@@ -5,7 +5,7 @@ import Model.Projeto;
 import Model.Viagem;
 import Service.Interfaces.IViagemService;
 
-public class ViagemService implements IViagemService {
+public final class ViagemService implements IViagemService {
 
 	private ViagemService() {}
 	
