@@ -79,3 +79,11 @@ J
 src/GUI/JavaFXCadProj.java,3/b/3be8c05beaf58c3d43dce3f87191c8b413d24161
 R
 "src/GUI/FXMLCadProjController.java,b/6/b67643b390d7485e3ad34060b309f33e4a1650b0
+Q
+!src/GUI/cadastro/FXMLCadPesq.fxml,3/7/373cfd1707eb5ea33287dbd1dfc0b0ae11cfe876
+Q
+!src/GUI/cadastro/FXMLCadProj.fxml,e/e/ee5f39e2429b9f57cc890ec4f7497304baf95262
+[
++src/GUI/cadastro/FXMLCadPesqController.java,2/f/2f1091bd1739c6450b7af3f0fb9b5d21f0c2b679
+\
+,src/GUI/cadastro/FXMLCadLocalController.java,1/8/1858bf67183081668883f0d57d7af3b598d4f76a
