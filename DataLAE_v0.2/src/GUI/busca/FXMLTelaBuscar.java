@@ -14,10 +14,12 @@ import javafx.scene.layout.Pane;
 
 public class FXMLTelaBuscar implements Initializable {
 	
-	private Pane buscarProjeto;
-	private Pane buscarLocal;
-	private Pane buscarViagem;
 	private Pane buscarArquivo;
+	private Pane buscarFinanciador;
+	private Pane buscarLocal;
+	private Pane buscarProjeto;
+	private Pane buscarViagem;
+	
 	
 	@FXML
 	private ComboBox<String> comboBox;
@@ -29,25 +31,48 @@ public class FXMLTelaBuscar implements Initializable {
 	private void mudarTela(ActionEvent event) {
 		String value = comboBox.getValue();
 		
-		if(value == "Projeto") {
-			main.setCenter(buscarProjeto);
-		}
-		else if(value == "Local") {
-			main.setCenter(buscarLocal);
-		}
-		else if(value == "Viagem") {
-			main.setCenter(buscarViagem);
-		}
-		else if(value == "Arquivo")
+		if(value == "Arquivo")
 			main.setCenter(buscarArquivo);
+		else if(value == "Financiador")
+			main.setCenter(buscarFinanciador);
+		else if(value == "Local")
+			main.setCenter(buscarLocal);
+		else if(value == "Projeto")
+			main.setCenter(buscarProjeto);
+		else if(value == "Viagem")
+			main.setCenter(buscarViagem);
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		comboBox.getItems().addAll("Projeto", "Local","Viagem", "Arquivo");
+		comboBox.getItems().addAll("Arquivo","Financiador","Local","Projeto","Viagem");
 		
 		try {
-			buscarProjeto = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./quebragalho/FXMLBuscaProjeto.fxml"));
+			buscarArquivo = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaArquivo.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			buscarFinanciador = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaFinanciador.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			buscarLocal = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaLocal.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			buscarProjeto = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaProj.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			buscarViagem = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaViagem.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

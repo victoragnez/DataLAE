@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
@@ -23,7 +23,7 @@
    <children>
       <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Projeto" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Viagem" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Tipo" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Tipo de arquivo" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
