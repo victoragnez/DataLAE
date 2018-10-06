@@ -1,8 +1,13 @@
 package GUI.busca;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
+import GUI.listagem.BlocoViagem;
+import Model.Local;
+import Model.Projeto;
+import Model.Viagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,8 +16,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 
 public class TelaBuscarViagemController implements Initializable {
+	
+	@FXML
+	private VBox list;
 	
 	@FXML
 	private CheckBox chbPesquisador;
@@ -60,6 +69,25 @@ public class TelaBuscarViagemController implements Initializable {
 	
 	@FXML
 	private void buscarViagem(ActionEvent event) {
+		// Montar Viagem
+		
+		// Buscar no banco (retorna ArrayList<Viagem>)
+		
+		// Limpa a lista
+		
+		// Exibe a nova lista
+		
+		this.list.getChildren().add(
+			new BlocoViagem(new Viagem(
+					new Date(),
+					new Date(),
+					new Local("IMD/UFRN", "", "", "", 0.0, 0.0),
+					new Projeto("Projeto1", "", "", "", null, null)
+					
+			))	
+		);
+		
+		//this.list.getChildren().add(new Button("Teste"));
 		System.out.println("Buscar Viagem!");
 	}
 	
