@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-public class FXMLTelaSecundariaController implements Initializable {
+public class TelaSecundariaController implements Initializable {
 	@FXML
 	private HBox tabs;
 	
@@ -28,7 +28,7 @@ public class FXMLTelaSecundariaController implements Initializable {
 		current = null;
 		
 		try {
-			Pane busca = (Pane) FXMLLoader.load(this.getClass().getResource("../busca/FXMLTelaBuscar.fxml"));
+			Pane busca = (Pane) FXMLLoader.load(this.getClass().getResource("../busca/TelaBuscar.fxml"));
 			addTab("Buscar", busca);
 		} catch (IOException e) {
 			System.out.println("Cheguei");

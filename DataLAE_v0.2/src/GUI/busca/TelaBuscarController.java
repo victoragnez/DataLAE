@@ -12,7 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
-public class FXMLTelaBuscar implements Initializable {
+public class TelaBuscarController implements Initializable {
 	
 	private Pane buscarArquivo;
 	private Pane buscarFinanciador;
@@ -48,31 +48,31 @@ public class FXMLTelaBuscar implements Initializable {
 		comboBox.getItems().addAll("Arquivo","Financiador","Local","Projeto","Viagem");
 		
 		try {
-			buscarArquivo = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaArquivo.fxml"));
+			buscarArquivo = FXMLLoader.load(TelaBuscarController.class.getResource("./TelaBuscarArquivo.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			buscarFinanciador = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaFinanciador.fxml"));
+			buscarFinanciador = FXMLLoader.load(TelaBuscarController.class.getResource("./TelaBuscarFinanciador.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			buscarLocal = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaLocal.fxml"));
+			buscarLocal = FXMLLoader.load(TelaBuscarController.class.getResource("./TelaBuscarLocal.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			buscarProjeto = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaProj.fxml"));
+			buscarProjeto = FXMLLoader.load(TelaBuscarController.class.getResource("./TelaBuscarProjeto.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			buscarViagem = FXMLLoader.load(FXMLTelaBuscar.class.getResource("./FXMLBuscaViagem.fxml"));
+			buscarViagem = FXMLLoader.load(TelaBuscarController.class.getResource("./TelaBuscarViagem.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

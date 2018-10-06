@@ -1,6 +1,5 @@
 package GUI;
 
-import GUI.principal.FXMLTelaPrincipalController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,7 +10,7 @@ public class InicializaGUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		BorderPane root = (BorderPane) FXMLLoader.load(FXMLTelaPrincipalController.class.getResource("FXMLTelaPrincipal.fxml"));
+		BorderPane root = (BorderPane) FXMLLoader.load(this.getClass().getResource("principal/TelaPrincipal.fxml"));
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
 	}
