@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.busca.TelaBuscarLocalController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
@@ -28,22 +28,22 @@
       <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField promptText="Nome do local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" text="Buscar" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-      <TextField promptText="Latitude" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-      <TextField promptText="Pesquisador que viajou para o local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="5" />
-      <ComboBox maxWidth="1.7976931348623157E308" promptText="Projeto ocorrido no local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6" />
-      <TextField promptText="Longitude" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-      <TextField promptText="Estado" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="4" />
-      <TextField promptText="País" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="2" />
-      <TextField promptText="Cidade" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="3" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <TextField fx:id="tfNome" onKeyTyped="#nomeTextField" promptText="Nome do local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#buscarLocal" text="Buscar" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbNome" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbPesquisador" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbProjeto" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbLatitude" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+      <TextField fx:id="tfLatitude" onKeyTyped="#latitudeTextField" promptText="Latitude" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <TextField fx:id="tfPesquisador" onKeyTyped="#pesquisadorTextField" promptText="Pesquisador que viajou para o local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="5" />
+      <ComboBox fx:id="cmbProjeto" maxWidth="1.7976931348623157E308" onAction="#projetoComboBox" promptText="Projeto ocorrido no local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6" />
+      <TextField fx:id="tfLongitude" onKeyTyped="#longitudeTextField" promptText="Longitude" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+      <CheckBox fx:id="chbPais" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbLongitude" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+      <TextField fx:id="tfEstado" onKeyTyped="#estadoTextField" promptText="Estado" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="3" />
+      <TextField fx:id="tfPais" onKeyTyped="#paisTextField" promptText="País" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="2" />
+      <TextField fx:id="tfCidade" onKeyTyped="#cidadeTextField" promptText="Cidade" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="4" />
+      <CheckBox fx:id="chbEstado" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbCidade" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
    </children>
 </GridPane>

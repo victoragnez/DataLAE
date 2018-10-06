@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.busca.TelaBuscarViagemController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
@@ -22,14 +22,14 @@
       <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-      <ComboBox maxWidth="1.7976931348623157E308" promptText="Local" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <ComboBox maxWidth="1.7976931348623157E308" promptText="Projeto" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <DatePicker maxWidth="1.7976931348623157E308" promptText="Viagens que aconteceram na data" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-      <TextField promptText="Pesquisador que participou da viagem" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbPesquisador" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbProjeto" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbLocal" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <ComboBox fx:id="cmbLocal" maxWidth="1.7976931348623157E308" onAction="#localComboBox" promptText="Local" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <ComboBox fx:id="cmbProjeto" maxWidth="1.7976931348623157E308" onAction="#projetoComboBox" promptText="Projeto" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <DatePicker fx:id="dpData" maxWidth="1.7976931348623157E308" onAction="#dataDatePicker" promptText="Data em que ocorreu a viagem" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <CheckBox fx:id="chbData" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <TextField fx:id="tfPesquisador" onKeyTyped="#pesquisadorTextField" promptText="Pesquisador que participou da viagem" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#buscarViagem" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
    </children>
 </GridPane>

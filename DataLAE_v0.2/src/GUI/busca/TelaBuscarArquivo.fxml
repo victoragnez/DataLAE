@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.busca.TelaBuscarArquivoController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
@@ -21,12 +21,12 @@
     <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Projeto" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Viagem" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Tipo de arquivo" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-      <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <ComboBox fx:id="cmbProjeto" maxWidth="1.7976931348623157E308" onAction="#projetoComboBox" prefWidth="150.0" promptText="Projeto" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <ComboBox fx:id="cmbViagem" maxWidth="1.7976931348623157E308" onAction="#viagemComboBox" prefWidth="150.0" promptText="Viagem" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <ComboBox fx:id="cmbTipo" maxWidth="1.7976931348623157E308" onAction="#tipoComboBox" prefWidth="150.0" promptText="Tipo de arquivo" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <CheckBox fx:id="chbProjeto" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbViagem" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <CheckBox fx:id="chbTipo" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#buscarArquivo" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
    </children>
 </GridPane>
