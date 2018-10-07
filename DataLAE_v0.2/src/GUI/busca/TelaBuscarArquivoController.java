@@ -1,15 +1,24 @@
 package GUI.busca;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
+import GUI.listagem.BlocoViagem;
+import Model.Local;
+import Model.Projeto;
+import Model.Viagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.VBox;
 
 public class TelaBuscarArquivoController implements Initializable {
+	@FXML
+	private VBox list;
+	
 	@FXML
 	private CheckBox chbProjeto;
 	
@@ -45,6 +54,16 @@ public class TelaBuscarArquivoController implements Initializable {
 	
 	@FXML
 	private void buscarArquivo(ActionEvent event) {
+		// Mudar depois
+		this.list.getChildren().add(
+				new BlocoViagem(new Viagem(
+						new Date(),
+						new Date(),
+						new Local("IMD/UFRN", "", "", "", 0.0, 0.0),
+						new Projeto("Projeto1", "", "", "", null, null)
+						
+				))	
+			);
 		System.out.println("Buscar arquivos!");
 	}
 	
