@@ -54,7 +54,7 @@ public class TelaSecundariaController implements Initializable {
 				"-fx-text-fill: chocolate;"
 				+ "-fx-text-weight: bold;"
 				+ "-fx-font-size: 15;"
-				+ "-fx-background-radius: 4 4 4 4;"
+				+ "-fx-background-radius: 5;"
 				+ "-fx-background-color: rgb(245,245,245)"
 		);
 		
@@ -81,7 +81,7 @@ public class TelaSecundariaController implements Initializable {
 					"-fx-text-fill: chocolate;"
 					+ "-fx-text-weight: bold;"
 					+ "-fx-font-size: 15;"
-					+ "-fx-background-radius: 4 4 4 4;"
+					+ "-fx-background-radius: 5;"
 					+ "-fx-background-color: rgb(245,245,245)"
 			);
 		}
@@ -91,7 +91,7 @@ public class TelaSecundariaController implements Initializable {
 				"-fx-text-fill: chocolate;"
 				+ "-fx-text-weight: bold;"
 				+ "-fx-font-size: 15;"
-				+ "-fx-background-radius: 4 4 4 4;"
+				+ "-fx-background-radius: 5;"
 				+ "-fx-background-color: rgb(220,220,220)"
 		);
 		
@@ -104,7 +104,7 @@ public class TelaSecundariaController implements Initializable {
 					"-fx-text-fill: chocolate;"
 					+ "-fx-text-weight: bold;"
 					+ "-fx-font-size: 15;"
-					+ "-fx-background-radius: 4 4 4 4;"
+					+ "-fx-background-radius: 5;"
 					+ "-fx-background-color: rgb(235,235,235)"
 			);
 		}
@@ -116,7 +116,7 @@ public class TelaSecundariaController implements Initializable {
 					"-fx-text-fill: chocolate;"
 					+ "-fx-text-weight: bold;"
 					+ "-fx-font-size: 15;"
-					+ "-fx-background-radius: 4 4 4 4;"
+					+ "-fx-background-radius: 5;"
 					+ "-fx-background-color: rgb(245,245,245)"
 			);
 		}

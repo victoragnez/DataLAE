@@ -32,6 +32,9 @@
                      </GridPane.margin>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
             </GridPane>
             <Separator prefWidth="200.0">
                <padding>
