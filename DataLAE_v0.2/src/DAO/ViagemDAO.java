@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import DAO.Interfaces.IViagemDAO;
+import Model.Local;
 import Model.Pesquisador;
+import Model.Projeto;
 import Model.Viagem;
 
 public class ViagemDAO implements IViagemDAO{
@@ -106,6 +108,12 @@ public class ViagemDAO implements IViagemDAO{
 	public void alterar(Viagem v) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ArrayList<Viagem> buscar(Viagem v, Projeto p, Local l) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

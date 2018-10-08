@@ -1,14 +1,18 @@
 package Service.Interfaces;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import Model.Local;
 import Model.Projeto;
 import Model.Viagem;
 
 public interface IViagemService {
 
-	public void inserir(Viagem v, Local l, Projeto p);
-	public void remover(Viagem v, Local l, Projeto p);
-	public Viagem consultar(String codigoViagem, Local l, Projeto p);
-	public void alterar(Viagem v, Local l, Projeto p);
+	public void inserir(Viagem v) throws SQLException;
+	public void remover(Viagem v) throws SQLException;
+	public ArrayList<Viagem> listarViagens() throws SQLException;
+	public ArrayList<Viagem> buscar(Viagem v, Projeto p, Local l) throws SQLException;
+	public void alterar(Viagem v);
 	
 }

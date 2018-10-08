@@ -1,6 +1,7 @@
 package Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import DAO.PesquisadorDAO;
 import DAO.Interfaces.IPesquisadorDAO;
@@ -44,13 +45,19 @@ public final class PesquisadorService implements IPesquisadorService {
 	}
 
 	@Override
-	public void remover(Pesquisador p) {
+	public void remover(Pesquisador p) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Pesquisador consultar(String codigoPesquisador) {
+	public ArrayList<Pesquisador> listarPesquisadores() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Pesquisador> buscar() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

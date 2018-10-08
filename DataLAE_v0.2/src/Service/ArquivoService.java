@@ -1,5 +1,8 @@
 package Service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import DAO.ArquivoDAO;
 import DAO.Interfaces.IArquivoDAO;
 import Model.Arquivo;
@@ -29,27 +32,33 @@ public final class ArquivoService implements IArquivoService {
         
         return w.getInstancia();
 	}
-	
+
 	@Override
-	public void inserir(Arquivo user) {
+	public void inserir(Arquivo user) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void remover(Arquivo user) {
+	public void remover(Arquivo user) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Arquivo consultar(String codigoUser) {
+	public ArrayList<Arquivo> listarArquivos() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void alterar(Arquivo user) {
+	public ArrayList<Arquivo> buscar() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void alterar(Arquivo user) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,10 +1,12 @@
 package Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import DAO.LocalDAO;
 import DAO.Interfaces.ILocalDAO;
 import Model.Local;
+import Model.Pesquisador;
 import Model.Projeto;
 import Service.Interfaces.ILocalService;
 
@@ -32,21 +34,27 @@ public final class LocalService implements ILocalService {
         
         return w.getInstancia();
 	}
-	
+
 	@Override
-	public void inserir(Local l, Projeto p) {
+	public void inserir(Local l) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void remover(Local l, Projeto p) {
+	public void remover(Local l) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Local consultar(String codigoLocal, Projeto p) {
+	public ArrayList<Local> listarLocais() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Local> buscar(Local l, Pesquisador p, Projeto proj) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -57,9 +65,4 @@ public final class LocalService implements ILocalService {
 		
 	}
 
-	@Override
-	public void inserir(Local l) throws SQLException {
-		dao.inserir(l);
-	}
-	
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import DAO.Interfaces.IFinanciadorDAO;
 import Model.Financiador;
+import Model.Projeto;
 
 public class FinanciadorDAO implements IFinanciadorDAO{
 
@@ -69,6 +70,12 @@ public class FinanciadorDAO implements IFinanciadorDAO{
 	public void alterar(Financiador f) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ArrayList<Financiador> buscar(Financiador f, Projeto p) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -7,6 +7,8 @@ import java.util.Locale;
 
 import DAO.Interfaces.ILocalDAO;
 import Model.Local;
+import Model.Pesquisador;
+import Model.Projeto;
 
 public class LocalDAO implements ILocalDAO {
 
@@ -85,6 +87,12 @@ public class LocalDAO implements ILocalDAO {
 	public void alterar(Local l) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ArrayList<Local> buscar(Local l, Pesquisador p, Projeto proj) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

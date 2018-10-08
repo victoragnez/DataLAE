@@ -156,4 +156,10 @@ public class ProjetoDAO  implements IProjetoDAO{
 		
 	}
 
+	@Override
+	public ArrayList<Projeto> buscar(Projeto proj, Pesquisador p, Local l) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

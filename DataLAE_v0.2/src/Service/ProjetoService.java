@@ -1,9 +1,12 @@
 package Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import DAO.ProjetoDAO;
 import DAO.Interfaces.IProjetoDAO;
+import Model.Local;
+import Model.Pesquisador;
 import Model.Projeto;
 import Service.Interfaces.IProjetoService;
 
@@ -45,13 +48,19 @@ public final class ProjetoService implements IProjetoService{
 	}
 
 	@Override
-	public void remover(Projeto p) {
+	public void remover(Projeto p) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Projeto consultar(String codigoProjeto) {
+	public ArrayList<Projeto> listarProjetos() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Projeto> buscar(Projeto proj, Pesquisador p, Local l) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
