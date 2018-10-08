@@ -35,26 +35,22 @@ public class DiretorService implements IDiretorService {
 	
 	@Override
 	public void inserir(Diretor f) throws SQLException {
-		// TODO Auto-generated method stub
-
+		dao.inserir(f);
 	}
 
 	@Override
 	public void remover(Diretor f) throws SQLException {
-		// TODO Auto-generated method stub
-
+		dao.remover(f);
 	}
 
 	@Override
 	public ArrayList<Diretor> listarDiretores() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listarDiretores();
 	}
 
 	@Override
 	public void alterar(Diretor f) {
-		// TODO Auto-generated method stub
-
+		dao.alterar(f);
 	}
 
 }

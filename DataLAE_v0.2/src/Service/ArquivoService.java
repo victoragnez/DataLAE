@@ -35,32 +35,27 @@ public final class ArquivoService implements IArquivoService {
 
 	@Override
 	public void inserir(Arquivo user) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.inserir(user);
 	}
 
 	@Override
 	public void remover(Arquivo user) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.remover(user);
 	}
 
 	@Override
 	public ArrayList<Arquivo> listarArquivos() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listarArquivos();
 	}
 
 	@Override
 	public ArrayList<Arquivo> buscar() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.buscar();
 	}
 
 	@Override
 	public void alterar(Arquivo user) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.alterar(user);
 	}
 	
 }

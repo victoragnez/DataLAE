@@ -81,10 +81,4 @@ public class PesquisadorDAO implements IPesquisadorDAO{
 		
 	}
 
-	@Override
-	public ArrayList<Pesquisador> buscar() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -36,32 +36,27 @@ public final class FinanciadorService implements IFinanciadorService{
 
 	@Override
 	public void inserir(Financiador f) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.inserir(f);
 	}
 
 	@Override
 	public void remover(Financiador f) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.remover(f);
 	}
 
 	@Override
 	public ArrayList<Financiador> listarFinanciadores() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listarFinanciadores();
 	}
 
 	@Override
 	public ArrayList<Financiador> buscar(Financiador f, Projeto p) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.buscar(f, p);
 	}
 
 	@Override
 	public void alterar(Financiador f) {
-		// TODO Auto-generated method stub
-		
+		dao.alterar(f);
 	}
 	
 

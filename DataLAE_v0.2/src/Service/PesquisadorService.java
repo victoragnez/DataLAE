@@ -46,20 +46,12 @@ public final class PesquisadorService implements IPesquisadorService {
 
 	@Override
 	public void remover(Pesquisador p) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.remover(p);
 	}
 
 	@Override
 	public ArrayList<Pesquisador> listarPesquisadores() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Pesquisador> buscar() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listarPesquisadores();
 	}
 
 	@Override

@@ -37,32 +37,27 @@ public final class LocalService implements ILocalService {
 
 	@Override
 	public void inserir(Local l) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.inserir(l);
 	}
 
 	@Override
 	public void remover(Local l) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.remover(l);
 	}
 
 	@Override
 	public ArrayList<Local> listarLocais() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listarLocais();
 	}
 
 	@Override
 	public ArrayList<Local> buscar(Local l, Pesquisador p, Projeto proj) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.buscar(l, p, proj);
 	}
 
 	@Override
 	public void alterar(Local l) {
-		// TODO Auto-generated method stub
-		
+		dao.alterar(l);
 	}
 
 }

@@ -37,32 +37,27 @@ public final class ViagemService implements IViagemService {
 
 	@Override
 	public void inserir(Viagem v) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.inserir(v);
 	}
 
 	@Override
 	public void remover(Viagem v) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.remover(v);
 	}
 
 	@Override
 	public ArrayList<Viagem> listarViagens() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listarViagens();
 	}
 
 	@Override
 	public ArrayList<Viagem> buscar(Viagem v, Projeto p, Local l) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.buscar(v, p, l);
 	}
 
 	@Override
 	public void alterar(Viagem v) {
-		// TODO Auto-generated method stub
-		
+		dao.alterar(v);
 	}
 
 }

@@ -49,26 +49,22 @@ public final class ProjetoService implements IProjetoService{
 
 	@Override
 	public void remover(Projeto p) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		dao.remover(p);
 	}
 
 	@Override
 	public ArrayList<Projeto> listarProjetos() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listarProjetos();
 	}
 
 	@Override
 	public ArrayList<Projeto> buscar(Projeto proj, Pesquisador p, Local l) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.buscar(proj, p, l);
 	}
 
 	@Override
 	public void alterar(Projeto p) {
-		// TODO Auto-generated method stub
-		
+		dao.alterar(p);
 	}
 
 }
