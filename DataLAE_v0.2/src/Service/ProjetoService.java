@@ -9,25 +9,27 @@ import Service.Interfaces.IProjetoService;
 
 public final class ProjetoService implements IProjetoService{
 	
-	private IProjetoDAO dao = new ProjetoDAO();
+	private final IProjetoDAO dao = new ProjetoDAO();
 	
 	private ProjetoService() {}
 	
+	private static Wrapper<ProjetoService> wrapper;
+	
 	public static ProjetoService getInstance () {
-		Wrapper w = wrapper;
+		Wrapper<ProjetoService> w = wrapper;
         if (w == null) { // check 1
         	synchronized (ProjetoService.class)
         	{
         		w = wrapper;
         		if (w == null) 
         		{ // check2
-        			w = new Wrapper(new ProjetoService());
+        			w = new Wrapper<ProjetoService>(new ProjetoService());
         			wrapper = w;
         		}
         	}
         }
         
-        return w.getInstancia();		
+        return w.getInstancia();
 	}
 
 	@Override
@@ -59,17 +61,5 @@ public final class ProjetoService implements IProjetoService{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	private static Wrapper wrapper;
-	   
-    private static class Wrapper{
-        public final ProjetoService instancia;
-        public Wrapper(ProjetoService service) {
-            this.instancia = service;
-        }
-        public ProjetoService getInstancia() {
-            return instancia;
-        }
-    }
 
 }

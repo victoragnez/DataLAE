@@ -9,18 +9,20 @@ import Service.Interfaces.IFinanciadorService;
 public final class FinanciadorService implements IFinanciadorService{
 
 	private final IFinanciadorDAO dao = new FinanciadorDAO();
-
+	
 	private FinanciadorService () {};
 	
+	private static Wrapper<FinanciadorService> wrapper;
+	
 	public static FinanciadorService getInstance () {
-		Wrapper w = wrapper;
+		Wrapper<FinanciadorService> w = wrapper;
         if (w == null) { // check 1
         	synchronized (FinanciadorService.class)
         	{
         		w = wrapper;
         		if (w == null) 
         		{ // check2
-        			w = new Wrapper(new FinanciadorService());
+        			w = new Wrapper<FinanciadorService>(new FinanciadorService());
         			wrapper = w;
         		}
         	}
@@ -52,17 +54,5 @@ public final class FinanciadorService implements IFinanciadorService{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	private static Wrapper wrapper;
-	   
-    private static class Wrapper{
-        public final FinanciadorService instancia;
-        public Wrapper(FinanciadorService service) {
-            this.instancia = service;
-        }
-        public FinanciadorService getInstancia() {
-            return instancia;
-        }
-    }
 
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.busca.TelaBuscarProjetoController">
+   <content>
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+         <children>
+            <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+			  <columnConstraints>
+			      <ColumnConstraints hgrow="NEVER" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+			    <ColumnConstraints hgrow="NEVER" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+			    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="180.0" />
+			      <ColumnConstraints hgrow="NEVER" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+			      <ColumnConstraints hgrow="NEVER" maxWidth="40.0" minWidth="40.0" prefWidth="260.0" />
+			      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="180.0" />
+			      <ColumnConstraints hgrow="NEVER" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+			  </columnConstraints>
+			  <rowConstraints>
+			    <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+			    <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			    <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+			      <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+			  </rowConstraints>
+			   <children>
+			      <CheckBox fx:id="chbNomeProjeto" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+			      <CheckBox fx:id="chbNomeFinanciador" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+			      <CheckBox fx:id="chbData" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+			      <TextField fx:id="tfNomeProjeto" onKeyTyped="#nomeProjetoTextField" promptText="Nome do projeto" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="1" />
+			      <TextField fx:id="tfSiglaProjeto" onKeyTyped="#siglaProjetoTextField" promptText="Sigla do projeto" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="2" />
+			      <DatePicker fx:id="dpData" maxWidth="1.7976931348623157E308" onAction="#dataDatePicker" promptText="Data entre o início e o fim do projeto" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+			      <Button mnemonicParsing="false" onAction="#buscarProjeto" text="Buscar" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+			      <CheckBox fx:id="chbSiglaProjeto" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+			      <TextField fx:id="tfNomeFinanciador" onKeyTyped="#nomeFinanciadorTextField" promptText="Nome do financiador" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="3" />
+			      <TextField fx:id="tfCNPJFinanciador" onKeyTyped="#cnpjFinanciadorTextField" promptText="CNPJ do financiador" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="4" />
+			      <CheckBox fx:id="chbCNPJFinanciador" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+			      <CheckBox fx:id="chbLocal" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+			      <ComboBox fx:id="cmbLocal" maxWidth="1.7976931348623157E308" onAction="#localComboBox" promptText="Local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6" />
+			      <TextField fx:id="tfPesquisador" onKeyTyped="#pesquisadorTextField" promptText="Nome de pesquisador que participou" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="5" />
+			      <TextField fx:id="tfLatitude" onKeyTyped="#latitudeTextField" promptText="Latitude" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+			      <TextField fx:id="tfLongitude" onKeyTyped="#longitudeTextField" promptText="Longitude" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+			      <CheckBox fx:id="chbLatitude" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+			      <CheckBox fx:id="chbLongitude" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+			      <CheckBox fx:id="chbPesquisador" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+			   </children>
+			</GridPane>
+            <Separator prefWidth="200.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </padding>
+            </Separator>
+            <VBox fx:id="list" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

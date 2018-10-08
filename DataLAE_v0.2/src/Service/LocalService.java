@@ -10,21 +10,21 @@ import Service.Interfaces.ILocalService;
 
 public final class LocalService implements ILocalService {
 
-	ILocalDAO dao = new LocalDAO();
+	private final ILocalDAO dao = new LocalDAO();
 	
 	private LocalService () {}
 	
+	private static Wrapper<LocalService> wrapper;
 	
-	public  static LocalService getInstance ()
-	{
-		Wrapper w = wrapper;
+	public static LocalService getInstance () {
+		Wrapper<LocalService> w = wrapper;
         if (w == null) { // check 1
         	synchronized (LocalService.class)
         	{
         		w = wrapper;
         		if (w == null) 
         		{ // check2
-        			w = new Wrapper(new LocalService());
+        			w = new Wrapper<LocalService>(new LocalService());
         			wrapper = w;
         		}
         	}
@@ -61,17 +61,5 @@ public final class LocalService implements ILocalService {
 	public void inserir(Local l) throws SQLException {
 		dao.inserir(l);
 	}
-
-	private static Wrapper wrapper;
-	   
-    private static class Wrapper{
-        public final LocalService instancia;
-        public Wrapper(LocalService service) {
-            this.instancia = service;
-        }
-        public LocalService getInstancia() {
-            return instancia;
-        }
-    }
 	
 }

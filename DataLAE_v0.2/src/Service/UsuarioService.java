@@ -1,26 +1,32 @@
 package Service;
 
+import DAO.UsuarioDAO;
+import DAO.Interfaces.IUsuarioDAO;
 import Model.Usuario;
 import Service.Interfaces.IUsuarioService;
 
 public final class UsuarioService implements IUsuarioService {
 
+	private final IUsuarioDAO dao = new UsuarioDAO();
+	
 	private UsuarioService(){}
 	
-	public static UsuarioService getInstance() {
-		Wrapper w = wrapper;
+	private static Wrapper<UsuarioService> wrapper;
+	
+	public static UsuarioService getInstance () {
+		Wrapper<UsuarioService> w = wrapper;
         if (w == null) { // check 1
         	synchronized (UsuarioService.class)
         	{
         		w = wrapper;
         		if (w == null) 
         		{ // check2
-        			w = new Wrapper(new UsuarioService());
+        			w = new Wrapper<UsuarioService>(new UsuarioService());
         			wrapper = w;
+        		}
         	}
         }
         
-        }
         return w.getInstancia();
 	}
 	
@@ -48,16 +54,4 @@ public final class UsuarioService implements IUsuarioService {
 		
 	}
 	
-	private static Wrapper wrapper;
-	   
-    private static class Wrapper{
-        public final UsuarioService instancia;
-        public Wrapper(UsuarioService service) {
-            this.instancia = service;
-        }
-        public UsuarioService getInstancia() {
-            return instancia;
-        }
-    }
-
 }

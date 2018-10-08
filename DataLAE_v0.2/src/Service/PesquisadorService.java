@@ -9,20 +9,21 @@ import Service.Interfaces.IPesquisadorService;
 
 public final class PesquisadorService implements IPesquisadorService {
 
-	private IPesquisadorDAO dao = new PesquisadorDAO();
+	private final IPesquisadorDAO dao = new PesquisadorDAO();
 	
 	private PesquisadorService() {}
 
-	public static PesquisadorService getInstance()
-	{
-		Wrapper w = wrapper;
+	private static Wrapper<PesquisadorService> wrapper;
+	
+	public static PesquisadorService getInstance () {
+		Wrapper<PesquisadorService> w = wrapper;
         if (w == null) { // check 1
         	synchronized (PesquisadorService.class)
         	{
         		w = wrapper;
         		if (w == null) 
         		{ // check2
-        			w = new Wrapper(new PesquisadorService());
+        			w = new Wrapper<PesquisadorService>(new PesquisadorService());
         			wrapper = w;
         		}
         	}
@@ -59,17 +60,5 @@ public final class PesquisadorService implements IPesquisadorService {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	private static Wrapper wrapper;
-	   
-    private static class Wrapper{
-        public final PesquisadorService instancia;
-        public Wrapper(PesquisadorService service) {
-            this.instancia = service;
-        }
-        public PesquisadorService getInstancia() {
-            return instancia;
-        }
-    }
 
 }

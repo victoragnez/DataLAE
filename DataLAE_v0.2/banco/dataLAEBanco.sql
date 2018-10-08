@@ -2,7 +2,7 @@ create database dataLae;
 use dataLae;
 
 create table Diretor (
-	
+    
     codigoDiretor int auto_increment not null,
     nome varchar(255) not null,
     email varchar(255),
@@ -13,8 +13,8 @@ create table Diretor (
 )  engine=innodb;
 
 create table Financiador (
-	
-	codigoFinanciador int auto_increment not null,
+    
+    codigoFinanciador int auto_increment not null,
     nome varchar(255) not null,
     cnpj varchar(16),
     
@@ -23,8 +23,8 @@ create table Financiador (
 
 
 create table Projeto (
-	
-	codigoProjeto int auto_increment not null,
+    
+    codigoProjeto int auto_increment not null,
     nome varchar(255) not null,
     descricao varchar(1000),
     sigla varchar(255),
@@ -36,7 +36,7 @@ create table Projeto (
 ) engine=innodb;
 
 create table FinanciamentoProjeto (
-	codigoProjeto int not null,
+    codigoProjeto int not null,
     codigoFinanciador int not null,
     codigoDiretor int not null,
     
@@ -44,13 +44,13 @@ create table FinanciamentoProjeto (
     primary key (codigoProjeto, codigoFinanciador, codigoDiretor),
     
     foreign key (codigoProjeto) references Projeto(codigoProjeto),
-	foreign key (codigoFinanciador) references Financiador(codigoFinanciador),
-	foreign key (codigoDiretor) references Diretor(codigoDiretor)
+    foreign key (codigoFinanciador) references Financiador(codigoFinanciador),
+    foreign key (codigoDiretor) references Diretor(codigoDiretor)
 )  engine=innodb;
 
 create table LocalPesquisa (
-	
-	codigoLocal int auto_increment not null,
+    
+    codigoLocal int auto_increment not null,
     nome varchar(255) not null,
     cidade varchar(255),
     estado varchar(255),
@@ -58,12 +58,12 @@ create table LocalPesquisa (
     coordenadas point,
     
     primary key (codigoLocal)
-	
+    
 ) engine=innodb;
 
 create table LocalProjeto (
-	
-	codigoLocal int not null,
+    
+    codigoLocal int not null,
     codigoProjeto int not null,
     
     constraint codLocalProjeto
@@ -74,22 +74,22 @@ create table LocalProjeto (
 ) engine=innodb;
 
 create table Viagem (
-	
-	codigoViagem int auto_increment not null,
+    
+    codigoViagem int auto_increment not null,
     dataInicio datetime not null,
     dataTermino datetime not null,
-	codigoLocal int not null,
+    codigoLocal int not null,
     codigoProjeto int not null,
     
     primary key (codigoViagem),
     foreign key (codigoLocal) references LocalPesquisa(codigoLocal),
     foreign key (codigoProjeto) references Projeto(codigoProjeto)
-	
+    
 ) engine=innodb;
 
 create table Pesquisador (
-	
-	codigoPesquisador int auto_increment not null,
+    
+    codigoPesquisador int auto_increment not null,
     cpfPesquisador varchar(11),
     universidade varchar(255) not null,
     nome varchar(255) not null,
@@ -99,7 +99,7 @@ create table Pesquisador (
 ) engine=innodb;
 
 create table PesquisadorViagem(
-	codigoViagem int not null,
+    codigoViagem int not null,
     codigoPesquisador int not null,
     categoria enum('Professor', 'Mestrando', 'Doutorando', 'IC', 'Convidado') not null,
     
@@ -110,7 +110,7 @@ create table PesquisadorViagem(
 ) engine=innodb;
 
 create table PesquisadorProjeto (
-	
+    
     codigoProjeto int not null,
     codigoPesquisador int not null,
     categoria enum('Professor', 'Mestrando', 'Doutorando', 'IC', 'Convidado') not null,
@@ -122,9 +122,26 @@ create table PesquisadorProjeto (
 ) engine=innodb;
 
 create table User (
-	email varchar(255) not null,
-	username varchar(255) not null unique,
-	password varchar(255) not null,
-	
-	primary key (email)	
+    email varchar(255) not null,
+    username varchar(255) not null unique,
+    password varchar(255) not null,
+    
+    primary key (email)    
+) engine=innodb;
+
+create table Arquivo (
+    codigoArquivo int auto_increment not null,
+    nome varchar(255) not null,
+    dataInsercao date not null,
+    tamanho long not null,
+    tipo enum('DadosBrutos', 'DadosProcessados', 'Foto', 'Imagem', 'Mapa', 'Documentacao', 'Report',
+        'RelatorioFinal', 'RelatorioParcial', 'TCC', 'Artigo', 'Congresso', 'Tese', 'Dissertacao'),
+    metodo enum('GPR', 'GPS', 'ERT', 'Reflexao', 'Refracao', 'LaserScanner', 'Ambiental'),
+    codigoProjeto int not null,
+    codigoViagem int,
+    
+    primary key (codigoArquivo),
+    
+    foreign key (codigoProjeto) references Projeto(codigoProjeto),
+    foreign key (codigoViagem) references Viagem(codigoViagem)
 ) engine=innodb;

@@ -1,5 +1,7 @@
 package Service;
 
+import DAO.ViagemDAO;
+import DAO.Interfaces.IViagemDAO;
 import Model.Local;
 import Model.Projeto;
 import Model.Viagem;
@@ -7,22 +9,26 @@ import Service.Interfaces.IViagemService;
 
 public final class ViagemService implements IViagemService {
 
+	private final IViagemDAO dao = new ViagemDAO();
+	
 	private ViagemService() {}
 	
-	public static ViagemService getInstancia() {
-		Wrapper w = wrapper;
+	private static Wrapper<ViagemService> wrapper;
+	
+	public static ViagemService getInstance () {
+		Wrapper<ViagemService> w = wrapper;
         if (w == null) { // check 1
         	synchronized (ViagemService.class)
         	{
         		w = wrapper;
         		if (w == null) 
         		{ // check2
-        			w = new Wrapper(new ViagemService());
+        			w = new Wrapper<ViagemService>(new ViagemService());
         			wrapper = w;
+        		}
         	}
         }
         
-        }
         return w.getInstancia();
 	}
 	
@@ -49,17 +55,5 @@ public final class ViagemService implements IViagemService {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	private static Wrapper wrapper;
-	   
-    private static class Wrapper{
-        public final ViagemService instancia;
-        public Wrapper(ViagemService service) {
-            this.instancia = service;
-        }
-        public ViagemService getInstancia() {
-            return instancia;
-        }
-    }
 	
 }
