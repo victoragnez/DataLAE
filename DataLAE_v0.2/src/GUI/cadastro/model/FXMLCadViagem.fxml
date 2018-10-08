@@ -5,9 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" 
-	minWidth="-Infinity" prefHeight="240.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" 
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.cadastro.controller.FXMLCadViagemControler">
+<GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.cadastro.controller.FXMLCadViagemControler">
   <columnConstraints>
       <ColumnConstraints hgrow="NEVER" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
     <ColumnConstraints hgrow="NEVER" maxWidth="165.0" minWidth="165.0" prefWidth="165.0" />
@@ -16,12 +14,12 @@
       <ColumnConstraints hgrow="NEVER" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
     <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
     <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
     <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
       <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="208.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <DatePicker fx:id="dataInicio" promptText="Data de Início" GridPane.columnIndex="1" GridPane.rowIndex="3" />

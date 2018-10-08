@@ -45,26 +45,25 @@ public class FXMLTelaCadastroController implements Initializable {
 		// Iniciar telas de cadastro
 		
 		try {
-			cadastrarProjeto = FXMLLoader.load(this.getClass().getResource("./model/FXMLCadProj.fxml"));
-		} catch (IOException e) {
-			System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
-			System.exit(-1);
-		}
-		/*
-		try {
-			cadastrarLocal = FXMLLoader.load(this.getClass().getResource("FXMLCadLocal.fxml"));
+			cadastrarProjeto = FXMLLoader.load(this.getClass().getResource("model/FXMLCadProj.fxml"));
 		} catch (IOException e) {
 			System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
 			System.exit(-1);
 		}
 		
 		try {
-			cadastrarViagem = FXMLLoader.load(this.getClass().getResource("FXMLCadViagem.fxml"));
+			cadastrarLocal = FXMLLoader.load(this.getClass().getResource("model/FXMLCadLocal.fxml"));
 		} catch (IOException e) {
 			System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
 			System.exit(-1);
 		}
-		*/
+		
+		try {
+			cadastrarViagem = FXMLLoader.load(this.getClass().getResource("model/FXMLCadViagem.fxml"));
+		} catch (IOException e) {
+			System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+			System.exit(-1);
+		}
 	}
 
 }
