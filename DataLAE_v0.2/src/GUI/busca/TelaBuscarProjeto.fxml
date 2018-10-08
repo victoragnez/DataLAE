@@ -47,12 +47,12 @@
 			      <CheckBox fx:id="chbCNPJFinanciador" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
 			      <CheckBox fx:id="chbLocal" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
 			      <ComboBox fx:id="cmbLocal" maxWidth="1.7976931348623157E308" onAction="#localComboBox" promptText="Local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6" />
-			      <TextField fx:id="tfPesquisador" onKeyTyped="#pesquisadorTextField" promptText="Nome de pesquisador que participou" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="5" />
 			      <TextField fx:id="tfLatitude" onKeyTyped="#latitudeTextField" promptText="Latitude" GridPane.columnIndex="2" GridPane.rowIndex="8" />
 			      <TextField fx:id="tfLongitude" onKeyTyped="#longitudeTextField" promptText="Longitude" GridPane.columnIndex="5" GridPane.rowIndex="8" />
 			      <CheckBox fx:id="chbLatitude" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
 			      <CheckBox fx:id="chbLongitude" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
 			      <CheckBox fx:id="chbPesquisador" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                  <ComboBox fx:id="cmbPesquisador" maxWidth="1.7976931348623157E308" onAction="#pesquisadorComboBox" promptText="Pesquisador que participou do projeto" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="5" />
 			   </children>
 			</GridPane>
             <Separator prefWidth="200.0">

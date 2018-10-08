@@ -43,14 +43,13 @@ public class FXMLTelaCadastroController implements Initializable {
 		comboBox.getItems().addAll("Projeto","Local","Viagem","Arquivo");
 		
 		// Iniciar telas de cadastro
-		/*
+		
 		try {
-			cadastrarProjeto = FXMLLoader.load(this.getClass().getResource("FXMLCadProj.fxml"));
+			cadastrarProjeto = FXMLLoader.load(this.getClass().getResource("./model/FXMLCadProj.fxml"));
 		} catch (IOException e) {
 			System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
 			System.exit(-1);
 		}
-		*/
 		/*
 		try {
 			cadastrarLocal = FXMLLoader.load(this.getClass().getResource("FXMLCadLocal.fxml"));

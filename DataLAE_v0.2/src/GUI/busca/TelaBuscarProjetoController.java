@@ -62,7 +62,7 @@ public class TelaBuscarProjetoController implements Initializable {
 	private TextField tfCNPJFinanciador;
 	
 	@FXML
-	private TextField tfPesquisador;
+	private ComboBox<String> cmbPesquisador;
 	
 	@FXML
 	private ComboBox<String> cmbLocal;
@@ -97,7 +97,7 @@ public class TelaBuscarProjetoController implements Initializable {
 	}
 	
 	@FXML
-	private void pesquisadorTextField(KeyEvent event) {
+	private void pesquisadorComboBox(ActionEvent event) {
 		chbPesquisador.setSelected(true);
 	}
 	

@@ -14,8 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class TelaBuscarViagemController implements Initializable {
@@ -36,7 +34,7 @@ public class TelaBuscarViagemController implements Initializable {
 	private CheckBox chbData;
 	
 	@FXML
-	private TextField tfPesquisador;
+	private ComboBox<String> cmbPesquisador;
 	
 	@FXML
 	private ComboBox<String> cmbProjeto;
@@ -48,7 +46,7 @@ public class TelaBuscarViagemController implements Initializable {
 	private DatePicker dpData;
 	
 	@FXML
-	private void pesquisadorTextField(KeyEvent event) {
+	private void pesquisadorComboBox(ActionEvent event) {
 		chbPesquisador.setSelected(true);
 	}
 	

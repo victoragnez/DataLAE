@@ -6,7 +6,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.busca.TelaBuscarLocalController">
    <content>
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
@@ -41,7 +40,6 @@
 			      <CheckBox fx:id="chbProjeto" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
 			      <CheckBox fx:id="chbLatitude" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
 			      <TextField fx:id="tfLatitude" onKeyTyped="#latitudeTextField" promptText="Latitude" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-			      <TextField fx:id="tfPesquisador" onKeyTyped="#pesquisadorTextField" promptText="Pesquisador que viajou para o local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="5" />
 			      <ComboBox fx:id="cmbProjeto" maxWidth="1.7976931348623157E308" onAction="#projetoComboBox" promptText="Projeto ocorrido no local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6" />
 			      <TextField fx:id="tfLongitude" onKeyTyped="#longitudeTextField" promptText="Longitude" GridPane.columnIndex="5" GridPane.rowIndex="7" />
 			      <CheckBox fx:id="chbPais" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
@@ -51,6 +49,7 @@
 			      <TextField fx:id="tfCidade" onKeyTyped="#cidadeTextField" promptText="Cidade" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="4" />
 			      <CheckBox fx:id="chbEstado" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
 			      <CheckBox fx:id="chbCidade" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <ComboBox fx:id="cmbPesquisador" maxWidth="1.7976931348623157E308" onAction="#pesquisadorComboBox" promptText="Pesquisador que viajou para o local" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="5" />
 			   </children>
 			</GridPane>
             <Separator prefWidth="200.0">

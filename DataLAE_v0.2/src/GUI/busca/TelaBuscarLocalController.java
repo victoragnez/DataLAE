@@ -58,7 +58,7 @@ public class TelaBuscarLocalController implements Initializable {
 	private TextField tfCidade;
 	
 	@FXML
-	private TextField tfPesquisador;
+	private ComboBox<String> cmbPesquisador;
 	
 	@FXML
 	private TextField tfLatitude;
@@ -90,7 +90,7 @@ public class TelaBuscarLocalController implements Initializable {
 	}
 	
 	@FXML
-	private void pesquisadorTextField(KeyEvent event) {
+	private void pesquisadorComboBox(ActionEvent event) {
 		chbPesquisador.setSelected(true);
 	}
 	
