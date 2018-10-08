@@ -61,26 +61,10 @@ public class LocalDAO implements ILocalDAO {
 
 	@Override
 	public ArrayList<Local> listarLocais() throws SQLException {
-		
-		ArrayList<Local> retorno = new ArrayList<Local>();
-		String sql = "select codigoLocal, nome, cidade, " + 
-				"estado, pais, x(coordenadas), y(coordenadas) from LocalPesquisa;";
-		ResultSet resultSet = JDBC.runQuery(sql);
+		String sql = "select l.codigoLocal, l.nome, l.cidade, "
+				+ "l.estado, l.pais, x(l.coordenadas), y(l.coordenadas) from LocalPesquisa as l;";
+		return getLocalFromResult(JDBC.runQuery(sql));
 
-		while(resultSet.next()) {
-
-			Integer codigo = (Integer)resultSet.getObject("codigoLocal");
-			String nome = resultSet.getString("nome");
-			String cidade = resultSet.getString("cidade");
-			String estado = resultSet.getString("estado");
-			String pais = resultSet.getString("pais");
-			Double latitude = resultSet.getDouble("x(coordenadas)");
-			Double longitude = resultSet.getDouble("y(coordenadas)");
-			
-			retorno.add(new Local(nome, cidade, estado, pais, latitude, longitude, codigo));
-			
-		}
-		return retorno;
 	}
 
 	@Override
@@ -91,8 +75,79 @@ public class LocalDAO implements ILocalDAO {
 
 	@Override
 	public ArrayList<Local> buscar(Local l, Pesquisador p, Projeto proj) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select l.codigoLocal, l.nome, l.cidade, " 
+				+ "l.estado, l.pais, x(l.coordenadas), y(l.coordenadas) from LocalPesquisa as l";
+		
+		if(proj != null && proj.getCodigo() != null) {
+			sql += " inner join LocalProjeto as proj on "
+					+ "l.codigoLocal = proj.codigoLocal and"
+					+ " proj.codigoProjeto = " + proj.getCodigo();
+		}
+		
+		if(p != null && p.getCodigo() != null) {
+			sql += " inner join Viagem as v on v.codigoLocal = l.codigoLocal";
+			sql += " inner join PesquisadorViagem as pesqV on pesqV.codigoViagem = v.codigoViagem"
+					+ " and pesqV.codigoPesquisador = " + p.getCodigo();
+		}
+		
+		if(l != null && (l.getCodigo() != null || l.getNome() != null ||
+				l.getCidade() != null || l.getEstado() != null || l.getPais() != null)) {
+			sql += " where";
+			
+			ArrayList<String> cond = new ArrayList<String>();
+			
+			if(l.getCodigo() != null) {
+				cond.add("l.codigoLocal = " + l.getCodigo());
+			}
+			
+			if(l.getNome() != null) {
+				cond.add("l.nome like '%" + l.getNome() + "%'");
+			}
+			
+			if(l.getCidade() != null) {
+				cond.add("l.cidade like '%" + l.getCidade() + "%'");
+			}
+			
+			if(l.getEstado() != null) {
+				cond.add("l.estado = '" + l.getEstado() + "'");
+			}
+			
+			if(l.getPais() != null) {
+				cond.add("l.pais = '" + l.getPais() + "'");
+			}
+			
+			for(int i = 0; i < cond.size(); i++) {
+				sql += " " + cond.get(i);
+				if(i + 1 < cond.size())
+					sql += " and";
+			}
+		}
+		
+		System.out.println(sql);
+		
+		sql += ";";
+		
+		return getLocalFromResult(JDBC.runQuery(sql));
+	}
+	
+	private ArrayList<Local> getLocalFromResult(ResultSet resultSet) throws SQLException {
+		
+		ArrayList<Local> retorno = new ArrayList<Local>();
+
+		while(resultSet.next()) {
+
+			Integer codigo = (Integer)resultSet.getObject("l.codigoLocal");
+			String nome = resultSet.getString("l.nome");
+			String cidade = resultSet.getString("l.cidade");
+			String estado = resultSet.getString("l.estado");
+			String pais = resultSet.getString("l.pais");
+			Double latitude = resultSet.getDouble("x(l.coordenadas)");
+			Double longitude = resultSet.getDouble("y(l.coordenadas)");
+			
+			retorno.add(new Local(nome, cidade, estado, pais, latitude, longitude, codigo));
+			
+		}
+		return retorno;
 	}
 
 }

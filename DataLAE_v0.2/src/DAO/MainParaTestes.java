@@ -1,7 +1,6 @@
 package DAO;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Model.Categoria;
@@ -31,21 +30,12 @@ class MainParaTestes {
 		
 		try {
 			localDao.inserir(l1);
-//			for(Local l : localDao.listarLocais()) {
-//				System.out.println(l.getNome() + " " + l.getPais() + " " + 
-//						l.getCidade() + " " + l.getLatitude() + " " + l.getLongitude());
-//			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-		
-		try {
 			localDao.inserir(l2);
 //			for(Local l : localDao.listarLocais()) {
 //				System.out.println(l.getNome() + " " + l.getPais() + " " + 
 //						l.getCidade() + " " + l.getLatitude() + " " + l.getLongitude());
 //			}
-		} catch (SQLException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		
@@ -55,6 +45,7 @@ class MainParaTestes {
 		p1 = p = new Projeto("ProjDeGilney", "testando", "sigla", "gilneyjr", 
 				new Date(2018-1900, 9, 20), new Date(2090-1900, 9, 20));
 		try {
+			p1.inserirLocal(l1);
 			projDao.inserir(p);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -131,6 +122,31 @@ class MainParaTestes {
 		}
 		
 		try {
+//			ArrayList<Financiador> vet;
+			
+//			vet = finDao.buscar(new Financiador("p", "3768378264"), null);
+//			
+//			for(Financiador fin : vet) {
+//				System.out.println(fin.getCodigo() + " " + fin.getNome());
+//			}
+			
+//			vet = finDao.buscar(f, null);
+//			
+//			for(Financiador fin : vet) {
+//				System.out.println(fin.getCodigo() + " " + fin.getNome());
+//			}
+			
+//			vet = finDao.buscar(null, p3);
+//			
+//			for(Financiador fin : vet) {
+//				System.out.println(fin.getCodigo() + " " + fin.getNome());
+//			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
 			
 			Viagem v1 = new Viagem(new Date(2090-1900, 9, 11), 
 					new Date(2090-1900, 9, 20), l1, p1);
@@ -180,6 +196,49 @@ class MainParaTestes {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			ArrayList<Local> vet;
+			
+//			vet = localDao.listarLocais();
+//			
+//			for(Local l : vet) {
+//				System.out.println(l.getNome() + " " + l.getPais() + " " + 
+//						l.getCidade() + " " + l.getLatitude() + " " + l.getLongitude());
+//			}
+			
+//			vet = localDao.buscar(l2, null, null);
+//			
+//			for(Local l : vet) {
+//				System.out.println(l.getNome() + " " + l.getPais() + " " + 
+//						l.getCidade() + " " + l.getLatitude() + " " + l.getLongitude());
+//			}
+			
+//			vet = localDao.buscar(new Local(null, null, null, "atown", null, null), null, null);
+//			
+//			for(Local l : vet) {
+//				System.out.println(l.getNome() + " " + l.getPais() + " " + 
+//						l.getCidade() + " " + l.getLatitude() + " " + l.getLongitude());
+//			}
+			
+//			vet = localDao.buscar(null, pesq, null);
+//			
+//			for(Local l : vet) {
+//				System.out.println(l.getNome() + " " + l.getPais() + " " + 
+//						l.getCidade() + " " + l.getLatitude() + " " + l.getLongitude());
+//			}
+			
+//			vet = localDao.buscar(l1, pesq, p1);
+//			
+//			for(Local l : vet) {
+//				System.out.println(l.getNome() + " " + l.getPais() + " " + 
+//						l.getCidade() + " " + l.getLatitude() + " " + l.getLongitude());
+//			}
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
 	}
 
 }

@@ -100,7 +100,7 @@ public class ProjetoDAO  implements IProjetoDAO{
 					campos.add("codigoProjeto=" + p.getCodigo());
 					campos.add("codigoLocal=" + l.getCodigo());
 					
-					sql = "insert into LocalPesquisa set ";
+					sql = "insert into LocalProjeto set ";
 					for(int i = 0; i < campos.size(); i++) {
 						sql += campos.get(i);
 						if(i+1 < campos.size())
@@ -192,8 +192,6 @@ public class ProjetoDAO  implements IProjetoDAO{
 		}
 		
 		sql += ";";
-		
-		System.out.println(sql);
 		
 		return getProjetoFromResult(JDBC.runQuery(sql));
 	}
