@@ -76,8 +76,8 @@ create table LocalProjeto (
 create table Viagem (
     
     codigoViagem int auto_increment not null,
-    dataInicio datetime not null,
-    dataTermino datetime not null,
+    dataInicio date not null,
+    dataTermino date not null,
     codigoLocal int not null,
     codigoProjeto int not null,
     

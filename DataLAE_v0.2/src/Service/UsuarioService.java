@@ -33,7 +33,7 @@ public final class UsuarioService implements IUsuarioService {
 	@Override
 	public void inserir(Usuario user) {
 		// TODO Auto-generated method stub
-		
+		dao.inserir(user);
 	}
 
 	@Override

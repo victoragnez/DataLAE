@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import DAO.ViagemDAO;
 import DAO.Interfaces.IViagemDAO;
 import Model.Local;
+import Model.Pesquisador;
 import Model.Projeto;
 import Model.Viagem;
 import Service.Interfaces.IViagemService;
@@ -51,8 +52,8 @@ public final class ViagemService implements IViagemService {
 	}
 
 	@Override
-	public ArrayList<Viagem> buscar(Viagem v, Projeto p, Local l) throws SQLException {
-		return dao.buscar(v, p, l);
+	public ArrayList<Viagem> buscar(Viagem v, Pesquisador p, Projeto proj, Local l) throws SQLException {
+		return dao.buscar(v, p, proj, l);
 	}
 
 	@Override

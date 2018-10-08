@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import DAO.ProjetoDAO;
 import DAO.Interfaces.IProjetoDAO;
+import Model.Financiador;
 import Model.Local;
 import Model.Pesquisador;
 import Model.Projeto;
@@ -58,8 +59,8 @@ public final class ProjetoService implements IProjetoService{
 	}
 
 	@Override
-	public ArrayList<Projeto> buscar(Projeto proj, Pesquisador p, Local l) throws SQLException {
-		return dao.buscar(proj, p, l);
+	public ArrayList<Projeto> buscar(Projeto proj, Financiador f, Pesquisador p, Local l) throws SQLException {
+		return dao.buscar(proj, f, p, l);
 	}
 
 	@Override
