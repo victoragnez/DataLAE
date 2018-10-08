@@ -1,5 +1,7 @@
 package GUI.listagem;
 
+import java.util.Calendar;
+
 import Model.Viagem;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +20,10 @@ public class BlocoViagem extends BorderPane {
 		
 		VBox vbox = new VBox(5);
 		
-		Label local = new Label(this.viagem.getLocal().getNome());
+		Calendar c = Calendar.getInstance();
+		
+		Label local = new Label(
+				this.viagem.getDataInicio() + " - " + this.viagem.getDataTermino());
 		local.setStyle(
 				"-fx-text-fill: chocolate;"
         		+ "-fx-font-weight: bold;"
