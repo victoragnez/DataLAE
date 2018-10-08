@@ -4,7 +4,9 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import GUI.listagem.BlocoFinanciador;
 import GUI.listagem.BlocoViagem;
+import Model.Financiador;
 import Model.Local;
 import Model.Projeto;
 import Model.Viagem;
@@ -58,13 +60,7 @@ public class TelaBuscarFinanciadorController implements Initializable {
 	private void buscarFinanciador(ActionEvent event) {
 		// Mudar depois
 		this.list.getChildren().add(
-			new BlocoViagem(new Viagem(
-					new Date(),
-					new Date(),
-					new Local("IMD/UFRN", "", "", "", 0.0, 0.0),
-					new Projeto("Projeto1", "", "", "", null, null)
-					
-			))	
+			new BlocoFinanciador(new Financiador("Financiador", "101.010.101-01"))
 		);
 		
 		System.out.println("Buscar Financiador");
