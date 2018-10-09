@@ -14,6 +14,9 @@ import Service.FinanciadorService;
 import Service.LocalService;
 import Service.PesquisadorService;
 import Service.ProjetoService;
+import Service.Interfaces.IFinanciadorService;
+import Service.Interfaces.ILocalService;
+import Service.Interfaces.IPesquisadorService;
 import Service.Interfaces.IProjetoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +29,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class TelaBuscarProjetoController implements Initializable {
-	private IProjetoService service;
+	private IProjetoService projetoService;
+	private IFinanciadorService financiadorService;
+	private IPesquisadorService pesquisadorService;
+	private ILocalService localService;
 	
 	@FXML
 	private VBox list;
@@ -137,7 +143,7 @@ public class TelaBuscarProjetoController implements Initializable {
 		Local l = chbLocal.isSelected() ? cmbLocal.getValue() : null;
 		
 		try {
-			for(Projeto projeto : service.buscar(proj, f, p, l))
+			for(Projeto projeto : projetoService.buscar(proj, f, p, l))
 				list.getChildren().add(new BlocoProjeto(projeto));
 		} catch (SQLException e) {
 			System.out.println("Tratar exceção na busca de Projeto");
@@ -146,25 +152,28 @@ public class TelaBuscarProjetoController implements Initializable {
 	}
 	
 	public TelaBuscarProjetoController() {
-		this.service = ProjetoService.getInstance();
+		this.projetoService = ProjetoService.getInstance();
+		this.financiadorService = FinanciadorService.getInstance();
+		this.pesquisadorService = PesquisadorService.getInstance();
+		this.localService = LocalService.getInstance();
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
-			cmbFinanciador.getItems().addAll(FinanciadorService.getInstance().listarFinanciadores());
+			cmbFinanciador.getItems().addAll(financiadorService.listarFinanciadores());
 		} catch (SQLException e) {
 			System.out.println("Tratar exceção de listar financiadores na tela de busca de Projeto");
 		}
 		
 		try {
-			cmbPesquisador.getItems().addAll(PesquisadorService.getInstance().listarPesquisadores());
+			cmbPesquisador.getItems().addAll(pesquisadorService.listarPesquisadores());
 		} catch (SQLException e) {
 			System.out.println("Tratar exceção de listar pesquisadores na tela de busca de Projeto");
 		}
 		
 		try {
-			cmbLocal.getItems().addAll(LocalService.getInstance().listarLocais());
+			cmbLocal.getItems().addAll(localService.listarLocais());
 		} catch (SQLException e) {
 			System.out.println("Tratar exceção de listar locais na tela de busca de Projeto");
 		}
