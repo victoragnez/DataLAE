@@ -94,6 +94,4 @@ public class TelaBuscarFinanciadorController implements Initializable {
 			System.out.println("Tratar exceção no carregamento de projetos na tela de busca de Financiador");
 		}
 	}
-	
-	
 }
