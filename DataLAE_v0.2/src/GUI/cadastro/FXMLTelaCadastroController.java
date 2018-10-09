@@ -70,7 +70,7 @@ public class FXMLTelaCadastroController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		comboBox.getItems().addAll("Projeto","Local","Viagem","Arquivo", "Diretor", "Financiador");
+		comboBox.getItems().addAll("Projeto","Local","Viagem","Arquivo", "Diretor", "Financiador","Pesquisador");
 	}
 
 }
