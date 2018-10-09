@@ -142,7 +142,7 @@ public class LocalDAO implements ILocalDAO {
 			Double latitude = resultSet.getDouble("x(l.coordenadas)");
 			Double longitude = resultSet.getDouble("y(l.coordenadas)");
 			
-			retorno.add(new Local(nome, cidade, estado, pais, latitude, longitude, codigo));
+			retorno.add(new Local(nome, pais, estado, cidade, latitude, longitude, codigo));
 			
 		}
 		return retorno;

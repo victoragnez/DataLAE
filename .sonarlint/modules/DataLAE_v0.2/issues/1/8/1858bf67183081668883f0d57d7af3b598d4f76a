@@ -1,13 +1,0 @@
-
-ssquid:S18540":Remove this useless assignment to local variable "cidade".(¼…‘Íþÿÿÿÿ8È¼ìüã,HŒRMAJORZ
-CODE_SMELL
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Õ£ØŠH†RMINORZ
-CODE_SMELL
-jsquid:S11359"2Complete the task associated to this TODO comment.(» æžÿÿÿÿÿ8È¼ìüã,HˆRINFOZ
-CODE_SMELL
-lsquid:S1854*"8Remove this useless assignment to local variable "pais".(¾¬®ÿ8È¼ìüã,HŠRMAJORZ
-CODE_SMELL
-ssquid:S1854-":Remove this useless assignment to local variable "estado".(Üþ›‹üÿÿÿÿ8È¼ìüã,H‹RMAJORZ
-CODE_SMELL
-qsquid:S1854'"8Remove this useless assignment to local variable "nome".(–Áã’ùÿÿÿÿ8È¼ìüã,H‰RMAJORZ
-CODE_SMELL
