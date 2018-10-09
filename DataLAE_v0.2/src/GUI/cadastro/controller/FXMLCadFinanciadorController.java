@@ -13,7 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class FXMLCadFinanciadorController implements Initializable{
-
+	private IFinanciadorService financiadorService;
+	
     @FXML
     private TextField txNome;
 
@@ -33,17 +34,17 @@ public class FXMLCadFinanciadorController implements Initializable{
     	
     	Financiador f = new Financiador (nome, cnpj);
     	try {
-			IFinanciadorService service = FinanciadorService.getInstance();
-			service.inserir(f);
+			financiadorService.inserir(f);
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Tratar exceção no cadastro de financiador");
 		}
     }
+    
+    public FXMLCadFinanciadorController() {
+		financiadorService = FinanciadorService.getInstance();
+	}
 		
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void initialize(URL location, ResourceBundle resources) {}
 
 }

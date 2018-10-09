@@ -16,7 +16,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class FXMLCadProjController implements Initializable{
+public class FXMLCadProjController implements Initializable {
+	private IProjetoService projetoService;
 
     @FXML
     private TextField txNomeProj;
@@ -66,16 +67,17 @@ public class FXMLCadProjController implements Initializable{
     	Projeto p = new Projeto(nome, descricao, sigla, coordenador, dInicio, dTermino);
     	 
     	 try {
-    		 IProjetoService service = ProjetoService.getInstance();
-    		 service.inserir(p);
+    		 projetoService.inserir(p);
 		 } catch (Exception e) {	
 			// Avisar ao cliente aqui
 		 }
     }
+    
+    public FXMLCadProjController() {
+		projetoService = ProjetoService.getInstance();
+	}
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		/* Nothing */
-	}
+	public void initialize(URL location, ResourceBundle resources) {}
 
 }

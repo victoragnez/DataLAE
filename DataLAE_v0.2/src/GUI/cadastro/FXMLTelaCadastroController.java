@@ -26,7 +26,6 @@ public class FXMLTelaCadastroController implements Initializable {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadProj.fxml")));
 			} catch (IOException e) {
 				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
-				System.exit(-1);
 			}
 		}
 			
@@ -35,7 +34,6 @@ public class FXMLTelaCadastroController implements Initializable {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadLocal.fxml")));
 			} catch (IOException e) {
 				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
-				System.exit(-1);
 			}
 		}
 		else if(value == "Viagem") {
@@ -43,7 +41,6 @@ public class FXMLTelaCadastroController implements Initializable {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadViagem.fxml")));
 			} catch (IOException e) {
 				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
-				System.exit(-1);
 			}
 		}
 		else if(value == "Arquivo")
@@ -53,7 +50,6 @@ public class FXMLTelaCadastroController implements Initializable {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadDiretor.fxml")));
 			} catch (IOException e) {
 				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
-				System.exit(-1);
 			}
 		}
 		else if(value == "Financiador") {
@@ -61,7 +57,13 @@ public class FXMLTelaCadastroController implements Initializable {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadFinanciador.fxml")));
 			} catch (IOException e) {
 				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
-				System.exit(-1);
+			}
+		}
+		else if(value == "Pesquisador") {
+			try {
+				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadPesq.fxml")));
+			} catch (IOException e) {
+				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
 			}
 		}
 	}

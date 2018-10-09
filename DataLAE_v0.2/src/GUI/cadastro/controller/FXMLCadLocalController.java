@@ -13,7 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class FXMLCadLocalController implements Initializable{
+public class FXMLCadLocalController implements Initializable {
+	private ILocalService localService;
 	
     @FXML
     private TextField txNomeLocal;
@@ -63,19 +64,17 @@ public class FXMLCadLocalController implements Initializable{
     	
     	Local l = new Local(nome, pais, estado, cidade, latitude, longitude);
     	try {
-    		ILocalService service = LocalService.getInstance();
-			service.inserir(l);
+			localService.inserir(l);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Tratar exceção no cadastro de Local");
 		}
     }
 	
+    public FXMLCadLocalController() {
+		localService = LocalService.getInstance(); 
+	}
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void initialize(URL location, ResourceBundle resources) {}
 
 }
