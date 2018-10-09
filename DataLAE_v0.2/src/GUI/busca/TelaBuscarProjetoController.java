@@ -29,10 +29,7 @@ public class TelaBuscarProjetoController implements Initializable {
 	private CheckBox chbSiglaProjeto;
 	
 	@FXML
-	private CheckBox chbNomeFinanciador;
-	
-	@FXML
-	private CheckBox chbCNPJFinanciador;
+	private CheckBox chbFinanciador;
 	
 	@FXML
 	private CheckBox chbPesquisador;
@@ -56,10 +53,7 @@ public class TelaBuscarProjetoController implements Initializable {
 	private TextField tfSiglaProjeto;
 	
 	@FXML
-	private TextField tfNomeFinanciador;
-	
-	@FXML
-	private TextField tfCNPJFinanciador;
+	private ComboBox<String> cmbFinanciador;
 	
 	@FXML
 	private ComboBox<String> cmbPesquisador;
@@ -87,13 +81,8 @@ public class TelaBuscarProjetoController implements Initializable {
 	}
 	
 	@FXML
-	private void nomeFinanciadorTextField(KeyEvent event) {
-		chbNomeFinanciador.setSelected(true);
-	}
-	
-	@FXML
-	private void cnpjFinanciadorTextField(KeyEvent event) {
-		chbCNPJFinanciador.setSelected(true);
+	private void financiadorComboBox(ActionEvent event) {
+		chbFinanciador.setSelected(true);
 	}
 	
 	@FXML
