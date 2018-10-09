@@ -58,8 +58,7 @@ public class Pesquisador {
 
 	@Override
 	public String toString() {
-		return "Pesquisador [universidade=" + universidade + ", nome=" + nome + ", cpf="
-				+ cpf + ", codigo=" + codigo + "]";
+		return nome + ", " + universidade;
 	}
 
 	public Categoria getCategoria() {
