@@ -34,7 +34,7 @@ public final class PesquisadorService implements IPesquisadorService {
 	}
 	
 	@Override
-	public void inserir(Pesquisador p) throws SQLException {
+	public void inserir(Pesquisador p) throws SQLException, IllegalArgumentException {
 		if ( p == null ) 
 			throw new IllegalArgumentException("Argumento nulo!"); 
 		

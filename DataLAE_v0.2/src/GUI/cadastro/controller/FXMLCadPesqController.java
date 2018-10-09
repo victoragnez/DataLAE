@@ -65,6 +65,8 @@ public class FXMLCadPesqController implements Initializable {
     		pesquisadorService.inserir(p);
 		} catch (SQLException e) {
 			System.out.println("Tratar exceção no cadastro de pesquisador");
+		} catch (IllegalArgumentException e) {
+			System.out.println("Argumentos inváildos");
 		}
     }
     
