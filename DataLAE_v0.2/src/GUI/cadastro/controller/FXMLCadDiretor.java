@@ -3,7 +3,6 @@ package GUI.cadastro.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import DAO.Interfaces.IDiretorDAO;
 import Model.Diretor;
 import Service.DiretorService;
 import Service.Interfaces.IDiretorService;
@@ -13,9 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class FXMLCadDiretor implements Initializable{
-
-
+public class FXMLCadDiretor implements Initializable {
+	private IDiretorService diretorService;
+	
     @FXML
     private TextField txNome;
 
@@ -48,17 +47,17 @@ public class FXMLCadDiretor implements Initializable{
     	Diretor d = new Diretor(nome, email, telefone, cargo);
     	
     	try {
-			IDiretorService service = DiretorService.getInstance();
-			service.inserir(d);
+			diretorService.inserir(d);
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Tratar exceção na inserção de diretor");
 		}
     }
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+    public FXMLCadDiretor() {
+		this.diretorService = DiretorService.getInstance();
 	}
+    
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {}
 
 }

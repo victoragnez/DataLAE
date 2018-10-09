@@ -48,11 +48,27 @@ public class FXMLTelaCadastroController implements Initializable {
 		}
 		else if(value == "Arquivo")
 			main.setCenter(null);
+		else if(value == "Diretor") {
+			try {
+				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadDiretor.fxml")));
+			} catch (IOException e) {
+				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+				System.exit(-1);
+			}
+		}
+		else if(value == "Financiador") {
+			try {
+				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadFinanciador.fxml")));
+			} catch (IOException e) {
+				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+				System.exit(-1);
+			}
+		}
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		comboBox.getItems().addAll("Projeto","Local","Viagem","Arquivo");
+		comboBox.getItems().addAll("Projeto","Local","Viagem","Arquivo", "Diretor", "Financiador");
 	}
 
 }
