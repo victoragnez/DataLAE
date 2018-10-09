@@ -123,8 +123,6 @@ public class LocalDAO implements ILocalDAO {
 			}
 		}
 		
-		System.out.println(sql);
-		
 		sql += ";";
 		
 		return getLocalFromResult(JDBC.runQuery(sql));

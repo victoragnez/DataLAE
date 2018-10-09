@@ -1,7 +1,6 @@
 package DAO;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 import Model.Categoria;
 import Model.Diretor;
@@ -198,7 +197,7 @@ class MainParaTestes {
 		}
 		
 		try {
-			ArrayList<Local> vet;
+//			ArrayList<Local> vet;
 			
 //			vet = localDao.listarLocais();
 //			
