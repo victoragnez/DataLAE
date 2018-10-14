@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import Model.Arquivo;
 
 public interface IArquivoService {
-
-	public void inserir(Arquivo user) throws SQLException;
-	public void remover(Arquivo user) throws SQLException;
+	public void inserir(Arquivo arquivo) throws SQLException;
+	public void remover(Arquivo arquivo) throws SQLException;
 	public ArrayList<Arquivo> listarArquivos() throws SQLException;
 	public ArrayList<Arquivo> buscar() throws SQLException;
-	public void alterar(Arquivo user) throws SQLException;
+	public void alterar(Arquivo arquivo) throws SQLException;
 	
 }

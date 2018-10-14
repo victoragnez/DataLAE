@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class FXMLCadDiretor implements Initializable {
+public class FXMLCadDiretorController implements Initializable {
 	private IDiretorService diretorService;
 	
     @FXML
@@ -53,7 +53,7 @@ public class FXMLCadDiretor implements Initializable {
 		}
     }
 	
-    public FXMLCadDiretor() {
+    public FXMLCadDiretorController() {
 		this.diretorService = DiretorService.getInstance();
 	}
     

@@ -66,6 +66,6 @@ public class TelaBuscarController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		comboBox.getItems().addAll("Arquivo","Financiador","Local","Projeto","Viagem");
+		comboBox.getItems().addAll("Arquivo", "Diretor", "Financiador", "Local", "Pesquisador", "Projeto", "Viagem");
 	}
 }

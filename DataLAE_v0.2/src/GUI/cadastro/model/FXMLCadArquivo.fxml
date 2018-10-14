@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<GridPane fx:id="main" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.cadastro.controller.FXMLCadArquivoController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="360.0" prefWidth="360.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ComboBox fx:id="cmbProjeto" maxWidth="1.7976931348623157E308" promptText="Projeto" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+      <ComboBox fx:id="cmbViagem" maxWidth="1.7976931348623157E308" promptText="Viagem" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+      <ComboBox fx:id="cmbTipo" maxWidth="1.7976931348623157E308" promptText="Tipo" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+      <ComboBox fx:id="cmbCategoria" maxWidth="1.7976931348623157E308" promptText="Categoria" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+      <TextField fx:id="tfCaminho" maxWidth="1.7976931348623157E308" promptText="Diretório do arquivo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#botaoProcurar" prefWidth="80.0" text="Procurar" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#botaoCadastrar" prefWidth="80.0" text="Cadastrar" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+      <TextField fx:id="tfNome" promptText="Novo nome para o arquivo" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+   </children>
+</GridPane>

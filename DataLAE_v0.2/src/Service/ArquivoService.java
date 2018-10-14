@@ -34,13 +34,13 @@ public final class ArquivoService implements IArquivoService {
 	}
 
 	@Override
-	public void inserir(Arquivo user) throws SQLException {
-		dao.inserir(user);
+	public void inserir(Arquivo arquivo) throws SQLException {
+		dao.inserir(arquivo);
 	}
 
 	@Override
-	public void remover(Arquivo user) throws SQLException {
-		dao.remover(user);
+	public void remover(Arquivo arquivo) throws SQLException {
+		dao.remover(arquivo);
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public final class ArquivoService implements IArquivoService {
 	}
 
 	@Override
-	public void alterar(Arquivo user) throws SQLException {
-		dao.alterar(user);
+	public void alterar(Arquivo arquivo) throws SQLException {
+		dao.alterar(arquivo);
 	}
 	
 }

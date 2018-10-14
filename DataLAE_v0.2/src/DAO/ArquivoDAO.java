@@ -10,32 +10,27 @@ public class ArquivoDAO implements IArquivoDAO {
 
 	@Override
 	public void inserir(Arquivo user) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Arquivo inserido!");
 	}
 
 	@Override
 	public void remover(Arquivo user) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Arquivo removido!");		
 	}
 
 	@Override
 	public void alterar(Arquivo user) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Arquivo editado!");
 	}
 
 	@Override
 	public ArrayList<Arquivo> listarArquivos() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<Arquivo>();
 	}
 
 	@Override
 	public ArrayList<Arquivo> buscar() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<Arquivo>();
 	}
 
 }
