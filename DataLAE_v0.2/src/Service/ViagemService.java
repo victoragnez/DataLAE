@@ -1,8 +1,12 @@
 package Service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import DAO.ViagemDAO;
 import DAO.Interfaces.IViagemDAO;
 import Model.Local;
+import Model.Pesquisador;
 import Model.Projeto;
 import Model.Viagem;
 import Service.Interfaces.IViagemService;
@@ -31,29 +35,30 @@ public final class ViagemService implements IViagemService {
         
         return w.getInstancia();
 	}
-	
+
 	@Override
-	public void inserir(Viagem v, Local l, Projeto p) {
-		// TODO Auto-generated method stub
-		
+	public void inserir(Viagem v) throws SQLException {
+		dao.inserir(v);
 	}
 
 	@Override
-	public void remover(Viagem v, Local l, Projeto p) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Viagem v) throws SQLException {
+		dao.remover(v);
 	}
 
 	@Override
-	public Viagem consultar(String codigoViagem, Local l, Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Viagem> listarViagens() throws SQLException {
+		return dao.listarViagens();
 	}
 
 	@Override
-	public void alterar(Viagem v, Local l, Projeto p) {
-		// TODO Auto-generated method stub
-		
+	public ArrayList<Viagem> buscar(Viagem v, Pesquisador p, Projeto proj, Local l) throws SQLException {
+		return dao.buscar(v, p, proj, l);
 	}
-	
+
+	@Override
+	public void alterar(Viagem v) {
+		dao.alterar(v);
+	}
+
 }

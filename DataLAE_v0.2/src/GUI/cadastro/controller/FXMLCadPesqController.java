@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class FXMLCadPesqController implements Initializable {
+	private IPesquisadorService pesquisadorService;
 	
 	@FXML
 	private Label label;
@@ -61,13 +62,17 @@ public class FXMLCadPesqController implements Initializable {
     			nomePesquisador, cpfPesquisador, categoriaPesquisador);
     
     	try {
-			IPesquisadorService service = PesquisadorService.getInstance();
-    		service.inserir(p);
+    		pesquisadorService.inserir(p);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Tratar exceção no cadastro de pesquisador");
+		} catch (IllegalArgumentException e) {
+			System.out.println("Argumentos inválidos");
 		}
     }
+    
+    public FXMLCadPesqController() {
+		pesquisadorService = PesquisadorService.getInstance();
+	}
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

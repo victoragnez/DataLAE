@@ -1,13 +1,23 @@
 package GUI.busca;
 
 import java.net.URL;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import GUI.listagem.BlocoViagem;
+import GUI.listagem.BlocoProjeto;
+import Model.Financiador;
 import Model.Local;
+import Model.Pesquisador;
 import Model.Projeto;
-import Model.Viagem;
+import Service.FinanciadorService;
+import Service.LocalService;
+import Service.PesquisadorService;
+import Service.ProjetoService;
+import Service.Interfaces.IFinanciadorService;
+import Service.Interfaces.ILocalService;
+import Service.Interfaces.IPesquisadorService;
+import Service.Interfaces.IProjetoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +29,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class TelaBuscarProjetoController implements Initializable {
+	private IProjetoService projetoService;
+	private IFinanciadorService financiadorService;
+	private IPesquisadorService pesquisadorService;
+	private ILocalService localService;
+	
 	@FXML
 	private VBox list;
 	
@@ -29,10 +44,7 @@ public class TelaBuscarProjetoController implements Initializable {
 	private CheckBox chbSiglaProjeto;
 	
 	@FXML
-	private CheckBox chbNomeFinanciador;
-	
-	@FXML
-	private CheckBox chbCNPJFinanciador;
+	private CheckBox chbFinanciador;
 	
 	@FXML
 	private CheckBox chbPesquisador;
@@ -56,16 +68,13 @@ public class TelaBuscarProjetoController implements Initializable {
 	private TextField tfSiglaProjeto;
 	
 	@FXML
-	private TextField tfNomeFinanciador;
+	private ComboBox<Financiador> cmbFinanciador;
 	
 	@FXML
-	private TextField tfCNPJFinanciador;
+	private ComboBox<Pesquisador> cmbPesquisador;
 	
 	@FXML
-	private TextField tfPesquisador;
-	
-	@FXML
-	private ComboBox<String> cmbLocal;
+	private ComboBox<Local> cmbLocal;
 	
 	@FXML
 	private DatePicker dpData;
@@ -87,17 +96,12 @@ public class TelaBuscarProjetoController implements Initializable {
 	}
 	
 	@FXML
-	private void nomeFinanciadorTextField(KeyEvent event) {
-		chbNomeFinanciador.setSelected(true);
+	private void financiadorComboBox(ActionEvent event) {
+		chbFinanciador.setSelected(true);
 	}
 	
 	@FXML
-	private void cnpjFinanciadorTextField(KeyEvent event) {
-		chbCNPJFinanciador.setSelected(true);
-	}
-	
-	@FXML
-	private void pesquisadorTextField(KeyEvent event) {
+	private void pesquisadorComboBox(ActionEvent event) {
 		chbPesquisador.setSelected(true);
 	}
 	
@@ -122,20 +126,56 @@ public class TelaBuscarProjetoController implements Initializable {
 	}
 	@FXML
 	private void buscarProjeto(ActionEvent event) {
-		// Mudar depois
-		this.list.getChildren().add(
-				new BlocoViagem(new Viagem(
-						new Date(),
-						new Date(),
-						new Local("IMD/UFRN", "", "", "", 0.0, 0.0),
-						new Projeto("Projeto1", "", "", "", null, null)
-						
-				))	
-			);
-		System.out.println("Buscar Projeto!");
+		list.setVisible(false);
+		list.getChildren().clear();
+		
+		Projeto proj = new Projeto(
+				chbNomeProjeto.isSelected() ? (tfNomeProjeto.getText().trim().equals("") ? null : tfNomeProjeto.getText().trim()) : null,
+				null,
+				chbSiglaProjeto.isSelected() ? (tfSiglaProjeto.getText().trim().equals("") ? null : tfSiglaProjeto.getText().trim()): null,
+				null,
+				chbData.isSelected() ? ( dpData.getValue() != null ? Date.valueOf(dpData.getValue()) : null ) : null,
+				null
+		);
+		
+		Financiador f = chbFinanciador.isSelected() ? cmbFinanciador.getValue() : null;
+		Pesquisador p = chbPesquisador.isSelected() ? cmbPesquisador.getValue() : null;
+		Local l = chbLocal.isSelected() ? cmbLocal.getValue() : null;
+		
+		try {
+			for(Projeto projeto : projetoService.buscar(proj, f, p, l))
+				list.getChildren().add(new BlocoProjeto(projeto));
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção na busca de Projeto");
+		}
+		list.setVisible(true);
+	}
+	
+	public TelaBuscarProjetoController() {
+		this.projetoService = ProjetoService.getInstance();
+		this.financiadorService = FinanciadorService.getInstance();
+		this.pesquisadorService = PesquisadorService.getInstance();
+		this.localService = LocalService.getInstance();
 	}
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
-
+	public void initialize(URL location, ResourceBundle resources) {
+		try {
+			cmbFinanciador.getItems().addAll(financiadorService.listarFinanciadores());
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção de listar financiadores na tela de busca de Projeto");
+		}
+		
+		try {
+			cmbPesquisador.getItems().addAll(pesquisadorService.listarPesquisadores());
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção de listar pesquisadores na tela de busca de Projeto");
+		}
+		
+		try {
+			cmbLocal.getItems().addAll(localService.listarLocais());
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção de listar locais na tela de busca de Projeto");
+		}
+	}
 }

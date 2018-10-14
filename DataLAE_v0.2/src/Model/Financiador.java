@@ -60,6 +60,10 @@ public class Financiador {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}	
+	}
 	
+	@Override
+	public String toString() {
+		return this.cnpj + " -- " + this.nome;
+	}
 }

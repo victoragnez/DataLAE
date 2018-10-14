@@ -227,4 +227,9 @@ public class Projeto {
 		this.descricao = descricao;
 	}
 	
+	@Override
+	public String toString() {
+		return this.nome + this.sigla == null ? "" : "(" + this.sigla + ")";
+	}
+	
 }

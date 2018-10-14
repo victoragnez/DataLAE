@@ -84,4 +84,12 @@ public class Local {
 		this.longitude = longitude;
 	}
 	
+	@Override
+	public String toString() {
+		return this.nome +
+				(this.cidade != null && this.cidade != "" ? ", " + this.cidade : "") +
+				(this.estado != null && this.estado != "" ? ", " + this.estado : "") +
+				(this.pais != null && this.pais != "" ? ", " + this.pais : "");
+	}
+	
 }

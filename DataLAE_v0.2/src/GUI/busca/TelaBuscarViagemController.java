@@ -1,24 +1,36 @@
 package GUI.busca;
 
 import java.net.URL;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import GUI.listagem.BlocoViagem;
 import Model.Local;
+import Model.Pesquisador;
 import Model.Projeto;
 import Model.Viagem;
+import Service.LocalService;
+import Service.PesquisadorService;
+import Service.ProjetoService;
+import Service.ViagemService;
+import Service.Interfaces.ILocalService;
+import Service.Interfaces.IPesquisadorService;
+import Service.Interfaces.IProjetoService;
+import Service.Interfaces.IViagemService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class TelaBuscarViagemController implements Initializable {
+	private IViagemService viagemService;
+	private IPesquisadorService pesquisadorService;
+	private IProjetoService projetoService;
+	private ILocalService localService;
 	
 	@FXML
 	private VBox list;
@@ -36,19 +48,19 @@ public class TelaBuscarViagemController implements Initializable {
 	private CheckBox chbData;
 	
 	@FXML
-	private TextField tfPesquisador;
+	private ComboBox<Pesquisador> cmbPesquisador;
 	
 	@FXML
-	private ComboBox<String> cmbProjeto;
+	private ComboBox<Projeto> cmbProjeto;
 	
 	@FXML
-	private ComboBox<String> cmbLocal;
+	private ComboBox<Local> cmbLocal;
 	
 	@FXML
 	private DatePicker dpData;
 	
 	@FXML
-	private void pesquisadorTextField(KeyEvent event) {
+	private void pesquisadorComboBox(ActionEvent event) {
 		chbPesquisador.setSelected(true);
 	}
 	
@@ -69,29 +81,54 @@ public class TelaBuscarViagemController implements Initializable {
 	
 	@FXML
 	private void buscarViagem(ActionEvent event) {
-		// Montar Viagem
+		list.setVisible(false);
+		list.getChildren().clear();
 		
-		// Buscar no banco (retorna ArrayList<Viagem>)
+		Viagem v = new Viagem(
+				chbData.isSelected() ? (dpData.getValue() == null ? null : Date.valueOf(dpData.getValue())) : null,
+				null,
+				null,
+				null);
 		
-		// Limpa a lista
+		Projeto proj = chbProjeto.isSelected() ? cmbProjeto.getValue() : null;
+		Pesquisador p = chbPesquisador.isSelected() ? cmbPesquisador.getValue() : null;
+		Local l = chbLocal.isSelected() ? cmbLocal.getValue() : null;
 		
-		// Exibe a nova lista
+		try {
+			for(Viagem viagem : viagemService.buscar(v, p, proj, l))
+				list.getChildren().add(new BlocoViagem(viagem));
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção na busca de Viagem");
+		}
 		
-		this.list.getChildren().add(
-			new BlocoViagem(new Viagem(
-					new Date(),
-					new Date(),
-					new Local("IMD/UFRN", "", "", "", 0.0, 0.0),
-					new Projeto("Projeto1", "", "", "", null, null)
-					
-			))	
-		);
-		
-		//this.list.getChildren().add(new Button("Teste"));
-		System.out.println("Buscar Viagem!");
+		list.setVisible(true);
+	}
+	
+	public TelaBuscarViagemController() {
+		viagemService = ViagemService.getInstance();
+		pesquisadorService = PesquisadorService.getInstance();
+		projetoService = ProjetoService.getInstance();
+		localService = LocalService.getInstance();
 	}
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
-
+	public void initialize(URL location, ResourceBundle resources) {
+		try {
+			cmbPesquisador.getItems().addAll(pesquisadorService.listarPesquisadores());
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção ao carregar lista de pesquisadores na tela de busca de Viagem");
+		}
+		
+		try {
+			cmbProjeto.getItems().addAll(projetoService.listarProjetos());
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção ao carregar lista de projetos na tela de busca de Viagem");
+		}
+		
+		try {
+			cmbLocal.getItems().addAll(localService.listarLocais());
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção ao carregar lista de locais na tela de busca de Viagem");
+		}
+	}
 }

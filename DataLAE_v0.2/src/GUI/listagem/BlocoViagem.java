@@ -1,70 +1,69 @@
 package GUI.listagem;
 
+import java.sql.SQLException;
+
 import Model.Viagem;
+import Service.ViagemService;
+import Service.Interfaces.IViagemService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class BlocoViagem extends BorderPane {
-	
+public class BlocoViagem extends Bloco {
+	private IViagemService service;
 	private Viagem viagem;
 	
 	public BlocoViagem(Viagem viagem) {
 		super();
 		this.viagem = viagem;
+		this.service = ViagemService.getInstance();
 		
-		VBox vbox = new VBox(5);
-		
-		Label local = new Label(this.viagem.getLocal().getNome());
-		local.setStyle(
+		Label data = new Label(this.viagem.getDataInicio() + " - " + this.viagem.getDataTermino());
+		data.setStyle(
 				"-fx-text-fill: chocolate;"
         		+ "-fx-font-weight: bold;"
-            	+ "-fx-font-size: 24;"
+            	+ "-fx-font-size: 20;"
         );
-		String style = "-fx-text-fill: chocolate; -fx-font-weight: bold;";
+		String style = "-fx-text-fill: chocolate; -fx-font-weight: bold; -fx-font-size: 14";
 		
 		
-		Label lIni = new Label("Início:");
-		Label lDataIni = new Label(this.viagem.getDataInicio().toString());
-		lIni.setStyle(style);
-		
-		Label lFim = new Label("Término:");
-		Label lDataFim = new Label(this.viagem.getDataTermino().toString());
-		lFim.setStyle(style);
+		Label lLocal = new Label("Local:");
+		Label local = new Label(
+			this.viagem.getLocal().getNome() + 
+			(this.viagem.getLocal().getCidade().length() > 0 ? ", " + this.viagem.getLocal().getCidade() : "") + 
+			(this.viagem.getLocal().getEstado().length() > 0 ? ", " + this.viagem.getLocal().getEstado() : "") + 
+			(this.viagem.getLocal().getPais().length() > 0 ? ", " + this.viagem.getLocal().getPais() : ""));
+		local.setStyle("-fx-font-size: 14");
+		lLocal.setStyle(style);
 		
 		Label lProj = new Label("Projeto:");
 		Label lProjNome = new Label(this.viagem.getProjeto().getNome());
+		lProjNome.setStyle("-fx-font-size: 14");
+		lProj.setStyle(style);
 		
-		this.addLabelsToVBox(vbox, local, null);
-		this.addLabelsToVBox(vbox, lIni, lDataIni);
-		this.addLabelsToVBox(vbox, lFim, lDataFim);
-		this.addLabelsToVBox(vbox, lProj, lProjNome);
-		
-		
+		VBox vbox = new VBox(5);
 		vbox.setAlignment(Pos.TOP_LEFT);
 		vbox.setPadding(new Insets(10));
-		
+		this.addLabelsToVBox(vbox, data, null);
+		this.addLabelsToVBox(vbox, lLocal, local);
+		this.addLabelsToVBox(vbox, lProj, lProjNome);
 		this.setCenter(vbox);
-		this.setPrefHeight(100);
-		this.setPadding(new Insets(10));
-		this.setOnMouseEntered(e -> this.setStyle(
-			"-fx-background-color: rgb(220,220,220);"
-			+ "-fx-cursor: hand"
-		));
-		this.setOnMouseExited(e -> this.setStyle(""));
+		
+		Button remove = new Button("Remover");
+		remove.setOnAction(evt -> removerViagem());
+		remove.setMinHeight(25);
+		remove.setPrefHeight(25);
+		remove.setMaxHeight(25);
+		this.setRight(remove);
 	}
 	
-	private void addLabelsToVBox(VBox vbox, Label l1, Label l2) {
-		HBox hbox = new HBox(5);
-		
-		if(l1 != null)
-			hbox.getChildren().add(l1);
-		if(l2 != null)
-			hbox.getChildren().add(l2);
-		if(l1 != null || l2 != null)
-			vbox.getChildren().add(hbox);
+	private void removerViagem() {
+		try {
+			service.remover(viagem);
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção na remoção de Viagem");
+		}
 	}
 }

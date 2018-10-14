@@ -12,12 +12,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-alignment: top-center;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.cadastro.FXMLCadProjController">
+<GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-alignment: top-center;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.cadastro.controller.FXMLCadProjController">
   <columnConstraints>
       <ColumnConstraints hgrow="NEVER" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
-    <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="165.0" prefWidth="165.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="165.0" prefWidth="165.0" />
     <ColumnConstraints hgrow="NEVER" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="165.0" prefWidth="165.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="165.0" prefWidth="165.0" />
       <ColumnConstraints hgrow="NEVER" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
   </columnConstraints>
   <rowConstraints>
@@ -26,9 +26,9 @@
     <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
     <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
       <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="40.0" prefHeight="151.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="40.0" prefHeight="150.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <TextField fx:id="txNomeProj" promptText="Nome" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />

@@ -29,6 +29,9 @@ public class TelaBuscarArquivoController implements Initializable {
 	private CheckBox chbTipo;
 	
 	@FXML
+	private CheckBox chbCategoria;
+	
+	@FXML
 	private ComboBox<String> cmbProjeto;
 	
 	@FXML
@@ -36,6 +39,9 @@ public class TelaBuscarArquivoController implements Initializable {
 	
 	@FXML
 	private ComboBox<String> cmbTipo;
+	
+	@FXML
+	private ComboBox<String> cmbCategoria;
 	
 	@FXML
 	private void projetoComboBox(ActionEvent event) {
@@ -50,6 +56,11 @@ public class TelaBuscarArquivoController implements Initializable {
 	@FXML
 	private void tipoComboBox(ActionEvent event) {
 		chbTipo.setSelected(true);
+	}
+	
+	@FXML
+	private void categoriaCheckBox(ActionEvent event) {
+		chbCategoria.setSelected(true);
 	}
 	
 	@FXML

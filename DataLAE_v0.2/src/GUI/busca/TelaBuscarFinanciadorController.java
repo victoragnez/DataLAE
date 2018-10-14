@@ -1,13 +1,16 @@
 package GUI.busca;
 
 import java.net.URL;
-import java.util.Date;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import GUI.listagem.BlocoViagem;
-import Model.Local;
+import GUI.listagem.BlocoFinanciador;
+import Model.Financiador;
 import Model.Projeto;
-import Model.Viagem;
+import Service.FinanciadorService;
+import Service.ProjetoService;
+import Service.Interfaces.IFinanciadorService;
+import Service.Interfaces.IProjetoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +21,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class TelaBuscarFinanciadorController implements Initializable {
+	private IFinanciadorService financiadorService;
+	private IProjetoService projetoService;
+	
 	@FXML
 	private VBox list;
 	
@@ -37,7 +43,7 @@ public class TelaBuscarFinanciadorController implements Initializable {
 	private TextField tfCNPJ;
 	
 	@FXML
-	private ComboBox<String> cmbProjeto;
+	private ComboBox<Projeto> cmbProjeto;
 	
 	@FXML
 	private void nomeTextField(KeyEvent event) {
@@ -56,20 +62,36 @@ public class TelaBuscarFinanciadorController implements Initializable {
 	
 	@FXML
 	private void buscarFinanciador(ActionEvent event) {
-		// Mudar depois
-		this.list.getChildren().add(
-			new BlocoViagem(new Viagem(
-					new Date(),
-					new Date(),
-					new Local("IMD/UFRN", "", "", "", 0.0, 0.0),
-					new Projeto("Projeto1", "", "", "", null, null)
-					
-			))	
+		list.setVisible(false);
+		list.getChildren().clear();
+		
+		Financiador f = new Financiador(
+				chbNome.isSelected() ? (tfNome.getText().trim().length() == 0 ? null : tfNome.getText().trim()) : null,
+				chbCNPJ.isSelected() ? (tfCNPJ.getText().trim().length() == 0 ? null : tfCNPJ.getText().trim()) : null
 		);
 		
-		System.out.println("Buscar Financiador");
+		Projeto p = chbProjeto.isSelected() ? cmbProjeto.getValue() : null; 
+		
+		try {
+			for(Financiador financiador : financiadorService.buscar(f, p))
+				list.getChildren().add(new BlocoFinanciador(financiador));
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção na busca de financiadores");
+		}
+		list.setVisible(true);
+	}
+	
+	public TelaBuscarFinanciadorController() {
+		this.financiadorService = FinanciadorService.getInstance();
+		this.projetoService = ProjetoService.getInstance();
 	}
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
+	public void initialize(URL location, ResourceBundle resources) {
+		try {
+			cmbProjeto.getItems().addAll(projetoService.listarProjetos());
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção no carregamento de projetos na tela de busca de Financiador");
+		}
+	}
 }

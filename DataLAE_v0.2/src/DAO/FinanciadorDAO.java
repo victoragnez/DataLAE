@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import DAO.Interfaces.IFinanciadorDAO;
 import Model.Financiador;
+import Model.Projeto;
 
 public class FinanciadorDAO implements IFinanciadorDAO{
 
@@ -48,10 +49,57 @@ public class FinanciadorDAO implements IFinanciadorDAO{
 
 	@Override
 	public ArrayList<Financiador> listarFinanciadores() throws SQLException {
-
-		ArrayList<Financiador> retorno = new ArrayList<Financiador>();
 		String sql = "select * from Financiador;";
-		ResultSet resultSet = JDBC.runQuery(sql);
+		return getFinanciadorFromResult(JDBC.runQuery(sql));
+	}
+
+	@Override
+	public void alterar(Financiador f) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Financiador> buscar(Financiador f, Projeto p) throws SQLException {
+		String sql = "select f.* from Financiador as f";
+		
+		if(p != null && p.getCodigo() != null) {
+			sql += " inner join FinanciamentoProjeto as proj on "
+					+ "f.codigoFinanciador = proj.codigoFinanciador and"
+					+ " proj.codigoProjeto = " + p.getCodigo();
+		}
+		
+		if(f != null && (f.getCodigo() != null || f.getNome() != null || f.getCnpj() != null)) {
+			sql += " where";
+			
+			ArrayList<String> cond = new ArrayList<String>();
+			
+			if(f.getCodigo() != null) {
+				cond.add("f.codigoFinanciador = " + f.getCodigo());
+			}
+			
+			if(f.getNome() != null) {
+				cond.add("f.nome like '%" + f.getNome() + "%'");
+			}
+			
+			if(f.getCnpj() != null) {
+				cond.add("f.cnpj = '" + f.getCnpj() + "'");
+			}
+			
+			for(int i = 0; i < cond.size(); i++) {
+				sql += " " + cond.get(i);
+				if(i + 1 < cond.size())
+					sql += " and";
+			}
+		}
+		
+		sql += ";";
+		
+		return getFinanciadorFromResult(JDBC.runQuery(sql));
+	}
+	
+	private ArrayList<Financiador> getFinanciadorFromResult(ResultSet resultSet) throws SQLException {
+		ArrayList<Financiador> retorno = new ArrayList<Financiador>();
 
 		while(resultSet.next()) {
 
@@ -64,11 +112,4 @@ public class FinanciadorDAO implements IFinanciadorDAO{
 		}
 		return retorno;
 	}
-
-	@Override
-	public void alterar(Financiador f) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

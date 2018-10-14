@@ -1,5 +1,8 @@
 package Service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import DAO.FinanciadorDAO;
 import DAO.Interfaces.IFinanciadorDAO;
 import Model.Financiador;
@@ -30,29 +33,32 @@ public final class FinanciadorService implements IFinanciadorService{
         
         return w.getInstancia();
 	}
-	
+
 	@Override
-	public void inserir(Financiador f, Projeto p) {
-		// TODO Auto-generated method stub
-		
+	public void inserir(Financiador f) throws SQLException {
+		dao.inserir(f);
 	}
 
 	@Override
-	public void remover(Financiador f, Projeto p) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Financiador f) throws SQLException {
+		dao.remover(f);
 	}
 
 	@Override
-	public Financiador consultar(String codigoFinanciador, Projeto p) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Financiador> listarFinanciadores() throws SQLException {
+		return dao.listarFinanciadores();
+	}
+
+	@Override
+	public ArrayList<Financiador> buscar(Financiador f, Projeto p) throws SQLException {
+		return dao.buscar(f, p);
 	}
 
 	@Override
 	public void alterar(Financiador f) {
-		// TODO Auto-generated method stub
-		
+		dao.alterar(f);
 	}
+	
+
 
 }

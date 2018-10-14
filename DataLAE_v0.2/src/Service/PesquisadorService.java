@@ -1,6 +1,7 @@
 package Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import DAO.PesquisadorDAO;
 import DAO.Interfaces.IPesquisadorDAO;
@@ -33,7 +34,7 @@ public final class PesquisadorService implements IPesquisadorService {
 	}
 	
 	@Override
-	public void inserir(Pesquisador p) throws SQLException {
+	public void inserir(Pesquisador p) throws SQLException, IllegalArgumentException {
 		if ( p == null ) 
 			throw new IllegalArgumentException("Argumento nulo!"); 
 		
@@ -44,15 +45,13 @@ public final class PesquisadorService implements IPesquisadorService {
 	}
 
 	@Override
-	public void remover(Pesquisador p) {
-		// TODO Auto-generated method stub
-		
+	public void remover(Pesquisador p) throws SQLException {
+		dao.remover(p);
 	}
 
 	@Override
-	public Pesquisador consultar(String codigoPesquisador) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Pesquisador> listarPesquisadores() throws SQLException {
+		return dao.listarPesquisadores();
 	}
 
 	@Override

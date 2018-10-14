@@ -100,7 +100,7 @@ public class ProjetoDAO  implements IProjetoDAO{
 					campos.add("codigoProjeto=" + p.getCodigo());
 					campos.add("codigoLocal=" + l.getCodigo());
 					
-					sql = "insert into LocalPesquisa set ";
+					sql = "insert into LocalProjeto set ";
 					for(int i = 0; i < campos.size(); i++) {
 						sql += campos.get(i);
 						if(i+1 < campos.size())
@@ -128,10 +128,76 @@ public class ProjetoDAO  implements IProjetoDAO{
 
 	@Override
 	public ArrayList<Projeto> listarProjetos() throws SQLException {
-		
-		ArrayList<Projeto> retorno = new ArrayList<Projeto>();
 		String sql = "select * from Projeto;";
-		ResultSet resultSet = JDBC.runQuery(sql);
+		return getProjetoFromResult(JDBC.runQuery(sql));
+	}
+	
+	@Override
+	public void alterar(Projeto p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Projeto> buscar(Projeto proj, Financiador f, Pesquisador p, Local l) 
+			throws SQLException {
+		
+		String sql = "select proj.* from Projeto as proj";
+		
+		if(p != null && p.getCodigo() != null) {
+			sql += " inner join PesquisadorProjeto as p on proj.codigoProjeto = p.codigoProjeto and"
+					+ " p.codigoPesquisador = " + p.getCodigo();
+		}
+		
+		if(l != null && l.getCodigo() != null) {
+			sql += " inner join LocalProjeto as l on proj.codigoProjeto = l.codigoProjeto and"
+					+ " l.codigoLocal = " + l.getCodigo();
+		}
+		
+		if(f != null && f.getCodigo() != null) {
+			sql += " inner join FinanciamentoProjeto as f on proj.codigoProjeto = f.codigoProjeto and"
+					+ " f.codigoFinanciador = " + f.getCodigo();
+		}
+		
+		if(proj != null && (proj.getCodigo() != null || proj.getDataInicio() != null || 
+				proj.getSigla() != null || proj.getNome() != null)) {
+			
+			sql += " where";
+			
+			ArrayList<String> cond = new ArrayList<String>();
+			
+			if(proj.getCodigo() != null) {
+				cond.add("proj.codigoProjeto = " + proj.getCodigo());
+			}
+			
+			if(proj.getSigla() != null) {
+				cond.add("proj.sigla = " + proj.getSigla());
+			}
+			
+			if(proj.getCoordenador() != null) {
+				cond.add("proj.nomeCoordenador = '" + proj.getCoordenador() + "'");
+			}
+			
+			if(proj.getDataInicio() != null) {
+				cond.add("proj.dataInicio <= '" + proj.getDataInicio().toString() + "'");
+				cond.add("(proj.dataTermino is null or proj.dataTermino >= '" + 
+						proj.getDataInicio().toString() + "')");
+			}
+			
+			for(int i = 0; i < cond.size(); i++) {
+				sql += " " + cond.get(i);
+				if(i + 1 < cond.size())
+					sql += " and";
+			}
+		}
+		
+		sql += ";";
+		
+		return getProjetoFromResult(JDBC.runQuery(sql));
+	}
+	
+	private ArrayList<Projeto> getProjetoFromResult(ResultSet resultSet) throws SQLException {
+		ArrayList<Projeto> retorno = new ArrayList<Projeto>();
 
 		while(resultSet.next()) {
 			
@@ -149,11 +215,5 @@ public class ProjetoDAO  implements IProjetoDAO{
 		}
 		return retorno;
 	}
-
-	@Override
-	public void alterar(Projeto p) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }

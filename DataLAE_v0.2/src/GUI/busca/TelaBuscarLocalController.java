@@ -1,13 +1,19 @@
 package GUI.busca;
 
 import java.net.URL;
-import java.util.Date;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import GUI.listagem.BlocoViagem;
+import GUI.listagem.BlocoLocal;
 import Model.Local;
+import Model.Pesquisador;
 import Model.Projeto;
-import Model.Viagem;
+import Service.LocalService;
+import Service.PesquisadorService;
+import Service.ProjetoService;
+import Service.Interfaces.ILocalService;
+import Service.Interfaces.IPesquisadorService;
+import Service.Interfaces.IProjetoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +24,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class TelaBuscarLocalController implements Initializable {
+	private ILocalService localService;
+	private IPesquisadorService pesquisadorService;
+	private IProjetoService projetoService;
+	
 	@FXML
 	private VBox list;
 
@@ -58,7 +68,7 @@ public class TelaBuscarLocalController implements Initializable {
 	private TextField tfCidade;
 	
 	@FXML
-	private TextField tfPesquisador;
+	private ComboBox<Pesquisador> cmbPesquisador;
 	
 	@FXML
 	private TextField tfLatitude;
@@ -67,7 +77,7 @@ public class TelaBuscarLocalController implements Initializable {
 	private TextField tfLongitude;
 	
 	@FXML
-	private ComboBox<String> cmbProjeto;
+	private ComboBox<Projeto> cmbProjeto;
 	
 	@FXML
 	private void nomeTextField(KeyEvent event) {
@@ -90,7 +100,7 @@ public class TelaBuscarLocalController implements Initializable {
 	}
 	
 	@FXML
-	private void pesquisadorTextField(KeyEvent event) {
+	private void pesquisadorComboBox(ActionEvent event) {
 		chbPesquisador.setSelected(true);
 	}
 	
@@ -111,20 +121,49 @@ public class TelaBuscarLocalController implements Initializable {
 	
 	@FXML
 	private void buscarLocal(ActionEvent event) {
-		// Mudar depois
-		this.list.getChildren().add(
-				new BlocoViagem(new Viagem(
-						new Date(),
-						new Date(),
-						new Local("IMD/UFRN", "", "", "", 0.0, 0.0),
-						new Projeto("Projeto1", "", "", "", null, null)
-						
-				))	
-			);
-		System.out.println("Buscar Local");
+		list.setVisible(false);
+		list.getChildren().clear();
+		
+		Local l = new Local(
+				chbNome.isSelected() ? (tfNome.getText().trim().length() == 0 ? null : tfNome.getText().trim()) : null,
+				chbPais.isSelected() ? (tfPais.getText().trim().length() == 0 ? null : tfPais.getText().trim()) : null,
+				chbEstado.isSelected() ? (tfEstado.getText().trim().length() == 0 ? null : tfEstado.getText().trim()) : null,
+				chbCidade.isSelected() ? (tfCidade.getText().trim().length() == 0 ? null : tfCidade.getText().trim()) : null,		
+				null, 
+				null
+		);
+		
+		Pesquisador p = chbPesquisador.isSelected() ? cmbPesquisador.getValue() : null;
+		Projeto proj = chbProjeto.isSelected() ? cmbProjeto.getValue() : null;
+		
+		try {
+			for(Local local : localService.buscar(l, p, proj))
+				list.getChildren().add(new BlocoLocal(local));
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção em busca de local");
+		}
+		list.setVisible(true);
+	}
+	
+	public TelaBuscarLocalController() {
+		localService = LocalService.getInstance();
+		pesquisadorService = PesquisadorService.getInstance();
+		projetoService = ProjetoService.getInstance();
 	}
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
+	public void initialize(URL location, ResourceBundle resources) {
+		try {
+			cmbPesquisador.getItems().addAll(pesquisadorService.listarPesquisadores());
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção de pesquisadores na tela de busca de Local");
+		}
+		
+		try {
+			cmbProjeto.getItems().addAll(projetoService.listarProjetos());
+		} catch (SQLException e) {
+			System.out.println("Tratar exceção de projetos na tela de busca de Local");
+		}
+	}
 
 }
