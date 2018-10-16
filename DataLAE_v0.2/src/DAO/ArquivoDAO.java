@@ -5,21 +5,23 @@ import java.util.ArrayList;
 
 import DAO.Interfaces.IArquivoDAO;
 import Model.Arquivo;
+import Model.Projeto;
+import Model.Viagem;
 
 public class ArquivoDAO implements IArquivoDAO {
 
 	@Override
-	public void inserir(Arquivo user) {
+	public void inserir(Arquivo a) {
 		System.out.println("Arquivo inserido!");
 	}
 
 	@Override
-	public void remover(Arquivo user) {
+	public void remover(Arquivo a) {
 		System.out.println("Arquivo removido!");		
 	}
 
 	@Override
-	public void alterar(Arquivo user) {
+	public void alterar(Arquivo a) {
 		System.out.println("Arquivo editado!");
 	}
 
@@ -29,7 +31,7 @@ public class ArquivoDAO implements IArquivoDAO {
 	}
 
 	@Override
-	public ArrayList<Arquivo> buscar() throws SQLException {
+	public ArrayList<Arquivo> buscar(Arquivo a, Projeto proj, Viagem v) throws SQLException {
 		return new ArrayList<Arquivo>();
 	}
 

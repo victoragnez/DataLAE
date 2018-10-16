@@ -56,12 +56,7 @@ public class FXMLCadArquivoController implements Initializable {
 	@FXML
 	private void botaoCadastrar(ActionEvent event) {
 		try {
-			service.inserir(new Arquivo(
-					null,
-					tfNome.getText().trim(),
-					cmbTipo.getValue(),
-					cmbCategoria.getValue()
-			));
+			service.inserir(null);
 		} catch (SQLException e) {
 			System.out.println("Tratar exceção no cadastro de um novo arquivo");
 		}

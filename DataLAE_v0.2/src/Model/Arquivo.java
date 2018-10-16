@@ -1,10 +1,14 @@
 package Model;
 
+import java.io.InputStream;
+
 public class Arquivo {
-	private Integer codigo;
 	private String nome;
 	private TipoArquivo tipo;
 	private Metodo metodo;
+	private Integer tamanho;
+	private InputStream dados;
+	private Integer codigo;
 	
 	public Arquivo() {
 		codigo = null;
@@ -13,11 +17,19 @@ public class Arquivo {
 		metodo = null;
 	}
 	
-	public Arquivo(Integer codigo, String nome, TipoArquivo tipo, Metodo metodo) {
-		this.codigo = codigo;
+	public Arquivo(String nome, TipoArquivo tipo, 
+			Metodo metodo, Integer tamanho, InputStream dados, Integer codigo) {
 		this.nome = nome;
 		this.tipo = tipo;
 		this.metodo = metodo;
+		this.tamanho = tamanho;
+		this.dados = dados;
+		this.codigo = codigo;
+	}
+	
+	public Arquivo(String nome, TipoArquivo tipo, 
+			Metodo metodo, Integer tamanho, InputStream dados) {
+		this(nome, tipo, metodo, tamanho, dados, null);
 	}
 
 	public String getNome() {
@@ -46,5 +58,33 @@ public class Arquivo {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	/**
+	 * @return the dados
+	 */
+	public InputStream getDados() {
+		return dados;
+	}
+
+	/**
+	 * @param dados the dados to set
+	 */
+	public void setDados(InputStream dados) {
+		this.dados = dados;
+	}
+
+	/**
+	 * @return the tamanho
+	 */
+	public Integer getTamanho() {
+		return tamanho;
+	}
+
+	/**
+	 * @param tamanho the tamanho to set
+	 */
+	public void setTamanho(Integer tamanho) {
+		this.tamanho = tamanho;
 	}
 }

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import DAO.ArquivoDAO;
 import DAO.Interfaces.IArquivoDAO;
 import Model.Arquivo;
+import Model.Projeto;
+import Model.Viagem;
 import Service.Interfaces.IArquivoService;
 
 public final class ArquivoService implements IArquivoService {
@@ -49,8 +51,8 @@ public final class ArquivoService implements IArquivoService {
 	}
 
 	@Override
-	public ArrayList<Arquivo> buscar() throws SQLException {
-		return dao.buscar();
+	public ArrayList<Arquivo> buscar(Arquivo a, Projeto proj, Viagem v) throws SQLException {
+		return dao.buscar(a, proj, v);
 	}
 
 	@Override
