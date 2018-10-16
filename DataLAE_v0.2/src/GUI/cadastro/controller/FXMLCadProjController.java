@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import Model.Projeto;
 import Service.ProjetoService;
 import Service.Interfaces.IProjetoService;
@@ -68,9 +70,13 @@ public class FXMLCadProjController implements Initializable {
     	 
     	 try {
     		 projetoService.inserir(p);
-		 } catch (Exception e) {	
-			// Avisar ao cliente aqui
-		 }
+    		 JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
+    					null, JOptionPane.OK_OPTION);
+    	 } catch (Exception e) {	
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		}
+    	
     }
     
     public FXMLCadProjController() {

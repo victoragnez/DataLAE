@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import Model.Local;
 import Model.Projeto;
 import Model.Viagem;
@@ -57,9 +59,13 @@ public class FXMLCadViagemControler implements Initializable {
 		Viagem v = new Viagem(dataInicio, dataFim, local, projeto);
 		try {
 			viagemService.inserir(v);
+			JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
+					null, JOptionPane.OK_OPTION);
 		} catch (SQLException e) {
-			System.out.println("Tratar exceção no cadastro de Viagem");
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
+    	
 	}
 	
 	public FXMLCadViagemControler() {

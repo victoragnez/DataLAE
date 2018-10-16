@@ -35,11 +35,23 @@ public final class ArquivoService implements IArquivoService {
 
 	@Override
 	public void inserir(Arquivo arquivo) throws SQLException {
+		if (arquivo == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (arquivo.getNome() == null)
+			throw new IllegalArgumentException("Campo obrigatório nulo!");
+		
 		dao.inserir(arquivo);
 	}
 
 	@Override
 	public void remover(Arquivo arquivo) throws SQLException {
+		if (arquivo == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (arquivo.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o arquivo informado"); 
+		
 		dao.remover(arquivo);
 	}
 
@@ -55,6 +67,12 @@ public final class ArquivoService implements IArquivoService {
 
 	@Override
 	public void alterar(Arquivo arquivo) throws SQLException {
+		if (arquivo == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (arquivo.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o arquivo informado"); 
+		
 		dao.alterar(arquivo);
 	}
 	

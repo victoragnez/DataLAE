@@ -38,11 +38,23 @@ public final class ViagemService implements IViagemService {
 
 	@Override
 	public void inserir(Viagem v) throws SQLException {
+		if (v == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (v.getDataInicio() == null || v.getDataTermino() == null)
+			throw new IllegalArgumentException("Campo obrigatório nulo"); 
+		
 		dao.inserir(v);
 	}
 
 	@Override
 	public void remover(Viagem v) throws SQLException {
+		if (v == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (v.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar a viagem informada"); 
+				
 		dao.remover(v);
 	}
 
@@ -53,11 +65,23 @@ public final class ViagemService implements IViagemService {
 
 	@Override
 	public ArrayList<Viagem> buscar(Viagem v, Pesquisador p, Projeto proj, Local l) throws SQLException {
+		if (v == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (v.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar a viagem informada"); 
+			
 		return dao.buscar(v, p, proj, l);
 	}
 
 	@Override
 	public void alterar(Viagem v) {
+		if (v == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (v.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar a viagem informada"); 
+		
 		dao.alterar(v);
 	}
 

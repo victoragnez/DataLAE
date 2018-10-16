@@ -2,8 +2,9 @@ package GUI.cadastro.controller;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import Model.Arquivo;
 import Model.Metodo;
@@ -62,12 +63,13 @@ public class FXMLCadArquivoController implements Initializable {
 					cmbTipo.getValue(),
 					cmbCategoria.getValue()
 			));
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção no cadastro de um novo arquivo");
+			
+			JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
+					null, JOptionPane.OK_OPTION);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
-		System.out.println("Arquivo cadastrado");
 	}
 
 	@Override

@@ -1,11 +1,11 @@
 package GUI.cadastro.controller;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
 
 import Model.Categoria;
 import Model.Pesquisador;
@@ -63,11 +63,13 @@ public class FXMLCadPesqController implements Initializable {
     
     	try {
     		pesquisadorService.inserir(p);
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção no cadastro de pesquisador");
-		} catch (IllegalArgumentException e) {
-			System.out.println("Argumentos inválidos");
-		}
+    		JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
+    				null, JOptionPane.OK_OPTION);
+    	} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		}    	
+  
     }
     
     public FXMLCadPesqController() {

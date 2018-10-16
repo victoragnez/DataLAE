@@ -46,6 +46,12 @@ public final class PesquisadorService implements IPesquisadorService {
 
 	@Override
 	public void remover(Pesquisador p) throws SQLException {
+		if (p == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (p.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o Projeto informado"); 
+		
 		dao.remover(p);
 	}
 
