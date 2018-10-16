@@ -1,7 +1,7 @@
 package GUI.busca;
 
 import java.net.URL;
-import java.util.Date;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
 import GUI.listagem.BlocoViagem;
@@ -68,8 +68,8 @@ public class TelaBuscarArquivoController implements Initializable {
 		// Mudar depois
 		this.list.getChildren().add(
 				new BlocoViagem(new Viagem(
-						new Date(),
-						new Date(),
+						new Date(0),
+						new Date(0),
 						new Local("IMD/UFRN", "", "", "", 0.0, 0.0),
 						new Projeto("Projeto1", "", "", "", null, null)
 						

@@ -1,7 +1,10 @@
 package DAO;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Date;
 
+import Model.Arquivo;
 import Model.Categoria;
 import Model.Diretor;
 import Model.Financiador;
@@ -236,6 +239,21 @@ class MainParaTestes {
 			
 		} catch (Exception e1) {
 			e1.printStackTrace();
+		}
+		
+		
+		ArquivoDAO arquivoDAO = new ArquivoDAO();
+		
+		File file = new File("/home/victoragnez/Dropbox/Disciplinas/Projeto de Software/DataLAE/DataLAE_v0.2/banco/dataLAEBanco.sql");
+		
+		FileInputStream fInputStream;
+		try {
+			fInputStream = new FileInputStream(file);
+			Arquivo a = new Arquivo("aaa", null, null, 10L, fInputStream, p1, null);
+			arquivoDAO.inserir(a);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
