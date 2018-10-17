@@ -2,6 +2,7 @@ package GUI.cadastro.controller;
 
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -10,7 +11,11 @@ import javax.swing.JOptionPane;
 import Model.Local;
 import Model.Projeto;
 import Model.Viagem;
+import Service.LocalService;
+import Service.ProjetoService;
 import Service.ViagemService;
+import Service.Interfaces.ILocalService;
+import Service.Interfaces.IProjetoService;
 import Service.Interfaces.IViagemService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +26,8 @@ import javafx.scene.control.DatePicker;
 
 public class FXMLCadViagemControler implements Initializable {
 	private IViagemService viagemService;
+	private ILocalService localService;
+	private IProjetoService projetoService;
 	
 	@FXML
 	private ComboBox<Local> local;
@@ -69,8 +76,22 @@ public class FXMLCadViagemControler implements Initializable {
 	
 	public FXMLCadViagemControler() {
 		viagemService = ViagemService.getInstance();
+		localService = LocalService.getInstance();
+		projetoService = ProjetoService.getInstance();
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
+	public void initialize(URL location, ResourceBundle resources) {
+		try {
+			local.getItems().addAll(localService.listarLocais());
+		} catch (SQLException e) {
+			System.out.println("Erro em listar locais no cadastro de Viagem!");
+		}
+		
+		try {
+			projeto.getItems().addAll(projetoService.listarProjetos());
+		} catch (SQLException e) {
+			System.out.println("Erro em listar projetos no cadastro de Viagem!");
+		}
+	}
 }
