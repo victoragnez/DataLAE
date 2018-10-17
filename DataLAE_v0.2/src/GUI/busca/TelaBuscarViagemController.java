@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import GUI.listagem.BlocoViagem;
 import Model.Local;
 import Model.Pesquisador;
@@ -97,8 +99,9 @@ public class TelaBuscarViagemController implements Initializable {
 		try {
 			for(Viagem viagem : viagemService.buscar(v, p, proj, l))
 				list.getChildren().add(new BlocoViagem(viagem));
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção na busca de Viagem");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		list.setVisible(true);
@@ -115,20 +118,23 @@ public class TelaBuscarViagemController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			cmbPesquisador.getItems().addAll(pesquisadorService.listarPesquisadores());
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção ao carregar lista de pesquisadores na tela de busca de Viagem");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		try {
 			cmbProjeto.getItems().addAll(projetoService.listarProjetos());
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção ao carregar lista de projetos na tela de busca de Viagem");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		try {
 			cmbLocal.getItems().addAll(localService.listarLocais());
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção ao carregar lista de locais na tela de busca de Viagem");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

@@ -1,11 +1,27 @@
 
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Δ”ςªH·RMINORZ
+jsquid:S1135:"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ήΑρθα,HΏRINFOZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ήΑρθα,HΘRINFOZ
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Δ”ςªHΐRMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ήΑρθα,HΙRINFOZ
+Psquid:S1643"Use a StringBuilder instead.(¤έ—ά8·€Σνη,HΑRMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ήΑρθα,HΚRINFOZ
+Usquid:S1643"Use a StringBuilder instead.(ρ¤ΆΤψÿÿÿÿ8·€Σνη,HΒRMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ήΑρθα,HΛRINFOZ
+Psquid:S1643Z"Use a StringBuilder instead.(σύΞΧ8·€Σνη,HΓRMINORZ
+CODE_SMELL
+Psquid:S1643\"Use a StringBuilder instead.(ΔεΏΠ8·€Σνη,HΔRMINORZ
+CODE_SMELL
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(νήμ8·€Σνη,HΕRMINORZ
+CODE_SMELL
+’squid:S2293K"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ν¬­΄ωÿÿÿÿ8·€Σνη,HΖRMINORZ
+CODE_SMELL
+squid:S2293f"YReplace the type specification in this constructor call with the diamond operator ("<>").(³σƒ8·€Σνη,HΗRMINORZ
+CODE_SMELL
+©squid:S13193"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(”Έªύÿÿÿÿ8·€Σνη,HΘRMINORZ
+CODE_SMELL
+©squid:S1319?"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(χΐψίύÿÿÿÿ8·€Σνη,HΙRMINORZ
+CODE_SMELL
+squid:S3776?"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(χΐψίύÿÿÿÿ8·€Σνη,HΚRCRITICALZ
+CODE_SMELL
+osquid:S1854&"6Remove this useless assignment to local variable "id".(Ò½’όÿÿÿÿ8·€Σνη,HΛRMAJORZ
 CODE_SMELL

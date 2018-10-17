@@ -65,12 +65,6 @@ public final class LocalService implements ILocalService {
 
 	@Override
 	public ArrayList<Local> buscar(Local l, Pesquisador p, Projeto proj) throws SQLException {
-		if (l == null)
-			throw new IllegalArgumentException("Argumento nulo!"); 
-		
-		if (l.getCodigo() == null)
-			throw new IllegalArgumentException("Impossível encontrar o local informado"); 
-		
 		return dao.buscar(l, p, proj);
 	}
 

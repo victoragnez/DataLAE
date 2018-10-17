@@ -1,0 +1,9 @@
+
+‡squid:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(¯èÎÏýÿÿÿÿHŸRCRITICALZ
+CODE_SMELL
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Õ£ØŠH RMINORZ
+CODE_SMELL
+«squid:S1192"tDefine a constant instead of duplicating this literal "NÃ£o foi possÃ­vel realizar a operaÃ§Ã£o solicitada" 7 times.(åžâÉ8íšÆíç,H¦RCRITICALZ
+CODE_SMELL
+Œsquid:S1192"PDefine a constant instead of duplicating this literal "Erro Inesperado" 7 times.(‹°Úòùÿÿÿÿ8íšÆíç,H§RCRITICALZ
+CODE_SMELL

@@ -68,8 +68,8 @@ public class FXMLCadLocalController implements Initializable {
     	try {
 			localService.inserir(l);
 			JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
-					null, JOptionPane.OK_OPTION);
-		} catch (SQLException e) {
+					null, JOptionPane.INFORMATION_MESSAGE);
+		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 		}

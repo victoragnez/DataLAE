@@ -51,7 +51,7 @@ public class FXMLCadDiretorController implements Initializable {
     	try {
 			diretorService.inserir(d);
 	    	JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
-					null, JOptionPane.OK_OPTION);
+					null, JOptionPane.INFORMATION_MESSAGE);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), 
 					"Erro", JOptionPane.ERROR_MESSAGE);

@@ -62,13 +62,7 @@ public final class FinanciadorService implements IFinanciadorService{
 	}
 
 	@Override
-	public ArrayList<Financiador> buscar(Financiador f, Projeto p) throws SQLException {
-		if (f == null)
-			throw new IllegalArgumentException("Argumento nulo!"); 
-		
-		if (f.getCodigo() == null)
-			throw new IllegalArgumentException("Impossível encontrar o Financiador informado"); 
-		
+	public ArrayList<Financiador> buscar(Financiador f, Projeto p) throws SQLException {	
 		return dao.buscar(f, p);
 	}
 

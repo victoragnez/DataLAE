@@ -1,0 +1,11 @@
+
+Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿHÏRMINORZ
+CODE_SMELL
+‹squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(îŒÑŒşÿÿÿÿHÌRMINORZ
+CODE_SMELL
+squid:S1319@"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ˆÊîHÍRMINORZ
+CODE_SMELL
+‡squid:S1192'"PDefine a constant instead of duplicating this literal "Argumento nulo!" 3 times.(ºËˆ÷8®ˆïíç,HäRCRITICALZ
+CODE_SMELL
+¢squid:S1319;"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(š×ŞıÿÿÿÿHÎRMINORZ
+CODE_SMELL

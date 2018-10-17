@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import GUI.listagem.BlocoFinanciador;
 import Model.Financiador;
 import Model.Projeto;
@@ -75,8 +77,9 @@ public class TelaBuscarFinanciadorController implements Initializable {
 		try {
 			for(Financiador financiador : financiadorService.buscar(f, p))
 				list.getChildren().add(new BlocoFinanciador(financiador));
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção na busca de financiadores");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);		
 		}
 		list.setVisible(true);
 	}
@@ -90,8 +93,9 @@ public class TelaBuscarFinanciadorController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			cmbProjeto.getItems().addAll(projetoService.listarProjetos());
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção no carregamento de projetos na tela de busca de Financiador");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

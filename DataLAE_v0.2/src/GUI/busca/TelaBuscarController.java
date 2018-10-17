@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,40 +28,40 @@ public class TelaBuscarController implements Initializable {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("./TelaBuscarArquivo.fxml")));
 			} catch (IOException e) {
-				System.out.println("Falha ao carregar tela de busca por Arquivo!");
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(value == "Financiador") {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("./TelaBuscarFinanciador.fxml")));
 			} catch (IOException e) {
-				System.out.println("Falha ao carregar tela de busca por Financiador!");
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(value == "Local") {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("./TelaBuscarLocal.fxml")));
 			} catch (IOException e) {
-				System.out.println("Falha ao carregar tela de busca por Local!");
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(value == "Projeto") {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("./TelaBuscarProjeto.fxml")));
 			} catch (IOException e) {
-				System.out.println("Falha ao carregar tela de busca por Projeto!");
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(value == "Viagem") {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("./TelaBuscarViagem.fxml")));
 			} catch (IOException e) {
-				System.out.println("Falha ao carregar tela de busca por Viagem!");
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
