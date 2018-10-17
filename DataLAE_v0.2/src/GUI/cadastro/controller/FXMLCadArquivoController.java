@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import Model.Arquivo;
 import Model.Metodo;
 import Model.Projeto;
 import Model.TipoArquivo;
@@ -57,12 +56,7 @@ public class FXMLCadArquivoController implements Initializable {
 	@FXML
 	private void botaoCadastrar(ActionEvent event) {
 		try {
-			service.inserir(new Arquivo(
-					null,
-					tfNome.getText().trim(),
-					cmbTipo.getValue(),
-					cmbCategoria.getValue()
-			));
+			service.inserir(null);
 			
 			JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
 					null, JOptionPane.INFORMATION_MESSAGE);
