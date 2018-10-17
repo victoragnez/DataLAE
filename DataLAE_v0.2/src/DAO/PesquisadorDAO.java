@@ -40,7 +40,14 @@ public class PesquisadorDAO implements IPesquisadorDAO{
 		}
 		sql += ";";
 		
-		int id = JDBC.runInsert(sql);
+		int id;
+		try {
+			id = JDBC.runInsert(sql);
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 		
 		if(id == -1) {
 			id = p.getCodigo();
@@ -52,7 +59,14 @@ public class PesquisadorDAO implements IPesquisadorDAO{
 
 	@Override
 	public void remover(Pesquisador p) throws SQLException {
-		JDBC.runRemove("delete from Pesquisador where codigoPesquisador=" + p.getCodigo() + ";");		
+		
+		try {
+			JDBC.runRemove("delete from Pesquisador where codigoPesquisador=" + p.getCodigo() + ";");
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}				
 	}
 
 	@Override

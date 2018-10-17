@@ -32,7 +32,14 @@ public class FinanciadorDAO implements IFinanciadorDAO{
 		}
 		sql += ";";
 		
-		int id = JDBC.runInsert(sql);
+		int id;
+		try {	
+			id = JDBC.runInsert(sql);
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 		
 		if(id == -1) {
 			id = f.getCodigo();
@@ -44,13 +51,25 @@ public class FinanciadorDAO implements IFinanciadorDAO{
 
 	@Override
 	public void remover(Financiador f) throws SQLException {
-		JDBC.runRemove("delete from Financiador where codigoFinanciador=" + f.getCodigo() + ";");		
+		try {
+			JDBC.runRemove("delete from Financiador where codigoFinanciador=" + f.getCodigo() + ";");		
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 	}
 
 	@Override
 	public ArrayList<Financiador> listarFinanciadores() throws SQLException {
 		String sql = "select * from Financiador;";
-		return getFinanciadorFromResult(JDBC.runQuery(sql));
+		try {
+			return getFinanciadorFromResult(JDBC.runQuery(sql));
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 	}
 
 	@Override
@@ -95,7 +114,13 @@ public class FinanciadorDAO implements IFinanciadorDAO{
 		
 		sql += ";";
 		
-		return getFinanciadorFromResult(JDBC.runQuery(sql));
+		try {
+			return getFinanciadorFromResult(JDBC.runQuery(sql));
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Nenhum Financiador encontrado com os parâmetros informados");
+		}
 	}
 	
 	private ArrayList<Financiador> getFinanciadorFromResult(ResultSet resultSet) throws SQLException {
