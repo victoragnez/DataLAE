@@ -1,0 +1,7 @@
+
+∞squid:S1186T"ÄAdd a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(°ñ¬tH RCRITICALZ
+CODE_SMELL
+Ösquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(¿çë∑H…RMINORZ
+CODE_SMELL
+ssquid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(€Ô∆ü8Õ˚·˘Á,H‡RMINORZ
+CODE_SMELL

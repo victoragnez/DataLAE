@@ -37,11 +37,24 @@ public final class LocalService implements ILocalService {
 
 	@Override
 	public void inserir(Local l) throws SQLException {
+		if (l == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (l.getNome() == null)
+			throw new IllegalArgumentException("Campo obrigatório nulo!"); 
+		
 		dao.inserir(l);
 	}
 
 	@Override
 	public void remover(Local l) throws SQLException {
+		if (l == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (l.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o local informado"); 
+		
+		
 		dao.remover(l);
 	}
 
@@ -57,6 +70,13 @@ public final class LocalService implements ILocalService {
 
 	@Override
 	public void alterar(Local l) {
+		if (l == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (l.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o local informado"); 
+		
+		
 		dao.alterar(l);
 	}
 

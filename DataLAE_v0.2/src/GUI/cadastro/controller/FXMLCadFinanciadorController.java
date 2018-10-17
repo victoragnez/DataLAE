@@ -3,6 +3,8 @@ package GUI.cadastro.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import Model.Financiador;
 import Service.FinanciadorService;
 import Service.Interfaces.IFinanciadorService;
@@ -35,9 +37,14 @@ public class FXMLCadFinanciadorController implements Initializable{
     	Financiador f = new Financiador (nome, cnpj);
     	try {
 			financiadorService.inserir(f);
-		} catch (Exception e) {
-			System.out.println("Tratar exceção no cadastro de financiador");
+			JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
+					null, JOptionPane.INFORMATION_MESSAGE);
+    	} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
+    	
+    	
     }
     
     public FXMLCadFinanciadorController() {

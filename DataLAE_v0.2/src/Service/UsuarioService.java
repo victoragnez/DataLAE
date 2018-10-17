@@ -32,7 +32,12 @@ public final class UsuarioService implements IUsuarioService {
 	
 	@Override
 	public void inserir(Usuario user) {
-		// TODO Auto-generated method stub
+		if (user == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (user.getEmail() == null || user.getNome() == null || user.getPassword()==null)
+			throw new IllegalArgumentException("Campo obrigatório nulo!"); 
+		
 		dao.inserir(user);
 	}
 

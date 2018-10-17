@@ -1,13 +1,11 @@
 
-jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8úØ¿èá,H¾
-RINFOZ
+Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿHøRMINORZ
 CODE_SMELL
-Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿH¿
-RMINORZ
+¤squid:S1319;"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¼ŸÙ8–Î›îç,HüRMINORZ
 CODE_SMELL
-jsquid:S1135!"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8úØ¿èá,HÀ
-RINFOZ
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¢üÈ8–Î›îç,HûRMINORZ
 CODE_SMELL
-jsquid:S1135'"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8úØ¿èá,HÁ
-RINFOZ
+À%squid:RedundantThrowsDeclarationCheck%"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(‡ã©´ùÿÿÿÿ8–Î›îç,HúRMINORZ
+CODE_SMELL
+jsquid:S1135A"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8úØ¿èá,HùRINFOZ
 CODE_SMELL

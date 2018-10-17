@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import GUI.listagem.BlocoLocal;
 import Model.Local;
 import Model.Pesquisador;
@@ -139,8 +141,9 @@ public class TelaBuscarLocalController implements Initializable {
 		try {
 			for(Local local : localService.buscar(l, p, proj))
 				list.getChildren().add(new BlocoLocal(local));
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção em busca de local");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		list.setVisible(true);
 	}
@@ -155,14 +158,16 @@ public class TelaBuscarLocalController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			cmbPesquisador.getItems().addAll(pesquisadorService.listarPesquisadores());
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção de pesquisadores na tela de busca de Local");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		try {
 			cmbProjeto.getItems().addAll(projetoService.listarProjetos());
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção de projetos na tela de busca de Local");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

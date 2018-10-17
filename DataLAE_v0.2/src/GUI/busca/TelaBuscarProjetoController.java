@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import GUI.listagem.BlocoProjeto;
 import Model.Financiador;
 import Model.Local;
@@ -145,8 +147,9 @@ public class TelaBuscarProjetoController implements Initializable {
 		try {
 			for(Projeto projeto : projetoService.buscar(proj, f, p, l))
 				list.getChildren().add(new BlocoProjeto(projeto));
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção na busca de Projeto");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		list.setVisible(true);
 	}
@@ -162,20 +165,23 @@ public class TelaBuscarProjetoController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			cmbFinanciador.getItems().addAll(financiadorService.listarFinanciadores());
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção de listar financiadores na tela de busca de Projeto");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		try {
 			cmbPesquisador.getItems().addAll(pesquisadorService.listarPesquisadores());
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção de listar pesquisadores na tela de busca de Projeto");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		try {
 			cmbLocal.getItems().addAll(localService.listarLocais());
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção de listar locais na tela de busca de Projeto");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

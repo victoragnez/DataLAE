@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +27,8 @@ public class FXMLTelaCadastroController implements Initializable {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadProj.fxml")));
 			} catch (IOException e) {
-				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 			
@@ -33,42 +36,48 @@ public class FXMLTelaCadastroController implements Initializable {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadLocal.fxml")));
 			} catch (IOException e) {
-				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(value == "Viagem") {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadViagem.fxml")));
 			} catch (IOException e) {
-				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(value == "Arquivo") {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadArquivo.fxml")));
 			} catch (IOException e) {
-				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(value == "Diretor") {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadDiretor.fxml")));
 			} catch (IOException e) {
-				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(value == "Financiador") {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadFinanciador.fxml")));
 			} catch (IOException e) {
-				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else if(value == "Pesquisador") {
 			try {
 				main.setCenter(FXMLLoader.load(this.getClass().getResource("model/FXMLCadPesq.fxml")));
 			} catch (IOException e) {
-				System.out.println("Preciso avisar ao cliente que o arquivo não foi encontrado");
+				JOptionPane.showMessageDialog(null, "Não foi possível realizar a operação solicitada", 
+						"Erro Inesperado", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

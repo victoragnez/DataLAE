@@ -45,7 +45,14 @@ public class LocalDAO implements ILocalDAO {
 		}
 		sql += ";";
 		
-		int id = JDBC.runInsert(sql);
+		int id;
+		try {
+			id = JDBC.runInsert(sql);
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 		
 		if(id == -1) {
 			id = l.getCodigo();
@@ -56,15 +63,28 @@ public class LocalDAO implements ILocalDAO {
 
 	@Override
 	public void remover(Local l) throws SQLException {
-		JDBC.runRemove("delete from LocalPesquisa where codigoLocal=" + l.getCodigo() + ";");		
+		try {
+			JDBC.runRemove("delete from LocalPesquisa where codigoLocal=" + l.getCodigo() + ";");		
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 	}
 
 	@Override
 	public ArrayList<Local> listarLocais() throws SQLException {
 		String sql = "select l.codigoLocal, l.nome, l.cidade, "
 				+ "l.estado, l.pais, x(l.coordenadas), y(l.coordenadas) from LocalPesquisa as l;";
-		return getLocalFromResult(JDBC.runQuery(sql));
-
+		
+		try {
+			return getLocalFromResult(JDBC.runQuery(sql));
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
+		
 	}
 
 	@Override
@@ -125,7 +145,14 @@ public class LocalDAO implements ILocalDAO {
 		
 		sql += ";";
 		
-		return getLocalFromResult(JDBC.runQuery(sql));
+		try {
+			return getLocalFromResult(JDBC.runQuery(sql));	
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Nenhum Local encontrado");
+		}
+		
 	}
 	
 	private ArrayList<Local> getLocalFromResult(ResultSet resultSet) throws SQLException {

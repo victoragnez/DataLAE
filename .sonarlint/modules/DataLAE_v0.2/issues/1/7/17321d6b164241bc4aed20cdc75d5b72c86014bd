@@ -1,0 +1,20 @@
+
+†squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(§§¸´H®RMINORZ
+CODE_SMELL
+†squid:S2293!"YReplace the type specification in this constructor call with the diamond operator ("<>").(§§¸´H¯RMINORZ
+CODE_SMELL
+¢squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(š×ŞıÿÿÿÿH°RMINORZ
+CODE_SMELL
+squid:S1319 "pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ˆÊîH±RMINORZ
+CODE_SMELL
+e
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ø¤ü¡H²RMAJORZ
+CODE_SMELL
+j
+squid:S106"9Replace this use of System.out or System.err by a logger.(›¶’êøÿÿÿÿH³RMAJORZ
+CODE_SMELL
+j
+squid:S106"9Replace this use of System.out or System.err by a logger.(­ÖÈÈüÿÿÿÿH´RMAJORZ
+CODE_SMELL
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHµRMINORZ
+CODE_SMELL

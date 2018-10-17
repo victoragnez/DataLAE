@@ -2,9 +2,10 @@ package GUI.cadastro.controller;
 
 import java.net.URL;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import Model.Local;
 import Model.Projeto;
@@ -57,9 +58,13 @@ public class FXMLCadViagemControler implements Initializable {
 		Viagem v = new Viagem(dataInicio, dataFim, local, projeto);
 		try {
 			viagemService.inserir(v);
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção no cadastro de Viagem");
+			JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
+					null, JOptionPane.INFORMATION_MESSAGE);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
+    	
 	}
 	
 	public FXMLCadViagemControler() {

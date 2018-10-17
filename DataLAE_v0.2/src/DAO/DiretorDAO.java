@@ -36,8 +36,15 @@ public class DiretorDAO implements IDiretorDAO {
 		}
 		sql += ";";
 		
-		int id = JDBC.runInsert(sql);
-		
+		int id;
+		try {
+			id = JDBC.runInsert(sql);
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
+		 
 		if(id == -1) {
 			id = d.getCodigo();
 		} else {
@@ -48,7 +55,13 @@ public class DiretorDAO implements IDiretorDAO {
 
 	@Override
 	public void remover(Diretor d) throws SQLException {
-		JDBC.runRemove("delete from Diretor where codigoDiretor=" + d.getCodigo() + ";");		
+		try {
+			JDBC.runRemove("delete from Diretor where codigoDiretor=" + d.getCodigo() + ";");		
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 	}
 	
 	@Override
@@ -56,8 +69,14 @@ public class DiretorDAO implements IDiretorDAO {
 		
 		ArrayList<Diretor> retorno = new ArrayList<Diretor>();
 		String sql = "select * from Diretor;";
-		ResultSet resultSet = JDBC.runQuery(sql);
-
+		ResultSet resultSet;
+		try {
+			resultSet= JDBC.runQuery(sql);
+		}catch(SQLException e)
+		{
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 		while(resultSet.next()) {
 
 			Integer codigo = (Integer)resultSet.getObject("codigoDiretor");

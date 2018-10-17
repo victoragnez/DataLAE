@@ -41,7 +41,14 @@ public class ViagemDAO implements IViagemDAO{
 		}
 		sql += ";";
 		
-		int id = JDBC.runInsert(sql);
+		int id;
+		
+		try {
+			id = JDBC.runInsert(sql);
+		}catch (SQLException e) {
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 		
 		if(id == -1) {
 			id = v.getCodigo();
@@ -84,13 +91,23 @@ public class ViagemDAO implements IViagemDAO{
 
 	@Override
 	public void remover(Viagem v) throws SQLException {
-		JDBC.runRemove("delete from Viagem where codigoViagem=" + v.getCodigo() + ";");
+		try {
+			JDBC.runRemove("delete from Viagem where codigoViagem=" + v.getCodigo() + ";");
+		}catch (SQLException e) {
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 	}
 
 	@Override
 	public ArrayList<Viagem> listarViagens() throws SQLException {
 		String sql = "select * from Viagem;";
-		return getViagemFromResult(JDBC.runQuery(sql));
+		try {
+			return getViagemFromResult(JDBC.runQuery(sql));
+		}catch (SQLException e) {
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 	}
 
 	@Override
@@ -130,7 +147,12 @@ public class ViagemDAO implements IViagemDAO{
 		}
 		
 		sql += ";";
-		return getViagemFromResult(JDBC.runQuery(sql));
+		try {
+			return getViagemFromResult(JDBC.runQuery(sql));
+		}catch (SQLException e) {
+			//lançar nova exceção
+			throw new SQLException("Nenhuma Viagem encontrada");
+		}
 	}
 	
 	private ArrayList<Viagem> getViagemFromResult(ResultSet resultSet) throws SQLException{

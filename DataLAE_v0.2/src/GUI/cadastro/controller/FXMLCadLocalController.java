@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import Model.Local;
 import Service.LocalService;
 import Service.Interfaces.ILocalService;
@@ -65,9 +67,13 @@ public class FXMLCadLocalController implements Initializable {
     	Local l = new Local(nome, pais, estado, cidade, latitude, longitude);
     	try {
 			localService.inserir(l);
-		} catch (SQLException e) {
-			System.out.println("Tratar exceção no cadastro de Local");
+			JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
+					null, JOptionPane.INFORMATION_MESSAGE);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
+    	
     }
 	
     public FXMLCadLocalController() {

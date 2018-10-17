@@ -1,14 +1,41 @@
 
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ִ”ע×HֹRMINORZ
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ִ”ע×H¦RMINORZ
 CODE_SMELL
-Xsquid:S1148B"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿHÊRMINORZVULNERABILITY
-[squid:S2095F".Close this "Connection" in a "finally" clause.(¸‘”רÿÿÿÿHֵRBLOCKERZBUG
-Wsquid:S1172,"*Remove this unused method parameter "sql".(ב¯‰£HָRMAJORZ
-CODE_SMELL
-Zsquid:S2095H"-Close this "Statement" in a "finally" clause.(’סנ¶תÿÿÿÿHִRBLOCKERZBUG
-Wsquid:S2068G" Remove this hard-coded password.(´¥§‎ÿÿÿÿHֳRBLOCKERZVULNERABILITY
 e
-squid:S106K"9Replace this use of System.out or System.err by a logger.(ו¬װ•HֶRMAJORZ
+squid:S1067"9Replace this use of System.out or System.err by a logger.(ו¬װ•H§RMAJORZ
 CODE_SMELL
-gsquid:S1118":Add a private constructor to hide the implicit public one.(ע­ִHַRMAJORZ
+Xsquid:S1148B"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿH¨RMINORZVULNERABILITY
+Zsquid:S20954"-Close this "Statement" in a "finally" clause.(’סנ¶תÿÿÿÿH©RBLOCKERZBUG
+Ysquid:S2068" Remove this hard-coded password.(ש‰ףי8פרקמח,H×RBLOCKERZVULNERABILITY
+squid:S1192-"YDefine a constant instead of duplicating this literal "com.mysql.cj.jdbc.Driver" 4 times.(נ¿ֹם8פרקמח,H«RCRITICALZ
 CODE_SMELL
+bsquid:S2095•"-Close this "Statement" in a "finally" clause.(’סנ¶תÿÿÿÿ8פרקמח,H¬RBLOCKERZBUG
+asquid:S2095v"-Close this "Statement" in a "finally" clause.(’סנ¶תÿÿÿÿ8פרקמח,H­RBLOCKERZBUG
+asquid:S2095<"-Close this "ResultSet" in a "finally" clause.(§־ֻƒרÿÿÿÿ8פרקמח,H®RBLOCKERZBUG
+bsquid:S20953".Close this "Connection" in a "finally" clause.(ß׀´שÿÿÿÿ8פרקמח,H¯RBLOCKERZBUG
+csquid:S2095”".Close this "Connection" in a "finally" clause.(ß׀´שÿÿÿÿ8פרקמח,H°RBLOCKERZBUG
+bsquid:S2095u".Close this "Connection" in a "finally" clause.(ß׀´שÿÿÿÿ8פרקמח,H±RBLOCKERZBUG
+csquid:S2095¬".Close this "Connection" in a "finally" clause.(ß׀´שÿÿÿÿ8פרקמח,H²RBLOCKERZBUG
+¬squid:S1319L"sThe type of the "commands" object should be an interface such as "List" rather than the implementation "ArrayList".(מקÚ±ÿÿÿÿÿ8פרקמח,H³RMINORZ
+CODE_SMELL
+l
+squid:S106A"9Replace this use of System.out or System.err by a logger.(ו¬װ•8פרקמח,H´RMAJORZ
+CODE_SMELL
+l
+squid:S106y"9Replace this use of System.out or System.err by a logger.(ו¬װ•8פרקמח,HµRMAJORZ
+CODE_SMELL
+m
+squid:S106˜"9Replace this use of System.out or System.err by a logger.(ו¬װ•8פרקמח,H¶RMAJORZ
+CODE_SMELL
+esquid:S1135"2Complete the task associated to this TODO comment.(…ן†8פרקמח,H·RINFOZ
+CODE_SMELL
+—squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(תהְ˜תÿÿÿÿ8פרקמח,H¸RCRITICALZ
+CODE_SMELL
+’squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ש‰ףי8פרקמח,H¹RCRITICALZ
+CODE_SMELL
+‘squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ן®ס+8פרקמח,H÷RCRITICALZ
+CODE_SMELL
+_squid:S1148/"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿ8פרקמח,H»RMINORZVULNERABILITY
+_squid:S1148q"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿ8פרקמח,H¼RMINORZVULNERABILITY
+`squid:S1148"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿ8פרקמח,H½RMINORZVULNERABILITY
+`squid:S1148©"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿ8פרקמח,H¾RMINORZVULNERABILITY

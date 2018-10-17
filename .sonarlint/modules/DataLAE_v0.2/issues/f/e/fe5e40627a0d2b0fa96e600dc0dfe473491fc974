@@ -1,0 +1,13 @@
+
+ssquid:HiddenFieldCheck,";Rename "projeto" which hides the field declared at line 28.(³¾ÿHÓRMAJORZ
+CODE_SMELL
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(À‘·HÑRMINORZ
+CODE_SMELL
+°squid:S1186K"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¡–ÂtHÔRCRITICALZ
+CODE_SMELL
+ssquid:HiddenFieldCheck3";Rename "dataFim" which hides the field declared at line 34.(µü¹ÞHÐRMAJORZ
+CODE_SMELL
+qsquid:HiddenFieldCheck*"9Rename "local" which hides the field declared at line 25.(ûÖúóHÒRMAJORZ
+CODE_SMELL
+{squid:HiddenFieldCheck2">Rename "dataInicio" which hides the field declared at line 31.(ŽÐá¾ûÿÿÿÿHÏRMAJORZ
+CODE_SMELL

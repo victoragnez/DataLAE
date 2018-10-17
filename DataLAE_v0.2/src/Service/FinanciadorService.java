@@ -36,11 +36,23 @@ public final class FinanciadorService implements IFinanciadorService{
 
 	@Override
 	public void inserir(Financiador f) throws SQLException {
+		if (f == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (f.getNome() == null || f.getCnpj() == null)
+			throw new IllegalArgumentException("Campo obrigatório nulo!");
+		
 		dao.inserir(f);
 	}
 
 	@Override
 	public void remover(Financiador f) throws SQLException {
+		if (f == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (f.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o Financiador informado"); 
+		
 		dao.remover(f);
 	}
 
@@ -50,12 +62,18 @@ public final class FinanciadorService implements IFinanciadorService{
 	}
 
 	@Override
-	public ArrayList<Financiador> buscar(Financiador f, Projeto p) throws SQLException {
+	public ArrayList<Financiador> buscar(Financiador f, Projeto p) throws SQLException {	
 		return dao.buscar(f, p);
 	}
 
 	@Override
 	public void alterar(Financiador f) {
+		if (f == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (f.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o Financiador informado"); 
+		
 		dao.alterar(f);
 	}
 	

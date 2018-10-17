@@ -34,13 +34,25 @@ public class DiretorService implements IDiretorService {
 	}
 	
 	@Override
-	public void inserir(Diretor f) throws SQLException {
-		dao.inserir(f);
+	public void inserir(Diretor d) throws SQLException {
+		if (d == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (d.getNome() == null)
+			throw new IllegalArgumentException("Campo obrigatório nulo!"); 
+		
+		dao.inserir(d);
 	}
 
 	@Override
-	public void remover(Diretor f) throws SQLException {
-		dao.remover(f);
+	public void remover(Diretor d) throws SQLException {
+		if (d == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (d.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o Diretor informado"); 
+	
+		dao.remover(d);
 	}
 
 	@Override
@@ -49,8 +61,14 @@ public class DiretorService implements IDiretorService {
 	}
 
 	@Override
-	public void alterar(Diretor f) {
-		dao.alterar(f);
+	public void alterar(Diretor d) {
+		if (d == null)
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (d.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o Diretor informado"); 
+		
+		dao.alterar(d);
 	}
 
 }

@@ -50,6 +50,12 @@ public final class ProjetoService implements IProjetoService{
 
 	@Override
 	public void remover(Projeto p) throws SQLException {
+		if ( p == null ) 
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (p.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o Projeto informado");
+		
 		dao.remover(p);
 	}
 
@@ -65,6 +71,11 @@ public final class ProjetoService implements IProjetoService{
 
 	@Override
 	public void alterar(Projeto p) {
+		if ( p == null ) 
+			throw new IllegalArgumentException("Argumento nulo!"); 
+		
+		if (p.getCodigo() == null)
+			throw new IllegalArgumentException("Impossível encontrar o Projeto informado");
 		dao.alterar(p);
 	}
 

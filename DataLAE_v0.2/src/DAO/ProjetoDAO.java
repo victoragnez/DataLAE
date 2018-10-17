@@ -47,7 +47,13 @@ public class ProjetoDAO  implements IProjetoDAO{
 		}
 		sql += ";";
 		
-		int id = JDBC.runInsert(sql);
+		int id;
+		try {
+			id = JDBC.runInsert(sql);
+		}catch (SQLException e) {
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 		
 		if(id == -1) {
 			id = p.getCodigo();
@@ -123,13 +129,24 @@ public class ProjetoDAO  implements IProjetoDAO{
 
 	@Override
 	public void remover(Projeto p) throws SQLException {
-		JDBC.runRemove("delete from Projeto where codigoProjeto=" + p.getCodigo() + ";");		
+		try {
+			JDBC.runRemove("delete from Projeto where codigoProjeto=" + p.getCodigo() + ";");		
+		}catch (SQLException e) {
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 	}
 
 	@Override
 	public ArrayList<Projeto> listarProjetos() throws SQLException {
 		String sql = "select * from Projeto;";
-		return getProjetoFromResult(JDBC.runQuery(sql));
+		
+		try {
+			return getProjetoFromResult(JDBC.runQuery(sql));
+		}catch (SQLException e) {
+			//lançar nova exceção
+			throw new SQLException("Não foi possível realizar a operação solicitada");
+		}
 	}
 	
 	@Override
@@ -192,8 +209,12 @@ public class ProjetoDAO  implements IProjetoDAO{
 		}
 		
 		sql += ";";
-		
-		return getProjetoFromResult(JDBC.runQuery(sql));
+		try {
+			return getProjetoFromResult(JDBC.runQuery(sql));
+		}catch (SQLException e) {
+			//lançar nova exceção
+			throw new SQLException("Nenhum Projeto encontrado");
+		}
 	}
 	
 	private ArrayList<Projeto> getProjetoFromResult(ResultSet resultSet) throws SQLException {

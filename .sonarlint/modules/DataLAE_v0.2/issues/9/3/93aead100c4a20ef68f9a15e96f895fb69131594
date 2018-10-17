@@ -1,12 +1,13 @@
 
-‰squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ΟΉΘΤϋÿÿÿÿH(RMINORZ
+£squid:S1319>"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Μª&8’ξη,HυRMINORZ
 CODE_SMELL
-isquid:S1135
-"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ΏθΏθα,HBRINFOZ
+¤squid:S1319C"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(γÿφό8’ξη,HτRMINORZ
 CODE_SMELL
-isquid:S1135"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ΏθΏθα,HCRINFOZ
+’squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨£Ωωÿÿÿÿ8’ξη,HσRMINORZ
 CODE_SMELL
-isquid:S1135"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ΏθΏθα,HDRINFOZ
+squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ΟΉΘΤϋÿÿÿÿHςRMINORZ
 CODE_SMELL
-isquid:S1135"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ΏθΏθα,HERINFOZ
+squid:S11927"hDefine a constant instead of duplicating this literal "ImpossΓ­vel encontrar o local informado" 3 times.(«Ό“ό8—ξη,HφRCRITICALZ
+CODE_SMELL
+‡squid:S1192)"PDefine a constant instead of duplicating this literal "Argumento nulo!" 4 times.(ΊΛχ8—ξη,HχRCRITICALZ
 CODE_SMELL

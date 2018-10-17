@@ -3,6 +3,8 @@ package GUI.cadastro.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import Model.Diretor;
 import Service.DiretorService;
 import Service.Interfaces.IDiretorService;
@@ -48,9 +50,13 @@ public class FXMLCadDiretorController implements Initializable {
     	
     	try {
 			diretorService.inserir(d);
+	    	JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!",
+					null, JOptionPane.INFORMATION_MESSAGE);
 		} catch (Exception e) {
-			System.out.println("Tratar exceção na inserção de diretor");
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
+ 
     }
 	
     public FXMLCadDiretorController() {
