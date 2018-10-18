@@ -122,7 +122,7 @@ public class Viagem {
 	
 	public String toString() {
 		return "(" + dataInicio.toString() + " - "
-				+ dataTermino.toString() + ") " + local.getNome();
+				+ dataTermino.toString() + ") " + (local == null ? "" : local.getNome());
 	}
 	
 }

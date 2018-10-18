@@ -44,7 +44,7 @@ class MainParaTestes {
 		Projeto p, p1, p2, p3;
 		ProjetoDAO projDao = new ProjetoDAO();
 		
-		p1 = p = new Projeto("ProjDeGilney", "testando", "sigla", "gilneyjr", 
+		p1 = p = new Projeto("ProjDeGilney", "testando", "sigla de gilney", "gilneyjr", 
 				new Date(2018-1900, 9, 20), new Date(2090-1900, 9, 20));
 		try {
 			p1.inserirLocal(l1);
@@ -72,7 +72,7 @@ class MainParaTestes {
 			e.printStackTrace();
 		}
 		
-		p3 = p = new Projeto("ProjDeGabriel", null, null, "GabrielAraujo", 
+		p3 = p = new Projeto("ProjDeGabriel", "terceiro proj", "s3", "GabrielAraujo", 
 				new Date(2016-1900, 9, 20), null);
 		
 		Financiador f = new Financiador("petrobras", "3768378264");
@@ -90,7 +90,7 @@ class MainParaTestes {
 			e.printStackTrace();
 		}
 		
-		p = new Projeto("nome", "...", null, "outro coordenador", 
+		p = new Projeto("nome", "...", "sn", "outro coordenador", 
 				new Date(2018-1900, 9, 20), new Date(2090-1900, 9, 20));
 		try {
 			projDao.inserir(p);

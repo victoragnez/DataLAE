@@ -129,7 +129,7 @@ create table User (
     primary key (email)    
 ) engine=innodb;
 
-create table InfoArquivo (
+create table Arquivo (
     codigoArquivo int auto_increment not null,
     nome varchar(255) not null,
     dataInsercao date not null,
@@ -147,6 +147,3 @@ create table InfoArquivo (
     foreign key (codigoViagem) references Viagem(codigoViagem)
 ) engine=innodb;
 
-create table DadoArquivo (
-    codigoArquivo 
-) engine=innodb;
