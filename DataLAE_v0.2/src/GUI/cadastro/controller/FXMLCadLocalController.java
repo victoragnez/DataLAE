@@ -1,7 +1,6 @@
 package GUI.cadastro.controller;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
