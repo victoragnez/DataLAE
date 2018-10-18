@@ -188,7 +188,7 @@ public class ProjetoDAO  implements IProjetoDAO{
 			}
 			
 			if(proj.getSigla() != null) {
-				cond.add("proj.sigla = " + proj.getSigla());
+				cond.add("proj.sigla = '" + proj.getSigla() + "'");
 			}
 			
 			if(proj.getCoordenador() != null) {

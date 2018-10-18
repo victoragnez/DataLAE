@@ -26,9 +26,9 @@ class MainParaTestes {
 		
 		DiretorDAO dirDao = new DiretorDAO();
 		
-		Local l1 = new Local("arara", "br", "estado", "natown", 30., 60.);
+		Local l1 = new Local("local1", "br", "estado", "natown", 30., 60.);
 		
-		Local l2 = new Local("bbbbb", "bbr", "bestado", "batown", 10., 30.);
+		Local l2 = new Local("local2", "bbr", "l2", "batown", 10., 30.);
 		
 		try {
 			localDao.inserir(l1);
