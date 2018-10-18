@@ -118,6 +118,7 @@ public class ViagemDAO implements IViagemDAO{
 
 	@Override
 	public ArrayList<Viagem> buscar(Viagem v, Pesquisador p, Projeto proj, Local l) throws SQLException {
+		
 		String sql = "select v.* from Viagem as v";
 		
 		if(proj != null && proj.getCodigo() != null) {

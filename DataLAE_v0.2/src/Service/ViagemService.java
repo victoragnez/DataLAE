@@ -65,6 +65,9 @@ public final class ViagemService implements IViagemService {
 
 	@Override
 	public ArrayList<Viagem> buscar(Viagem v, Pesquisador p, Projeto proj, Local l) throws SQLException {
+		if (v == null && p == null && proj == null && l == null)
+			return listarViagens();
+		
 		return dao.buscar(v, p, proj, l);
 	}
 
