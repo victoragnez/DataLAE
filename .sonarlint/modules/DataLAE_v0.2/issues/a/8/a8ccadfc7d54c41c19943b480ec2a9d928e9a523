@@ -1,19 +1,20 @@
 
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHµRMINORZ
+jsquid:S1135^"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8Ì°ñèá,H€RINFOZ
 CODE_SMELL
-Psquid:S1643*"Use a StringBuilder instead.(ĞĞığ8ûóˆÑã,HºRMINORZ
+isquid:S18545"6Remove this useless assignment to local variable "id".(ºÿºG8çå·è,H‰RMAJORZ
 CODE_SMELL
-¸squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÀÂŞ•8ûóˆÑã,H¼RCRITICALZ
+Œsquid:S2293J"YReplace the type specification in this constructor call with the diamond operator ("<>").(—µ¿H8çå·è,H†RMINORZ
 CODE_SMELL
-Psquid:S1643&"Use a StringBuilder instead.(¤İ—Ü8ûóˆÑã,H¸RMINORZ
+¤squid:S1319I"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¼ŸÙ8çå·è,HˆRMINORZ
 CODE_SMELL
-squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8ûóˆÑã,H»RMINORZ
+\squid:S2095L"-Close this "ResultSet" in a "finally" clause.(½È¬8çå·è,H‡RBLOCKERZBUG
+Usquid:S1643'"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8ûóˆÑã,H…RMINORZ
 CODE_SMELL
-jsquid:S1135?"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8Ì°ñèá,H¶RINFOZ
+Psquid:S1643%"Use a StringBuilder instead.(¤İ—Ü8ûóˆÑã,H„RMINORZ
 CODE_SMELL
-jsquid:S11353"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8Ì°ñèá,H´RINFOZ
+¸squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÀÂŞ•8ûóˆÑã,HƒRCRITICALZ
 CODE_SMELL
-Usquid:S1643("Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8ûóˆÑã,H¹RMINORZ
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8ûóˆÑã,HRMINORZ
 CODE_SMELL
-jsquid:S11359"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8Ì°ñèá,H·RINFOZ
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªH‚RMINORZ
 CODE_SMELL

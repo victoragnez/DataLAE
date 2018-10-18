@@ -1,0 +1,11 @@
+
+rsquid:S3358‡"DExtract this nested ternary operation into an independent statement.(ø½½HÂRMAJORZ
+CODE_SMELL
+rsquid:S3358‰"DExtract this nested ternary operation into an independent statement.(ÈûÒHÃRMAJORZ
+CODE_SMELL
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ˆ²ş›HÅRMINORZ
+CODE_SMELL
+wsquid:S3358‹"DExtract this nested ternary operation into an independent statement.(Öı¿ÇùÿÿÿÿHÄRMAJORZ
+CODE_SMELL
+ssquid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8ùÛöè,HÇRMINORZ
+CODE_SMELL

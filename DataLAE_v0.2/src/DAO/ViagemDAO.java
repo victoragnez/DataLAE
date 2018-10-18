@@ -121,7 +121,7 @@ public class ViagemDAO implements IViagemDAO{
 		String sql = "select v.* from Viagem as v";
 		
 		if(proj != null && proj.getCodigo() != null) {
-			sql += " inner join Projeto as proj on v.codigoProjeto = proj.codigoProjeto and"
+			sql += 	" inner join Projeto as proj on v.codigoProjeto = proj.codigoProjeto and"
 					+ " proj.codigoProjeto = " + proj.getCodigo();
 		}
 		
@@ -147,6 +147,7 @@ public class ViagemDAO implements IViagemDAO{
 		}
 		
 		sql += ";";
+		System.out.println("chegou no dao");
 		try {
 			return getViagemFromResult(JDBC.runQuery(sql));
 		}catch (SQLException e) {

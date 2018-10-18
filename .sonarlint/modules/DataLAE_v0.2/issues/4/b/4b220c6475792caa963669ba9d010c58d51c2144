@@ -1,21 +1,61 @@
 
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªH‰	RMINORZ
+Psquid:S1643s"Use a StringBuilder instead.(ĞĞığ8’©¾è,H™RMINORZ
 CODE_SMELL
-Psquid:S1643("Use a StringBuilder instead.(ĞĞığ8‹¥¤Üã,H«
-RMINORZ
+Usquid:S1643N"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8’©¾è,H’RMINORZ
 CODE_SMELL
-Usquid:S1643&"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8‹¥¤Üã,Hª
-RMINORZ
+Usquid:S1643q"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8’©¾è,H˜RMINORZ
 CODE_SMELL
-jsquid:S11357"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8¢•øèá,H†	RINFOZ
+’squid:S2293E"YReplace the type specification in this constructor call with the diamond operator ("<>").(Î´¢Üûÿÿÿÿ8’©¾è,HRMINORZ
 CODE_SMELL
-jsquid:S11351"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8¢•øèá,Hˆ	RINFOZ
+Psquid:S1643o"Use a StringBuilder instead.(¤İ—Ü8’©¾è,H—RMINORZ
 CODE_SMELL
-Psquid:S1643$"Use a StringBuilder instead.(¤İ—Ü8‹¥¤Üã,H©
-RMINORZ
+Psquid:S1643P"Use a StringBuilder instead.(ĞĞığ8’©¾è,H“RMINORZ
 CODE_SMELL
-jsquid:S1135="2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8¢•øèá,H‡	RINFOZ
+ksquid:S1135š"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8¢•øèá,HRINFOZ
 CODE_SMELL
-squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8‹¥¤Üã,H¬
-RMINORZ
+Usquid:S1643."Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8‹¥¤Üã,HRMINORZ
+CODE_SMELL
+“squid:S2293İ"YReplace the type specification in this constructor call with the diamond operator ("<>").(¸Ÿüÿÿÿÿ8’©¾è,H¢RMINORZ
+CODE_SMELL
+Qsquid:S1643Ï"Use a StringBuilder instead.(Äå¿Ğ8’©¾è,H›RMINORZ
+CODE_SMELL
+‹squid:S1192"ODefine a constant instead of duplicating this literal "codigoProjeto=" 4 times.(ØÖ‹Œÿÿÿÿÿ8’©¾è,HœRCRITICALZ
+CODE_SMELL
+Psquid:S1643,"Use a StringBuilder instead.(¤İ—Ü8‹¥¤Üã,HRMINORZ
+CODE_SMELL
+¥squid:S1319Ÿ"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Á¢á8’©¾è,H¤RMINORZ
+CODE_SMELL
+’squid:S2293W"YReplace the type specification in this constructor call with the diamond operator ("<>").(Î´¢Üûÿÿÿÿ8’©¾è,HŸRMINORZ
+CODE_SMELL
+’squid:S2293i"YReplace the type specification in this constructor call with the diamond operator ("<>").(Î´¢Üûÿÿÿÿ8’©¾è,H RMINORZ
+CODE_SMELL
+isquid:S1854;"6Remove this useless assignment to local variable "id".(ºÿºG8’©¾è,H§RMAJORZ
+CODE_SMELL
+rsquid:S1155x">Use isEmpty() to check whether the collection is empty or not.(€ÿÜø8’©¾è,H¨RMINORZ
+CODE_SMELL
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8‹¥¤Üã,HŒRMINORZ
+CODE_SMELL
+Œsquid:S2293A"YReplace the type specification in this constructor call with the diamond operator ("<>").(’´‹n8’©¾è,HRMINORZ
+CODE_SMELL
+Usquid:S1643`"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8’©¾è,H•RMINORZ
+CODE_SMELL
+Qsquid:S1643Í"Use a StringBuilder instead.(óıÎ×8’©¾è,HšRMINORZ
+CODE_SMELL
+°squid:S11927"tDefine a constant instead of duplicating this literal "NÃ£o foi possÃ­vel realizar a operaÃ§Ã£o solicitada" 3 times.(¿Ã«Ïûÿÿÿÿ8ûèÈè,H¬RCRITICALZ
+CODE_SMELL
+Psquid:S1643^"Use a StringBuilder instead.(¤İ—Ü8’©¾è,H”RMINORZ
+CODE_SMELL
+¥squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(³º¥Ï8’©¾è,H£RMINORZ
+CODE_SMELL
+‰squid:S3776"RRefactor this method to reduce its Cognitive Complexity from 49 to the 15 allowed.(ìÓù€8’©¾è,H¥RCRITICALZ
+CODE_SMELL
+Šsquid:S3776Ÿ"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(Á¢á8’©¾è,H¦RCRITICALZ
+CODE_SMELL
+“squid:S2293¸"YReplace the type specification in this constructor call with the diamond operator ("<>").(Í¬­´ùÿÿÿÿ8’©¾è,H¡RMINORZ
+CODE_SMELL
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHRMINORZ
+CODE_SMELL
+Psquid:S1643b"Use a StringBuilder instead.(ĞĞığ8’©¾è,H–RMINORZ
+CODE_SMELL
+Psquid:S1643L"Use a StringBuilder instead.(¤İ—Ü8‹¥¤Üã,H‘RMINORZ
 CODE_SMELL

@@ -1,11 +1,11 @@
 
-squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ΟΉΘΤϋÿÿÿÿHψRMINORZ
+¤squid:S1319;"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ΌΩ8–Ξ›ξη,HÿRMINORZ
 CODE_SMELL
-¤squid:S1319;"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ΌΩ8–Ξ›ξη,HόRMINORZ
+jsquid:S1135A"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ϊΨΏθα,H€RINFOZ
 CODE_SMELL
-squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ΆόΘ8–Ξ›ξη,HϋRMINORZ
+squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ΟΉΘΤϋÿÿÿÿHRMINORZ
 CODE_SMELL
-ΐ%squid:RedundantThrowsDeclarationCheck%"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(‡γ©΄ωÿÿÿÿ8–Ξ›ξη,HϊRMINORZ
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ΆόΘ8–Ξ›ξη,H‚RMINORZ
 CODE_SMELL
-jsquid:S1135A"2Complete the task associated to this TODO comment.(» ζÿÿÿÿÿ8ϊΨΏθα,HωRINFOZ
+ΐ%squid:RedundantThrowsDeclarationCheck%"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(‡γ©΄ωÿÿÿÿ8–Ξ›ξη,HƒRMINORZ
 CODE_SMELL

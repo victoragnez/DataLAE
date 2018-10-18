@@ -1,27 +1,29 @@
 
-jsquid:S1135:"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ŞÁñèá,H¿RINFOZ
+Psquid:S1643o"Use a StringBuilder instead.(Äå¿Ğ8·€Óíç,HçRMINORZ
 CODE_SMELL
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHÀRMINORZ
+osquid:S1854-"6Remove this useless assignment to local variable "id".(Ò½’üÿÿÿÿ8·€Óíç,HäRMAJORZ
 CODE_SMELL
-Psquid:S1643"Use a StringBuilder instead.(¤İ—Ü8·€Óíç,HÁRMINORZ
+jsquid:S1135M"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ŞÁñèá,HàRINFOZ
 CODE_SMELL
-Usquid:S1643"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8·€Óíç,HÂRMINORZ
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHèRMINORZ
 CODE_SMELL
-Psquid:S1643Z"Use a StringBuilder instead.(óıÎ×8·€Óíç,HÃRMINORZ
+Usquid:S1643"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8·€Óíç,HëRMINORZ
 CODE_SMELL
-Psquid:S1643\"Use a StringBuilder instead.(Äå¿Ğ8·€Óíç,HÄRMINORZ
+Psquid:S1643"Use a StringBuilder instead.(¤İ—Ü8·€Óíç,HåRMINORZ
 CODE_SMELL
-squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8·€Óíç,HÅRMINORZ
+Psquid:S1643m"Use a StringBuilder instead.(óıÎ×8·€Óíç,HâRMINORZ
 CODE_SMELL
-’squid:S2293K"YReplace the type specification in this constructor call with the diamond operator ("<>").(Í¬­´ùÿÿÿÿ8·€Óíç,HÆRMINORZ
+°squid:S1192)"tDefine a constant instead of duplicating this literal "NÃ£o foi possÃ­vel realizar a operaÃ§Ã£o solicitada" 3 times.(¿Ã«Ïûÿÿÿÿ8§—­è,HîRCRITICALZ
 CODE_SMELL
-squid:S2293f"YReplace the type specification in this constructor call with the diamond operator ("<>").(³óƒ8·€Óíç,HÇRMINORZ
+©squid:S1319@"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ÿ”¸ªıÿÿÿÿ8·€Óíç,HéRMINORZ
 CODE_SMELL
-©squid:S13193"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ÿ”¸ªıÿÿÿÿ8·€Óíç,HÈRMINORZ
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8·€Óíç,HêRMINORZ
 CODE_SMELL
-©squid:S1319?"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(÷Àøßıÿÿÿÿ8·€Óíç,HÉRMINORZ
+’squid:S2293^"YReplace the type specification in this constructor call with the diamond operator ("<>").(Í¬­´ùÿÿÿÿ8·€Óíç,HßRMINORZ
 CODE_SMELL
-squid:S3776?"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(÷Àøßıÿÿÿÿ8·€Óíç,HÊRCRITICALZ
+©squid:S1319R"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(÷Àøßıÿÿÿÿ8·€Óíç,HæRMINORZ
 CODE_SMELL
-osquid:S1854&"6Remove this useless assignment to local variable "id".(Ò½’üÿÿÿÿ8·€Óíç,HËRMAJORZ
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(³óƒ8·€Óíç,HãRMINORZ
+CODE_SMELL
+squid:S3776R"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(÷Àøßıÿÿÿÿ8·€Óíç,HáRCRITICALZ
 CODE_SMELL

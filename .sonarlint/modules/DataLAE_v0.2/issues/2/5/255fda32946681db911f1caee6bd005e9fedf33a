@@ -1,9 +1,9 @@
 
-Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿHèRMINORZ
+‡squid:S1192'"PDefine a constant instead of duplicating this literal "Argumento nulo!" 3 times.(ºËˆ÷8…Üúíç,HîRCRITICALZ
 CODE_SMELL
-¢squid:S1319;"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(èÄ«½ûÿÿÿÿHçRMINORZ
+¢squid:S1319;"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(èÄ«½ûÿÿÿÿHïRMINORZ
 CODE_SMELL
-‡squid:S1192'"PDefine a constant instead of duplicating this literal "Argumento nulo!" 3 times.(ºËˆ÷8…Üúíç,HêRCRITICALZ
+Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿHðRMINORZ
 CODE_SMELL
-†squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(úøèÞHæRMINORZ
+†squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(úøèÞHñRMINORZ
 CODE_SMELL

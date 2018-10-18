@@ -1,13 +1,11 @@
 
-£squid:S1319>"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Μª&8’ξη,HυRMINORZ
+‡squid:S1192)"PDefine a constant instead of duplicating this literal "Argumento nulo!" 3 times.(ΊΛχ8—ξη,HωRCRITICALZ
 CODE_SMELL
-¤squid:S1319C"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(γÿφό8’ξη,HτRMINORZ
+’squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨£Ωωÿÿÿÿ8’ξη,HύRMINORZ
 CODE_SMELL
-’squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨£Ωωÿÿÿÿ8’ξη,HσRMINORZ
+£squid:S1319>"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Μª&8’ξη,HϊRMINORZ
 CODE_SMELL
-squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ΟΉΘΤϋÿÿÿÿHςRMINORZ
+squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ΟΉΘΤϋÿÿÿÿHόRMINORZ
 CODE_SMELL
-squid:S11927"hDefine a constant instead of duplicating this literal "ImpossΓ­vel encontrar o local informado" 3 times.(«Ό“ό8—ξη,HφRCRITICALZ
-CODE_SMELL
-‡squid:S1192)"PDefine a constant instead of duplicating this literal "Argumento nulo!" 4 times.(ΊΛχ8—ξη,HχRCRITICALZ
+¤squid:S1319C"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(γÿφό8’ξη,HϋRMINORZ
 CODE_SMELL

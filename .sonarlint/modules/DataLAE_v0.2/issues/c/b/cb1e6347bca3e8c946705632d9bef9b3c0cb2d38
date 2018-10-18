@@ -1,17 +1,7 @@
 
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ˆ²ş›HŞRMINORZ
+qsquid:S3358Z"DExtract this nested ternary operation into an independent statement.(ìàÊÌHãRMAJORZ
 CODE_SMELL
-k
-squid:S106ƒ"9Replace this use of System.out or System.err by a logger.(™ŒúÉşÿÿÿÿHÜRMAJORZ
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ˆ²ş›HåRMINORZ
 CODE_SMELL
-e
-squid:S106e"9Replace this use of System.out or System.err by a logger.(æÍÇHÙRMAJORZ
-CODE_SMELL
-e
-squid:S106w"9Replace this use of System.out or System.err by a logger.(…ğ…ÆHÚRMAJORZ
-CODE_SMELL
-j
-squid:S106}"9Replace this use of System.out or System.err by a logger.(“¿•ÆøÿÿÿÿHÛRMAJORZ
-CODE_SMELL
-qsquid:S3358X"DExtract this nested ternary operation into an independent statement.(ìàÊÌHİRMAJORZ
+ssquid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8œİøè,HÉRMINORZ
 CODE_SMELL
