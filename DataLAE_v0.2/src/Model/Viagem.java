@@ -120,4 +120,9 @@ public class Viagem {
 		this.participantes = participantes;
 	}
 	
+	public String toString() {
+		return "(" + dataInicio.toString() + " - "
+				+ dataTermino.toString() + ") " + local.getNome();
+	}
+	
 }
