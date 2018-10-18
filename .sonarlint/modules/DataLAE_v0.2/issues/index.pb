@@ -95,3 +95,17 @@ P
  src/GUI/listagem/BlocoLocal.java,6/b/6bda2d7ef2f86b374e5dec3c60b3dffe413b05b9
 ]
 -src/GUI/busca/TelaBuscarViagemController.java,c/b/cb1e6347bca3e8c946705632d9bef9b3c0cb2d38
+W
+'src/GUI/busca/TelaBuscarController.java,e/3/e3ddb8b979af27e56ee2a910e7098dd8655c2e12
+X
+(src/GUI/busca/TelaBuscarFinanciador.fxml,4/1/41eefc726eecd028ce5d935a50153d4da905dad2
+b
+2src/GUI/busca/TelaBuscarFinanciadorController.java,1/c/1cbe7ee7e6f86192fbe1e4d508691c06dbad0acf
+\
+,src/GUI/busca/TelaBuscarLocalController.java,2/0/20d0ae86263812d01de4dec493e7177b7d85337a
+^
+.src/GUI/busca/TelaBuscarProjetoController.java,a/1/a1c76bb93dd0f07ddecfb18763086bf125238ff4
+^
+.src/GUI/busca/TelaBuscarArquivoController.java,e/5/e513ac9cb58b156e70bf3b7fd8eaf4c1b872a8d8
+F
+src/Model/Arquivo.java,6/7/67155bb73b8c0e75d1a2dbcdc3d78ef6b8073f2b

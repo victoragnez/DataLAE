@@ -1,11 +1,31 @@
 
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªH¹RMINORZ
+£squid:S1319L"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ìª&8¾¯è,HùRMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8íÑñèá,HĞRINFOZ
+’squid:S2293u"YReplace the type specification in this constructor call with the diamond operator ("<>").(Í¬­´ùÿÿÿÿ8¾¯è,H÷RMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8íÑñèá,HÑRINFOZ
+¤squid:S1319a"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ãÿöü8¾¯è,HúRMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8íÑñèá,HÒRINFOZ
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8¾¯è,HöRMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8íÑñèá,HÓRINFOZ
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHğRMINORZ
+CODE_SMELL
+jsquid:S1135\"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8íÑñèá,HñRINFOZ
+CODE_SMELL
+Qsquid:S1643"Use a StringBuilder instead.(Äå¿Ğ8¾¯è,HõRMINORZ
+CODE_SMELL
+Usquid:S1643,"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8¾¯è,HóRMINORZ
+CODE_SMELL
+squid:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(šüçĞûÿÿÿÿ8¾¯è,HûRCRITICALZ
+CODE_SMELL
+jsquid:S1854:"6Remove this useless assignment to local variable "id".(ê¾âê8¾¯è,HıRMAJORZ
+CODE_SMELL
+Psquid:S1643*"Use a StringBuilder instead.(¤İ—Ü8¾¯è,HòRMINORZ
+CODE_SMELL
+Qsquid:S1643Œ"Use a StringBuilder instead.(óıÎ×8¾¯è,HôRMINORZ
+CODE_SMELL
+‰squid:S3776a"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ãÿöü8¾¯è,HüRCRITICALZ
+CODE_SMELL
+“squid:S2293 "YReplace the type specification in this constructor call with the diamond operator ("<>").(Œ‰‚øÿÿÿÿ8¾¯è,HøRMINORZ
+CODE_SMELL
+°squid:S11926"tDefine a constant instead of duplicating this literal "NÃ£o foi possÃ­vel realizar a operaÃ§Ã£o solicitada" 3 times.(¿Ã«Ïûÿÿÿÿ8Â·è,HÿRCRITICALZ
 CODE_SMELL

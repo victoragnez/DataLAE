@@ -1,11 +1,11 @@
 
-’squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ì´Óışÿÿÿÿ8öÎŸîç,HƒRMINORZ
+jsquid:S1135:"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ï²Ãèá,H‰RINFOZ
 CODE_SMELL
-jsquid:S11354"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ï²Ãèá,H€RINFOZ
+Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿHŠRMINORZ
 CODE_SMELL
-jsquid:S1135:"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ï²Ãèá,HRINFOZ
+jsquid:S1135."2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ï²Ãèá,H‹RINFOZ
 CODE_SMELL
-Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿHÿRMINORZ
+jsquid:S11354"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ï²Ãèá,HŒRINFOZ
 CODE_SMELL
-jsquid:S1135."2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ï²Ãèá,HşRINFOZ
+’squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ì´Óışÿÿÿÿ8öÎŸîç,HRMINORZ
 CODE_SMELL

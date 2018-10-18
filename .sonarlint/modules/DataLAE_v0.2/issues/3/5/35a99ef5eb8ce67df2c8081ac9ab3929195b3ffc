@@ -1,18 +1,20 @@
 
-Isquid:S1643!"Use a StringBuilder instead.(¤İ—ÜH¶RMINORZ
+†squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞìHÜRMINORZ
 CODE_SMELL
-Nsquid:S1643#"Use a StringBuilder instead.(ñ¤¢ÔøÿÿÿÿH·RMINORZ
+Isquid:S1643!"Use a StringBuilder instead.(¤İ—ÜHÖRMINORZ
 CODE_SMELL
-†squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞìH¸RMINORZ
+csquid:S1135`"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿHÔRINFOZ
 CODE_SMELL
-†squid:S22939"YReplace the type specification in this constructor call with the diamond operator ("<>").(ï¬šH¹RMINORZ
+°squid:S1192-"tDefine a constant instead of duplicating this literal "NÃ£o foi possÃ­vel realizar a operaÃ§Ã£o solicitada" 3 times.(¿Ã«Ïûÿÿÿÿ8ˆ†¤è,HŞRCRITICALZ
 CODE_SMELL
-Usquid:S2095;"-Close this "ResultSet" in a "finally" clause.(½È¬HºRBLOCKERZBUG
-¢squid:S13197"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(èÄ«½ûÿÿÿÿH»RMINORZ
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHØRMINORZ
 CODE_SMELL
-csquid:S1135M"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿH¼RINFOZ
+Nsquid:S1643#"Use a StringBuilder instead.(ñ¤¢ÔøÿÿÿÿHÛRMINORZ
 CODE_SMELL
-bsquid:S1854*"6Remove this useless assignment to local variable "id".(¼¥âH½RMAJORZ
+Zsquid:S2095J"-Close this "ResultSet" in a "finally" clause.(¶øÿˆùÿÿÿÿHÚRBLOCKERZBUG
+bsquid:S18541"6Remove this useless assignment to local variable "id".(¼¥âHÕRMAJORZ
 CODE_SMELL
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªH¾RMINORZ
+†squid:S2293F"YReplace the type specification in this constructor call with the diamond operator ("<>").(ï¬šH×RMINORZ
+CODE_SMELL
+¢squid:S1319D"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(èÄ«½ûÿÿÿÿHÙRMINORZ
 CODE_SMELL

@@ -2,7 +2,6 @@ package GUI.busca;
 
 import java.net.URL;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -99,7 +98,8 @@ public class TelaBuscarViagemController implements Initializable {
 		try {
 			for(Viagem viagem : viagemService.buscar(v, p, proj, l))
 				list.getChildren().add(new BlocoViagem(viagem));
-		} catch (Exception e) {
+			System.out.println("deu certo o try");
+		} catch (Exception e) {	
 			JOptionPane.showMessageDialog(null, e.getMessage(), 
 					"Erro", JOptionPane.ERROR_MESSAGE);
 		}

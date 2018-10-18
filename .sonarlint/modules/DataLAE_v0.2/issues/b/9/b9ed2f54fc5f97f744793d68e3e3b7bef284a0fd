@@ -1,15 +1,13 @@
 
-Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿHëRMINORZ
+©squid:S1319<"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ÿ”¸ªıÿÿÿÿ8—Ï†îç,HøRMINORZ
 CODE_SMELL
-bsquid:EmptyStatementUsageCheck"Remove this empty statement.(úÍô&8—Ï†îç,HìRMINORZ
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ş ›Ü8—Ï†îç,HòRMINORZ
 CODE_SMELL
-©squid:S1319<"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ÿ”¸ªıÿÿÿÿ8—Ï†îç,HîRMINORZ
+©squid:S1319A"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(÷Àøßıÿÿÿÿ8—Ï†îç,HõRMINORZ
 CODE_SMELL
-squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ş ›Ü8—Ï†îç,HíRMINORZ
+‡squid:S1192("PDefine a constant instead of duplicating this literal "Argumento nulo!" 3 times.(ºËˆ÷8¥šŒîç,HóRCRITICALZ
 CODE_SMELL
-‡squid:S1192("PDefine a constant instead of duplicating this literal "Argumento nulo!" 4 times.(ºËˆ÷8¥šŒîç,HğRCRITICALZ
+bsquid:EmptyStatementUsageCheck"Remove this empty statement.(úÍô&8—Ï†îç,H÷RMINORZ
 CODE_SMELL
-¥squid:S11926"nDefine a constant instead of duplicating this literal "ImpossÃ­vel encontrar o Financiador informado" 3 times.(‰Ãõè8¹Ãîç,HñRCRITICALZ
-CODE_SMELL
-©squid:S1319A"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(÷Àøßıÿÿÿÿ8—Ï†îç,HïRMINORZ
+Šsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ï¹ÈÔûÿÿÿÿHöRMINORZ
 CODE_SMELL

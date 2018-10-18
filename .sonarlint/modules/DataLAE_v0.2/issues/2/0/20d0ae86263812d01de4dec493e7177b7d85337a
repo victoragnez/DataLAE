@@ -1,0 +1,15 @@
+
+squid:S3776}"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¾µÔjH¶RCRITICALZ
+CODE_SMELL
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ˆ²ş›H»RMINORZ
+CODE_SMELL
+qsquid:S3358‚"DExtract this nested ternary operation into an independent statement.(Ïí¨qH·RMAJORZ
+CODE_SMELL
+rsquid:S3358„"DExtract this nested ternary operation into an independent statement.(¸ı†×H¹RMAJORZ
+CODE_SMELL
+wsquid:S3358…"DExtract this nested ternary operation into an independent statement.(Œ…à€şÿÿÿÿHºRMAJORZ
+CODE_SMELL
+rsquid:S3358ƒ"DExtract this nested ternary operation into an independent statement.(ÀêÖŠH¸RMAJORZ
+CODE_SMELL
+ssquid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8Ïùóè,H½RMINORZ
+CODE_SMELL

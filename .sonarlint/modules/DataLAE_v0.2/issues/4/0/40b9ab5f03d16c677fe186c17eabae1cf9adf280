@@ -1,11 +1,35 @@
 
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHáRMINORZ
+©squid:S1319g"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ø»€ñÿÿÿÿÿ8íÌËè,H¿RMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8Ë€øèá,HçRINFOZ
+Œsquid:S2293<"YReplace the type specification in this constructor call with the diamond operator ("<>").(’´‹n8íÌËè,H»RMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8Ë€øèá,HèRINFOZ
+jsquid:S1135s"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8Ë€øèá,H´RINFOZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8Ë€øèá,HéRINFOZ
+Psquid:S1643G"Use a StringBuilder instead.(¤İ—Ü8íÌËè,H·RMINORZ
 CODE_SMELL
-jsquid:S1135"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8Ë€øèá,HêRINFOZ
+squid:S3776"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(µëÀ¿úÿÿÿÿ8íÌËè,HÀRCRITICALZ
+CODE_SMELL
+Psquid:S1643&"Use a StringBuilder instead.(¤İ—Ü8íÌËè,HµRMINORZ
+CODE_SMELL
+Usquid:S1643("Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8íÌËè,H¶RMINORZ
+CODE_SMELL
+rsquid:S1155P">Use isEmpty() to check whether the collection is empty or not.(€ÿÜø8íÌËè,HÂRMINORZ
+CODE_SMELL
+…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªH³RMINORZ
+CODE_SMELL
+jsquid:S18546"6Remove this useless assignment to local variable "id".(‘ê8íÌËè,HÁRMAJORZ
+CODE_SMELL
+squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8íÌËè,HºRMINORZ
+CODE_SMELL
+’squid:S2293@"YReplace the type specification in this constructor call with the diamond operator ("<>").(Î´¢Üûÿÿÿÿ8íÌËè,H¼RMINORZ
+CODE_SMELL
+Psquid:S1643K"Use a StringBuilder instead.(ĞĞığ8íÌËè,H¹RMINORZ
+CODE_SMELL
+©squid:S1319x"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(à¯Ùÿÿÿÿÿ8íÌËè,H¾RMINORZ
+CODE_SMELL
+squid:S2293Ÿ"YReplace the type specification in this constructor call with the diamond operator ("<>").(æƒğó8íÌËè,H½RMINORZ
+CODE_SMELL
+Usquid:S1643I"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8íÌËè,H¸RMINORZ
+CODE_SMELL
+°squid:S11922"tDefine a constant instead of duplicating this literal "NÃ£o foi possÃ­vel realizar a operaÃ§Ã£o solicitada" 3 times.(¿Ã«Ïûÿÿÿÿ8ÑéÑè,HÄRCRITICALZ
 CODE_SMELL
