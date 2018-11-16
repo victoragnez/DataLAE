@@ -39,12 +39,12 @@ public class ArquivoDAO implements IArquivoDAO {
 			campos.add("codigoViagem=" + a.getViagem().getCodigo());
 		
 		if(a.getDados() != null) {
-			try {
-				campos.add("conteudo=x'" + bytesToHex(a.getDados().readAllBytes()) + "'");
-			} catch (IOException e) {
-				e.printStackTrace();
-				throw new RuntimeException("Erro na leitura do arquivo");
-			}
+//			try {
+//				campos.add("conteudo=x'" + bytesToHex(a.getDados().readAllBytes()) + "'");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//				throw new RuntimeException("Erro na leitura do arquivo");
+//			}
 		}
 		
 		String sql = "insert into Arquivo set ";
