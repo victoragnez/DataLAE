@@ -3,33 +3,33 @@ package Model;
 import java.io.InputStream;
 
 public class Arquivo {
+	
+	/** Atributos */
+	
 	private String nome;
 	private TipoArquivo tipo;
-	private Metodo metodo;
 	private Long tamanho;
 	private InputStream dados;
 	private Projeto projeto;
-	private Viagem viagem;
 	private Integer codigo;
 
 	public Arquivo(String nome, TipoArquivo tipo, 
-			Metodo metodo, Long tamanho, InputStream dados, 
-			Projeto projeto, Viagem viagem, Integer codigo) {
+			Long tamanho, InputStream dados, 
+			Projeto projeto, Integer codigo) {
+		
 		this.nome = nome;
 		this.tipo = tipo;
-		this.metodo = metodo;
 		this.tamanho = tamanho;
 		this.dados = dados;
 		this.setCodigo(codigo);
 		this.projeto = projeto;
-		this.viagem = viagem;
 	}
 	
 	public Arquivo(String nome, TipoArquivo tipo, 
-			Metodo metodo, Long tamanho, InputStream dados, 
-			Projeto projeto, Viagem viagem) {
+			Long tamanho, InputStream dados, 
+			Projeto projeto) {
 		
-		this(nome, tipo, metodo, tamanho, dados, projeto, viagem, null);
+		this(nome, tipo, tamanho, dados, projeto, null);
 	}
 
 	public String getNome() {
@@ -46,14 +46,6 @@ public class Arquivo {
 
 	public void setTipo(TipoArquivo tipo) {
 		this.tipo = tipo;
-	}
-
-	public Metodo getMetodo() {
-		return metodo;
-	}
-
-	public void setMetodo(Metodo metodo) {
-		this.metodo = metodo;
 	}
 
 	public Integer getCodigo() {
@@ -109,17 +101,4 @@ public class Arquivo {
 		this.projeto = projeto;
 	}
 
-	/**
-	 * @return the viagem
-	 */
-	public Viagem getViagem() {
-		return viagem;
-	}
-
-	/**
-	 * @param viagem the viagem to set
-	 */
-	public void setViagem(Viagem viagem) {
-		this.viagem = viagem;
-	}
 }
