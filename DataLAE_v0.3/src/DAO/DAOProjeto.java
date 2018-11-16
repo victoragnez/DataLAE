@@ -9,8 +9,6 @@ import Model.Projeto;
 
 public abstract class DAOProjeto implements IDAOProjeto {
 	
-	public DAOProjeto() {}
-
 	public void inserir(Projeto p) throws DatabaseException
 	{
 		
