@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DataLAE - Projetos</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Locais</h1>
+		<hr />
+		<a th:href="@{/locais/cadastrar}" class="btn btn-success" style="float:right;">Novo Local</a>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th> 
+					<th>Latitude</th> 
+					<th>Longitude</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="local : ${locais}">
+					<td th:text="${local.nome}"></td>
+					<td th:text="${local.latitude}"></td>
+					<td th:text="${local.longitude}"></td>
+					<td>
+						<a th:href="@{/locais/{id}/editar (id = ${local.id})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/locais/{id}/apagar (id = ${local.id})}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>

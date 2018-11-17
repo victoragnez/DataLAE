@@ -10,6 +10,7 @@
 	<div layout:fragment="content">
 		<h1 th:if="${projeto.id == null}">Novo Projeto</h1>
 		<h1 th:if="${projeto.id != null}">Editar Projeto</h1>
+		<hr />
 		
 		<form th:action="@{/projetos}" th:method="@{${projeto.id == null} ? 'post' : 'put'}" th:object="${projeto}">
 			<input type="hidden" th:field="*{id}" />
@@ -30,33 +31,5 @@
 			<button type="submit" class="btn btn-success">Salvar</button>
 		</form>
 	</div>
-	
-	<!--
-	<div layout:fragment="content">
-		<h1 th:if="${student.id == null}">Novo Projeto</h1>
-		<h1 th:if="${student.id != null}">Editar Projeto</h1>
-		<form th:action="@{/projetos}"
-			th:method="@{${projeto.id == null} ? 'post' : 'put'}"
-			th:object="${projeto}">
-			
-			<input type="hidden" th:field="*{id}" />
-			<div class="form-group">
-				<label for="nome">Nome</label> 
-				<input id="nome" name="nome" type="text" class="form-control" th:field="*{name}" />
-			</div>
-			<div class="form-group">
-				<label for="descricao">Descrição</label> 
-				<input id="descricao" name="descricao" type="text" class="form-control" th:field="*{descricao}" />
-			</div>
-			<div class="form-group">
-				<label for="inicio">Data de Início</label> 
-				<input id="inicio" name="inicio" type="text" class="form-control" th:field="*{inicio}" />
-			</div>
-			
-			<button type="submit" class="btn btn-success">Salvar</button>
-			<a th:href="@{/projetos}" class="btn btn-default">Voltar</a>
-		</form>
-	</div>
-	-->
 </body>
 </html>

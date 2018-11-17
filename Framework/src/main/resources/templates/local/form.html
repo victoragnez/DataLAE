@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<meta charset="utf-8" />
+	<title>DataLAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${local.id == null}">Novo Local</h1>
+		<h1 th:if="${local.id != null}">Editar Local</h1>
+		<hr />
+		
+		<form th:action="@{/locais}" th:method="@{${local.id == null} ? 'post' : 'put'}" th:object="${local}">
+			<input type="hidden" th:field="*{id}" />
+			<div class="form-group">
+				<label for="nome">Nome</label> 
+				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="latitude">Latitude</label>
+				<input class="form-control" type="range" min="-90" max="90" step="1" id="latitude" th:field="*{latitude}" />
+				<p style="float:right;"><span id="saidaLatitude"></span>°</sp>
+				<script>
+					var slider = document.getElementById("latitude");
+					var output = document.getElementById("saidaLatitude");
+					output.innerHTML = slider.value;
+					slider.oninput = function() {
+						output.innerHTML = this.value;
+					}
+				</script>
+			</div>
+			
+			<div class="form-group">
+				<label for="longitude">Longitude</label>
+				<input class="form-control" type="range" min="-180" max="180" step="1" id="longitude" th:field="*{longitude}" />
+				<p style="float:right;"><span id="saidaLongitude"></span>°</p>
+				<script>
+					var slider = document.getElementById("longitude");
+					var output = document.getElementById("saidaLongitude");
+					output.innerHTML = slider.value;
+					slider.oninput = function() {
+						output.innerHTML = this.value;
+					}
+				</script>
+				
+			</div>
+			<a th:href="@{/locais}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Salvar</button>
+		</form>
+	</div>
+</body>
