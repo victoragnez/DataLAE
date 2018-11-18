@@ -52,7 +52,7 @@ public class LocalController {
 			Local l = service.buscarPorId(id);
 			if(l == null) {
 				redirectAttributes.addFlashAttribute("erro", "Falha ao tentar editar local: Local não existe!");
-				return "redirect:/projetos";
+				return "redirect:/locais";
 			}
 			model.addAttribute("local", l);
 		}

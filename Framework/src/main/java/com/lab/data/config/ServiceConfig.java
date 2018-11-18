@@ -3,6 +3,7 @@ package com.lab.data.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.lab.data.service.ArquivoService;
 import com.lab.data.service.LocalService;
 import com.lab.data.service.PesquisadorService;
 import com.lab.data.service.ProjetoService;
@@ -28,5 +29,10 @@ public class ServiceConfig {
 	@Bean
 	public PesquisadorService pesquisadorService() {
 		return new PesquisadorService();
+	}
+	
+	@Bean
+	public ArquivoService arquivoService() {
+		return new ArquivoService();
 	}
 }

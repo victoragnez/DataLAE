@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<meta charset="utf-8" />
+	<title>DataLAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${arquivo.id == null}">Novo Arquivo</h1>
+		<h1 th:if="${arquivo.id != null}">Editar Arquivo</h1>
+		<hr />
+		
+		<form th:action="@{/arquivos}" th:method="@{${arquivo.id == null} ? 'post' : 'put'}" th:object="${arquivo}">
+			<input type="hidden" th:field="*{id}" />
+			<div class="form-group">
+				<label for="nome">Nome</label> 
+				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
+			</div>
+			
+			<a th:href="@{/arquivos}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>
