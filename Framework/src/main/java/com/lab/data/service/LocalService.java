@@ -26,13 +26,13 @@ public class LocalService {
 	
 	public void atualizar(Local l) throws Exception {
 		if(!locais.containsKey(l.getId()))
-			throw new Exception("Falha ao editar projeto: Projeto não existe!");
+			throw new Exception("Falha ao editar local: Local não existe!");
 		locais.put(l.getId(), l);
 	}
 	
 	public void removerPorId(Integer id) throws Exception {
 		if(!locais.containsKey(id))
-			throw new Exception("Falha ao apagar projeto: Projeto não existe!");
+			throw new Exception("Falha ao apagar local: Local não existe!");
 		locais.remove(id);
 	}
 	

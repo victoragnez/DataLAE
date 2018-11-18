@@ -32,7 +32,7 @@ public class ProjetoController {
 	
 	@GetMapping("/cadastrar")
 	public String formProjetoCad(@ModelAttribute("projeto") Projeto projeto) {
-		return "projeto/formProjeto";
+		return "projeto/form";
 	}
 	
 	@PostMapping
@@ -56,7 +56,7 @@ public class ProjetoController {
 			}
 			model.addAttribute("projeto", p);
 		}
-		return "projeto/formProjeto";
+		return "projeto/form";
 	}
 	
 	@PutMapping

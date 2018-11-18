@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<meta charset="utf-8" />
+	<title>DataLAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${viagem.id == null}">Nova Viagem</h1>
+		<h1 th:if="${viagem.id != null}">Editar Viagem</h1>
+		<hr />
+		
+		<form th:action="@{/viagens}" th:method="@{${viagem.id == null} ? 'post' : 'put'}" th:object="${viagem}">
+			<input type="hidden" th:field="*{id}" />
+			
+			<div class="form-group">
+				<select class="form-control" th:field="*{projetoId}">
+					<option value="">-- Selecione --</option>
+					<option th:each="projeto : ${projetos}"
+							th:value="${projeto.id}"
+							th:text="${projeto.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<select th:field="*{local}" class="form-control">
+					<option th:each="local : ${locais}"
+							th:value="${local}"
+							th:text="${local.nome}"></option>
+				</select>
+			</div>
+			
+			<!--
+			<div class="form-group" th:object="${projeto}">
+				<label for="projeto.id">Projeto</label>
+				<select name="projeto.id" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="projeto: ${projetos}" th:value="${projeto.id}"
+						th:text="${projeto.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group" th:object="${local}">
+				<label for="local.id">Local</label>
+				<select name="local" id="local" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="local: ${locais}" th:value="${local.id}"
+						th:text="${local.nome}"></option>
+				</select>
+			</div>-->
+			
+			<div class="form-group">
+				<label for="inicio">Data de Início</label> 
+				<input id="inicio" name="inicio" type="date" class="form-control" th:field="*{inicio}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="fim">Data de Término</label> 
+				<input id="fim" name="fim" type="date" class="form-control" th:field="*{fim}" />
+			</div>
+			
+			<!--
+			<div class="form-group">
+				<label for="nome">Nome</label> 
+				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
+			</div>
+			<div class="form-group">
+				<label for="descricao">Descrição</label> 
+				<input id="descricao" name="descricao" type="text" class="form-control" th:field="*{descricao}" />
+			</div>
+			<div class="form-group">
+				<label for="inicio">Data de Início</label> 
+				<input id="inicio" name="inicio" type="date" class="form-control" th:field="*{inicio}" />
+			</div>
+			-->
+			<a th:href="@{/viagens}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>

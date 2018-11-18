@@ -26,8 +26,8 @@
 			<tbody>
 				<tr th:each="local : ${locais}">
 					<td th:text="${local.nome}"></td>
-					<td th:text="${local.latitude}"></td>
-					<td th:text="${local.longitude}"></td>
+					<td th:text="${local.latitude} + '°'"></td>
+					<td th:text="${local.longitude} + '°'"></td>
 					<td>
 						<a th:href="@{/locais/{id}/editar (id = ${local.id})}" class="btn btn-primary">Editar</a>
 						<a th:href="@{/locais/{id}/apagar (id = ${local.id})}" class="btn btn-danger">Apagar</a>

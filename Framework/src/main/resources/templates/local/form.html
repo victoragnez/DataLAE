@@ -24,11 +24,11 @@
 				<input class="form-control" type="range" min="-90" max="90" step="1" id="latitude" th:field="*{latitude}" />
 				<p style="float:right;"><span id="saidaLatitude"></span>°</sp>
 				<script>
-					var slider = document.getElementById("latitude");
-					var output = document.getElementById("saidaLatitude");
-					output.innerHTML = slider.value;
-					slider.oninput = function() {
-						output.innerHTML = this.value;
+					var sliderLatitude = document.getElementById("latitude");
+					var outputLatitude = document.getElementById("saidaLatitude");
+					outputLatitude.innerHTML = sliderLatitude.value;
+					sliderLatitude.oninput = function() {
+						outputLatitude.innerHTML = this.value;
 					}
 				</script>
 			</div>
@@ -38,11 +38,11 @@
 				<input class="form-control" type="range" min="-180" max="180" step="1" id="longitude" th:field="*{longitude}" />
 				<p style="float:right;"><span id="saidaLongitude"></span>°</p>
 				<script>
-					var slider = document.getElementById("longitude");
-					var output = document.getElementById("saidaLongitude");
-					output.innerHTML = slider.value;
-					slider.oninput = function() {
-						output.innerHTML = this.value;
+					var sliderLongitude = document.getElementById("longitude");
+					var outputLongitude = document.getElementById("saidaLongitude");
+					outputLongitude.innerHTML = sliderLongitude.value;
+					sliderLongitude.oninput = function() {
+						outputLongitude.innerHTML = this.value;
 					}
 				</script>
 				

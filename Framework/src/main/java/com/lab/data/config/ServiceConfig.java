@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.lab.data.service.LocalService;
+import com.lab.data.service.PesquisadorService;
 import com.lab.data.service.ProjetoService;
+import com.lab.data.service.ViagemService;
 
 @Configuration
 public class ServiceConfig {
@@ -16,5 +18,15 @@ public class ServiceConfig {
 	@Bean
 	public LocalService localService() {
 		return new LocalService();
+	}
+	
+	@Bean
+	public ViagemService viagemService() {
+		return new ViagemService();
+	}
+	
+	@Bean
+	public PesquisadorService pesquisadorService() {
+		return new PesquisadorService();
 	}
 }

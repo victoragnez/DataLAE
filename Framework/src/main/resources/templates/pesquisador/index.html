@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DataLAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Pesquisadores</h1>
+		<hr />
+		<a th:href="@{/pesquisadores/cadastrar}" class="btn btn-success" style="float:right;">Novo Pesquisador</a>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th> 
+					<th>Universidade</th> 
+					<th>Formação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pesquisador : ${pesquisadores}">
+					<td th:text="${pesquisador.nome}"></td>
+					<td th:text="${pesquisador.universidade}"></td>
+					<td th:text="${pesquisador.formacao}"></td>
+					<td>
+						<a th:href="@{/pesquisadores/{id}/editar (id = ${pesquisador.id})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/pesquisadores/{id}/apagar (id = ${pesquisador.id})}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
