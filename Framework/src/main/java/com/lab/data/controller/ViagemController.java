@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.lab.data.model.Local;
-import com.lab.data.model.Projeto;
-import com.lab.data.model.Viagem;
-import com.lab.data.service.LocalService;
-import com.lab.data.service.ProjetoService;
-import com.lab.data.service.ViagemService;
+import com.lab.data.model.old.Local;
+import com.lab.data.model.old.Projeto;
+import com.lab.data.model.old.Viagem;
+import com.lab.data.service.old.LocalService;
+import com.lab.data.service.old.ProjetoService;
+import com.lab.data.service.old.ViagemService;
 
 @Controller
 @RequestMapping("/viagens")
