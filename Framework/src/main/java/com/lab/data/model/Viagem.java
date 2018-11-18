@@ -2,7 +2,7 @@ package com.lab.data.model;
 
 public class Viagem {
 	private Integer id;
-	private Integer projetoId;
+	private Projeto projeto;
 	private Local local;
 	private String inicio;
 	private String fim;
@@ -12,11 +12,11 @@ public class Viagem {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getProjetoId() {
-		return projetoId;
+	public Projeto getProjeto() {
+		return projeto;
 	}
-	public void setProjetoId(Integer projetoId) {
-		this.projetoId = projetoId;
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
 	}
 	public Local getLocal() {
 		return local;
@@ -36,9 +36,9 @@ public class Viagem {
 	public void setFim(String fim) {
 		this.fim = fim;
 	}
-	public Viagem(Integer id, Integer projetoId, Local local, String inicio, String fim) {
+	public Viagem(Integer id, Projeto projeto, Local local, String inicio, String fim) {
 		this.id = id;
-		this.projetoId = projetoId;
+		this.projeto = projeto;
 		this.local = local;
 		this.inicio = inicio;
 		this.fim = fim;

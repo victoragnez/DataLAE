@@ -16,8 +16,9 @@
 			<input type="hidden" th:field="*{id}" />
 			
 			<div class="form-group">
-				<select class="form-control" th:field="*{projetoId}">
-					<option value="">-- Selecione --</option>
+				<label for="projeto">Projeto</label>
+				<select name="projeto" th:field="*{projeto}" class="form-control">
+					<option value=null>-- Selecione --</option>
 					<option th:each="projeto : ${projetos}"
 							th:value="${projeto.id}"
 							th:text="${projeto.nome}"></option>
@@ -25,9 +26,11 @@
 			</div>
 			
 			<div class="form-group">
-				<select th:field="*{local}" class="form-control">
+				<label for="local">Local</label>
+				<select name="local" th:field="*{local}" class="form-control">
+					<option value=null>-- Selecione --</option>
 					<option th:each="local : ${locais}"
-							th:value="${local}"
+							th:value="${local.id}"
 							th:text="${local.nome}"></option>
 				</select>
 			</div>
