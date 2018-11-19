@@ -40,8 +40,8 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 	
 	/** Metodos que devem ser implementados*/
 	
-	protected abstract String compInserir(String comando);
-	protected abstract String compRemover(String comando);
-	protected abstract String compAtualizar(String comando);
-	protected abstract String compConsultar(String comando);
+	protected abstract String compInserir(String sql, A a);
+	protected abstract String compRemover(String sql, A a);
+	protected abstract String compAtualizar(String sql, A a);
+	protected abstract String compConsultar(String sql, A a);
 }

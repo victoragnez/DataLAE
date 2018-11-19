@@ -36,9 +36,9 @@ public abstract class DAOParticipante<P extends Participante> implements IDAOPar
 	
 	/** Metodos que devem ser implementados*/
 	
-	protected abstract String compInserir(String comando);
-	protected abstract String compRemover(String comando);
-	protected abstract String compAtualizar(String comando);
-	protected abstract String compConsultar(String comando);
+	protected abstract String compInserir(String sql, P p);
+	protected abstract String compRemover(String sql, P p);
+	protected abstract String compAtualizar(String sql, P p);
+	protected abstract String compConsultar(String sql, P p);
 	
 }

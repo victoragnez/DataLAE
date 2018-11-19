@@ -9,6 +9,6 @@ public interface IDAOProjeto <P extends Projeto> {
 	public void inserir(P p) throws DatabaseException;
 	public void remover(P p) throws DatabaseException;
 	public void atualizar(P p) throws DatabaseException;
-	public List<P> consultar(P pj) throws DatabaseException;
+	public List<P> consultar(P p) throws DatabaseException;
 	public List<P> listar() throws DatabaseException;
 }

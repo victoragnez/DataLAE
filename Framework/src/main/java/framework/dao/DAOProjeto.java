@@ -20,7 +20,7 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		ArrayList<String> campos = new ArrayList<String>();
 		
 		if(p.getCodigo() != null)
-			campos.add("codigoP=" + p.getCodigo());
+			campos.add("codigoProjeto=" + p.getCodigo());
 		
 		if(p.getNome() != null && p.getNome().length() != 0)
 			campos.add("nome='" + p.getNome()+"'");
@@ -31,19 +31,22 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		if(p.getDataFim() != null)
 			campos.add("dataTermino='" + p.getDataFim().toString() + "'");
 		
-		String sql = "insert into P set ";
+		String sql = "insert into Projeto set ";
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
 				sql += ", ";
 		}
+		
+		//Flexible part
+		sql = compInserir(sql, p);
+		
 		sql += ";";
 		
 		int id;
 		try {
 			id = JDBC.runInsert(sql);
 		}catch (SQLException e) {
-			//lançar nova exceção
 			throw new DatabaseException("Não foi possível realizar a operação solicitada");
 		}
 		
@@ -59,10 +62,10 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 			if(p.getParticipantes() != null) {
 				for(Participante pesq : p.getParticipantes()) {
 					campos = new ArrayList<String>();
-					campos.add("codigoP=" + p.getCodigo());
+					campos.add("codigoProjeto=" + p.getCodigo());
 					campos.add("codigoParticipante=" + pesq.getCodigo());
 					
-					sql = "insert into ParticipanteP set ";
+					sql = "insert into ParticipanteProjeto set ";
 					for(int i = 0; i < campos.size(); i++) {
 						sql += campos.get(i);
 						if(i+1 < campos.size())
@@ -79,7 +82,7 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		}
 		catch(SQLException e) {
 			try {
-				JDBC.runRemove("delete from P where codigoP=" + p.getCodigo() + ";");
+				JDBC.runRemove("delete from Projeto where codigoProjeto=" + p.getCodigo() + ";");
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -146,10 +149,10 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	
 	/** Metodos que devem ser implementados*/
 	
-	protected abstract String compInserir(String comando);
-	protected abstract String compRemover(String comando);
-	protected abstract String compAtualizar(String comando);
-	protected abstract String compConsultar(String comando);
+	protected abstract String compInserir(String sql, P p);
+	protected abstract String compRemover(String sql, P p);
+	protected abstract String compAtualizar(String sql, P p);
+	protected abstract String compConsultar(String sql, P p);
 
 	protected abstract P getProjectWithFlexibleAttributes(ResultSet resultSet);
 

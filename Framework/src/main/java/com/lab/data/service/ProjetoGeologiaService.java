@@ -23,8 +23,7 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 	 */
 	@Override
 	protected boolean validarInserir(ProjetoGeologia p) {
-		// TODO Auto-generated method stub
-		return false;
+		return p.getContatoFinanciador() != null && p.getFinanciador() != null;
 	}
 
 	/* (non-Javadoc)
