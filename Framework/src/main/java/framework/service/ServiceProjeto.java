@@ -39,9 +39,9 @@ public abstract class ServiceProjeto<P extends Projeto> implements IServiceProje
 	{return null;}
 
 	/** Classes que precisam ser implementadas */
-	protected abstract boolean validarInserir(String command);
-	protected abstract boolean validarRemover(String command);
-	protected abstract boolean validarAtulizar(String command);
-	protected abstract boolean validarConsultar(String command);
+	protected abstract boolean validarInserir(P p);
+	protected abstract boolean validarRemover(P p);
+	protected abstract boolean validarAtulizar(P p);
+	protected abstract boolean validarConsultar(P p);
 
 }

@@ -3,6 +3,8 @@
  */
 package com.lab.data.service;
 
+import com.lab.data.model.ProjetoGeologia;
+
 import framework.dao.interfaces.IDAOProjeto;
 import framework.service.ServiceProjeto;
 
@@ -10,7 +12,7 @@ import framework.service.ServiceProjeto;
  * @author victoragnez
  *
  */
-public class ProjetoGeologiaService extends ServiceProjeto {
+public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 
 	public ProjetoGeologiaService(IDAOProjeto dao) {
 		super(dao);
@@ -20,7 +22,7 @@ public class ProjetoGeologiaService extends ServiceProjeto {
 	 * @see framework.service.ServiceProjeto#validarInserir(java.lang.String)
 	 */
 	@Override
-	protected boolean validarInserir(String command) {
+	protected boolean validarInserir(ProjetoGeologia p) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -29,7 +31,7 @@ public class ProjetoGeologiaService extends ServiceProjeto {
 	 * @see framework.service.ServiceProjeto#validarRemover(java.lang.String)
 	 */
 	@Override
-	protected boolean validarRemover(String command) {
+	protected boolean validarRemover(ProjetoGeologia p) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -38,7 +40,7 @@ public class ProjetoGeologiaService extends ServiceProjeto {
 	 * @see framework.service.ServiceProjeto#validarAtulizar(java.lang.String)
 	 */
 	@Override
-	protected boolean validarAtulizar(String command) {
+	protected boolean validarAtulizar(ProjetoGeologia p) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -47,7 +49,7 @@ public class ProjetoGeologiaService extends ServiceProjeto {
 	 * @see framework.service.ServiceProjeto#validarConsultar(java.lang.String)
 	 */
 	@Override
-	protected boolean validarConsultar(String command) {
+	protected boolean validarConsultar(ProjetoGeologia p) {
 		// TODO Auto-generated method stub
 		return false;
 	}
