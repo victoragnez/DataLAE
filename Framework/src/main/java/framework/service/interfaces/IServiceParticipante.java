@@ -5,12 +5,12 @@ import java.util.List;
 import framework.dao.interfaces.DatabaseException;
 import framework.model.Participante;
 
-public interface IServiceParticipante {
+public interface IServiceParticipante<P extends Participante> {
 
-	public void inserir(Participante a) throws DatabaseException;
-	public void remover(Participante a) throws DatabaseException;
-	public void atualizar(Participante a) throws DatabaseException;
-	public List<Participante> consultar(Participante a) throws DatabaseException;
-	public List<Participante> listar() throws DatabaseException;
+	public void inserir(P p) throws DatabaseException;
+	public void remover(P p) throws DatabaseException;
+	public void atualizar(P p) throws DatabaseException;
+	public List<P> consultar(P p) throws DatabaseException;
+	public List<P> listar() throws DatabaseException;
 	
 }

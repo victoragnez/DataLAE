@@ -7,7 +7,7 @@ import framework.dao.interfaces.IDAOParticipante;
 import framework.model.Participante;
 import framework.service.interfaces.IServiceParticipante;
 
-public abstract class ServiceParticipante implements IServiceParticipante {
+public abstract class ServiceParticipante<P extends Participante> implements IServiceParticipante<P> {
 
 	private final IDAOParticipante dao;
 	
@@ -16,30 +16,30 @@ public abstract class ServiceParticipante implements IServiceParticipante {
 	}
 	
 	@Override
-	public void inserir(Participante p) throws DatabaseException
+	public void inserir(P p) throws DatabaseException
 	{
 		dao.inserir(p);
 	}
 	
 	@Override
-	public void remover(Participante p) throws DatabaseException
+	public void remover(P p) throws DatabaseException
 	{}
 	
 	@Override
-	public void atualizar(Participante p) throws DatabaseException
+	public void atualizar(P p) throws DatabaseException
 	{}
 	
 	@Override
-	public List<Participante> consultar(Participante p) throws DatabaseException
+	public List<P> consultar(P p) throws DatabaseException
 	{return null;}
 	
 	@Override
-	public List<Participante> listar() throws DatabaseException
+	public List<P> listar() throws DatabaseException
 	{return null;}
 
 	/** Classes que precisam ser implementadas */
-	protected abstract boolean validarInserir(String command);
-	protected abstract boolean validarRemover(String command);
-	protected abstract boolean validarAtulizar(String command);
-	protected abstract boolean validarConsultar(String command);
+	protected abstract boolean validarInserir(P p);
+	protected abstract boolean validarRemover(P p);
+	protected abstract boolean validarAtulizar(P p);
+	protected abstract boolean validarConsultar(P p);
 }

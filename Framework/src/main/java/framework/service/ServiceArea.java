@@ -7,7 +7,7 @@ import framework.dao.interfaces.IDAOArea;
 import framework.model.Area;
 import framework.service.interfaces.IServiceArea;
 
-public abstract class ServiceArea implements IServiceArea {
+public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 
 	private final IDAOArea dao;
 	
@@ -16,31 +16,31 @@ public abstract class ServiceArea implements IServiceArea {
 	}
 	
 	@Override
-	public void inserir(Area a) throws DatabaseException
+	public void inserir(A a) throws DatabaseException
 	{
 		dao.inserir(a);
 	}
 	
 	@Override
-	public void remover(Area a) throws DatabaseException
+	public void remover(A a) throws DatabaseException
 	{}
 	
 	@Override
-	public void atualizar(Area a) throws DatabaseException
+	public void atualizar(A a) throws DatabaseException
 	{}
 	
 	@Override
-	public List<Area> consultar(Area a) throws DatabaseException
+	public List<A> consultar(A a) throws DatabaseException
 	{return null;}
 	
 	@Override
-	public List<Area> listar() throws DatabaseException
+	public List<A> listar() throws DatabaseException
 	{return null;}
 
 	/** Classes que precisam ser implementadas */
-	protected abstract boolean validarInserir(Area a);
-	protected abstract boolean validarRemover(Area a);
-	protected abstract boolean validarAtulizar(Area a);
-	protected abstract boolean validarConsultar(Area a);
+	protected abstract boolean validarInserir(A a);
+	protected abstract boolean validarRemover(A a);
+	protected abstract boolean validarAtulizar(A a);
+	protected abstract boolean validarConsultar(A a);
 	
 }
