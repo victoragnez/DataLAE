@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -55,6 +56,34 @@ public class ViagemController {
 			redirectAtrributes.addFlashAttribute("sucesso", "Viagem inserida com sucesso!");
 		} catch (Exception e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
+		}
+		return "redirect:/viagens";
+	}
+	
+	@GetMapping("/{id}/editar")
+	public String formProjetoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+		if(id != null) {
+			Viagem v = viagemService.buscarPorId(id);
+			if(v == null) {
+				redirectAttributes.addFlashAttribute("erro", "Falha ao tentar editar Viagem: Viagem não existe!");
+				return "redirect:/viagens";
+			}
+			model.addAttribute("viagem", v);
+			List<Projeto> projetos = projetoService.listar();
+			List<Local> locais = localService.listar();
+			model.addAttribute("projetos", projetos);
+			model.addAttribute("locais", locais);
+		}
+		return "viagem/form";
+	}
+	
+	@PutMapping
+	public String edit(Viagem viagem, RedirectAttributes redirectAttributes) {
+		try {
+			viagemService.atualizar(viagem);
+			redirectAttributes.addFlashAttribute("sucesso", "Viagem editada com sucesso!");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/viagens";
 	}
