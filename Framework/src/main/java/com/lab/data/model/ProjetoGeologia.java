@@ -18,6 +18,10 @@ public class ProjetoGeologia extends Projeto {
 	private String financiador;
 	private String contatoFinanciador;
 	
+	public ProjetoGeologia() {
+		
+	}
+	
 	public ProjetoGeologia(String nome, ArrayList<Participante> participantes, 
 			Date dataInicio, Date dataFim, String financiador, String contatoFinanciador) {
 		super(nome, participantes, dataInicio);

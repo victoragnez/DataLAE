@@ -13,6 +13,7 @@ public abstract class Projeto {
 	private Date dataFim;
 	private Integer codigo;
 	
+	public Projeto() {}
 	
 	/**
 	 * Construtor para Projeto
