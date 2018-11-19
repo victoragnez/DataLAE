@@ -1,79 +1,40 @@
 package com.lab.data.model;
 
-import java.sql.Date;
-import java.util.ArrayList;
-
-public abstract class Projeto {
-	
-	/** Atributos */
-	
+@Deprecated
+public class Projeto {
+	private Integer id;
 	private String nome;
-	private ArrayList<Participante> participantes;
-	private Date dataInicio;
-	private Date dataFim;
+	private String descricao;
+	private String inicio;
 	
-	
-	/**
-	 * Construtor para Projeto
-	 * @param nome              O nome do projeto
-	 * @param participantes     Uma lista de participantes que trabalham no projeto
-	 * @param dataInicio        A data de Início do projeto
-	 * @param dataFim           A data de Termino do projeto
-	 */
-	public Projeto(String nome, ArrayList<Participante> participantes, 
-				   Date dataInicio, Date dataFim) 
-	{
-		this.nome = nome;
-		this.participantes = participantes;
-		this.dataInicio = dataInicio;
-		this.dataFim = dataFim;
+	public Integer getId() {
+		return id;
 	}
-	
-	/**
-	 * Construtor para projeto sem data de término definida
-	 * @param nome              O nome do projeto
-	 * @param participantes     Uma lista de participantes que trabalham no projeto
-	 * @param dataInicio        A data de Início do projeto
-	 */
-	public Projeto(String nome, ArrayList<Participante> participantes, 
-			   Date dataInicio) 
-	{
-		this.nome = nome;
-		this.participantes = participantes;
-		this.dataInicio = dataInicio;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	
-	/** Getters and Setters */
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public ArrayList<Participante> getParticipantes() {
-		return participantes;
+	public String getDescricao() {
+		return descricao;
 	}
-
-	public void setParticipantes(ArrayList<Participante> participantes) {
-		this.participantes = participantes;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-
-	public Date getDataInicio() {
-		return dataInicio;
+	public String getInicio() {
+		return inicio;
 	}
-
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
+	public void setInicio(String inicio) {
+		this.inicio = inicio;
 	}
-
-	public Date getDataFim() {
-		return dataFim;
+	public Projeto(Integer id, String nome, String descricao, String inicio) {
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.inicio = inicio;
 	}
-
-	public void setDataFim(Date dataFim) {
-		this.dataFim = dataFim;
-	}
-	
 }

@@ -3,11 +3,11 @@ package com.lab.data.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.lab.data.service.old.ArquivoService;
-import com.lab.data.service.old.LocalService;
-import com.lab.data.service.old.PesquisadorService;
-import com.lab.data.service.old.ProjetoService;
-import com.lab.data.service.old.ViagemService;
+import com.lab.data.service.ArquivoService;
+import com.lab.data.service.LocalService;
+import com.lab.data.service.PesquisadorService;
+import com.lab.data.service.ProjetoService;
+import com.lab.data.service.ViagemService;
 
 @Configuration
 public class ServiceConfig {

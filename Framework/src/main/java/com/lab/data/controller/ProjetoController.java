@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.lab.data.model.old.Projeto;
-import com.lab.data.service.old.ProjetoService;
+import com.lab.data.model.Projeto;
+import com.lab.data.service.ProjetoService;
 
 @Controller
 @RequestMapping("/projetos")

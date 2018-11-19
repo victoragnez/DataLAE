@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.lab.data.model.old.Local;
-import com.lab.data.service.old.LocalService;
+import com.lab.data.model.Local;
+import com.lab.data.service.LocalService;
 
 @Component
 public class LocalConverter implements Converter<String, Local> {

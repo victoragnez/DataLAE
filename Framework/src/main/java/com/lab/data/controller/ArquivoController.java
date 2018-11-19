@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.lab.data.model.old.Arquivo;
-import com.lab.data.service.old.ArquivoService;
+import com.lab.data.model.Arquivo;
+import com.lab.data.service.ArquivoService;
 
 @Controller
 @RequestMapping("/arquivos")

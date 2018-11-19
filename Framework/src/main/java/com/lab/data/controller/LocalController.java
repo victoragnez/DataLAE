@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.lab.data.model.old.Local;
-import com.lab.data.service.old.LocalService;
+import com.lab.data.model.Local;
+import com.lab.data.service.LocalService;
 
 @Controller
 @RequestMapping("/locais")
