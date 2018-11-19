@@ -13,7 +13,10 @@
 	<div layout:fragment="content">
 		<h1>Viagens</h1>
 		<hr />
-		<a th:href="@{/viagens/cadastrar}" class="btn btn-success" style="float:right;">Nova Viagem</a>
+		<div class="container row">
+			<a th:href="@{/viagens/cadastrar}" class="btn btn-success" style="float:right; margin-left: 10px;">Nova Viagem</a>
+			<a th:href="@{/viagens/buscar}" class="btn btn-primary" style="float:right;" >Buscar Viagens</a>
+		</div>
 		
 		<table class="table">
 			<thead>

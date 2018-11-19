@@ -41,6 +41,21 @@ public class LocalService {
 		return locais.get(id);
 	}
 	
+	public List<Local> buscar(Local filtro) {
+		ArrayList<Local> list = new ArrayList<>();
+		for(Map.Entry<Integer, Local> e : locais.entrySet()) {
+			Local curr = e.getValue();
+			if((filtro.getId() == null || curr.getId().equals(filtro.getId())) &&
+					(filtro.getNome() == null || curr.getNome().equals(filtro.getNome())) &&
+					(filtro.getLatitude() == null || curr.getLatitude().equals(filtro.getLatitude())) &&
+					(filtro.getLongitude() == null || curr.getLongitude().equals(filtro.getLongitude())))
+			{
+				list.add(e.getValue());
+			}
+		}
+		return list;
+	}
+	
 	public List<Local> listar() {
 		ArrayList<Local> list = new ArrayList<>();
 		for(Map.Entry<Integer, Local> e : locais.entrySet()) {

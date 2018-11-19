@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DataLAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Buscar Locais</h1>
+		<hr />
+		
+		<form th:method="post" th:object="${filtro}">
+			<div class="form-group">
+				<label for="nome">Nome</label> 
+				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
+			</div>
+
+			<div class="form-group">
+				<label for="latitude">Latitude</label>
+				<input class="form-control" type="range" min="-90" max="90" step="1" id="latitude" th:field="*{latitude}" />
+				<p style="float:right;"><span id="saidaLatitude"></span>°</sp>
+				<script>
+					var sliderLatitude = document.getElementById("latitude");
+					var outputLatitude = document.getElementById("saidaLatitude");
+					outputLatitude.innerHTML = sliderLatitude.value;
+					sliderLatitude.oninput = function() {
+						outputLatitude.innerHTML = this.value;
+					}
+				</script>
+			</div>
+			
+			<div class="form-group">
+				<label for="longitude">Longitude</label>
+				<input class="form-control" type="range" min="-180" max="180" step="1" id="longitude" th:field="*{longitude}" />
+				<p style="float:right;"><span id="saidaLongitude"></span>°</p>
+				<script>
+					var sliderLongitude = document.getElementById("longitude");
+					var outputLongitude = document.getElementById("saidaLongitude");
+					outputLongitude.innerHTML = sliderLongitude.value;
+					sliderLongitude.oninput = function() {
+						outputLongitude.innerHTML = this.value;
+					}
+				</script>
+			</div>
+			
+			<a th:href="@{/locais}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Buscar</button>
+		</form>
+		
+		<hr />
+		<h2>Resultados</h2>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th> 
+					<th>Latitude</th> 
+					<th>Longitude</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="local : ${locais}">
+					<td th:text="${local.nome}"></td>
+					<td th:text="${local.latitude} + '°'"></td>
+					<td th:text="${local.longitude} + '°'"></td>
+					<td>
+						<a th:href="@{/locais/{id}/editar (id = ${local.id})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/locais/{id}/apagar (id = ${local.id})}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>

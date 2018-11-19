@@ -98,4 +98,25 @@ public class ViagemController {
 		}
 		return "redirect:/viagens";
 	}
+	
+	@GetMapping("/buscar")
+	public String filtros(Model model, @ModelAttribute("filtro") Viagem  filtro) {
+		List<Projeto> projetos = projetoService.listar();
+		List<Local> locais = localService.listar();
+		model.addAttribute("projetos", projetos);
+		model.addAttribute("locais", locais);
+		return "viagem/search"; 
+	}
+	
+	@PostMapping("/buscar")
+	public String filtros(@ModelAttribute("filtro") Viagem filtro, RedirectAttributes redirectAttributes) {
+		if(filtro.getInicio().trim().isEmpty())
+			filtro.setInicio(null);
+		if(filtro.getFim().trim().isEmpty())
+			filtro.setFim(null);
+		
+		List<Viagem> viagens = viagemService.buscar(filtro);
+		redirectAttributes.addFlashAttribute("viagens", viagens);
+		return "redirect:/viagens/buscar";
+	}
 }

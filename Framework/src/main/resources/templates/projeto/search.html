@@ -11,12 +11,26 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<h1>Projetos</h1>
+		<h1>Buscar Projetos</h1>
 		<hr />
-		<div class="container row">
-			<a th:href="@{/projetos/cadastrar}" class="btn btn-success" style="float:right; margin-left: 10px;">Novo Projeto</a>
-			<a th:href="@{/projetos/buscar}" class="btn btn-primary" style="float:right;" >Buscar Projetos</a>
-		</div>
+		
+		<form th:method="post" th:object="${filtro}">
+			<div class="form-group">
+				<label for="nome">Nome</label>
+				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
+			</div>
+			<div class="form-group">
+				<label for="inicio">Data de Início</label> 
+				<input id="inicio" name="inicio" type="date" class="form-control" th:field="*{inicio}" />
+			</div>
+			
+			<a th:href="@{/projetos}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Buscar</button>
+		</form>
+		
+		<hr />
+		<h2>Resultados</h2>
+		
 		<table class="table">
 			<thead>
 				<tr>

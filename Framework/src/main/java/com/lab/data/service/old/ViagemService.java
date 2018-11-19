@@ -41,6 +41,23 @@ public class ViagemService {
 		return viagens.get(id);
 	}
 	
+	public List<Viagem> buscar(Viagem filtro) {
+		ArrayList<Viagem> list = new ArrayList<>();
+		for(Map.Entry<Integer, Viagem> e : viagens.entrySet()) {
+			Viagem curr = e.getValue();
+			if((filtro.getId() == null || curr.getId().equals(filtro.getId())) &&
+					(filtro.getLocal() == null || (curr.getLocal() != null && curr.getLocal().getId().equals(filtro.getLocal().getId()))) &&
+					(filtro.getProjeto() == null || (curr.getProjeto() != null && curr.getProjeto().getId().equals(filtro.getProjeto().getId()))) && 
+					(filtro.getInicio() == null || curr.getInicio().equals(filtro.getInicio())) &&
+					(filtro.getFim() == null || curr.getFim().equals(filtro.getFim())))
+					
+			{
+				list.add(e.getValue());
+			}
+		}
+		return list;
+	}
+	
 	public List<Viagem> listar() {
 		ArrayList<Viagem> list = new ArrayList<>();
 		for(Map.Entry<Integer, Viagem> e : viagens.entrySet()) {

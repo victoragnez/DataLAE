@@ -80,4 +80,19 @@ public class LocalController {
 		}
 		return "redirect:/locais";
 	}
+	
+	@GetMapping("/buscar")
+	public String filtros(@ModelAttribute("filtro") Local filtro) {
+		return "local/search"; 
+	}
+	
+	@PostMapping("/buscar")
+	public String filtros(@ModelAttribute("filtro") Local filtro, RedirectAttributes redirectAttributes) {
+		if(filtro.getNome().trim().isEmpty())
+			filtro.setNome(null);
+		
+		List<Local> locais = service.buscar(filtro);
+		redirectAttributes.addFlashAttribute("locais", locais);
+		return "redirect:/locais/buscar";
+	}
 }
