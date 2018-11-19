@@ -7,12 +7,12 @@ import framework.model.Participante;
 import framework.model.Projeto;
 
 
-public interface IServiceProjeto {
+public interface IServiceProjeto<P extends Projeto> {
 
-	public void inserir(Projeto p) throws DatabaseException;
-	public void remover(Projeto p) throws DatabaseException;
-	public void atualizar(Projeto p) throws DatabaseException;
-	public List<Projeto> consultar(Projeto pj, Participante p) throws DatabaseException;
+	public void inserir(P p) throws DatabaseException;
+	public void remover(P p) throws DatabaseException;
+	public void atualizar(P p) throws DatabaseException;
+	public List<Projeto> consultar(P p) throws DatabaseException;
 	public List<Projeto> listar() throws DatabaseException;
 	
 }

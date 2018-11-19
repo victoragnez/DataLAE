@@ -8,7 +8,7 @@ import framework.model.Participante;
 import framework.model.Projeto;
 import framework.service.interfaces.IServiceProjeto;
 
-public abstract class ServiceProjeto implements IServiceProjeto {
+public abstract class ServiceProjeto<P extends Projeto> implements IServiceProjeto<P> {
 
 	private final IDAOProjeto dao;
 	
@@ -17,21 +17,21 @@ public abstract class ServiceProjeto implements IServiceProjeto {
 	}
 	
 	@Override
-	public void inserir(Projeto p) throws DatabaseException
+	public void inserir(P p) throws DatabaseException
 	{
 		dao.inserir(p);
 	}
 	
 	@Override
-	public void remover(Projeto p) throws DatabaseException
+	public void remover(P p) throws DatabaseException
 	{}
 	
 	@Override
-	public void atualizar(Projeto p) throws DatabaseException
+	public void atualizar(P p) throws DatabaseException
 	{}
 	
 	@Override
-	public List<Projeto> consultar(Projeto pj, Participante p) throws DatabaseException
+	public List<Projeto> consultar(P p) throws DatabaseException
 	{return null;}
 	
 	@Override
