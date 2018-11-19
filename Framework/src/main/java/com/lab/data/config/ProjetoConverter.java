@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.lab.data.model.Projeto;
-import com.lab.data.service.ProjetoService;
+import com.lab.data.model.old.Projeto;
+import com.lab.data.service.old.ProjetoService;
 
 @Component
 public class ProjetoConverter implements Converter<String, Projeto>{

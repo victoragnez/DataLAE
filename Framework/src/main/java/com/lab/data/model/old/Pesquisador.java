@@ -1,4 +1,4 @@
-package com.lab.data.model;
+package com.lab.data.model.old;
 
 @Deprecated
 public class Pesquisador {

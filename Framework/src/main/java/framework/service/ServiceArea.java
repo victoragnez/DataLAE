@@ -38,9 +38,9 @@ public abstract class ServiceArea implements IServiceArea {
 	{return null;}
 
 	/** Classes que precisam ser implementadas */
-	protected abstract boolean validarInserir(String command);
-	protected abstract boolean validarRemover(String command);
-	protected abstract boolean validarAtulizar(String command);
-	protected abstract boolean validarConsultar(String command);
+	protected abstract boolean validarInserir(Area a);
+	protected abstract boolean validarRemover(Area a);
+	protected abstract boolean validarAtulizar(Area a);
+	protected abstract boolean validarConsultar(Area a);
 	
 }

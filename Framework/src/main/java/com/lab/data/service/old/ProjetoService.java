@@ -1,11 +1,11 @@
-package com.lab.data.service;
+package com.lab.data.service.old;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lab.data.model.Projeto;
+import com.lab.data.model.old.Projeto;
 
 @Deprecated
 public class ProjetoService {

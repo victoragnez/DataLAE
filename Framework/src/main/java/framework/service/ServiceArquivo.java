@@ -46,9 +46,9 @@ public abstract class ServiceArquivo implements IServiceArquivo {
 	}
 	
 	/** Classes que precisam ser implementadas */
-	protected abstract boolean validarInserir(String command);
-	protected abstract boolean validarRemover(String command);
-	protected abstract boolean validarAtulizar(String command);
-	protected abstract boolean validarConsultar(String command);
+	protected abstract boolean validarInserir(Arquivo a);
+	protected abstract boolean validarRemover(Arquivo a);
+	protected abstract boolean validarAtulizar(Arquivo a);
+	protected abstract boolean validarConsultar(Arquivo a);
 
 }
