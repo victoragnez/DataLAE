@@ -11,6 +11,7 @@ public abstract class Projeto {
 	private ArrayList<Participante> participantes;
 	private Date dataInicio;
 	private Date dataFim;
+	private Integer codigo;
 	
 	
 	/**
@@ -74,6 +75,20 @@ public abstract class Projeto {
 
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
+	}
+
+	/**
+	 * @return the codigo
+	 */
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+	/**
+	 * @param codigo the codigo to set
+	 */
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 	
 }

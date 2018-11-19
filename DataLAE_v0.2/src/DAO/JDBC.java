@@ -18,7 +18,7 @@ import java.util.ArrayList;
 final class JDBC {
 	
 	private static final String user = "root";
-	private static final String password = "gabriel2010";
+	private static final String password = "abc123";
 	private static final String linkConnect = 
 			"jdbc:mysql://localhost/dataLae?user="+user+
 			"&password="+password+"&useSSL=false";
