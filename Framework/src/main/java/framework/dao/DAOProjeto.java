@@ -4,32 +4,36 @@ import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOProjeto;
-import framework.model.Participante;
 import framework.model.Projeto;
 
 public abstract class DAOProjeto implements IDAOProjeto {
 	
+	@Override
 	public void inserir(Projeto p) throws DatabaseException
 	{
 		
 	}
 	
+	@Override
 	public void remover(Projeto p) throws DatabaseException
 	{
 		
 	}
 	
+	@Override
 	public void atualizar(Projeto p) throws DatabaseException
 	{
 		
 	}
 	
-	public List<Projeto> consultar(Projeto pj, Participante p) throws DatabaseException
+	@Override
+	public List<Projeto> consultar(Projeto pj) throws DatabaseException
 	{
 		return null;
 		
 	}
 	
+	@Override
 	public List<Projeto> listar() throws DatabaseException
 	{
 		return null;
@@ -38,9 +42,9 @@ public abstract class DAOProjeto implements IDAOProjeto {
 
 	/** classes que devem ser implementadas*/
 	
-	public abstract String compInserir(String comando);
-	public abstract String compRemover(String comando);
-	public abstract String compAtualizar(String comando);
-	public abstract String compConsultar(String comando);
+	protected abstract String compInserir(String comando);
+	protected abstract String compRemover(String comando);
+	protected abstract String compAtualizar(String comando);
+	protected abstract String compConsultar(String comando);
 
 }
