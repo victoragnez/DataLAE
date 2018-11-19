@@ -6,30 +6,30 @@ import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOArea;
 import framework.model.Area;
 
-public abstract class DAOArea implements IDAOArea {
+public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 
 	public DAOArea() {}
 	
-	public void inserir(Area a) throws DatabaseException
+	public void inserir(A a) throws DatabaseException
 	{}
 	
 	@Override
-	public void remover(Area a) throws DatabaseException
+	public void remover(A a) throws DatabaseException
 	{}
 	
 	@Override
-	public void atualizar(Area a) throws DatabaseException
+	public void atualizar(A a) throws DatabaseException
 	{}
 	
 	@Override
-	public List<Area> consultar(Area a) throws DatabaseException
+	public List<A> consultar(A a) throws DatabaseException
 	{return null;}
 	
 	@Override
-	public List<Area> listar() throws DatabaseException
+	public List<A> listar() throws DatabaseException
 	{return null;}
 	
-	/** classes que devem ser implementadas*/
+	/** Metodos que devem ser implementados*/
 	
 	protected abstract String compInserir(String comando);
 	protected abstract String compRemover(String comando);

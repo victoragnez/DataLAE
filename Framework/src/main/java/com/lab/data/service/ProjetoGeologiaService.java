@@ -14,7 +14,7 @@ import framework.service.ServiceProjeto;
  */
 public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 
-	public ProjetoGeologiaService(IDAOProjeto dao) {
+	public ProjetoGeologiaService(IDAOProjeto<ProjetoGeologia> dao) {
 		super(dao);
 	}
 

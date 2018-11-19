@@ -4,11 +4,11 @@ import java.util.List;
 
 import framework.model.Atividade;
 
-public interface IDAOAtividade {
+public interface IDAOAtividade <A extends Atividade> {
 	
-	public void inserir(Atividade a) throws DatabaseException;
-	public void remover(Atividade a) throws DatabaseException;
-	public void atualizar(Atividade a) throws DatabaseException;
-	public List<Atividade> consultar(Atividade a) throws DatabaseException;
-	public List<Atividade> listar() throws DatabaseException;
+	public void inserir(A a) throws DatabaseException;
+	public void remover(A a) throws DatabaseException;
+	public void atualizar(A a) throws DatabaseException;
+	public List<A> consultar(A a) throws DatabaseException;
+	public List<A> listar() throws DatabaseException;
 }

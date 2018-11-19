@@ -9,9 +9,9 @@ import framework.service.interfaces.IServiceArea;
 
 public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 
-	private final IDAOArea dao;
+	private final IDAOArea<A> dao;
 	
-	public ServiceArea (IDAOArea dao)	{
+	public ServiceArea (IDAOArea<A> dao)	{
 		this.dao = dao;
 	}
 	
@@ -37,7 +37,7 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 	public List<A> listar() throws DatabaseException
 	{return null;}
 
-	/** Classes que precisam ser implementadas */
+	/** Metodos que precisam ser implementados */
 	protected abstract boolean validarInserir(A a);
 	protected abstract boolean validarRemover(A a);
 	protected abstract boolean validarAtulizar(A a);

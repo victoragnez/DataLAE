@@ -6,39 +6,39 @@ import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOAtividade;
 import framework.model.Atividade;
 
-public abstract class DAOAtividade implements IDAOAtividade {
+public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade<A> {
 
 	@Override
-	public void inserir(Atividade a) throws DatabaseException {
+	public void inserir(A a) throws DatabaseException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void remover(Atividade a) throws DatabaseException {
+	public void remover(A a) throws DatabaseException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void atualizar(Atividade a) throws DatabaseException {
+	public void atualizar(A a) throws DatabaseException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public List<Atividade> consultar(Atividade a) throws DatabaseException {
+	public List<A> consultar(A a) throws DatabaseException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Atividade> listar() throws DatabaseException {
+	public List<A> listar() throws DatabaseException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	/** classes que devem ser implementadas*/
+	/** Metodos que devem ser implementados*/
 	
 	protected abstract String compInserir(String comando);
 	protected abstract String compRemover(String comando);

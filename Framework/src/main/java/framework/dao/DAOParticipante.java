@@ -6,35 +6,35 @@ import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOParticipante;
 import framework.model.Participante;
 
-public abstract class DAOParticipante implements IDAOParticipante {
+public abstract class DAOParticipante<P extends Participante> implements IDAOParticipante<P> {
 
 	public DAOParticipante() {} 
 
 	@Override
-	public void inserir(Participante p) throws DatabaseException
+	public void inserir(P p) throws DatabaseException
 	{}
 	
 	@Override
-	public void remover(Participante p) throws DatabaseException
+	public void remover(P p) throws DatabaseException
 	{}
 	
 	@Override
-	public void atualizar(Participante p) throws DatabaseException
+	public void atualizar(P p) throws DatabaseException
 	{}
 	
 	@Override
-	public List<Participante> consultar(Participante p) throws DatabaseException
+	public List<P> consultar(P p) throws DatabaseException
 	{
 		return null;
 	}
 	
 	@Override
-	public List<Participante> listar() throws DatabaseException
+	public List<P> listar() throws DatabaseException
 	{
 		return null;
 	}
 	
-	/** classes que devem ser implementadas*/
+	/** Metodos que devem ser implementados*/
 	
 	protected abstract String compInserir(String comando);
 	protected abstract String compRemover(String comando);

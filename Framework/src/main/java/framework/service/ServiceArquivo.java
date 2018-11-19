@@ -45,7 +45,7 @@ public abstract class ServiceArquivo implements IServiceArquivo {
 		return null;
 	}
 	
-	/** Classes que precisam ser implementadas */
+	/** Metodos que precisam ser implementados */
 	protected abstract boolean validarInserir(Arquivo a);
 	protected abstract boolean validarRemover(Arquivo a);
 	protected abstract boolean validarAtulizar(Arquivo a);

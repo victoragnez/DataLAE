@@ -4,15 +4,14 @@ import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOProjeto;
-import framework.model.Participante;
 import framework.model.Projeto;
 import framework.service.interfaces.IServiceProjeto;
 
 public abstract class ServiceProjeto<P extends Projeto> implements IServiceProjeto<P> {
 
-	private final IDAOProjeto dao;
+	private final IDAOProjeto<P> dao;
 	
-	public ServiceProjeto (IDAOProjeto dao)	{
+	public ServiceProjeto (IDAOProjeto<P> dao)	{
 		this.dao = dao;
 	}
 	
@@ -38,7 +37,7 @@ public abstract class ServiceProjeto<P extends Projeto> implements IServiceProje
 	public List<Projeto> listar() throws DatabaseException
 	{return null;}
 
-	/** Classes que precisam ser implementadas */
+	/** Metodos que precisam ser implementados */
 	protected abstract boolean validarInserir(P p);
 	protected abstract boolean validarRemover(P p);
 	protected abstract boolean validarAtulizar(P p);

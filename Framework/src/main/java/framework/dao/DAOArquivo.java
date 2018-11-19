@@ -38,10 +38,4 @@ public abstract class DAOArquivo implements IDAOArquivo {
 		return null;
 	}
 
-/** classes que devem ser implementadas*/
-	
-	protected abstract String compInserir(String comando);
-	protected abstract String compRemover(String comando);
-	protected abstract String compAtualizar(String comando);
-	protected abstract String compConsultar(String comando);
 }

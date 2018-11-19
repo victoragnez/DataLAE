@@ -9,9 +9,9 @@ import framework.service.interfaces.IServiceParticipante;
 
 public abstract class ServiceParticipante<P extends Participante> implements IServiceParticipante<P> {
 
-	private final IDAOParticipante dao;
+	private final IDAOParticipante<P> dao;
 	
-	public ServiceParticipante (IDAOParticipante dao)	{
+	public ServiceParticipante (IDAOParticipante<P> dao)	{
 		this.dao = dao;
 	}
 	
@@ -37,7 +37,7 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 	public List<P> listar() throws DatabaseException
 	{return null;}
 
-	/** Classes que precisam ser implementadas */
+	/** Metodos que precisam ser implementados */
 	protected abstract boolean validarInserir(P p);
 	protected abstract boolean validarRemover(P p);
 	protected abstract boolean validarAtulizar(P p);

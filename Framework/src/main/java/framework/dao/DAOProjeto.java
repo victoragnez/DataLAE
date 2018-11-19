@@ -11,16 +11,16 @@ import framework.dao.interfaces.IDAOProjeto;
 import framework.model.Participante;
 import framework.model.Projeto;
 
-public abstract class DAOProjeto implements IDAOProjeto {
+public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	
 	@Override
-	public void inserir(Projeto p) throws DatabaseException
+	public void inserir(P p) throws DatabaseException
 	{
 
 		ArrayList<String> campos = new ArrayList<String>();
 		
 		if(p.getCodigo() != null)
-			campos.add("codigoProjeto=" + p.getCodigo());
+			campos.add("codigoP=" + p.getCodigo());
 		
 		if(p.getNome() != null && p.getNome().length() != 0)
 			campos.add("nome='" + p.getNome()+"'");
@@ -31,7 +31,7 @@ public abstract class DAOProjeto implements IDAOProjeto {
 		if(p.getDataFim() != null)
 			campos.add("dataTermino='" + p.getDataFim().toString() + "'");
 		
-		String sql = "insert into Projeto set ";
+		String sql = "insert into P set ";
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
@@ -59,10 +59,10 @@ public abstract class DAOProjeto implements IDAOProjeto {
 			if(p.getParticipantes() != null) {
 				for(Participante pesq : p.getParticipantes()) {
 					campos = new ArrayList<String>();
-					campos.add("codigoProjeto=" + p.getCodigo());
+					campos.add("codigoP=" + p.getCodigo());
 					campos.add("codigoParticipante=" + pesq.getCodigo());
 					
-					sql = "insert into ParticipanteProjeto set ";
+					sql = "insert into ParticipanteP set ";
 					for(int i = 0; i < campos.size(); i++) {
 						sql += campos.get(i);
 						if(i+1 < campos.size())
@@ -79,7 +79,7 @@ public abstract class DAOProjeto implements IDAOProjeto {
 		}
 		catch(SQLException e) {
 			try {
-				JDBC.runRemove("delete from Projeto where codigoProjeto=" + p.getCodigo() + ";");
+				JDBC.runRemove("delete from P where codigoP=" + p.getCodigo() + ";");
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -89,31 +89,31 @@ public abstract class DAOProjeto implements IDAOProjeto {
 	}
 	
 	@Override
-	public void remover(Projeto p) throws DatabaseException
+	public void remover(P p) throws DatabaseException
 	{
 		
 	}
 	
 	@Override
-	public void atualizar(Projeto p) throws DatabaseException
+	public void atualizar(P p) throws DatabaseException
 	{
 		
 	}
 	
 	@Override
-	public List<Projeto> consultar(Projeto pj) throws DatabaseException
+	public List<P> consultar(P pj) throws DatabaseException
 	{
 		return null;
 		
 	}
 	
 	@Override
-	public List<Projeto> listar() throws DatabaseException
+	public List<P> listar() throws DatabaseException
 	{
-		String sql = "select * from Projeto;";
+		String sql = "select * from P;";
 		
 		try {
-			return getProjetoFromResult(JDBC.runQuery(sql));
+			return getPFromResult(JDBC.runQuery(sql));
 		}catch (SQLException e) {
 			//lançar nova exceção
 			throw new DatabaseException("Não foi possível realizar a operação solicitada");
@@ -121,17 +121,17 @@ public abstract class DAOProjeto implements IDAOProjeto {
 		
 	}
 
-	private ArrayList<Projeto> getProjetoFromResult(ResultSet resultSet) throws SQLException {
-		ArrayList<Projeto> retorno = new ArrayList<Projeto>();
+	private ArrayList<P> getPFromResult(ResultSet resultSet) throws SQLException {
+		ArrayList<P> retorno = new ArrayList<P>();
 
 		while(resultSet.next()) {
 			
-			Integer codigo = (Integer)resultSet.getObject("codigoProjeto");
+			Integer codigo = (Integer)resultSet.getObject("codigoP");
 			String nome = resultSet.getString("nome");
 			Date inicio = resultSet.getDate("dataInicio");
 			Date termino = resultSet.getDate("dataTermino");
 			
-			Projeto p = getProjectWithFlexibleAttributes(resultSet);
+			P p = getProjectWithFlexibleAttributes(resultSet);
 			
 			p.setCodigo(codigo);
 			p.setNome(nome);
@@ -144,13 +144,13 @@ public abstract class DAOProjeto implements IDAOProjeto {
 		return retorno;
 	}
 	
-	/** classes que devem ser implementadas*/
+	/** Metodos que devem ser implementados*/
 	
 	protected abstract String compInserir(String comando);
 	protected abstract String compRemover(String comando);
 	protected abstract String compAtualizar(String comando);
 	protected abstract String compConsultar(String comando);
 
-	protected abstract Projeto getProjectWithFlexibleAttributes(ResultSet resultSet);
+	protected abstract P getProjectWithFlexibleAttributes(ResultSet resultSet);
 
 }

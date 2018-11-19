@@ -9,9 +9,9 @@ import framework.service.interfaces.IServiceAtividade;
 
 public abstract class ServiceAtividade<A extends Atividade> implements IServiceAtividade<A> {
 
-	private final IDAOAtividade dao;
+	private final IDAOAtividade<A> dao;
 	
-	public ServiceAtividade (IDAOAtividade dao)	{
+	public ServiceAtividade (IDAOAtividade<A> dao)	{
 		this.dao = dao;
 	}
 	
@@ -45,7 +45,7 @@ public abstract class ServiceAtividade<A extends Atividade> implements IServiceA
 		return null;
 	}
 	
-	/** Classes que precisam ser implementadas */
+	/** Metodos que precisam ser implementados */
 	protected abstract boolean validarInserir(A a);
 	protected abstract boolean validarRemover(A a);
 	protected abstract boolean validarAtulizar(A a);

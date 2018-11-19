@@ -4,12 +4,12 @@ import java.util.List;
 
 import framework.model.Participante;
 
-public interface IDAOParticipante {
+public interface IDAOParticipante <P extends Participante> {
 
-	public void inserir(Participante p) throws DatabaseException;
-	public void remover(Participante p) throws DatabaseException;
-	public void atualizar(Participante p) throws DatabaseException;
-	public List<Participante> consultar(Participante p) throws DatabaseException;
-	public List<Participante> listar() throws DatabaseException;
+	public void inserir(P p) throws DatabaseException;
+	public void remover(P p) throws DatabaseException;
+	public void atualizar(P p) throws DatabaseException;
+	public List<P> consultar(P p) throws DatabaseException;
+	public List<P> listar() throws DatabaseException;
 	
 }
