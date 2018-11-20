@@ -62,7 +62,13 @@ public class ProjetoController {
 	@GetMapping("/{id}/editar")
 	public String formProjetoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		if(id != null) {
-			ProjetoGeologia  p = service.buscarPorId(id);
+			ProjetoGeologia p = new ProjetoGeologia();
+			p.setCodigo(id);
+			try {
+				p = service.consultar(p).get(0);
+			} catch (DatabaseException e) {
+				p = null;
+			}
 			if(p == null) {
 				redirectAttributes.addFlashAttribute("erro", ERROR_EDIT);
 				return "redirect:/projetos";
@@ -106,7 +112,13 @@ public class ProjetoController {
 		if(filtro.getNome().trim().isEmpty())
 			filtro.setNome(null);
 		
-		List<ProjetoGeologia> projetos = service.consultar(filtro);
+		List<ProjetoGeologia> projetos;
+		try {
+			projetos = service.consultar(filtro);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			projetos = null;
+		}
 		redirectAttributes.addFlashAttribute("projetos", projetos);
 		return "redirect:/projetos/buscar";
 	}
