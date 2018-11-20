@@ -10,7 +10,11 @@ public class DateConverter implements Converter<String, Date> {
 
 	@Override
 	public Date convert(String source) {
-		System.out.println(Date.valueOf(source));
-		return Date.valueOf(source);
+		try {
+			return Date.valueOf(source);
+		}
+		catch(IllegalArgumentException e) {
+			return null;
+		}
 	}
 }
