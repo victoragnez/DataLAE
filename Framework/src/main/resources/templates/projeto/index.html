@@ -20,16 +20,20 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Nome</th> 
-					<th>Descrição</th> 
+					<th>Nome</th>
+					<th>Financiador</th>
+					<th>Contato</th>
 					<th>Data de Início</th>
+					<th>Data de Término</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="projeto : ${projetos}">
 					<td th:text="${projeto.nome}"></td>
-					<td th:text="${projeto.descricao}"></td>
-					<td th:text="${projeto.inicio}"></td>
+					<td th:text="${projeto.financiador}"></td>
+					<td th:text="${projeto.contatoFinanciador}"></td>
+					<td th:text="${projeto.dataInicio}"></td>
+					<td th:text="${projeto.dataFim}"></td>
 					<td>
 						<a th:href="@{/projetos/{id}/editar (id = ${projeto.id})}" class="btn btn-primary">Editar</a>
 						<a th:href="@{/projetos/{id}/apagar (id = ${projeto.id})}" class="btn btn-danger">Apagar</a>

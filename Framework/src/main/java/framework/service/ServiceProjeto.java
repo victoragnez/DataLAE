@@ -17,7 +17,9 @@ public abstract class ServiceProjeto<P extends Projeto> implements IServiceProje
 	
 	@Override
 	public void inserir(P p) throws DatabaseException {
-		if(p.getDataInicio() != null || p.getNome() != null)
+		if(p == null)
+			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		if(p.getDataInicio() == null || p.getNome() == null)
 			throw new IllegalArgumentException("Parametro fornecido contem campos obrigatórios nulos");
 		if(!validarInserir(p))
 			throw new IllegalArgumentException("Parametro fornecido não esta de acordo com as restrições da classe concreta");

@@ -51,6 +51,8 @@ public class ProjetoController {
 	@PostMapping
 	public String create(@ModelAttribute("projeto") ProjetoGeologia projeto, RedirectAttributes redirectAtrributes) {
 		try {
+			if(projeto.getDataInicio() == null)
+				System.out.println("ERRO");
 			service.inserir(projeto);
 			redirectAtrributes.addFlashAttribute("sucesso", SUCCESS_INSERT);
 		} catch (Exception e) {
