@@ -4,6 +4,7 @@
 package com.lab.data.dao;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.lab.data.model.ProjetoGeologia;
 
@@ -21,7 +22,7 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 			sql += ", diretor='" + p.getContatoFinanciador() + "'";
 		
 		if(p.getFinanciador() != null)
-			sql += ", financiador='" + p.getContatoFinanciador() + "'";
+			sql += ", financiador='" + p.getFinanciador() + "'";
 		
 		return sql;
 	}
@@ -45,9 +46,13 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 	}
 
 	@Override
-	protected ProjetoGeologia getProjectWithFlexibleAttributes(ResultSet resultSet) {
-		// TODO Auto-generated method stub
-		return null;
+	protected ProjetoGeologia getProjectWithFlexibleAttributes(ResultSet resultSet) throws SQLException {
+		ProjetoGeologia p = new ProjetoGeologia();
+		String financiador = resultSet.getString("financiador");
+		String contato = resultSet.getString("diretor");
+		p.setContatoFinanciador(contato);
+		p.setFinanciador(financiador);
+		return p;
 	}
 
 }

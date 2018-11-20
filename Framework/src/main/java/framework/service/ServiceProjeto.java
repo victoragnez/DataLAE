@@ -41,7 +41,7 @@ public abstract class ServiceProjeto<P extends Projeto> implements IServiceProje
 	
 	@Override
 	public List<P> listar() throws DatabaseException
-	{return null;}
+	{return dao.listar(); }
 
 	/** Metodos que precisam ser implementados */
 	protected abstract boolean validarInserir(P p);

@@ -113,12 +113,13 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	@Override
 	public List<P> listar() throws DatabaseException
 	{
-		String sql = "select * from P;";
+		String sql = "select * from Projeto;";
 		
 		try {
 			return getPFromResult(JDBC.runQuery(sql));
 		}catch (SQLException e) {
 			//lançar nova exceção
+			System.out.println(e.getMessage());
 			throw new DatabaseException("Não foi possível realizar a operação solicitada");
 		}
 		
@@ -129,7 +130,7 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 
 		while(resultSet.next()) {
 			
-			Integer codigo = (Integer)resultSet.getObject("codigoP");
+			Integer codigo = (Integer)resultSet.getObject("codigoProjeto");
 			String nome = resultSet.getString("nome");
 			Date inicio = resultSet.getDate("dataInicio");
 			Date termino = resultSet.getDate("dataTermino");
@@ -140,6 +141,8 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 			p.setNome(nome);
 			p.setDataInicio(inicio);
 			p.setDataFim(termino);
+			
+			System.out.println(p);
 			
 			retorno.add(p);
 			
@@ -154,6 +157,6 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	protected abstract String compAtualizar(String sql, P p);
 	protected abstract String compConsultar(String sql, P p);
 
-	protected abstract P getProjectWithFlexibleAttributes(ResultSet resultSet);
+	protected abstract P getProjectWithFlexibleAttributes(ResultSet resultSet) throws SQLException;
 
 }
