@@ -15,29 +15,32 @@ public abstract class ServiceArea implements IServiceArea {
 		this.dao = dao;
 	}
 	
+	@Override
 	public void inserir(Area a) throws DatabaseException
-	{}
+	{
+		dao.inserir(a);
+	}
 	
+	@Override
 	public void remover(Area a) throws DatabaseException
 	{}
 	
+	@Override
 	public void atualizar(Area a) throws DatabaseException
 	{}
 	
+	@Override
 	public List<Area> consultar(Area a) throws DatabaseException
 	{return null;}
 	
+	@Override
 	public List<Area> listar() throws DatabaseException
 	{return null;}
 
 	/** Classes que precisam ser implementadas */
-	public abstract boolean validarInserir(String command);
-	public abstract boolean validarRemover(String command);
-	public abstract boolean validarAtulizar(String command);
-	public abstract boolean validarConsultar(String command);
-
-	public IDAOArea getDao() {
-		return dao;
-	}
+	protected abstract boolean validarInserir(String command);
+	protected abstract boolean validarRemover(String command);
+	protected abstract boolean validarAtulizar(String command);
+	protected abstract boolean validarConsultar(String command);
 	
 }

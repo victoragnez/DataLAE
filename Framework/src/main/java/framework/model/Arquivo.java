@@ -1,35 +1,31 @@
 package framework.model;
 
-import java.io.InputStream;
-
 public class Arquivo {
 	
 	/** Atributos */
 	
 	private String nome;
-//	private TipoArquivo tipo;
 	private Long tamanho;
-	private InputStream dados;
+	private byte[] dados;
 	private Projeto projeto;
 	private Integer codigo;
 
-	public Arquivo(String nome, /*TipoArquivo tipo, */ 
-			Long tamanho, InputStream dados, 
+	public Arquivo(String nome, 
+			Long tamanho, byte[] dados, 
 			Projeto projeto, Integer codigo) {
 		
 		this.nome = nome;
-//		this.tipo = tipo;
 		this.tamanho = tamanho;
 		this.dados = dados;
 		this.setCodigo(codigo);
 		this.projeto = projeto;
 	}
 	
-	public Arquivo(String nome, /*TipoArquivo tipo,*/ 
-			Long tamanho, InputStream dados, 
+	public Arquivo(String nome,
+			Long tamanho, byte[] dados, 
 			Projeto projeto) {
 		
-		this(nome, /*tipo,*/ tamanho, dados, projeto, null);
+		this(nome, tamanho, dados, projeto, null);
 	}
 
 	public String getNome() {
@@ -39,14 +35,6 @@ public class Arquivo {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	/*public TipoArquivo getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoArquivo tipo) {
-		this.tipo = tipo;
-	}*/
 
 	public Integer getCodigo() {
 		return codigo;
@@ -62,14 +50,14 @@ public class Arquivo {
 	/**
 	 * @return the dados
 	 */
-	public InputStream getDados() {
+	public byte[] getDados() {
 		return dados;
 	}
 
 	/**
 	 * @param dados the dados to set
 	 */
-	public void setDados(InputStream dados) {
+	public void setDados(byte[] dados) {
 		this.dados = dados;
 	}
 

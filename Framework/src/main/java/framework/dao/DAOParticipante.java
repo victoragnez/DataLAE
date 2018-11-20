@@ -10,20 +10,25 @@ public abstract class DAOParticipante implements IDAOParticipante {
 
 	public DAOParticipante() {} 
 
+	@Override
 	public void inserir(Participante p) throws DatabaseException
 	{}
 	
+	@Override
 	public void remover(Participante p) throws DatabaseException
 	{}
 	
+	@Override
 	public void atualizar(Participante p) throws DatabaseException
 	{}
 	
+	@Override
 	public List<Participante> consultar(Participante p) throws DatabaseException
 	{
 		return null;
 	}
 	
+	@Override
 	public List<Participante> listar() throws DatabaseException
 	{
 		return null;
@@ -31,9 +36,9 @@ public abstract class DAOParticipante implements IDAOParticipante {
 	
 	/** classes que devem ser implementadas*/
 	
-	public abstract String compInserir(String comando);
-	public abstract String compRemover(String comando);
-	public abstract String compAtualizar(String comando);
-	public abstract String compConsultar(String comando);
+	protected abstract String compInserir(String comando);
+	protected abstract String compRemover(String comando);
+	protected abstract String compAtualizar(String comando);
+	protected abstract String compConsultar(String comando);
 	
 }
