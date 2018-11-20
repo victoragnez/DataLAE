@@ -13,33 +13,46 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.lab.data.model.old.Projeto;
-import com.lab.data.service.old.ProjetoService;
+import com.lab.data.model.ProjetoGeologia;
+
+import framework.dao.interfaces.DatabaseException;
+import framework.service.ServiceProjeto;
 
 @Controller
 @RequestMapping("/projetos")
 public class ProjetoController {
 	
+	private static final String SUCCESS_INSERT = "Projeto inserido com sucesso!";
+	private static final String ERROR_EDIT = "Falha ao tentar editar projeto: Projeto não existe!";
+	private static final String SUCCESS_EDIT = "Projeto editado com sucesso!";
+	private static final String SUCCESS_DELETE = "Projeto deletado com sucesso!";
+	
 	@Autowired
-	private ProjetoService service;
+	private ServiceProjeto<ProjetoGeologia> service;
 	
 	@GetMapping
-	public String index(Model model) {
-		List<Projeto> projs = service.listar();
+	public String index(Model model, RedirectAttributes redirectAttributes) {
+		List<ProjetoGeologia> projs;
+		try {
+			projs = service.listar();
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/projetos";
+		}
 		model.addAttribute("projetos", projs);
 		return "projeto/index";
 	}
 	
 	@GetMapping("/cadastrar")
-	public String formProjetoCad(@ModelAttribute("projeto") Projeto projeto) {
+	public String formProjetoCad(@ModelAttribute("projeto") ProjetoGeologia projeto) {
 		return "projeto/form";
 	}
 	
 	@PostMapping
-	public String create(@ModelAttribute("projeto") Projeto projeto, RedirectAttributes redirectAtrributes) {
+	public String create(@ModelAttribute("projeto") ProjetoGeologia projeto, RedirectAttributes redirectAtrributes) {
 		try {
 			service.inserir(projeto);
-			redirectAtrributes.addFlashAttribute("sucesso", "Projeto inserido com sucesso!");
+			redirectAtrributes.addFlashAttribute("sucesso", SUCCESS_INSERT);
 		} catch (Exception e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
@@ -49,9 +62,9 @@ public class ProjetoController {
 	@GetMapping("/{id}/editar")
 	public String formProjetoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		if(id != null) {
-			Projeto p = service.buscarPorId(id);
+			ProjetoGeologia  p = service.buscarPorId(id);
 			if(p == null) {
-				redirectAttributes.addFlashAttribute("erro", "Falha ao tentar editar projeto: Projeto não existe!");
+				redirectAttributes.addFlashAttribute("erro", ERROR_EDIT);
 				return "redirect:/projetos";
 			}
 			model.addAttribute("projeto", p);
@@ -60,11 +73,11 @@ public class ProjetoController {
 	}
 	
 	@PutMapping
-	public String edit(Projeto projeto, RedirectAttributes redirectAttributes) {
+	public String edit(ProjetoGeologia projeto, RedirectAttributes redirectAttributes) {
 		try {
 			service.atualizar(projeto);
-			redirectAttributes.addFlashAttribute("sucesso", "Projeto editado com sucesso!");
-		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_EDIT);
+		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/projetos";
@@ -73,8 +86,10 @@ public class ProjetoController {
 	@GetMapping("/{id}/apagar")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		try {
-			service.removerPorId(id);
-			redirectAttributes.addFlashAttribute("sucesso", "Projeto deletado com sucesso!");
+			ProjetoGeologia p = new ProjetoGeologia();
+			p.setCodigo(id);
+			service.remover(p);
+			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_DELETE);
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
@@ -82,19 +97,16 @@ public class ProjetoController {
 	}
 	
 	@GetMapping("/buscar")
-	public String filtros(@ModelAttribute("filtro") Projeto filtro) {
+	public String filtros(@ModelAttribute("filtro") ProjetoGeologia filtro) {
 		return "projeto/search"; 
 	}
 	
 	@PostMapping("/buscar")
-	public String filtros(@ModelAttribute("filtro") Projeto filtro, RedirectAttributes redirectAttributes) {
-		filtro.setDescricao(null);
+	public String filtros(@ModelAttribute("filtro") ProjetoGeologia filtro, RedirectAttributes redirectAttributes) {
 		if(filtro.getNome().trim().isEmpty())
 			filtro.setNome(null);
-		if(filtro.getInicio().trim().isEmpty())
-			filtro.setInicio(null);
 		
-		List<Projeto> projetos = service.buscar(filtro);
+		List<ProjetoGeologia> projetos = service.consultar(filtro);
 		redirectAttributes.addFlashAttribute("projetos", projetos);
 		return "redirect:/projetos/buscar";
 	}
