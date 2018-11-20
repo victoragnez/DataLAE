@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lab.data.model.ProjetoGeologia;
 import com.lab.data.model.old.Local;
 import com.lab.data.model.old.Projeto;
 import com.lab.data.model.old.Viagem;
 import com.lab.data.service.old.LocalService;
 import com.lab.data.service.old.ProjetoService;
 import com.lab.data.service.old.ViagemService;
+
+import framework.dao.interfaces.DatabaseException;
+import framework.service.ServiceProjeto;
 
 @Controller
 @RequestMapping("/viagens")
@@ -31,7 +35,7 @@ public class ViagemController {
 	private LocalService localService;
 	
 	@Autowired
-	private ProjetoService projetoService;
+	private ServiceProjeto<ProjetoGeologia> projetoService;
 	
 	@GetMapping
 	public String index(Model model) {
@@ -41,8 +45,15 @@ public class ViagemController {
 	}
 	
 	@GetMapping("/cadastrar")
-	public String formViagemCad(Model model, @ModelAttribute("viagem") Viagem viagem) {
-		List<Projeto> projetos = projetoService.listar();
+	public String formViagemCad(Model model, @ModelAttribute("viagem") Viagem viagem, RedirectAttributes redirectAttributes) {
+		List<ProjetoGeologia> projetos;
+		try {
+			projetos = projetoService.listar();
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/viagens";
+		}
+		
 		List<Local> locais = localService.listar();
 		model.addAttribute("projetos", projetos);
 		model.addAttribute("locais", locais);
@@ -69,7 +80,13 @@ public class ViagemController {
 				return "redirect:/viagens";
 			}
 			model.addAttribute("viagem", v);
-			List<Projeto> projetos = projetoService.listar();
+			List<ProjetoGeologia> projetos;
+			try {
+				projetos = projetoService.listar();
+			} catch (DatabaseException e) {
+				redirectAttributes.addFlashAttribute("erro", e.getMessage());
+				return "redirect:/viagens";
+			}
 			List<Local> locais = localService.listar();
 			model.addAttribute("projetos", projetos);
 			model.addAttribute("locais", locais);
@@ -100,8 +117,14 @@ public class ViagemController {
 	}
 	
 	@GetMapping("/buscar")
-	public String filtros(Model model, @ModelAttribute("filtro") Viagem  filtro) {
-		List<Projeto> projetos = projetoService.listar();
+	public String filtros(Model model, @ModelAttribute("filtro") Viagem  filtro, RedirectAttributes redirectAttributes) {
+		List<ProjetoGeologia> projetos;
+		try {
+			projetos = projetoService.listar();
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/viagens";
+		}
 		List<Local> locais = localService.listar();
 		model.addAttribute("projetos", projetos);
 		model.addAttribute("locais", locais);

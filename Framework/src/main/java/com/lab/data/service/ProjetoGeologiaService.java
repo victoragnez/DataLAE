@@ -3,8 +3,11 @@
  */
 package com.lab.data.service;
 
+import java.util.List;
+
 import com.lab.data.model.ProjetoGeologia;
 
+import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOProjeto;
 import framework.service.ServiceProjeto;
 
@@ -52,5 +55,4 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }
