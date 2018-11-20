@@ -3,18 +3,17 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorator="layout">
 <head>
-	<meta charset="utf-8" />
-	<title>DataLAE</title>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DataLAE</title>
 </head>
 <body>
 	<div layout:fragment="content">
-		<h1 th:if="${viagem.id == null}">Nova Viagem</h1>
-		<h1 th:if="${viagem.id != null}">Editar Viagem</h1>
+		<h1>Buscar Viagens</h1>
 		<hr />
-		
-		<form th:action="@{/viagens}" th:method="@{${viagem.id == null} ? 'post' : 'put'}" th:object="${viagem}">
-			<input type="hidden" th:field="*{id}" />
-			
+		<form th:method="post" th:object="${filtro}">
 			<div class="form-group">
 				<label for="projeto">Projeto</label>
 				<select name="projeto" th:field="*{projeto}" class="form-control">
@@ -46,8 +45,34 @@
 			</div>
 			
 			<a th:href="@{/viagens}" class="btn btn-default">Voltar</a>
-			<button type="submit" class="btn btn-success">Salvar</button>
+			<button type="submit" class="btn btn-success">Buscar</button>
 		</form>
+		
+		<hr />
+		<h2>Resultados</h2>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Local</th>
+					<th>Projeto</th>
+					<th>Data de Início</th> 
+					<th>Data de Término</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="viagem : ${viagens}">
+					<td th:text="${viagem.local} == null ? '-' : ${viagem.local.nome}"></td>
+					<td th:text="${viagem.projeto} == null? '-' : ${viagem.projeto.nome}"></td>
+					<td th:text="${viagem.inicio}"></td>
+					<td th:text="${viagem.fim}"></td>
+					<td>
+						<a th:href="@{/viagens/{id}/editar (id = ${viagem.id})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/viagens/{id}/apagar (id = ${viagem.id})}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>

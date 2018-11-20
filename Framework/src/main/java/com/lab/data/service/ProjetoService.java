@@ -40,6 +40,20 @@ public class ProjetoService {
 	public Projeto buscarPorId(Integer id) {
 		return projs.get(id);
 	}
+	
+	public List<Projeto> buscar(Projeto filtro) {
+		ArrayList<Projeto> list = new ArrayList<>();
+		for(Map.Entry<Integer, Projeto> e : projs.entrySet()) {
+			Projeto curr = e.getValue();
+			if((filtro.getId() == null || curr.getId().equals(filtro.getId())) &&
+					(filtro.getNome() == null || curr.getNome().equals(filtro.getNome())) &&
+					(filtro.getInicio() == null || curr.getInicio().equals(filtro.getInicio())))
+			{
+				list.add(e.getValue());
+			}
+		}
+		return list;
+	}
 
 	public List<Projeto> listar() {
 		ArrayList<Projeto> list = new ArrayList<>();

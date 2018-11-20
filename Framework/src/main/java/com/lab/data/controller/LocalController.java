@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.model.Local;
+import com.lab.data.model.Projeto;
 import com.lab.data.service.LocalService;
 
 @Controller
@@ -79,5 +80,20 @@ public class LocalController {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/locais";
+	}
+	
+	@GetMapping("/buscar")
+	public String filtros(@ModelAttribute("filtro") Local filtro) {
+		return "local/search"; 
+	}
+	
+	@PostMapping("/buscar")
+	public String filtros(@ModelAttribute("filtro") Local filtro, RedirectAttributes redirectAttributes) {
+		if(filtro.getNome().trim().isEmpty())
+			filtro.setNome(null);
+		
+		List<Local> locais = service.buscar(filtro);
+		redirectAttributes.addFlashAttribute("locais", locais);
+		return "redirect:/locais/buscar";
 	}
 }

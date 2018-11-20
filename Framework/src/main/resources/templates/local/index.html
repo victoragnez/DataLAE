@@ -7,13 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>DataLAE - Projetos</title>
+    <title>DataLAE</title>
 </head>
 <body>
 	<div layout:fragment="content">
 		<h1>Locais</h1>
 		<hr />
-		<a th:href="@{/locais/cadastrar}" class="btn btn-success" style="float:right;">Novo Local</a>
+		
+		<div class="container row">
+			<a th:href="@{/locais/cadastrar}" class="btn btn-success" style="float:right; margin-left: 10px;">Novo Local</a>
+			<a th:href="@{/locais/buscar}" class="btn btn-primary" style="float:right;" >Buscar Locais</a>
+		</div>
 		
 		<table class="table">
 			<thead>

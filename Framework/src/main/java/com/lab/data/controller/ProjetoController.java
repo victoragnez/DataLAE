@@ -80,4 +80,22 @@ public class ProjetoController {
 		}
 		return "redirect:/projetos";
 	}
+	
+	@GetMapping("/buscar")
+	public String filtros(@ModelAttribute("filtro") Projeto filtro) {
+		return "projeto/search"; 
+	}
+	
+	@PostMapping("/buscar")
+	public String filtros(@ModelAttribute("filtro") Projeto filtro, RedirectAttributes redirectAttributes) {
+		filtro.setDescricao(null);
+		if(filtro.getNome().trim().isEmpty())
+			filtro.setNome(null);
+		if(filtro.getInicio().trim().isEmpty())
+			filtro.setInicio(null);
+		
+		List<Projeto> projetos = service.buscar(filtro);
+		redirectAttributes.addFlashAttribute("projetos", projetos);
+		return "redirect:/projetos/buscar";
+	}
 }
