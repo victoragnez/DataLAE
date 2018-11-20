@@ -4,20 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.lab.data.model.old.Projeto;
-import com.lab.data.service.old.ProjetoService;
+import com.lab.data.model.ProjetoGeologia;
+
+import framework.service.ServiceProjeto;
 
 @Component
-public class ProjetoConverter implements Converter<String, Projeto>{
+public class ProjetoConverter implements Converter<String, ProjetoGeologia>{
 
 	@Autowired
-	private ProjetoService service;
+	private ServiceProjeto<ProjetoGeologia> service;
 	
 	@Override
-	public Projeto convert(String source) {
+	public ProjetoGeologia convert(String source) {
 		try {
 			Integer id = Integer.valueOf(source);
-			return service.buscarPorId(id);
+			ProjetoGeologia p = new ProjetoGeologia();
+			p.setCodigo(id);
+			return service.buscar(p);
 		}
 		catch(NumberFormatException e) {
 			return null;
