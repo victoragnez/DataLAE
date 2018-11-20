@@ -116,6 +116,22 @@ public class ProjetoController {
 		
 		List<ProjetoGeologia> projetos;
 		try {
+			projetos = service.listar();
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			projetos = null;
+		}
+		redirectAttributes.addFlashAttribute("projetos", projetos);
+		return "redirect:/projetos/buscar";
+		
+		/*
+		 * 
+		 * Jeito certo:
+		if(filtro.getNome().trim().isEmpty())
+			filtro.setNome(null);
+		
+		List<ProjetoGeologia> projetos;
+		try {
 			projetos = service.consultar(filtro);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
@@ -123,5 +139,7 @@ public class ProjetoController {
 		}
 		redirectAttributes.addFlashAttribute("projetos", projetos);
 		return "redirect:/projetos/buscar";
+		
+		*/
 	}
 }
