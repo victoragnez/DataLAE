@@ -53,4 +53,4 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 	@Override
 	protected void validarConsultar(ProjetoGeologia p) {	
 	}
-}
+}	
