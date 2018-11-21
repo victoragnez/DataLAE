@@ -6,6 +6,8 @@ import framework.dao.DAOParticipante;
 
 public class ParticipanteGeologiaDAO extends DAOParticipante<ParticipanteGeologia>{
 
+	public ParticipanteGeologiaDAO() { super(ParticipanteGeologia.class); }
+	
 	@Override
 	protected String compInserir(String sql, ParticipanteGeologia p) {
 		if (p.getCategoria() != null)

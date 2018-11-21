@@ -9,7 +9,7 @@ import framework.model.MarcadoresDAO.CompInserir;
 
 public class AreaGeologiaDAO extends DAOArea<AreaGeologia>{
 
-	public AreaGeologiaDAO() {}
+	public AreaGeologiaDAO() { super(AreaGeologia.class); }
 	
 	@CompInserir
 	public String inserir (String sql, AreaGeologia a)

@@ -22,4 +22,8 @@ public interface MarcadoresDAO {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.METHOD)
 	public @interface CompConsultar{ }
+	
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.METHOD)
+	public @interface RecuperaResultado{ }
 }

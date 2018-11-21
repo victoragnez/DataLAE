@@ -1,5 +1,6 @@
 package framework.dao;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,12 @@ import framework.model.Participante;
 import framework.model.Projeto;
 
 public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
+	
+	private final Class<P> classe;
+	
+	public DAOProjeto(Class<P> classe) {
+		this.classe = classe;
+	}
 	
 	@Override
 	public void inserir(P p) throws DatabaseException
@@ -116,36 +123,45 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		String sql = "select * from Projeto;";
 		
 		try {
-			return getPFromResult(JDBC.runQuery(sql));
+			return getFromResult(JDBC.runQuery(sql));
 		}catch (SQLException e) {
-			//lançar nova exceção
-			System.out.println(e.getMessage());
 			throw new DatabaseException("Não foi possível realizar a operação solicitada");
 		}
 		
 	}
 
-	private ArrayList<P> getPFromResult(ResultSet resultSet) throws SQLException {
+	private ArrayList<P> getFromResult(ResultSet resultSet) throws DatabaseException {
 		ArrayList<P> retorno = new ArrayList<P>();
 
-		while(resultSet.next()) {
-			
-			Integer codigo = (Integer)resultSet.getObject("codigoProjeto");
-			String nome = resultSet.getString("nome");
-			Date inicio = resultSet.getDate("dataInicio");
-			Date termino = resultSet.getDate("dataTermino");
-			
-			P p = getProjectWithFlexibleAttributes(resultSet);
-			
-			p.setCodigo(codigo);
-			p.setNome(nome);
-			p.setDataInicio(inicio);
-			p.setDataFim(termino);
-			
-			System.out.println(p);
-			
-			retorno.add(p);
-			
+		try {
+			while(resultSet.next()) {
+				
+				Integer codigo = (Integer)resultSet.getObject("codigoProjeto");
+				String nome = resultSet.getString("nome");
+				Date inicio = resultSet.getDate("dataInicio");
+				Date termino = resultSet.getDate("dataTermino");
+				
+				P p;
+				
+				try {
+					p = classe.getDeclaredConstructor().newInstance();
+				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException 
+						| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+					throw new DatabaseException(e);
+				}
+				
+				getProjectWithFlexibleAttributes(resultSet, p);
+				
+				p.setCodigo(codigo);
+				p.setNome(nome);
+				p.setDataInicio(inicio);
+				p.setDataFim(termino);
+				
+				retorno.add(p);
+				
+			}
+		} catch (SQLException e) {
+			throw new DatabaseException(e);
 		}
 		return retorno;
 	}
@@ -157,6 +173,6 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	protected abstract String compAtualizar(String sql, P p);
 	protected abstract String compConsultar(String sql, P p);
 
-	protected abstract P getProjectWithFlexibleAttributes(ResultSet resultSet) throws SQLException;
+	protected abstract void getProjectWithFlexibleAttributes(ResultSet resultSet, P p) throws SQLException;
 
 }

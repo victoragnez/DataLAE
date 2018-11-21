@@ -16,6 +16,8 @@ import framework.dao.DAOProjeto;
  */
 public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 
+	public ProjetoGeologiaDAO() { super(ProjetoGeologia.class); }
+	
 	@Override
 	protected String compInserir(String sql, ProjetoGeologia p) {
 		if(p.getContatoFinanciador() != null)
@@ -46,13 +48,11 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 	}
 
 	@Override
-	protected ProjetoGeologia getProjectWithFlexibleAttributes(ResultSet resultSet) throws SQLException {
-		ProjetoGeologia p = new ProjetoGeologia();
+	protected void getProjectWithFlexibleAttributes(ResultSet resultSet, ProjetoGeologia p) throws SQLException {
 		String financiador = resultSet.getString("financiador");
 		String contato = resultSet.getString("contato");
 		p.setContatoFinanciador(contato);
 		p.setFinanciador(financiador);
-		return p;
 	}
 
 }

@@ -8,6 +8,12 @@ import framework.model.Atividade;
 
 public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade<A> {
 
+	private final Class<A> classe;
+	
+	public DAOAtividade(Class<A> classe) {
+		this.classe = classe;
+	}
+	
 	@Override
 	public void inserir(A a) throws DatabaseException {
 		// TODO Auto-generated method stub

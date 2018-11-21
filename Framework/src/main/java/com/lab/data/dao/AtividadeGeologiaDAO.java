@@ -6,6 +6,8 @@ import framework.dao.DAOAtividade;
 
 public class AtividadeGeologiaDAO extends DAOAtividade<AtividadeGeologia> {
 
+	public AtividadeGeologiaDAO() { super(AtividadeGeologia.class); }
+	
 	@Override
 	protected String compInserir(String sql, AtividadeGeologia a) {
 		if (a.getDataTermino() == null)

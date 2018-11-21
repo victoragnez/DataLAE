@@ -8,7 +8,11 @@ import framework.model.Participante;
 
 public abstract class DAOParticipante<P extends Participante> implements IDAOParticipante<P> {
 
-	public DAOParticipante() {} 
+	private final Class<P> classe;
+	
+	public DAOParticipante(Class<P> classe) {
+		this.classe = classe;
+	}
 
 	@Override
 	public void inserir(P p) throws DatabaseException

@@ -3,6 +3,7 @@ package framework.dao;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,10 +13,14 @@ import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOArea;
 import framework.model.Area;
 import framework.model.MarcadoresDAO.CompInserir;
+import framework.model.MarcadoresDAO.RecuperaResultado;
 
 public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
-
-	public DAOArea() {}
+	private final Class<A> classe;
+	
+	public DAOArea(Class<A> classe) {
+		this.classe = classe;
+	}
 	
 	public void inserir(A a) throws DatabaseException {
 		ArrayList<String> campos = new ArrayList<String>();
@@ -64,8 +69,41 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 	{return null;}
 	
 	@Override
-	public List<A> listar() throws DatabaseException
-	{return null;}
+	public List<A> listar() throws DatabaseException {
+		String sql = "select * from Area;";
+		
+		try {
+			return getFromResult(JDBC.runQuery(sql));
+		}catch (Exception e) {
+			throw new DatabaseException("Não foi possível realizar a operação solicitada");
+		}
+	}
+	
+	private ArrayList<A> getFromResult(ResultSet resultSet) throws DatabaseException {
+		ArrayList<A> retorno = new ArrayList<A>();
+
+		try {
+			while(resultSet.next()) {
+				
+				Integer codigo;
+				String nome;
+				
+				codigo = (Integer)resultSet.getObject("codigoArea");
+				nome = resultSet.getString("nome");
+				
+				A a = recuperaResultado(resultSet);
+				
+				a.setCodigo(codigo);
+				a.setNome(nome);
+				
+				retorno.add(a);
+				
+			}
+		} catch (SQLException e) {
+			throw new DatabaseException(e);
+		}
+		return retorno;
+	}
 	
 	private String complemento(Class<? extends Annotation> annotation, String sql, A a) 	{
 		Class<?> curClass = this.getClass();
@@ -87,6 +125,37 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 			curClass = curClass.getSuperclass();
 		}
 		return sql;
+	}
+	
+	private A recuperaResultado(ResultSet resultSet) throws DatabaseException {
+		Class<?> curClass = this.getClass();
+		
+		A a;
+		
+		try {
+			a = classe.getDeclaredConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException 
+				| InvocationTargetException | NoSuchMethodException | SecurityException e1) {
+			throw new DatabaseException(e1);
+		}
+		
+		while (curClass != DAOArea.class) {
+			List<Method> allMethods = new ArrayList<Method>(Arrays.asList(curClass.getDeclaredMethods()));       
+			for (Method method : allMethods) {
+				if (method.isAnnotationPresent(RecuperaResultado.class)) {
+					try {
+						a = classe.cast(method.invoke(this, resultSet, a));
+					} catch (IllegalAccessException | IllegalArgumentException e) {
+						e.printStackTrace();
+					}
+					catch (InvocationTargetException e) {
+						throw new DatabaseException(e.getMessage());
+					}
+				}
+			}
+			curClass = curClass.getSuperclass();
+		}
+		return a;
 	}
 	
 }
