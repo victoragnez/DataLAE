@@ -14,26 +14,26 @@ public class ParticipanteGeologiaService extends ServiceParticipante<Participant
 
 	@Override
 	protected void validarInserir(ParticipanteGeologia p) {
-		// TODO Auto-generated method stub
-		
+		if (p.getCategoria() == null)
+			throw new IllegalArgumentException("Categoria nulo!");
+
 	}
 
 	@Override
 	protected void validarRemover(ParticipanteGeologia p) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub			
 	}
 
 	@Override
 	protected void validarAtualizar(ParticipanteGeologia p) {
-		// TODO Auto-generated method stub
+		if (p.getCategoria() == null)
+			throw new IllegalArgumentException("Categoria nulo!");
 		
 	}
 
 	@Override
 	protected void validarConsultar(ParticipanteGeologia p) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

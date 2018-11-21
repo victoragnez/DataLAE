@@ -24,7 +24,7 @@ create table Area (
     
     cidade varchar(255),
     estado varchar(255),
-    pais varchar(255),
+    pais varchar(255) not null,
     coordenadas point,
     
     primary key (codigoArea)
