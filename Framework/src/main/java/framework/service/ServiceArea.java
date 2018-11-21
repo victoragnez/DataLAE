@@ -16,31 +16,34 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 	}
 	
 	@Override
-	public void inserir(A a) throws DatabaseException
-	{
+	public void inserir(A a) throws DatabaseException{
 		dao.inserir(a);
 	}
 	
 	@Override
-	public void remover(A a) throws DatabaseException
-	{}
+	public void remover(A a) throws DatabaseException{
+		dao.remover(a);
+	}
 	
 	@Override
-	public void atualizar(A a) throws DatabaseException
-	{}
+	public void atualizar(A a) throws DatabaseException{
+		dao.atualizar(a);
+	}
 	
 	@Override
-	public List<A> consultar(A a) throws DatabaseException
-	{return null;}
+	public List<A> consultar(A a) throws DatabaseException{
+		return dao.consultar(a);
+	}
 	
 	@Override
-	public List<A> listar() throws DatabaseException
-	{return null;}
+	public List<A> listar() throws DatabaseException{
+		return dao.listar();
+	}
 
 	/** Metodos que precisam ser implementados */
-	protected abstract boolean validarInserir(A a);
-	protected abstract boolean validarRemover(A a);
-	protected abstract boolean validarAtulizar(A a);
-	protected abstract boolean validarConsultar(A a);
+	protected abstract void validarInserir(A a);
+	protected abstract void validarRemover(A a);
+	protected abstract void validarAtulizar(A a);
+	protected abstract void validarConsultar(A a);
 	
 }

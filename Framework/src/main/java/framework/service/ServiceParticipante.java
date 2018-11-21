@@ -16,30 +16,33 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 	}
 	
 	@Override
-	public void inserir(P p) throws DatabaseException
-	{
+	public void inserir(P p) throws DatabaseException {
 		dao.inserir(p);
 	}
 	
 	@Override
-	public void remover(P p) throws DatabaseException
-	{}
+	public void remover(P p) throws DatabaseException {
+		dao.remover(p);
+	}
 	
 	@Override
-	public void atualizar(P p) throws DatabaseException
-	{}
+	public void atualizar(P p) throws DatabaseException {
+		dao.atualizar(p);
+	}
 	
 	@Override
-	public List<P> consultar(P p) throws DatabaseException
-	{return null;}
+	public List<P> consultar(P p) throws DatabaseException {
+		return dao.consultar(p);
+	}
 	
 	@Override
-	public List<P> listar() throws DatabaseException
-	{return null;}
+	public List<P> listar() throws DatabaseException { 
+		return dao.listar();
+	}
 
 	/** Metodos que precisam ser implementados */
-	protected abstract boolean validarInserir(P p);
-	protected abstract boolean validarRemover(P p);
-	protected abstract boolean validarAtulizar(P p);
-	protected abstract boolean validarConsultar(P p);
+	protected abstract void validarInserir(P p);
+	protected abstract void validarRemover(P p);
+	protected abstract void validarAtulizar(P p);
+	protected abstract void validarConsultar(P p);
 }

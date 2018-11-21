@@ -19,20 +19,24 @@ public abstract class ServiceProjeto<P extends Projeto> implements IServiceProje
 	public void inserir(P p) throws DatabaseException {
 		if(p == null)
 			throw new IllegalArgumentException("Parâmetro fornecido nulo");
-		if(p.getDataInicio() == null || p.getNome() == null)
-			throw new IllegalArgumentException("Parametro fornecido contem campos obrigatórios nulos");
-		if(!validarInserir(p))
-			throw new IllegalArgumentException("Parametro fornecido não esta de acordo com as restrições da classe concreta");
+		if(p.getDataInicio() == null)
+			throw new IllegalArgumentException("Data inicio nula!");
+		if(p.getNome() == null)
+			throw new IllegalArgumentException("Nome nulo!");
+		
+		validarInserir(p);
 		dao.inserir(p);
 	}
 	
 	@Override
-	public void remover(P p) throws DatabaseException
-	{}
+	public void remover(P p) throws DatabaseException {
+		dao.remover(p);
+	}
 	
 	@Override
-	public void atualizar(P p) throws DatabaseException
-	{}
+	public void atualizar(P p) throws DatabaseException {
+		dao.atualizar(p);
+	}
 	
 	@Override
 	public List<P> consultar(P p) throws DatabaseException{
@@ -40,13 +44,14 @@ public abstract class ServiceProjeto<P extends Projeto> implements IServiceProje
 	}
 	
 	@Override
-	public List<P> listar() throws DatabaseException
-	{return dao.listar(); }
+	public List<P> listar() throws DatabaseException {
+		return dao.listar();
+	}
 
 	/** Metodos que precisam ser implementados */
-	protected abstract boolean validarInserir(P p);
-	protected abstract boolean validarRemover(P p);
-	protected abstract boolean validarAtulizar(P p);
-	protected abstract boolean validarConsultar(P p);
+	protected abstract void validarInserir(P p);
+	protected abstract void validarRemover(P p);
+	protected abstract void validarAtulizar(P p);
+	protected abstract void validarConsultar(P p);
 
 }

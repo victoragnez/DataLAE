@@ -17,38 +17,33 @@ public abstract class ServiceAtividade<A extends Atividade> implements IServiceA
 	
 	@Override
 	public void inserir(A a) throws DatabaseException {
-		// TODO Auto-generated method stub
-		dao.atualizar(a);
+		dao.inserir(a);
 	}
 
 	@Override
 	public void remover(A a) throws DatabaseException {
-		// TODO Auto-generated method stub
-
+		dao.remover(a);
 	}
 
 	@Override
 	public void atualizar(A a) throws DatabaseException {
-		// TODO Auto-generated method stub
-
+		dao.atualizar(a);
 	}
 
 	@Override
 	public List<A> consultar(A a) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.consultar(a);
 	}
 
 	@Override
 	public List<A> listar() throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listar();
 	}
 	
 	/** Metodos que precisam ser implementados */
-	protected abstract boolean validarInserir(A a);
-	protected abstract boolean validarRemover(A a);
-	protected abstract boolean validarAtulizar(A a);
-	protected abstract boolean validarConsultar(A a);
+	protected abstract void validarInserir(A a);
+	protected abstract void validarRemover(A a);
+	protected abstract void validarAtulizar(A a);
+	protected abstract void validarConsultar(A a);
 
 }

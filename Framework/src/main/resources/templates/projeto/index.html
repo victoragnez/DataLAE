@@ -35,7 +35,7 @@
 					<td th:text="${projeto.dataInicio}"></td>
 					<td th:text="${projeto.dataFim}"></td>
 					<td>
-						<a th:href="@{/projetos/{id}/editar (id = ${projeto.cogigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/projetos/{id}/editar (id = ${projeto.codigo})}" class="btn btn-primary">Editar</a>
 						<a th:href="@{/projetos/{id}/apagar (id = ${projeto.codigo})}" class="btn btn-danger">Apagar</a>
 					</td>
 					

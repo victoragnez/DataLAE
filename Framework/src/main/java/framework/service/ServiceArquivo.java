@@ -17,38 +17,33 @@ public abstract class ServiceArquivo implements IServiceArquivo {
 	
 	@Override
 	public void inserir(Arquivo a) throws DatabaseException {
-		// TODO Auto-generated method stub
 		dao.inserir(a);
 	}
 
 	@Override
 	public void remover(Arquivo a) throws DatabaseException {
-		// TODO Auto-generated method stub
-
+		dao.remover(a);
 	}
 
 	@Override
 	public void atualizar(Arquivo a) throws DatabaseException {
-		// TODO Auto-generated method stub
-
+		dao.atualizar(a);
 	}
 
 	@Override
 	public List<Arquivo> consultar(Arquivo a) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.consultar(a);
 	}
 
 	@Override
 	public List<Arquivo> listar() throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.listar();
 	}
 	
 	/** Metodos que precisam ser implementados */
-	protected abstract boolean validarInserir(Arquivo a);
-	protected abstract boolean validarRemover(Arquivo a);
-	protected abstract boolean validarAtulizar(Arquivo a);
-	protected abstract boolean validarConsultar(Arquivo a);
+	protected abstract void validarInserir(Arquivo a);
+	protected abstract void validarRemover(Arquivo a);
+	protected abstract void validarAtulizar(Arquivo a);
+	protected abstract void validarConsultar(Arquivo a);
 
 }
