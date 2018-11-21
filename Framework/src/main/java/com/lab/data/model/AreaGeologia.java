@@ -10,6 +10,10 @@ public class AreaGeologia extends Area{
     private String estado;
     private String pais;
 	
+    public AreaGeologia() {
+		/* Nothing */
+	}
+    
 	public AreaGeologia(String nome, Double latitude, Double longitude, String pais) {
 		super(nome);
 		this.setLatitude(latitude);
