@@ -17,7 +17,7 @@ import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.interfaces.DatabaseException;
-import framework.service.ServiceProjeto;
+import framework.service.interfaces.IServiceProjeto;
 
 @Controller
 @RequestMapping("/projetos")
@@ -38,7 +38,7 @@ public class ProjetoController {
 	}
 	
 	@Autowired
-	private ServiceProjeto<ProjetoGeologia> service;
+	private IServiceProjeto<ProjetoGeologia> service;
 	
 	@GetMapping
 	public String index(Model model, RedirectAttributes redirectAttributes) {
