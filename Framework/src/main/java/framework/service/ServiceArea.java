@@ -62,8 +62,11 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 	            if (method.isAnnotationPresent(annotation)) {
 	            	try {
 						method.invoke(this, a);
-					} catch (IllegalAccessException | IllegalArgumentException | 
-							InvocationTargetException e) {
+					} catch (IllegalAccessException | IllegalArgumentException e) {
+						e.printStackTrace();
+					}
+	            	catch (InvocationTargetException e) {
+						throw new IllegalArgumentException(e.getMessage());
 					}
 	            }
 	        }

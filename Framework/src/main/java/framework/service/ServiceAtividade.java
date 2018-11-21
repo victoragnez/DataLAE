@@ -56,14 +56,17 @@ public abstract class ServiceAtividade<A extends Atividade> implements IServiceA
 	private void validate(Class<? extends Annotation> annotation, A a) {
 		Class<?> curClass = this.getClass();
 	    
-		while (curClass != ServiceArea.class) {
+		while (curClass != ServiceAtividade.class) {
 	        List<Method> allMethods = new ArrayList<Method>(Arrays.asList(curClass.getDeclaredMethods()));       
 	        for (Method method : allMethods) {
 	            if (method.isAnnotationPresent(annotation)) {
 	            	try {
 						method.invoke(this, a);
-					} catch (IllegalAccessException | IllegalArgumentException | 
-							InvocationTargetException e) {
+					} catch (IllegalAccessException | IllegalArgumentException e) {
+						e.printStackTrace();
+					}
+	            	catch (InvocationTargetException e) {
+						throw new IllegalArgumentException(e.getMessage());
 					}
 	            }
 	        }
