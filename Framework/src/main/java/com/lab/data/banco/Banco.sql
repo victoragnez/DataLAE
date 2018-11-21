@@ -49,7 +49,8 @@ create table Participante (
     
     codigoParticipante int auto_increment not null,
     nome varchar(255) not null,
-    universidade varchar(255),
+    email varchar(255) not null,
+    instituicao varchar(255) not null,
 
     cpfParticipante varchar(11),
     categoria enum('Professor', 'Mestrando', 'Doutorando', 'IC', 'Convidado') not null,

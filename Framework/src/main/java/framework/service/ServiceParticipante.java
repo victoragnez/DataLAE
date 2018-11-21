@@ -17,36 +17,53 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 	
 	@Override
 	public void inserir(P p) throws DatabaseException {
-		//TODO add verification
+		if (p == null)
+			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		if (p.getNome() == null) 
+			throw new IllegalArgumentException("Nome nulo!");
+		if (p.getEmail() == null)
+			throw new IllegalArgumentException("Email nulo");
+		if (p.getInstituicao() == null)
+			throw new IllegalArgumentException("Instituição nulo");
+		
+		validarInserir(p);
 		dao.inserir(p);
 	}
 	
 	@Override
 	public void remover(P p) throws DatabaseException {
-		if(p == null)
-			throw new IllegalArgumentException("Parâmetro fornecido nulo");
-		if(p.getCodigo() == null)
-			throw new IllegalArgumentException("Codigo nulo");
 		
+		if (p == null)
+			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		if (p.getCodigo() == null)
+			throw new IllegalArgumentException("Identificação de participante nula!");
+
 		validarRemover(p);
 		dao.remover(p);
 	}
 	
 	@Override
 	public void atualizar(P p) throws DatabaseException {
-		if(p == null)
+		if (p == null)
 			throw new IllegalArgumentException("Parâmetro fornecido nulo");
-		if(p.getCodigo() == null)
-			throw new IllegalArgumentException("Codigo nulo");
+		if (p.getCodigo() == null)
+			throw new IllegalArgumentException("Identificação de participante nula!");
+		if (p.getNome() == null) 
+			throw new IllegalArgumentException("Nome nulo!");
+		if (p.getEmail() == null)
+			throw new IllegalArgumentException("Email nulo");
+		if (p.getInstituicao() == null)
+			throw new IllegalArgumentException("Instituição nulo");
 		
-		validarAtulizar(p);
+		validarAtualizar(p);
 		dao.atualizar(p);
 	}
 	
 	@Override
-	public List<P> consultar(P p) throws DatabaseException{
-		if(p == null)
+	public List<P> consultar(P p) throws DatabaseException {
+		if (p == null)
 			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+				
 		validarConsultar(p);
 		return dao.consultar(p);
 	}
@@ -59,6 +76,6 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 	/** Metodos que precisam ser implementados */
 	protected abstract void validarInserir(P p);
 	protected abstract void validarRemover(P p);
-	protected abstract void validarAtulizar(P p);
+	protected abstract void validarAtualizar(P p);
 	protected abstract void validarConsultar(P p);
 }
