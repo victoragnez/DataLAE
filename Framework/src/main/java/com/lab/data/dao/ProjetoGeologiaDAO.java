@@ -30,19 +30,19 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 	@Override
 	protected String compRemover(String sql, ProjetoGeologia p) {
 		// TODO Auto-generated method stub
-		return null;
+		return sql;
 	}
 
 	@Override
 	protected String compAtualizar(String sql, ProjetoGeologia p) {
 		// TODO Auto-generated method stub
-		return null;
+		return sql;
 	}
 
 	@Override
 	protected String compConsultar(String sql, ProjetoGeologia p) {
 		// TODO Auto-generated method stub
-		return null;
+		return sql;
 	}
 
 	@Override
