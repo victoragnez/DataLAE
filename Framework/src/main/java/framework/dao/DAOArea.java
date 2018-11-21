@@ -70,7 +70,7 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 	
 	@Override
 	public List<A> listar() throws DatabaseException {
-		String sql = "select * from Area;";
+		String sql = "select *, st_x(coordenadas) as latitude, st_y(coordenadas) as longitude from Area;";
 		
 		try {
 			return getFromResult(JDBC.runQuery(sql));
@@ -135,8 +135,8 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 		try {
 			a = classe.getDeclaredConstructor().newInstance();
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException 
-				| InvocationTargetException | NoSuchMethodException | SecurityException e1) {
-			throw new DatabaseException(e1);
+				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			throw new DatabaseException(e);
 		}
 		
 		while (curClass != DAOArea.class) {
