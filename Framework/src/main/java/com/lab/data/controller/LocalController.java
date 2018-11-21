@@ -15,10 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.model.AreaGeologia;
 import com.lab.data.model.old.Local;
-import com.lab.data.service.old.LocalService;
 
 import framework.dao.interfaces.DatabaseException;
-import framework.service.ServiceArea;
+import framework.service.interfaces.IServiceArea;
 
 @Controller
 @RequestMapping("/locais")
@@ -27,7 +26,7 @@ public class LocalController {
 	private static final String SUCCESS_INSERT = "Local inserido com sucesso!";
 	
 	@Autowired
-	private ServiceArea<AreaGeologia> service;
+	private IServiceArea<AreaGeologia> service;
 	
 	@GetMapping
 	public String index(Model model, RedirectAttributes redirectAttributes) {
