@@ -34,7 +34,6 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 	 */
 	@Override
 	protected void validarRemover(ProjetoGeologia p) {
-		// TODO Auto-generated method stub
 	}
 
 	/* (non-Javadoc)
@@ -42,7 +41,6 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 	 */
 	@Override
 	protected void validarAtulizar(ProjetoGeologia p) {
-		// TODO Auto-generated method stub
 	}
 
 	/* (non-Javadoc)
@@ -50,6 +48,5 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 	 */
 	@Override
 	protected void validarConsultar(ProjetoGeologia p) {
-		// TODO Auto-generated method stub
 	}
 }

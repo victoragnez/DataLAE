@@ -17,26 +17,42 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 	
 	@Override
 	public void inserir(P p) throws DatabaseException {
+		//TODO add verification
 		dao.inserir(p);
 	}
 	
 	@Override
 	public void remover(P p) throws DatabaseException {
+		if(p == null)
+			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		if(p.getCodigo() == null)
+			throw new IllegalArgumentException("Codigo nulo");
+		
+		validarRemover(p);
 		dao.remover(p);
 	}
 	
 	@Override
 	public void atualizar(P p) throws DatabaseException {
+		if(p == null)
+			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		if(p.getCodigo() == null)
+			throw new IllegalArgumentException("Codigo nulo");
+		
+		validarAtulizar(p);
 		dao.atualizar(p);
 	}
 	
 	@Override
-	public List<P> consultar(P p) throws DatabaseException {
+	public List<P> consultar(P p) throws DatabaseException{
+		if(p == null)
+			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		validarConsultar(p);
 		return dao.consultar(p);
 	}
 	
 	@Override
-	public List<P> listar() throws DatabaseException { 
+	public List<P> listar() throws DatabaseException {
 		return dao.listar();
 	}
 

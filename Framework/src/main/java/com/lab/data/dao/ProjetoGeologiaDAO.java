@@ -19,7 +19,7 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 	@Override
 	protected String compInserir(String sql, ProjetoGeologia p) {
 		if(p.getContatoFinanciador() != null)
-			sql += ", diretor='" + p.getContatoFinanciador() + "'";
+			sql += ", contato='" + p.getContatoFinanciador() + "'";
 		
 		if(p.getFinanciador() != null)
 			sql += ", financiador='" + p.getFinanciador() + "'";
@@ -49,7 +49,7 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 	protected ProjetoGeologia getProjectWithFlexibleAttributes(ResultSet resultSet) throws SQLException {
 		ProjetoGeologia p = new ProjetoGeologia();
 		String financiador = resultSet.getString("financiador");
-		String contato = resultSet.getString("diretor");
+		String contato = resultSet.getString("contato");
 		p.setContatoFinanciador(contato);
 		p.setFinanciador(financiador);
 		return p;

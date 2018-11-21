@@ -39,11 +39,5 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 	public List<A> listar() throws DatabaseException{
 		return dao.listar();
 	}
-
-	/** Metodos que precisam ser implementados */
-	protected abstract void validarInserir(A a);
-	protected abstract void validarRemover(A a);
-	protected abstract void validarAtulizar(A a);
-	protected abstract void validarConsultar(A a);
 	
 }

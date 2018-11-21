@@ -20,9 +20,9 @@ public abstract class ServiceProjeto<P extends Projeto> implements IServiceProje
 		if(p == null)
 			throw new IllegalArgumentException("Parâmetro fornecido nulo");
 		if(p.getDataInicio() == null)
-			throw new IllegalArgumentException("Data inicio nula!");
+			throw new IllegalArgumentException("Data de início nula");
 		if(p.getNome() == null)
-			throw new IllegalArgumentException("Nome nulo!");
+			throw new IllegalArgumentException("Nome nulo");
 		
 		validarInserir(p);
 		dao.inserir(p);
@@ -30,16 +30,31 @@ public abstract class ServiceProjeto<P extends Projeto> implements IServiceProje
 	
 	@Override
 	public void remover(P p) throws DatabaseException {
+		if(p == null)
+			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		if(p.getCodigo() == null)
+			throw new IllegalArgumentException("Codigo nulo");
+		
+		validarRemover(p);
 		dao.remover(p);
 	}
 	
 	@Override
 	public void atualizar(P p) throws DatabaseException {
+		if(p == null)
+			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		if(p.getCodigo() == null)
+			throw new IllegalArgumentException("Codigo nulo");
+		
+		validarAtulizar(p);
 		dao.atualizar(p);
 	}
 	
 	@Override
 	public List<P> consultar(P p) throws DatabaseException{
+		if(p == null)
+			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		validarConsultar(p);
 		return dao.consultar(p);
 	}
 	
