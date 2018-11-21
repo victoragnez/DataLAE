@@ -109,3 +109,5 @@ b
 .src/GUI/busca/TelaBuscarArquivoController.java,e/5/e513ac9cb58b156e70bf3b7fd8eaf4c1b872a8d8
 F
 src/Model/Arquivo.java,6/7/67155bb73b8c0e75d1a2dbcdc3d78ef6b8073f2b
+R
+"src/GUI/listagem/BlocoProjeto.java,3/d/3d5cc90bd19c2370f6c3056b4b240283a862b3c9

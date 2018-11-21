@@ -1,32 +1,29 @@
 
-j
-squid:S106J"9Replace this use of System.out or System.err by a logger.(­ÖÈÈüÿÿÿÿH±RMAJORZ
+…squid:S2293O"YReplace the type specification in this constructor call with the diamond operator ("<>").(§§¸´HRMINORZ
 CODE_SMELL
-squid:S1319S"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ŒÍ‰H²RMINORZ
+nsquid:S1854="6Remove this useless assignment to local variable "id".(¾Õº¶ÿÿÿÿÿ8ı¥ëè,HRMAJORZ
 CODE_SMELL
-‰squid:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¥º³8ı¥ëè,H³RCRITICALZ
+Tsquid:S16436"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8ı¥ëè,HRMINORZ
 CODE_SMELL
-Usquid:S16436"Use a StringBuilder instead.(ñ¤¢Ôøÿÿÿÿ8ı¥ëè,H´RMINORZ
+…squid:S2293T"YReplace the type specification in this constructor call with the diamond operator ("<>").(§§¸´HRMINORZ
 CODE_SMELL
-†squid:S2293T"YReplace the type specification in this constructor call with the diamond operator ("<>").(§§¸´HµRMINORZ
+œsquid:S1319S"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ŒÍ‰HRMINORZ
 CODE_SMELL
-{squid:S00112."FDefine and throw a dedicated exception instead of using a generic one.(¬¼µ‡8ı¥ëè,H¶RMAJORZ
+i
+squid:S106J"9Replace this use of System.out or System.err by a logger.(­ÖÈÈüÿÿÿÿHRMAJORZ
 CODE_SMELL
-…squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªH·RMINORZ
+i
+squid:S106E"9Replace this use of System.out or System.err by a logger.(›¶’êøÿÿÿÿHRMAJORZ
 CODE_SMELL
-j
-squid:S106E"9Replace this use of System.out or System.err by a logger.(›¶’êøÿÿÿÿH¸RMAJORZ
+„squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ä”òªHRMINORZ
 CODE_SMELL
-osquid:S1854="6Remove this useless assignment to local variable "id".(¾Õº¶ÿÿÿÿÿ8ı¥ëè,H¹RMAJORZ
+Œsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8ı¥ëè,H!RMINORZ
 CODE_SMELL
-squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(íŞì8ı¥ëè,HºRMINORZ
+Osquid:S16434"Use a StringBuilder instead.(¤İ—Ü8ı¥ëè,HRMINORZ
 CODE_SMELL
-_squid:S1148-"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ı¥ëè,H»RMINORZVULNERABILITY
-Psquid:S16434"Use a StringBuilder instead.(¤İ—Ü8ı¥ëè,H¼RMINORZ
+†squid:ModifiersOrderCheckW"EReorder the modifiers to comply with the Java Language Specification.(Šåúã8ı¥ëè,HRMINORZ
 CODE_SMELL
-‡squid:ModifiersOrderCheckW"EReorder the modifiers to comply with the Java Language Specification.(Šåúã8ı¥ëè,H½RMINORZ
+¡squid:S1319N"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(š×ŞıÿÿÿÿH RMINORZ
 CODE_SMELL
-¢squid:S1319N"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(š×ŞıÿÿÿÿH¾RMINORZ
-CODE_SMELL
-†squid:S2293O"YReplace the type specification in this constructor call with the diamond operator ("<>").(§§¸´H¿RMINORZ
+ƒsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8Ì¬ºè,H$RMAJORZ
 CODE_SMELL
