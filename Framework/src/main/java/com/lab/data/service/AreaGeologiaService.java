@@ -23,9 +23,11 @@ public class AreaGeologiaService extends ServiceArea<AreaGeologia>{
 	}
 	
 	@ValidarInserir
+	@ValidarAtualizar
 	public void validarCoordenadas (AreaGeologia a)
 	{
 		if ( (a.getLatitude() == null) || (a.getLongitude() == null))
 			throw new IllegalArgumentException("Coordenadas Inválidas");;
 	}
+	
 }
