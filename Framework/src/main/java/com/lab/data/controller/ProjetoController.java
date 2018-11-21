@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.interfaces.DatabaseException;
@@ -23,9 +24,18 @@ import framework.service.ServiceProjeto;
 public class ProjetoController {
 	
 	private static final String SUCCESS_INSERT = "Projeto inserido com sucesso!";
-	private static final String ERROR_EDIT = "Falha ao tentar editar projeto: Projeto não existe!";
+	private static final String ERROR_EDIT = "Falha ao tentar editar projeto!";
 	private static final String SUCCESS_EDIT = "Projeto editado com sucesso!";
 	private static final String SUCCESS_DELETE = "Projeto deletado com sucesso!";
+
+	private ProjetoGeologia buscarProjetoPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+		ProjetoGeologia p = new ProjetoGeologia();
+		p.setCodigo(id);
+		List<ProjetoGeologia> list = service.consultar(p);
+		if(list.size() != 1)
+			throw new NenhumEncontradoException("Projeto com codigo igual a '" + id + "' não existe!");
+		return list.get(0);
+	}
 	
 	@Autowired
 	private ServiceProjeto<ProjetoGeologia> service;
@@ -63,17 +73,17 @@ public class ProjetoController {
 	@GetMapping("/{id}/editar")
 	public String formProjetoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		if(id != null) {
-			ProjetoGeologia p = new ProjetoGeologia();
-			p.setCodigo(id);
+			ProjetoGeologia p;
 			try {
-				p = service.consultar(p).get(0);
-			} catch (DatabaseException e) {
+				p = buscarProjetoPorId(id);
+			} catch (DatabaseException | NenhumEncontradoException e) {
 				redirectAttributes.addFlashAttribute("erro", e.getMessage());
 				return "redirect:/projetos";
-			} catch (IndexOutOfBoundsException e) {
+			} catch (Exception e) {
 				redirectAttributes.addFlashAttribute("erro", ERROR_EDIT);
 				return "redirect:/projetos";
 			}
+			
 			model.addAttribute("projeto", p);
 		}
 		return "projeto/form";
@@ -115,22 +125,6 @@ public class ProjetoController {
 		
 		List<ProjetoGeologia> projetos;
 		try {
-			projetos = service.listar();
-		} catch (DatabaseException e) {
-			redirectAttributes.addFlashAttribute("erro", e.getMessage());
-			projetos = null;
-		}
-		redirectAttributes.addFlashAttribute("projetos", projetos);
-		return "redirect:/projetos/buscar";
-		
-		/*
-		 * 
-		 * Jeito certo:
-		if(filtro.getNome().trim().isEmpty())
-			filtro.setNome(null);
-		
-		List<ProjetoGeologia> projetos;
-		try {
 			projetos = service.consultar(filtro);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
@@ -138,7 +132,5 @@ public class ProjetoController {
 		}
 		redirectAttributes.addFlashAttribute("projetos", projetos);
 		return "redirect:/projetos/buscar";
-		
-		*/
 	}
 }
