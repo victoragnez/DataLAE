@@ -41,12 +41,16 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 	 */
 	@Override
 	protected void validarAtulizar(ProjetoGeologia p) {
+		if (p.getContatoFinanciador() == null)
+			throw new IllegalArgumentException("Contato de Financiador nulo!");
+		if (p.getFinanciador() == null)
+			throw new IllegalArgumentException("Financiador nulo!");
 	}
 
 	/* (non-Javadoc)
 	 * @see framework.service.ServiceProjeto#validarConsultar(java.lang.String)
 	 */
 	@Override
-	protected void validarConsultar(ProjetoGeologia p) {
+	protected void validarConsultar(ProjetoGeologia p) {	
 	}
 }
