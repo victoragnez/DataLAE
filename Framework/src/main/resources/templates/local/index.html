@@ -25,16 +25,22 @@
 					<th>Nome</th> 
 					<th>Latitude</th> 
 					<th>Longitude</th>
+					<th>Cidade</th>
+					<th>Estado</th>
+					<th>País</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="local : ${locais}">
 					<td th:text="${local.nome}"></td>
+					<td th:text="${local.cidade}"></td>
+					<td th:text="${local.estado}"></td>
+					<td th:text="${local.pais}"></td>
 					<td th:text="${local.latitude} + '°'"></td>
 					<td th:text="${local.longitude} + '°'"></td>
 					<td>
-						<a th:href="@{/locais/{id}/editar (id = ${local.id})}" class="btn btn-primary">Editar</a>
-						<a th:href="@{/locais/{id}/apagar (id = ${local.id})}" class="btn btn-danger">Apagar</a>
+						<a th:href="@{/locais/{id}/editar (id = ${local.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/locais/{id}/apagar (id = ${local.codigo})}" class="btn btn-danger">Apagar</a>
 					</td>
 				</tr>
 			</tbody>

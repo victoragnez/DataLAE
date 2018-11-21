@@ -22,7 +22,7 @@ public class AreaGeologiaDAO extends DAOArea<AreaGeologia>{
 			sql += ", pais='" + a.getPais() + "'";
 		if(a.getLatitude() != null && a.getLongitude() != null && 
 				Double.isFinite(a.getLatitude()) && Double.isFinite(a.getLongitude()))
-			sql += "coordenadas=point(" + 
+			sql += ", coordenadas=point(" + 
 				String.format(Locale.US, "%.8f", a.getLatitude()) + ", " + 
 				String.format(Locale.US, "%.8f", a.getLongitude()) + ")";
 		
