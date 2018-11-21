@@ -42,4 +42,4 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 	protected void validarConsultar(ProjetoGeologia p) {
 		/* Nothing */
 	}
-}
+}	

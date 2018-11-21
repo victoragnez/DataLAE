@@ -4,13 +4,13 @@ import framework.model.Area;
 
 public class AreaGeologia extends Area{
 
-	private Integer latitude;
-	private Integer longitude;
+	private Double latitude;
+	private Double longitude;
 	private String cidade;
     private String estado;
     private String pais;
 	
-	public AreaGeologia(String nome, Integer latitude, Integer longitude, String pais) {
+	public AreaGeologia(String nome, Double latitude, Double longitude, String pais) {
 		super(nome);
 		this.setLatitude(latitude);
 		this.setLongitude(longitude);
@@ -22,7 +22,7 @@ public class AreaGeologia extends Area{
 		this.setPais(pais);
 	}
 	
-	public AreaGeologia(String nome, int latitude, int longitude, 
+	public AreaGeologia(String nome, Double latitude, Double longitude, 
 			String cidade, String estado, String pais)
 	{
 		super(nome);
@@ -33,19 +33,19 @@ public class AreaGeologia extends Area{
 		this.setPais(pais);
 		
 	}
-	public Integer getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Integer latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public Integer getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Integer longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
