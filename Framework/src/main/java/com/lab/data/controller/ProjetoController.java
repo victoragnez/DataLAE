@@ -37,7 +37,7 @@ public class ProjetoController {
 			projs = service.listar();
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
-			return "redirect:/projetos";
+			return "redirect:/";
 		}
 		model.addAttribute("projetos", projs);
 		return "projeto/index";
@@ -51,14 +51,13 @@ public class ProjetoController {
 	@PostMapping
 	public String create(@ModelAttribute("projeto") ProjetoGeologia projeto, RedirectAttributes redirectAtrributes) {
 		try {
-			if(projeto.getDataInicio() == null)
-				System.out.println("ERRO");
 			service.inserir(projeto);
 			redirectAtrributes.addFlashAttribute("sucesso", SUCCESS_INSERT);
 		} catch (Exception e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/projetos/cadastrar";
 		}
-		return "redirect:/projetos";
+		return "redirect:/projetos/";
 	}
 	
 	@GetMapping("/{id}/editar")
@@ -69,9 +68,9 @@ public class ProjetoController {
 			try {
 				p = service.consultar(p).get(0);
 			} catch (DatabaseException e) {
-				p = null;
-			}
-			if(p == null) {
+				redirectAttributes.addFlashAttribute("erro", e.getMessage());
+				return "redirect:/projetos";
+			} catch (IndexOutOfBoundsException e) {
 				redirectAttributes.addFlashAttribute("erro", ERROR_EDIT);
 				return "redirect:/projetos";
 			}
