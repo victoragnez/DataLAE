@@ -18,9 +18,6 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 		super(dao);
 	}
 
-	/* (non-Javadoc)
-	 * @see framework.service.ServiceProjeto#validarInserir(java.lang.String)
-	 */
 	@Override
 	protected void validarInserir(ProjetoGeologia p) {
 		if(p.getContatoFinanciador() == null)
@@ -29,16 +26,10 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 			throw new IllegalArgumentException("Financiador nulo");
 	}
 
-	/* (non-Javadoc)
-	 * @see framework.service.ServiceProjeto#validarRemover(java.lang.String)
-	 */
-	@Override
 	protected void validarRemover(ProjetoGeologia p) {
+		/* Nothing */
 	}
 
-	/* (non-Javadoc)
-	 * @see framework.service.ServiceProjeto#validarAtulizar(java.lang.String)
-	 */
 	@Override
 	protected void validarAtulizar(ProjetoGeologia p) {
 		if (p.getContatoFinanciador() == null)
@@ -47,10 +38,8 @@ public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
 			throw new IllegalArgumentException("Financiador nulo!");
 	}
 
-	/* (non-Javadoc)
-	 * @see framework.service.ServiceProjeto#validarConsultar(java.lang.String)
-	 */
 	@Override
-	protected void validarConsultar(ProjetoGeologia p) {	
+	protected void validarConsultar(ProjetoGeologia p) {
+		/* Nothing */
 	}
 }	

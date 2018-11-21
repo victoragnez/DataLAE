@@ -22,7 +22,7 @@ import com.lab.data.service.old.ProjetoService;
 import com.lab.data.service.old.ViagemService;
 
 import framework.dao.interfaces.DatabaseException;
-import framework.service.ServiceProjeto;
+import framework.service.interfaces.IServiceProjeto;
 
 @Controller
 @RequestMapping("/viagens")
@@ -31,11 +31,11 @@ public class ViagemController {
 	@Autowired
 	private ViagemService viagemService;
 	
-	@Autowired
+	
 	private LocalService localService;
 	
 	@Autowired
-	private ServiceProjeto<ProjetoGeologia> projetoService;
+	private IServiceProjeto<ProjetoGeologia> projetoService;
 	
 	@GetMapping
 	public String index(Model model) {

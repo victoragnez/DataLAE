@@ -5,6 +5,10 @@ public abstract class Area {
 	private String nome;
 	private Integer codigo;
 	
+	public Area() {
+		/* Nothing */
+	}
+	
 	public Area(String nome, Integer codigo) {
 		this.nome = nome;
 		this.codigo = codigo;
