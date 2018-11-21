@@ -144,12 +144,11 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 			for (Method method : allMethods) {
 				if (method.isAnnotationPresent(RecuperaResultado.class)) {
 					try {
-						a = classe.cast(method.invoke(this, resultSet, a));
-					} catch (IllegalAccessException | IllegalArgumentException e) {
-						e.printStackTrace();
+						classe.cast(method.invoke(this, resultSet, a));
 					}
-					catch (InvocationTargetException e) {
-						throw new DatabaseException(e.getMessage());
+					catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+						e.printStackTrace();
+						throw new DatabaseException(e);
 					}
 				}
 			}
