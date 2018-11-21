@@ -37,9 +37,9 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 	@Override
 	protected String compAtualizar(String sql, ProjetoGeologia p) {
 		if (p.getFinanciador() != null)
-			sql += ", proj.financiador='" + p.getFinanciador() + "'";
+			sql += ", financiador='" + p.getFinanciador() + "'";
 		if (p.getContatoFinanciador() != null)
-			sql += ", proj.contato='" + p.getContatoFinanciador() + "'";
+			sql += ", contato='" + p.getContatoFinanciador() + "'";
 			
 		return sql;
 	}
@@ -47,9 +47,9 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 	@Override
 	protected String compConsultar(String sql, ProjetoGeologia p) {
 		if (p.getFinanciador() != null)
-			sql += ", proj.financiador='" + p.getFinanciador() + "'";
+			sql += " and financiador='" + p.getFinanciador() + "'";
 		if (p.getContatoFinanciador() != null)
-			sql += ", proj.contato='" + p.getContatoFinanciador() + "'";
+			sql += " and contato='" + p.getContatoFinanciador() + "'";
 			
 		return sql;
 	}

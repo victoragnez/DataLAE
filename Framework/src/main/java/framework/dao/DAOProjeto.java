@@ -124,17 +124,18 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		
 		if(p.getDataFim() != null)
 			campos.add("dataTermino='" + p.getDataFim().toString() + "'");
-		
+			 
+			
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
 				sql += ", ";
 		}
 		//chamar parte flexível
-		compAtualizar(sql, p);
+		sql = compAtualizar(sql, p);
 		
 		sql += " where codigoProjeto=" + p.getCodigo() + ";";
-	
+		System.out.println(sql);
 		try {
 			JDBC.runUpdate(sql);
 		}catch(Exception e) {
@@ -145,17 +146,17 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	@Override
 	public List<P> consultar(P pj) throws DatabaseException
 	{
-		String sql = "select proj.* from Projeto as proj where ";
+		String sql = "select * from Projeto where ";
 		
 		ArrayList<String> cond = new ArrayList<String>();
 		
 		if(pj.getCodigo() != null) {
-			cond.add("proj.codigoProjeto = " + pj.getCodigo());
+			cond.add("codigoProjeto = " + pj.getCodigo());
 		}
 		
 		if(pj.getDataInicio() != null) {
-			cond.add("proj.dataInicio <= '" + pj.getDataInicio().toString() + "'");
-			cond.add("(proj.dataTermino is null or proj.dataTermino >= '" + 
+			cond.add("dataInicio <= '" + pj.getDataInicio().toString() + "'");
+			cond.add("(dataTermino is null or dataTermino >= '" + 
 					pj.getDataInicio().toString() + "')");
 		}
 		
@@ -165,9 +166,10 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 				sql += " and";
 		}
 		
-		compAtualizar(sql, pj);
+		sql = compConsultar(sql, pj);
 		
 		sql += ";";
+		System.out.println(sql);
 		try {
 			return getFromResult(JDBC.runQuery(sql));
 		}catch (Exception e) {
