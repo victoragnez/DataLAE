@@ -31,19 +31,26 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 
 	@Override
 	protected String compRemover(String sql, ProjetoGeologia p) {
-		// TODO Auto-generated method stub
 		return sql;
 	}
 
 	@Override
 	protected String compAtualizar(String sql, ProjetoGeologia p) {
-		// TODO Auto-generated method stub
+		if (p.getFinanciador() != null)
+			sql += ", proj.financiador='" + p.getFinanciador() + "'";
+		if (p.getContatoFinanciador() != null)
+			sql += ", proj.contato='" + p.getContatoFinanciador() + "'";
+			
 		return sql;
 	}
 
 	@Override
 	protected String compConsultar(String sql, ProjetoGeologia p) {
-		// TODO Auto-generated method stub
+		if (p.getFinanciador() != null)
+			sql += ", proj.financiador='" + p.getFinanciador() + "'";
+		if (p.getContatoFinanciador() != null)
+			sql += ", proj.contato='" + p.getContatoFinanciador() + "'";
+			
 		return sql;
 	}
 

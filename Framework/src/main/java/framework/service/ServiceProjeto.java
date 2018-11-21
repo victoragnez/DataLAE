@@ -59,6 +59,9 @@ public abstract class ServiceProjeto<P extends Projeto> implements IServiceProje
 	public List<P> consultar(P p) throws DatabaseException{
 		if(p == null)
 			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+		if (p.getCodigo() == null && p.getDataFim() == null && p.getDataInicio() == null &&
+				p.getNome() == null && p.getParticipantes() == null)
+			return dao.listar();
 			
 		validarConsultar(p);
 		return dao.consultar(p);

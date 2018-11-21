@@ -60,12 +60,12 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		if(id == -1) {
 			id = p.getCodigo();
 		} else {
-			p.setCodigo(id);
 		}
 		
 		try {
 			ArrayList<String> commands = new ArrayList<String>();
 			
+			p.setCodigo(id);
 			if(p.getParticipantes() != null) {
 				for(Participante pesq : p.getParticipantes()) {
 					campos = new ArrayList<String>();
@@ -101,19 +101,78 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	@Override
 	public void remover(P p) throws DatabaseException
 	{
-		
+		String sql = "delete from Projeto where codigoProjeto= " + p.getCodigo() + ";";
+		try {
+			JDBC.runRemove(sql);
+		}catch(Exception e)
+		{
+			throw new DatabaseException("Impossível remover o projeto informado");
+		}
 	}
 	
 	@Override
 	public void atualizar(P p) throws DatabaseException
 	{
+		String sql = "update Projeto set ";
+		ArrayList<String> campos = new ArrayList<String>();
 		
+		if(p.getNome() != null && p.getNome().length() != 0)
+			campos.add("nome='" + p.getNome()+"'");
+		
+		if(p.getDataInicio() != null)
+			campos.add("dataInicio='" + p.getDataInicio().toString() + "'");
+		
+		if(p.getDataFim() != null)
+			campos.add("dataTermino='" + p.getDataFim().toString() + "'");
+		
+		for(int i = 0; i < campos.size(); i++) {
+			sql += campos.get(i);
+			if(i+1 < campos.size())
+				sql += ", ";
+		}
+		//chamar parte flexível
+		compAtualizar(sql, p);
+		
+		sql += " where codigoProjeto=" + p.getCodigo() + ";";
+	
+		try {
+			JDBC.runUpdate(sql);
+		}catch(Exception e) {
+			throw new DatabaseException("Não foi possível atualizar o projeto");
+		}
 	}
 	
 	@Override
 	public List<P> consultar(P pj) throws DatabaseException
 	{
-		return null;
+		String sql = "select proj.* from Projeto as proj where ";
+		
+		ArrayList<String> cond = new ArrayList<String>();
+		
+		if(pj.getCodigo() != null) {
+			cond.add("proj.codigoProjeto = " + pj.getCodigo());
+		}
+		
+		if(pj.getDataInicio() != null) {
+			cond.add("proj.dataInicio <= '" + pj.getDataInicio().toString() + "'");
+			cond.add("(proj.dataTermino is null or proj.dataTermino >= '" + 
+					pj.getDataInicio().toString() + "')");
+		}
+		
+		for(int i = 0; i < cond.size(); i++) {
+			sql += " " + cond.get(i);
+			if(i + 1 < cond.size())
+				sql += " and";
+		}
+		
+		compAtualizar(sql, pj);
+		
+		sql += ";";
+		try {
+			return getFromResult(JDBC.runQuery(sql));
+		}catch (Exception e) {
+			throw new DatabaseException("Erro durante a consulta");
+		}
 		
 	}
 	
