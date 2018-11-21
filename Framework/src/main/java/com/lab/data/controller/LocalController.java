@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.AreaGeologia;
-import com.lab.data.model.old.Local;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.service.interfaces.IServiceArea;
@@ -24,9 +24,21 @@ import framework.service.interfaces.IServiceArea;
 public class LocalController {
 	
 	private static final String SUCCESS_INSERT = "Local inserido com sucesso!";
+	private static final String ERROR_EDIT = "Não foi possível editar projeto!";
+	private static final String SUCCESS_EDIT = "Local editado com sucesso!";
+	private static final String SUCCESS_DELETE = "Local deletado com sucesso!";
 	
 	@Autowired
 	private IServiceArea<AreaGeologia> service;
+	
+	private AreaGeologia buscarAreaPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+		AreaGeologia a = new AreaGeologia();
+		a.setCodigo(id);
+		List<AreaGeologia> list = service.consultar(a);
+		if(list.size() != 1)
+			throw new NenhumEncontradoException("Local com codigo igual a '" + id + "' não existe!");
+		return list.get(0);
+	}
 	
 	@GetMapping
 	public String index(Model model, RedirectAttributes redirectAttributes) {
@@ -60,68 +72,63 @@ public class LocalController {
 	
 	@GetMapping("/{id}/editar")
 	public String formLocalEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		/*
-		if(id != null) {
-			AreaGeologia local = new AreaGeologia();
-			local.setCodigo(id);
-			List<AreaGeologia> list = service.consultar(local);
-			
+		if(id == null) {
+			redirectAttributes.addFlashAttribute("erro", ERROR_EDIT);
+			return "redirect:/locais";
 		}
-		
-		*/
-		/*
-		if(id != null) {
-			Local l = service.buscarPorId(id);
-			if(l == null) {
-				redirectAttributes.addFlashAttribute("erro", "Falha ao tentar editar local: Local não existe!");
-				return "redirect:/locais";
-			}
-			model.addAttribute("local", l);
+		try {
+			AreaGeologia a = buscarAreaPorId(id);
+			model.addAttribute("local", a);
+			return "local/form";
+		} catch (DatabaseException | NenhumEncontradoException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/locais";
 		}
-		*/
-		return "local/form";
 	}
 	
 	@PutMapping
-	public String edit(Local local, RedirectAttributes redirectAttributes) {
-		/*
+	public String edit(AreaGeologia local, RedirectAttributes redirectAttributes) {
 		try {
 			service.atualizar(local);
-			redirectAttributes.addFlashAttribute("sucesso", "Local editado com sucesso!");
-		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_EDIT);
+			return "redirect:/locais";
+		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			if(local == null)
+				return "redirect:/locais"; 
+			return "redirect:/locais/" + local.getCodigo() + "/editar";
 		}
-		*/
-		return "redirect:/locais";
 	}
 	
 	@GetMapping("/{id}/apagar")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		/*
+		AreaGeologia a = new AreaGeologia();
+		a.setCodigo(id);
+		
 		try {
-			service.removerPorId(id);
-			redirectAttributes.addFlashAttribute("sucesso", "Local deletado com sucesso!");
-		} catch (Exception e) {
+			service.remover(a);
+			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_DELETE);
+		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
-		*/
 		return "redirect:/locais";
 	}
 	
 	@GetMapping("/buscar")
-	public String filtros(@ModelAttribute("filtro") Local filtro) {
+	public String filtros(@ModelAttribute("filtro") AreaGeologia filtro) {
 		return "local/search"; 
 	}
 	
 	@PostMapping("/buscar")
-	public String filtros(@ModelAttribute("filtro") Local filtro, RedirectAttributes redirectAttributes) {
-		/*
-		if(filtro.getNome().trim().isEmpty())
+	public String filtros(@ModelAttribute("filtro") AreaGeologia filtro, RedirectAttributes redirectAttributes) {
+		if(filtro != null && filtro.getNome().trim().isEmpty())
 			filtro.setNome(null);
-		
-		List<Local> locais = service.buscar(filtro);
-		redirectAttributes.addFlashAttribute("locais", locais);
-		*/
+		try {
+			List<AreaGeologia> locais = service.consultar(filtro);
+			redirectAttributes.addFlashAttribute("locais", locais);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+		}
 		return "redirect:/locais/buscar";
 	}
 }
