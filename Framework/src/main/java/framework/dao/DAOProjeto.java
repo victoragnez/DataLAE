@@ -38,15 +38,16 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		if(p.getDataFim() != null)
 			campos.add("dataTermino='" + p.getDataFim().toString() + "'");
 		
+		//Flexible part
+		campos = compInserir(campos, p);
+				
 		String sql = "insert into Projeto set ";
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
 				sql += ", ";
 		}
-		
-		//Flexible part
-		sql = compInserir(sql, p);
+	
 		
 		sql += ";";
 		
@@ -125,14 +126,14 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		if(p.getDataFim() != null)
 			campos.add("dataTermino='" + p.getDataFim().toString() + "'");
 			 
-			
+		//chamar parte flexível
+		campos = compAtualizar(campos, p);
+		
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
 				sql += ", ";
 		}
-		//chamar parte flexível
-		sql = compAtualizar(sql, p);
 		
 		sql += " where codigoProjeto=" + p.getCodigo() + ";";
 		System.out.println(sql);
@@ -160,13 +161,13 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 					pj.getDataInicio().toString() + "')");
 		}
 		
+		cond = compConsultar(cond, pj);
+		
 		for(int i = 0; i < cond.size(); i++) {
 			sql += " " + cond.get(i);
 			if(i + 1 < cond.size())
 				sql += " and";
 		}
-		
-		sql = compConsultar(sql, pj);
 		
 		sql += ";";
 		System.out.println(sql);
@@ -229,10 +230,10 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	
 	/** Metodos que devem ser implementados*/
 	
-	protected abstract String compInserir(String sql, P p);
-	protected abstract String compRemover(String sql, P p);
-	protected abstract String compAtualizar(String sql, P p);
-	protected abstract String compConsultar(String sql, P p);
+	protected abstract ArrayList<String> compInserir(ArrayList<String> campos, P p);
+	protected abstract ArrayList<String> compRemover(ArrayList<String> campos, P p);
+	protected abstract ArrayList<String> compAtualizar(ArrayList<String> campos, P p);
+	protected abstract ArrayList<String> compConsultar(ArrayList<String> campos, P p);
 
 	protected abstract void getProjectWithFlexibleAttributes(ResultSet resultSet, P p) throws SQLException;
 

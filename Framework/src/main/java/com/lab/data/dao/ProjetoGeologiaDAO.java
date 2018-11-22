@@ -5,6 +5,7 @@ package com.lab.data.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.lab.data.model.ProjetoGeologia;
 
@@ -19,39 +20,39 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
 	public ProjetoGeologiaDAO() { super(ProjetoGeologia.class); }
 	
 	@Override
-	protected String compInserir(String sql, ProjetoGeologia p) {
+	protected ArrayList<String> compInserir(ArrayList<String> campos, ProjetoGeologia p) {
 		if(p.getContatoFinanciador() != null)
-			sql += ", contato='" + p.getContatoFinanciador() + "'";
+			campos.add("contato='" + p.getContatoFinanciador() + "'");
 		
 		if(p.getFinanciador() != null)
-			sql += ", financiador='" + p.getFinanciador() + "'";
+			campos.add("financiador='" + p.getFinanciador() + "'");
 		
-		return sql;
+		return campos;
 	}
 
 	@Override
-	protected String compRemover(String sql, ProjetoGeologia p) {
-		return sql;
+	protected ArrayList<String> compRemover(ArrayList<String> campos, ProjetoGeologia p) {
+		return campos;
 	}
 
 	@Override
-	protected String compAtualizar(String sql, ProjetoGeologia p) {
+	protected ArrayList<String> compAtualizar(ArrayList<String> campos, ProjetoGeologia p) {
 		if (p.getFinanciador() != null)
-			sql += ", financiador='" + p.getFinanciador() + "'";
+			campos.add("financiador='" + p.getFinanciador() + "'");
 		if (p.getContatoFinanciador() != null)
-			sql += ", contato='" + p.getContatoFinanciador() + "'";
+			 campos.add("contato='" + p.getContatoFinanciador() + "'");
 			
-		return sql;
+		return campos;
 	}
 
 	@Override
-	protected String compConsultar(String sql, ProjetoGeologia p) {
+	protected ArrayList<String> compConsultar(ArrayList<String> campos, ProjetoGeologia p) {
 		if (p.getFinanciador() != null)
-			sql += " and financiador='" + p.getFinanciador() + "'";
+			campos.add("financiador='" + p.getFinanciador() + "'"); 
 		if (p.getContatoFinanciador() != null)
-			sql += " and contato='" + p.getContatoFinanciador() + "'";
+			campos.add("contato='" + p.getContatoFinanciador() + "'");
 			
-		return sql;
+		return campos;
 	}
 
 	@Override
