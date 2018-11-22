@@ -61,6 +61,7 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		if(id == -1) {
 			id = p.getCodigo();
 		} else {
+			p.setCodigo(id);
 		}
 		
 		try {
@@ -147,7 +148,7 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	@Override
 	public List<P> consultar(P pj) throws DatabaseException
 	{
-		String sql = "select * from Projeto where ";
+		String sql = "select * from Projeto ";
 		
 		ArrayList<String> cond = new ArrayList<String>();
 		
@@ -163,12 +164,17 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		
 		cond = compConsultar(cond, pj);
 		
-		for(int i = 0; i < cond.size(); i++) {
-			sql += " " + cond.get(i);
-			if(i + 1 < cond.size())
-				sql += " and";
+		if (!cond.isEmpty())
+		{
+			sql += "where ";
+			for(int i = 0; i < cond.size(); i++) {
+				sql += " " + cond.get(i);
+				if(i + 1 < cond.size())
+					sql += " and";
+			}
+			
 		}
-		
+	
 		sql += ";";
 		System.out.println(sql);
 		try {
