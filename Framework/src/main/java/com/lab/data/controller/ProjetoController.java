@@ -122,6 +122,8 @@ public class ProjetoController {
 	public String filtros(@ModelAttribute("filtro") ProjetoGeologia filtro, RedirectAttributes redirectAttributes) {
 		if(filtro.getNome().trim().isEmpty())
 			filtro.setNome(null);
+		if(filtro.getFinanciador().trim().isEmpty())
+			filtro.setFinanciador(null);
 		
 		List<ProjetoGeologia> projetos;
 		try {

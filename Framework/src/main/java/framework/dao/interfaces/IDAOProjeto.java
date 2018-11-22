@@ -1,6 +1,9 @@
 package framework.dao.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.lab.data.model.ProjetoGeologia;
 
 import framework.model.Projeto;
 
@@ -11,4 +14,5 @@ public interface IDAOProjeto <P extends Projeto> {
 	public void atualizar(P p) throws DatabaseException;
 	public List<P> consultar(P p) throws DatabaseException;
 	public List<P> listar() throws DatabaseException;
+
 }

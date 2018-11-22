@@ -38,15 +38,16 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		if(p.getDataFim() != null)
 			campos.add("dataTermino='" + p.getDataFim().toString() + "'");
 		
+		//Flexible part
+		campos = compInserir(campos, p);
+				
 		String sql = "insert into Projeto set ";
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
 				sql += ", ";
 		}
-		
-		//Flexible part
-		sql = compInserir(sql, p);
+	
 		
 		sql += ";";
 		
@@ -66,6 +67,7 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 		try {
 			ArrayList<String> commands = new ArrayList<String>();
 			
+			p.setCodigo(id);
 			if(p.getParticipantes() != null) {
 				for(Participante pesq : p.getParticipantes()) {
 					campos = new ArrayList<String>();
@@ -101,19 +103,85 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	@Override
 	public void remover(P p) throws DatabaseException
 	{
-		
+		String sql = "delete from Projeto where codigoProjeto= " + p.getCodigo() + ";";
+		try {
+			JDBC.runRemove(sql);
+		}catch(Exception e)
+		{
+			throw new DatabaseException("Impossível remover o projeto informado");
+		}
 	}
 	
 	@Override
 	public void atualizar(P p) throws DatabaseException
 	{
+		String sql = "update Projeto set ";
+		ArrayList<String> campos = new ArrayList<String>();
 		
+		if(p.getNome() != null && p.getNome().length() != 0)
+			campos.add("nome='" + p.getNome()+"'");
+		
+		if(p.getDataInicio() != null)
+			campos.add("dataInicio='" + p.getDataInicio().toString() + "'");
+		
+		if(p.getDataFim() != null)
+			campos.add("dataTermino='" + p.getDataFim().toString() + "'");
+			 
+		//chamar parte flexível
+		campos = compAtualizar(campos, p);
+		
+		for(int i = 0; i < campos.size(); i++) {
+			sql += campos.get(i);
+			if(i+1 < campos.size())
+				sql += ", ";
+		}
+		
+		sql += " where codigoProjeto=" + p.getCodigo() + ";";
+		System.out.println(sql);
+		try {
+			JDBC.runUpdate(sql);
+		}catch(Exception e) {
+			throw new DatabaseException("Não foi possível atualizar o projeto");
+		}
 	}
 	
 	@Override
 	public List<P> consultar(P pj) throws DatabaseException
 	{
-		return null;
+		String sql = "select * from Projeto ";
+		
+		ArrayList<String> cond = new ArrayList<String>();
+		
+		if(pj.getCodigo() != null) {
+			cond.add("codigoProjeto = " + pj.getCodigo());
+		}
+		
+		if(pj.getDataInicio() != null) {
+			cond.add("dataInicio <= '" + pj.getDataInicio().toString() + "'");
+			cond.add("(dataTermino is null or dataTermino >= '" + 
+					pj.getDataInicio().toString() + "')");
+		}
+		
+		cond = compConsultar(cond, pj);
+		
+		if (!cond.isEmpty())
+		{
+			sql += "where ";
+			for(int i = 0; i < cond.size(); i++) {
+				sql += " " + cond.get(i);
+				if(i + 1 < cond.size())
+					sql += " and";
+			}
+			
+		}
+	
+		sql += ";";
+		System.out.println(sql);
+		try {
+			return getFromResult(JDBC.runQuery(sql));
+		}catch (Exception e) {
+			throw new DatabaseException("Erro durante a consulta");
+		}
 		
 	}
 	
@@ -168,10 +236,10 @@ public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	
 	/** Metodos que devem ser implementados*/
 	
-	protected abstract String compInserir(String sql, P p);
-	protected abstract String compRemover(String sql, P p);
-	protected abstract String compAtualizar(String sql, P p);
-	protected abstract String compConsultar(String sql, P p);
+	protected abstract ArrayList<String> compInserir(ArrayList<String> campos, P p);
+	protected abstract ArrayList<String> compRemover(ArrayList<String> campos, P p);
+	protected abstract ArrayList<String> compAtualizar(ArrayList<String> campos, P p);
+	protected abstract ArrayList<String> compConsultar(ArrayList<String> campos, P p);
 
 	protected abstract void getProjectWithFlexibleAttributes(ResultSet resultSet, P p) throws SQLException;
 
