@@ -1,5 +1,10 @@
 package com.lab.data.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.lab.data.model.Categoria;
 import com.lab.data.model.ParticipanteGeologia;
 
 import framework.dao.DAOParticipante;
@@ -9,13 +14,12 @@ public class ParticipanteGeologiaDAO extends DAOParticipante<ParticipanteGeologi
 	public ParticipanteGeologiaDAO() { super(ParticipanteGeologia.class); }
 	
 	@Override
-	protected String compInserir(String sql, ParticipanteGeologia p) {
+	protected ArrayList<String> compInserir(ArrayList<String> campos, ParticipanteGeologia p) {
 		if (p.getCategoria() != null)
-			sql += ", categoria='" + p.getCategoria() + "'";
+			campos.add("categoria='" + p.getCategoria() + "'");
 		if (p.getCpf() != null)
-			sql += ", cpf='" + p.getCpf() + "'";
-					
-		return sql;
+			campos.add("cpfParticipante='" + p.getCpf() + "'");
+		return campos;
 	}
 
 	@Override
@@ -25,15 +29,33 @@ public class ParticipanteGeologiaDAO extends DAOParticipante<ParticipanteGeologi
 	}
 
 	@Override
-	protected String compAtualizar(String sql, ParticipanteGeologia p) {
-		// TODO Auto-generated method stub
-		return sql;
+	protected ArrayList<String> compAtualizar(ArrayList<String> campos, ParticipanteGeologia p) {
+		if(p.getCpf() != null)
+			campos.add("cpfParticipante='" + p.getCpf() + "'");
+		if(p.getCategoria() != null)
+			campos.add("categoria='" + p.getCategoria() + "'");	
+		return campos;
 	}
 
 	@Override
-	protected String compConsultar(String sql, ParticipanteGeologia p) {
-		// TODO Auto-generated method stub
-		return sql;
+	protected ArrayList<String> compConsultar(ArrayList<String> campos, ParticipanteGeologia p) {
+		if(p.getCpf() != null)
+			campos.add("cpfParticipante='" + p.getCpf() + "'");
+		if(p.getCategoria() != null)
+			campos.add("categoria='" + p.getCategoria() + "'");	
+		return campos;
 	}
 
+	@Override
+	protected void getParticipanteWithFlexibleAttributes(ResultSet resultSet, ParticipanteGeologia p) throws SQLException {
+		try {
+			p.setCategoria(Categoria.valueOf(resultSet.getString("categoria")));
+		} catch (IllegalArgumentException | NullPointerException e) {
+			p.setCategoria(null);
+		}
+		
+		p.setCpf(resultSet.getString("cpfParticipante"));
+	}
+
+	
 }

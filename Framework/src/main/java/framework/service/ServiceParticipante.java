@@ -11,20 +11,20 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 
 	private final IDAOParticipante<P> dao;
 	
-	public ServiceParticipante (IDAOParticipante<P> dao)	{
+	public ServiceParticipante (IDAOParticipante<P> dao) {
 		this.dao = dao;
 	}
 	
 	@Override
 	public void inserir(P p) throws DatabaseException {
 		if (p == null)
-			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+			throw new IllegalArgumentException("Falha ao tentar inserir participante! O particiante fornecido possui um valor nulo.");
 		if (p.getNome() == null) 
-			throw new IllegalArgumentException("Nome nulo!");
+			throw new IllegalArgumentException("Nome do particiante é nulo! Por favor, forneça um nome válido.");
 		if (p.getEmail() == null)
-			throw new IllegalArgumentException("Email nulo");
+			throw new IllegalArgumentException("E-mail do particiante é nulo! Por favor, forneça um e-mail válido.");
 		if (p.getInstituicao() == null)
-			throw new IllegalArgumentException("Instituição nulo");
+			throw new IllegalArgumentException("Instituição do particiante é nula! Por favor, forneça uma instituição válida.");
 		
 		validarInserir(p);
 		dao.inserir(p);
@@ -32,9 +32,8 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 	
 	@Override
 	public void remover(P p) throws DatabaseException {
-		
 		if (p == null)
-			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+			throw new IllegalArgumentException("Falha ao tentar remover particiante! O particiante fornecido possui um valor nulo.");
 		if (p.getCodigo() == null)
 			throw new IllegalArgumentException("Identificação de participante nula!");
 
@@ -53,7 +52,7 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 		if (p.getEmail() == null)
 			throw new IllegalArgumentException("Email nulo");
 		if (p.getInstituicao() == null)
-			throw new IllegalArgumentException("Instituição nulo");
+			throw new IllegalArgumentException("Instituição nula");
 		
 		validarAtualizar(p);
 		dao.atualizar(p);

@@ -9,6 +9,10 @@ public abstract class Participante {
 	private String email;
 	private Integer codigo;
 	
+	public Participante() {
+		/* Nothing */
+	}
+	
 	public Participante (String nome, String instituicao, String email)
 	{
 		this.nome = nome;
@@ -59,6 +63,4 @@ public abstract class Participante {
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-
-	
 }

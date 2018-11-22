@@ -19,18 +19,22 @@
 			<thead>
 				<tr>
 					<th>Nome</th> 
-					<th>Universidade</th> 
+					<th>E-mail</th> 
+					<th>Instituição</th>
+					<th>CPF</th>
 					<th>Formação</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="pesquisador : ${pesquisadores}">
 					<td th:text="${pesquisador.nome}"></td>
-					<td th:text="${pesquisador.universidade}"></td>
-					<td th:text="${pesquisador.formacao}"></td>
+					<td th:text="${pesquisador.email}"></td>
+					<td th:text="${pesquisador.instituicao}"></td>
+					<td th:text="${pesquisador.cpf}"></td>
+					<td th:text="${pesquisador.categoria}"></td>
 					<td>
-						<a th:href="@{/pesquisadores/{id}/editar (id = ${pesquisador.id})}" class="btn btn-primary">Editar</a>
-						<a th:href="@{/pesquisadores/{id}/apagar (id = ${pesquisador.id})}" class="btn btn-danger">Apagar</a>
+						<a th:href="@{/pesquisadores/{id}/editar (id = ${pesquisador.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/pesquisadores/{id}/apagar (id = ${pesquisador.codigo})}" class="btn btn-danger">Apagar</a>
 					</td>
 				</tr>
 			</tbody>

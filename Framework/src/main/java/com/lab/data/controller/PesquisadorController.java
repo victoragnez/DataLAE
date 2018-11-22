@@ -13,32 +13,55 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lab.data.exception.NenhumEncontradoException;
+import com.lab.data.model.ParticipanteGeologia;
+import com.lab.data.model.ProjetoGeologia;
 import com.lab.data.model.old.Pesquisador;
 import com.lab.data.service.old.PesquisadorService;
+
+import framework.dao.interfaces.DatabaseException;
+import framework.service.interfaces.IServiceParticipante;
 
 @Controller
 @RequestMapping("/pesquisadores")
 public class PesquisadorController {
 	@Autowired
-	private PesquisadorService service;
+	private IServiceParticipante<ParticipanteGeologia> service;
+	
+	private static final String ERROR = "Falha ao tentar acessar banco de dados. Não foi possível listar os pesquisadores.";
+	private static final String INSERT_SUCCESS = "Pesquisador inserido com sucesso!";
+	private static final String EDIT_SUCCESS = "Pesquisador editado com sucesso!";
+	
+	private ParticipanteGeologia buscarParticipantePorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+		ParticipanteGeologia p = new ParticipanteGeologia();
+		p.setCodigo(id);
+		List<ParticipanteGeologia> list = service.consultar(p);
+		if(list == null || list.size() != 1)
+			throw new NenhumEncontradoException("Pesquisador com codigo igual a '" + id + "' não existe!");
+		return list.get(0);
+	}
 	
 	@GetMapping
 	public String index(Model model) {
-		List<Pesquisador> pesqs = service.listar();
-		model.addAttribute("pesquisadores", pesqs);
+		try {
+			List<ParticipanteGeologia> pesqs = service.listar();
+			model.addAttribute("pesquisadores", pesqs);
+		} catch (DatabaseException e) {
+			model.addAttribute("erro", ERROR);
+		}	
 		return "pesquisador/index";
 	}
 	
 	@GetMapping("/cadastrar")
-	public String formPesquisadorCad(@ModelAttribute("pesquisador") Pesquisador pesquisador) {
+	public String formPesquisadorCad(@ModelAttribute("pesquisador") ParticipanteGeologia pesquisador) {
 		return "pesquisador/form";
 	}
 	
 	@PostMapping
-	public String create(@ModelAttribute("pesquisador") Pesquisador pesquisador, RedirectAttributes redirectAtrributes) {
+	public String create(@ModelAttribute("pesquisador") ParticipanteGeologia pesquisador, RedirectAttributes redirectAtrributes) {
 		try {
 			service.inserir(pesquisador);
-			redirectAtrributes.addFlashAttribute("sucesso", "Pesquisador inserido com sucesso!");
+			redirectAtrributes.addFlashAttribute("sucesso", INSERT_SUCCESS);
 		} catch (Exception e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
@@ -47,23 +70,22 @@ public class PesquisadorController {
 	
 	@GetMapping("/{id}/editar")
 	public String formPesquisadorEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		if(id != null) {
-			Pesquisador p = service.buscarPorId(id);
-			if(p == null) {
-				redirectAttributes.addFlashAttribute("erro", "Falha ao tentar editar pesquisador: Pesquisador não existe!");
-				return "redirect:/pesquisadores";
-			}
+		try {
+			ParticipanteGeologia p = buscarParticipantePorId(id);
 			model.addAttribute("pesquisador", p);
+			return "pesquisador/form";
+		} catch (DatabaseException | NenhumEncontradoException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/pesquisadores";
 		}
-		return "pesquisador/form";
 	}
 	
 	@PutMapping
-	public String edit(Pesquisador pesquisador, RedirectAttributes redirectAttributes) {
+	public String edit(ParticipanteGeologia pesquisador, RedirectAttributes redirectAttributes) {
 		try {
 			service.atualizar(pesquisador);
-			redirectAttributes.addFlashAttribute("sucesso", "Pesquisador editado com sucesso!");
-		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("sucesso", EDIT_SUCCESS);
+		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/pesquisadores";
@@ -71,12 +93,14 @@ public class PesquisadorController {
 	
 	@GetMapping("/{id}/apagar")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+		/*
 		try {
 			service.removerPorId(id);
 			redirectAttributes.addFlashAttribute("sucesso", "Pesquisador deletado com sucesso!");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
+		*/
 		return "redirect:/pesquisadores";
 	}
 }
