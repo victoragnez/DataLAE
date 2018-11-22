@@ -9,8 +9,6 @@ public class AtividadeGeologiaService extends ServiceAtividade<AtividadeGeologia
 
 	public AtividadeGeologiaService(IDAOAtividade<AtividadeGeologia> dao) {
 		super(dao);
-		// TODO Auto-generated constructor stub
 	}
-	
 
 }

@@ -6,23 +6,25 @@ import java.util.List;
 public abstract class Atividade {
 	private Projeto projeto;
 	private Area area;
-	private Date data;
+	private Date dataInicio;
+	private Date dataTermino;
 	private List<Participante> participantes;
 	private Integer codigo;
 	
 	public Atividade(){}
 	
-	public Atividade(Projeto projeto, Area area, Date data, List<Participante> participantes) {
+	public Atividade(Projeto projeto, Area area, Date dataInicio, Date dataTermino, List<Participante> participantes) {
 		this.setProjeto(projeto);
 		this.setArea(area);
-		this.setData(data);
+		this.setDataInicio(dataInicio);
+		this.setDataTermino(dataTermino);
 		this.setParticipantes(participantes);
 	}
 	
-	public Atividade(Projeto projeto, Area area, Date data, List<Participante> participantes, Integer codigo) {
+	public Atividade(Projeto projeto, Area area, Date dataInicio, List<Participante> participantes, Integer codigo) {
 		this.setProjeto(projeto);
 		this.setArea(area);
-		this.setData(data);
+		this.setDataInicio(dataInicio);
 		this.setParticipantes(participantes);
 		this.setCodigo(codigo);
 	}
@@ -56,20 +58,6 @@ public abstract class Atividade {
 	}
 
 	/**
-	 * @return the data
-	 */
-	public Date getData() {
-		return data;
-	}
-
-	/**
-	 * @param data the data to set
-	 */
-	public void setData(Date data) {
-		this.data = data;
-	}
-
-	/**
 	 * @return the participantes
 	 */
 	public List<Participante> getParticipantes() {
@@ -95,6 +83,22 @@ public abstract class Atividade {
 	 */
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataTermino() {
+		return dataTermino;
+	}
+
+	public void setDataTermino(Date dataTermino) {
+		this.dataTermino = dataTermino;
 	}
 	
 }

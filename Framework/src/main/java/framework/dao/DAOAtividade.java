@@ -21,26 +21,115 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 	
 	@Override
 	public void inserir(A a) throws DatabaseException {
-		// TODO Auto-generated method stub
-
+		String sql = "insert into Pratica set ";
+		ArrayList<String> campos = new ArrayList<String>();
+		
+		if(a.getDataInicio() != null)
+			campos.add("dataInicio='" + a.getDataInicio().toString() + "'");
+		
+		if(a.getDataTermino() != null)
+			campos.add("dataTermino='" + a.getDataTermino().toString() + "'");
+		
+		//chamar parte flexível
+		campos = compInserir(campos, a);
+		
+		for(int i = 0; i < campos.size(); i++) {
+			sql += campos.get(i);
+			if(i+1 < campos.size())
+				sql += ", ";
+		}
+		
+		sql += ";";
+		int id;
+		try {
+			id = JDBC.runInsert(sql);
+		}catch (SQLException e) {
+			throw new DatabaseException("Não foi possível realizar a operação solicitada");
+		}
+				
 	}
 
 	@Override
 	public void remover(A a) throws DatabaseException {
-		// TODO Auto-generated method stub
-
+		String sql = "delete from Pratica where codigoPratica=" + a.getCodigo() + ";";
+		try {
+			JDBC.runRemove(sql);
+		}catch(Exception e)
+		{
+			throw new DatabaseException("Impossível remover o projeto informado");
+		}
 	}
 
 	@Override
 	public void atualizar(A a) throws DatabaseException {
-		// TODO Auto-generated method stub
+		String sql = "update Pratica set ";
+		ArrayList<String> campos = new ArrayList<String>();
+		
+		if(a.getDataInicio() != null)
+			campos.add("dataInicio='" + a.getDataInicio().toString() + "'");
+		
+		if(a.getDataTermino() != null)
+			campos.add("dataTermino='" + a.getDataTermino().toString() + "'");
+			
+		//chamar parte flexível
+		campos = compAtualizar(campos, a);
+		
+		for(int i = 0; i < campos.size(); i++) {
+			sql += campos.get(i);
+			if(i+1 < campos.size())
+				sql += ", ";
+		}
+		
+		sql += " where codigoProjeto=" + a.getCodigo() + ";";
+		System.out.println(sql);
+		try {
+			JDBC.runUpdate(sql);
+		}catch(Exception e) {
+			throw new DatabaseException("Não foi possível atualizar o projeto");
+		}
 
 	}
 
 	@Override
 	public List<A> consultar(A a) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from Projeto ";
+		
+		ArrayList<String> cond = new ArrayList<String>();
+		
+		if(a.getCodigo() != null) {
+			cond.add("codigoPratica = " + a.getCodigo());
+		}
+		
+		if(a.getDataInicio() != null && a.getDataTermino() != null) {
+			cond.add("dataInicio >= '" + a.getDataInicio().toString() + "'");
+			cond.add("(dataTermino is null or (dataTermino >= '" + 
+					a.getDataInicio().toString() + "' and dataTermino <='" 
+					+ a.getDataTermino().toString() + "'))");
+		}
+		else if (a.getDataInicio() != null) {
+			cond.add("dataInicio >= '" + a.getDataInicio().toString() + "'");
+		}
+		
+		cond = compConsultar(cond, a);
+		
+		if (!cond.isEmpty())
+		{
+			sql += "where ";
+			for(int i = 0; i < cond.size(); i++) {
+				sql += " " + cond.get(i);
+				if(i + 1 < cond.size())
+					sql += " and";
+			}
+			
+		}
+	
+		sql += ";";
+		System.out.println(sql);
+		try {
+			return getFromResult(JDBC.runQuery(sql));
+		}catch (Exception e) {
+			throw new DatabaseException("Erro durante a consulta");
+		}
 	}
 
 	@Override
@@ -62,7 +151,7 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 				
 				Integer codigo = (Integer)resultSet.getObject("codigoPratica");
 				Date inicio = resultSet.getDate("dataInicio");
-								
+				Date termino = resultSet.getDate("dataTermino");
 				A a;
 				
 				try {
@@ -75,7 +164,8 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 				getProjectWithFlexibleAttributes(resultSet, a);
 				
 				a.setCodigo(codigo);
-				a.setData(inicio);
+				a.setDataInicio(inicio);
+				a.setDataTermino(termino);
 				
 				retorno.add(a);
 				
