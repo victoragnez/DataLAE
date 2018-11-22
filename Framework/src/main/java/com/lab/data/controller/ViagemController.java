@@ -54,9 +54,9 @@ public class ViagemController {
 			return "redirect:/viagens";
 		}
 		
-		List<Local> locais = localService.listar();
-		model.addAttribute("projetos", projetos);
-		model.addAttribute("locais", locais);
+//		List<Local> locais = localService.listar();
+//		model.addAttribute("projetos", projetos);
+//		model.addAttribute("locais", locais);
 		return "viagem/form";
 	}
 	

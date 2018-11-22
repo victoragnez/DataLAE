@@ -1,5 +1,10 @@
 package framework.dao;
 
+import java.lang.reflect.InvocationTargetException;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
@@ -40,14 +45,53 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 
 	@Override
 	public List<A> listar() throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from Pratica;";
+		
+		try {
+			return getFromResult(JDBC.runQuery(sql));
+		}catch (SQLException e) {
+			throw new DatabaseException("Não foi possível realizar a operação solicitada");
+		}
+	}
+	
+	private ArrayList<A> getFromResult(ResultSet resultSet) throws DatabaseException {
+		ArrayList<A> retorno = new ArrayList<A>();
+
+		try {
+			while(resultSet.next()) {
+				
+				Integer codigo = (Integer)resultSet.getObject("codigoPratica");
+				Date inicio = resultSet.getDate("dataInicio");
+								
+				A a;
+				
+				try {
+					a = classe.getDeclaredConstructor().newInstance();
+				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException 
+						| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+					throw new DatabaseException(e);
+				}
+				
+				getProjectWithFlexibleAttributes(resultSet, a);
+				
+				a.setCodigo(codigo);
+				a.setData(inicio);
+				
+				retorno.add(a);
+				
+			}
+		} catch (SQLException e) {
+			throw new DatabaseException(e);
+		}
+		return retorno;
 	}
 	
 	/** Metodos que devem ser implementados*/
 	
-	protected abstract String compInserir(String sql, A a);
-	protected abstract String compRemover(String sql, A a);
-	protected abstract String compAtualizar(String sql, A a);
-	protected abstract String compConsultar(String sql, A a);
+	protected abstract ArrayList<String> compInserir(ArrayList<String> sql, A a);
+	protected abstract ArrayList<String> compRemover(ArrayList<String> sql, A a);
+	protected abstract ArrayList<String> compAtualizar(ArrayList<String> sql, A a);
+	protected abstract ArrayList<String> compConsultar(ArrayList<String> sql, A a);
+	
+	protected abstract void getProjectWithFlexibleAttributes(ResultSet resultSet, A p) throws SQLException;
 }
