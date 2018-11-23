@@ -17,31 +17,26 @@
 			<div class="form-group">
 				<label for="projeto">Projeto</label>
 				<select name="projeto" th:field="*{projeto}" class="form-control">
-					<option value=null>-- Selecione --</option>
+					<option value="">-- Selecione --</option>
 					<option th:each="projeto : ${projetos}"
-							th:value="${projeto.id}"
+							th:value="${projeto.codigo}"
 							th:text="${projeto.nome}"></option>
 				</select>
 			</div>
 			
 			<div class="form-group">
 				<label for="local">Local</label>
-				<select name="local" th:field="*{local}" class="form-control">
-					<option value=null>-- Selecione --</option>
+				<select name="local" th:field="*{area}" class="form-control">
+					<option value="">-- Selecione --</option>
 					<option th:each="local : ${locais}"
-							th:value="${local.id}"
+							th:value="${local.codigo}"
 							th:text="${local.nome}"></option>
 				</select>
 			</div>
 			
 			<div class="form-group">
-				<label for="inicio">Data de Início</label> 
-				<input id="inicio" name="inicio" type="date" class="form-control" th:field="*{inicio}" />
-			</div>
-			
-			<div class="form-group">
-				<label for="fim">Data de Término</label> 
-				<input id="fim" name="fim" type="date" class="form-control" th:field="*{fim}" />
+				<label for="dataInicio">Data entre início e término</label> 
+				<input id="dataInicio" name="dataInicio" type="date" class="form-control" th:field="*{dataInicio}" />
 			</div>
 			
 			<a th:href="@{/viagens}" class="btn btn-default">Voltar</a>
@@ -62,13 +57,13 @@
 			</thead>
 			<tbody>
 				<tr th:each="viagem : ${viagens}">
-					<td th:text="${viagem.local} == null ? '-' : ${viagem.local.nome}"></td>
+					<td th:text="${viagem.area} == null ? '-' : ${viagem.area.nome}"></td>
 					<td th:text="${viagem.projeto} == null? '-' : ${viagem.projeto.nome}"></td>
-					<td th:text="${viagem.inicio}"></td>
-					<td th:text="${viagem.fim}"></td>
+					<td th:text="${viagem.dataInicio}"></td>
+					<td th:text="${viagem.dataTermino}"></td>
 					<td>
-						<a th:href="@{/viagens/{id}/editar (id = ${viagem.id})}" class="btn btn-primary">Editar</a>
-						<a th:href="@{/viagens/{id}/apagar (id = ${viagem.id})}" class="btn btn-danger">Apagar</a>
+						<a th:href="@{/viagens/{id}/editar (id = ${viagem.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/viagens/{id}/apagar (id = ${viagem.codigo})}" class="btn btn-danger">Apagar</a>
 					</td>
 				</tr>
 			</tbody>
