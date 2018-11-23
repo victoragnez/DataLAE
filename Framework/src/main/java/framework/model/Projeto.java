@@ -45,6 +45,12 @@ public abstract class Projeto {
 		this.dataInicio = dataInicio;
 	}
 	
+	public Projeto(String nome, Integer codigo)
+	{
+		this.nome = nome;
+		this.codigo = codigo;
+	}
+	
 	/** Getters and Setters */
 	public String getNome() {
 		return nome;

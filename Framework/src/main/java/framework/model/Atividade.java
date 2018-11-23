@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 public abstract class Atividade {
+	
 	private Projeto projeto;
 	private Area area;
 	private Date dataInicio;

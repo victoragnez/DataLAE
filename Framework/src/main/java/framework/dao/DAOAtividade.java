@@ -9,7 +9,9 @@ import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOAtividade;
+import framework.model.Area;
 import framework.model.Atividade;
+import framework.model.Projeto;
 
 public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade<A> {
 
@@ -190,6 +192,7 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 				Integer codigo = (Integer)resultSet.getObject("codigoPratica");
 				Date inicio = resultSet.getDate("dataInicio");
 				Date termino = resultSet.getDate("dataTermino");
+				
 				A a;
 				
 				try {
@@ -199,12 +202,14 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 					throw new DatabaseException(e);
 				}
 				
+				
+			
 				getProjectWithFlexibleAttributes(resultSet, a);
 				
 				a.setCodigo(codigo);
 				a.setDataInicio(inicio);
 				a.setDataTermino(termino);
-				
+						
 				retorno.add(a);
 				
 			}
