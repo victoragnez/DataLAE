@@ -26,24 +26,48 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 	
 	@Override
 	public void inserir(A a) throws DatabaseException {
+		if (a == null)
+			throw new IllegalArgumentException("Falha ao tentar inserir Area! Argumento nulo!");
+		
+		if(a.getNome() == null)
+			throw new IllegalArgumentException("Falha ao tentar inserir Area! Nome nulo.");
+		
 		validate(ValidarInserir.class, a);
 		dao.inserir(a);
 	}
 	
 	@Override
 	public void remover(A a) throws DatabaseException {
+		if (a == null)
+			throw new IllegalArgumentException("Falha ao tentar remover Area! Argumento nulo!");
+		
+		if (a.getCodigo() == null)
+			throw new IllegalArgumentException("Falha ao tentar remover Area! Codigo nulo!");
+
 		validate(ValidarRemover.class, a);
 		dao.remover(a);
 	}
 	
 	@Override
 	public void atualizar(A a) throws DatabaseException {
+		if (a == null)
+			throw new IllegalArgumentException("Falha ao tentar atualizar Area! Argumento nulo!");
+		
+		if(a.getCodigo() == null)
+			throw new IllegalArgumentException("Falha ao tentar atualizar Area! Codigo nulo.");
+		
+		if(a.getNome() == null)
+			throw new IllegalArgumentException("Falha ao tentar atualizar Area! Nome nulo.");
+		
 		validate(ValidarAtualizar.class, a);
 		dao.atualizar(a);
 	}
 	
 	@Override
 	public List<A> consultar(A a) throws DatabaseException {
+		if (a == null)
+			throw new IllegalArgumentException("Falha ao tentar consultar Areas! Argumento nulo!");
+		
 		validate(ValidarConsultar.class, a);
 		return dao.consultar(a);
 	}
