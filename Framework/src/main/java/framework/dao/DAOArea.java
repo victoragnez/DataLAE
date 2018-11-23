@@ -88,7 +88,7 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 		sql += " where codigoArea=" + a.getCodigo() + ";";
 		
 		try {
-			JDBC.runInsert(sql);
+			JDBC.runUpdate(sql);
 		}catch(SQLException e) {
 			throw new DatabaseException("Não foi possível realizar a operação solicitada");
 		}
