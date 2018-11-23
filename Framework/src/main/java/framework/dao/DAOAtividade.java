@@ -65,6 +65,7 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 	@Override
 	public void remover(A a) throws DatabaseException {
 		String sql = "delete from Pratica where codigoPratica=" + a.getCodigo() + ";";
+		System.out.println(sql);
 		try {
 			JDBC.runRemove(sql);
 		}catch(Exception e)
@@ -172,7 +173,7 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 	@Override
 	public List<A> listar() throws DatabaseException {
 		String sql = "select * from Pratica;";
-		
+		System.out.println(sql);
 		try {
 			return getFromResult(JDBC.runQuery(sql));
 		}catch (SQLException e) {
