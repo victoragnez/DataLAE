@@ -16,17 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.AreaGeologia;
 import com.lab.data.model.AtividadeGeologia;
-import com.lab.data.model.ParticipanteGeologia;
 import com.lab.data.model.ProjetoGeologia;
-import com.lab.data.model.old.Local;
-import com.lab.data.model.old.Projeto;
-import com.lab.data.model.old.Viagem;
-import com.lab.data.service.old.LocalService;
-import com.lab.data.service.old.ProjetoService;
-import com.lab.data.service.old.ViagemService;
 
 import framework.dao.interfaces.DatabaseException;
-import framework.model.Atividade;
 import framework.service.interfaces.IServiceArea;
 import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceProjeto;
@@ -49,8 +41,6 @@ public class ViagemController {
 			throw new NenhumEncontradoException("Viagem com codigo igual a '" + id + "' não existe!");
 		return list.get(0);
 	}
-	
-	
 	
 	@Autowired
 	private IServiceAtividade<AtividadeGeologia> viagemService;
@@ -104,6 +94,20 @@ public class ViagemController {
 	
 	@GetMapping("/{id}/editar")
 	public String formProjetoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+		try {
+			List<ProjetoGeologia> projetos = projetoService.listar();
+			model.addAttribute("projetos", projetos);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/viagens";
+		}
+		try {
+			List<AreaGeologia> locais = localService.listar();
+			model.addAttribute("locais", locais);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/viagens";
+		}
 		try {
 			AtividadeGeologia v = buscarViagemPorId(id);
 			model.addAttribute("viagem", v);
