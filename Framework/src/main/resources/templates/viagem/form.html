@@ -8,41 +8,41 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<h1 th:if="${viagem.id == null}">Nova Viagem</h1>
-		<h1 th:if="${viagem.id != null}">Editar Viagem</h1>
+		<h1 th:if="${viagem.codigo == null}">Nova Viagem</h1>
+		<h1 th:if="${viagem.codigo != null}">Editar Viagem</h1>
 		<hr />
 		
-		<form th:action="@{/viagens}" th:method="@{${viagem.id == null} ? 'post' : 'put'}" th:object="${viagem}">
-			<input type="hidden" th:field="*{id}" />
+		<form th:action="@{/viagens}" th:method="@{${viagem.codigo == null} ? 'post' : 'put'}" th:object="${viagem}">
+			<input type="hidden" th:field="*{codigo}" />
 			
 			<div class="form-group">
 				<label for="projeto">Projeto</label>
 				<select name="projeto" th:field="*{projeto}" class="form-control">
-					<option value=null>-- Selecione --</option>
+					<option value="">-- Selecione --</option>
 					<option th:each="projeto : ${projetos}"
-							th:value="${projeto.id}"
+							th:value="${projeto.codigo}"
 							th:text="${projeto.nome}"></option>
 				</select>
 			</div>
 			
 			<div class="form-group">
 				<label for="local">Local</label>
-				<select name="local" th:field="*{local}" class="form-control">
-					<option value=null>-- Selecione --</option>
+				<select name="local" th:field="*{area}" class="form-control">
+					<option value="">-- Selecione --</option>
 					<option th:each="local : ${locais}"
-							th:value="${local.id}"
+							th:value="${local.codigo}"
 							th:text="${local.nome}"></option>
 				</select>
 			</div>
 			
 			<div class="form-group">
-				<label for="inicio">Data de Início</label> 
-				<input id="inicio" name="inicio" type="date" class="form-control" th:field="*{inicio}" />
+				<label for="dataInicio">Data de Início</label> 
+				<input id="dataInicio" name="dataInicio" type="date" class="form-control" th:field="*{dataInicio}" />
 			</div>
 			
 			<div class="form-group">
-				<label for="fim">Data de Término</label> 
-				<input id="fim" name="fim" type="date" class="form-control" th:field="*{fim}" />
+				<label for="dataTermino">Data de Término</label> 
+				<input id="dataTermino" name="dataTermino" type="date" class="form-control" th:field="*{dataTermino}" />
 			</div>
 			
 			<a th:href="@{/viagens}" class="btn btn-default">Voltar</a>

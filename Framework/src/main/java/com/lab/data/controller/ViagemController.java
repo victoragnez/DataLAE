@@ -37,6 +37,8 @@ public class ViagemController {
 	
 	private static final String LIST_ERROR = "Falha ao tentar acessar banco de dados. Não foi possível listar os pesquisadores.";
 	private static final String INSERT_SUCCESS = "Viagem inserida com sucesso!";
+	private static final String EDIT_SUCCESS = "Viagem editada com sucesso!";
+	private static final String DELETE_SUCCESS = "Viagem deletada com sucesso!";
 	
 	
 	private AtividadeGeologia buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
@@ -102,78 +104,61 @@ public class ViagemController {
 	
 	@GetMapping("/{id}/editar")
 	public String formProjetoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		
-		
-		/*
-		if(id != null) {
-			Viagem v = viagemService.buscarPorId(id);
-			if(v == null) {
-				redirectAttributes.addFlashAttribute("erro", "Falha ao tentar editar Viagem: Viagem não existe!");
-				return "redirect:/viagens";
-			}
+		try {
+			AtividadeGeologia v = buscarViagemPorId(id);
 			model.addAttribute("viagem", v);
-			List<ProjetoGeologia> projetos;
-			try {
-				projetos = projetoService.listar();
-			} catch (DatabaseException e) {
-				redirectAttributes.addFlashAttribute("erro", e.getMessage());
-				return "redirect:/viagens";
-			}
-			List<Local> locais = localService.listar();
-			model.addAttribute("projetos", projetos);
-			model.addAttribute("locais", locais);
+			return "viagem/form";
+		} catch (DatabaseException | NenhumEncontradoException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/viagens";
 		}
-		*/
-		return "viagem/form";
 	}
 	
 	@PutMapping
-	public String edit(Viagem viagem, RedirectAttributes redirectAttributes) {
-		/*
+	public String edit(AtividadeGeologia viagem, RedirectAttributes redirectAttributes) {
 		try {
 			viagemService.atualizar(viagem);
-			redirectAttributes.addFlashAttribute("sucesso", "Viagem editada com sucesso!");
-		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("sucesso", EDIT_SUCCESS);
+		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
-		*/
 		return "redirect:/viagens";
 	}
 	
 	@GetMapping("/{id}/apagar")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		/*
 		try {
-			viagemService.removerPorId(id);
-			redirectAttributes.addFlashAttribute("sucesso", "Viagem deletada com sucesso!");
-		} catch (Exception e) {
+			AtividadeGeologia v = new AtividadeGeologia();
+			v.setCodigo(id);
+			viagemService.remover(v);
+			redirectAttributes.addFlashAttribute("sucesso", DELETE_SUCCESS);
+		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
-		*/
 		return "redirect:/viagens";
 	}
 	
 	@GetMapping("/buscar")
-	public String filtros(Model model, @ModelAttribute("filtro") Viagem  filtro, RedirectAttributes redirectAttributes) {
-		/*
-		List<ProjetoGeologia> projetos;
+	public String filtros(Model model, @ModelAttribute("filtro") AtividadeGeologia  filtro, RedirectAttributes redirectAttributes) {
 		try {
-			projetos = projetoService.listar();
+			List<ProjetoGeologia> projetos = projetoService.listar();
+			model.addAttribute("projetos", projetos);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
 		}
-<<<<<<< HEAD
-		List<Local> locais = localService.listar();
-		model.addAttribute("projetos", projetos);
-		model.addAttribute("locais", locais);
-		*/
-
+		try {
+			List<AreaGeologia> locais = localService.listar();
+			model.addAttribute("locais", locais);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/viagens";
+		}
 		return "viagem/search"; 
 	}
 	
 	@PostMapping("/buscar")
-	public String filtros(@ModelAttribute("filtro") Viagem filtro, RedirectAttributes redirectAttributes) {
+	public String filtros(@ModelAttribute("filtro") AtividadeGeologia filtro, RedirectAttributes redirectAttributes) {		
 		/*
 		if(filtro.getInicio().trim().isEmpty())
 			filtro.setInicio(null);
