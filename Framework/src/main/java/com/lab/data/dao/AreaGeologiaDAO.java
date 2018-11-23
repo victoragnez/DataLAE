@@ -27,11 +27,10 @@ public class AreaGeologiaDAO extends DAOArea<AreaGeologia>{
 			campos.add("estado='" + a.getEstado() + "'");
 		if (a.getPais() != null)
 			campos.add("pais='" + a.getPais() + "'");
-		if(a.getLatitude() != null && a.getLongitude() != null && 
-				Double.isFinite(a.getLatitude()) && Double.isFinite(a.getLongitude()))
-			campos.add("coordenadas=point(" + 
-				String.format(Locale.US, "%.8f", a.getLatitude()) + ", " + 
-				String.format(Locale.US, "%.8f", a.getLongitude()) + ")");
+		if(a.getLatitude() != null && Double.isFinite(a.getLatitude()))
+			campos.add("latitude = " + String.format(Locale.US, "%.8f", a.getLatitude()));
+		if(a.getLongitude() != null && Double.isFinite(a.getLongitude()))
+			campos.add("longitude = " + String.format(Locale.US, "%.8f", a.getLongitude()));
 		
 		return campos;
 	}
@@ -39,17 +38,26 @@ public class AreaGeologiaDAO extends DAOArea<AreaGeologia>{
 	@CompConsultar
 	public ArrayList<String> consultar (ArrayList<String> campos, AreaGeologia a)
 	{
+		final Double EPS = 1.;
+		
 		if(a.getCidade() != null)
 			campos.add("cidade like '%" + a.getCidade() + "%'");
+		
 		if (a.getEstado() != null)
 			campos.add("estado like '%" + a.getEstado() + "%'");
+		
 		if (a.getPais() != null)
 			campos.add("pais like '%" + a.getPais() + "%'");
-		if(a.getLatitude() != null && a.getLongitude() != null && 
-				Double.isFinite(a.getLatitude()) && Double.isFinite(a.getLongitude()))
-			campos.add("coordenadas=point(" + 
-				String.format(Locale.US, "%.8f", a.getLatitude()) + ", " + 
-				String.format(Locale.US, "%.8f", a.getLongitude()) + ")");
+		
+		if(a.getLatitude() != null && Double.isFinite(a.getLatitude())) {
+			campos.add("latitude > " + String.format(Locale.US, "%.8f", a.getLatitude() - EPS));
+			campos.add("latitude < " + String.format(Locale.US, "%.8f", a.getLatitude() + EPS));
+		}
+			
+		if(a.getLongitude() != null && Double.isFinite(a.getLongitude())) {
+			campos.add("longitude > " + String.format(Locale.US, "%.8f", a.getLongitude() - EPS));
+			campos.add("longitude < " + String.format(Locale.US, "%.8f", a.getLongitude() + EPS));
+		}
 		
 		return campos;
 	}
@@ -74,10 +82,8 @@ public class AreaGeologiaDAO extends DAOArea<AreaGeologia>{
 	
 	@RecuperaResultado
 	public void recuperaCoordenadas(ResultSet resultSet, AreaGeologia a) throws SQLException {
-		Double latitude, longitude;
-		
-		latitude = resultSet.getDouble("latitude");
-		longitude = resultSet.getDouble("longitude");
+		Double latitude = resultSet.getDouble("latitude");
+		Double longitude = resultSet.getDouble("longitude");
 		
 		a.setLatitude(latitude);
 		a.setLongitude(longitude);

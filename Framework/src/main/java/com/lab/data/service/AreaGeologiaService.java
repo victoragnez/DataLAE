@@ -11,22 +11,22 @@ public class AreaGeologiaService extends ServiceArea<AreaGeologia>{
 
 	public AreaGeologiaService(IDAOArea<AreaGeologia> dao) {
 		super(dao);
-		// TODO Auto-generated constructor stub
 	}
 
 	@ValidarInserir
 	@ValidarAtualizar
-	public void validarPais(AreaGeologia a)
-	{
+	public void validarPais(AreaGeologia a) {
 		if (a.getPais() == null)
 			throw new IllegalArgumentException("País nulo");
 	}
 	
 	@ValidarInserir
 	@ValidarAtualizar
-	public void validarCoordenadas (AreaGeologia a)
-	{
-		if ( (a.getLatitude() == null) || (a.getLongitude() == null))
+	public void validarCoordenadas (AreaGeologia a) {
+		if ( a.getLatitude() == null || a.getLongitude() == null ||
+				a.getLatitude() < -90.000001 || a.getLongitude() < -180.000001 ||
+				a.getLatitude() > 90.000001 || a.getLongitude() > 180.000001
+				)
 			throw new IllegalArgumentException("Coordenadas Inválidas");;
 	}
 	

@@ -128,7 +128,7 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 	
 	@Override
 	public List<A> listar() throws DatabaseException {
-		String sql = "select *, st_x(coordenadas) as latitude, st_y(coordenadas) as longitude from Area;";
+		String sql = "select * from Area;";
 		
 		try {
 			return getFromResult(JDBC.runQuery(sql));
