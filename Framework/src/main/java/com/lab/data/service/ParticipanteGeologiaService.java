@@ -9,14 +9,12 @@ public class ParticipanteGeologiaService extends ServiceParticipante<Participant
 
 	public ParticipanteGeologiaService(IDAOParticipante<ParticipanteGeologia> dao) {
 		super(dao);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void validarInserir(ParticipanteGeologia p) {
 		if (p.getCategoria() == null)
 			throw new IllegalArgumentException("Categoria nulo!");
-
 	}
 
 	@Override
@@ -28,12 +26,11 @@ public class ParticipanteGeologiaService extends ServiceParticipante<Participant
 	protected void validarAtualizar(ParticipanteGeologia p) {
 		if (p.getCategoria() == null)
 			throw new IllegalArgumentException("Categoria nulo!");
-		
 	}
 
 	@Override
 	protected void validarConsultar(ParticipanteGeologia p) {
-		// TODO Auto-generated method stub
+		/* Nothing */
 	}
 
 }

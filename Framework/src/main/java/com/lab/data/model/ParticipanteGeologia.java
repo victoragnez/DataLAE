@@ -7,6 +7,10 @@ public class ParticipanteGeologia extends Participante{
 	private String cpf;
 	private Categoria categoria;
 	
+	public ParticipanteGeologia() {
+		/* Nothing */
+	}
+	
 	public ParticipanteGeologia(String nome, String instituicao, String email,
 			Categoria categoria) {
 		super(nome, instituicao, email);
