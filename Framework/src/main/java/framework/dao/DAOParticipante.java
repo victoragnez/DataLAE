@@ -51,8 +51,14 @@ public abstract class DAOParticipante<P extends Participante> implements IDAOPar
 	}
 	
 	@Override
-	public void remover(P p) throws DatabaseException
-	{}
+	public void remover(P p) throws DatabaseException {
+		String sql = "delete from Participante where codigoParticipante="+ p.getCodigo() + ";";
+		try {
+			JDBC.runRemove(sql);
+		} catch(Exception e)	{
+			throw new DatabaseException("Impossível remover o participante informado!");
+		}
+	}
 	
 	@Override
 	public void atualizar(P p) throws DatabaseException {

@@ -55,7 +55,5 @@ public class ParticipanteGeologiaDAO extends DAOParticipante<ParticipanteGeologi
 		}
 		
 		p.setCpf(resultSet.getString("cpfParticipante"));
-	}
-
-	
+	}	
 }

@@ -15,9 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.ParticipanteGeologia;
-import com.lab.data.model.ProjetoGeologia;
-import com.lab.data.model.old.Pesquisador;
-import com.lab.data.service.old.PesquisadorService;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.service.interfaces.IServiceParticipante;
@@ -93,14 +90,14 @@ public class PesquisadorController {
 	
 	@GetMapping("/{id}/apagar")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		/*
 		try {
-			service.removerPorId(id);
+			ParticipanteGeologia p = new ParticipanteGeologia();
+			p.setCodigo(id);
+			service.remover(p);
 			redirectAttributes.addFlashAttribute("sucesso", "Pesquisador deletado com sucesso!");
-		} catch (Exception e) {
+		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
-		*/
 		return "redirect:/pesquisadores";
 	}
 }
