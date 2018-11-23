@@ -2,11 +2,14 @@ package com.lab.data.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import com.lab.data.model.AreaGeologia;
 
 import framework.dao.DAOArea;
+import framework.model.MarcadoresDAO.CompAtualizar;
+import framework.model.MarcadoresDAO.CompConsultar;
 import framework.model.MarcadoresDAO.CompInserir;
 import framework.model.MarcadoresDAO.RecuperaResultado;
 
@@ -14,25 +17,42 @@ public class AreaGeologiaDAO extends DAOArea<AreaGeologia>{
 
 	public AreaGeologiaDAO() { super(AreaGeologia.class); }
 	
+	@CompAtualizar
 	@CompInserir
-	public String inserir (String sql, AreaGeologia a)
+	public ArrayList<String> inserir (ArrayList<String> campos, AreaGeologia a)
 	{
 		if(a.getCidade() != null)
-			sql += ", cidade='" + a.getCidade() + "'";
+			campos.add("cidade='" + a.getCidade() + "'");
 		if (a.getEstado() != null)
-			sql += ", estado='" + a.getEstado() + "'";
+			campos.add("estado='" + a.getEstado() + "'");
 		if (a.getPais() != null)
-			sql += ", pais='" + a.getPais() + "'";
+			campos.add("pais='" + a.getPais() + "'");
 		if(a.getLatitude() != null && a.getLongitude() != null && 
 				Double.isFinite(a.getLatitude()) && Double.isFinite(a.getLongitude()))
-			sql += ", coordenadas=point(" + 
+			campos.add("coordenadas=point(" + 
 				String.format(Locale.US, "%.8f", a.getLatitude()) + ", " + 
-				String.format(Locale.US, "%.8f", a.getLongitude()) + ")";
+				String.format(Locale.US, "%.8f", a.getLongitude()) + ")");
 		
-		return sql;
+		return campos;
 	}
 	
-	
+	@CompConsultar
+	public ArrayList<String> consultar (ArrayList<String> campos, AreaGeologia a)
+	{
+		if(a.getCidade() != null)
+			campos.add("cidade like '%" + a.getCidade() + "%'");
+		if (a.getEstado() != null)
+			campos.add("estado like '%" + a.getEstado() + "%'");
+		if (a.getPais() != null)
+			campos.add("pais like '%" + a.getPais() + "%'");
+		if(a.getLatitude() != null && a.getLongitude() != null && 
+				Double.isFinite(a.getLatitude()) && Double.isFinite(a.getLongitude()))
+			campos.add("coordenadas=point(" + 
+				String.format(Locale.US, "%.8f", a.getLatitude()) + ", " + 
+				String.format(Locale.US, "%.8f", a.getLongitude()) + ")");
+		
+		return campos;
+	}
 	
 	@RecuperaResultado
 	public void recuperaCidade(ResultSet resultSet, AreaGeologia a) throws SQLException {
