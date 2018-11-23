@@ -12,11 +12,10 @@ import framework.dao.DAOAtividade;
 public class AtividadeGeologiaDAO extends DAOAtividade<AtividadeGeologia> {
 
 	public AtividadeGeologiaDAO() { super(AtividadeGeologia.class); }
-	
+
 	@Override
 	protected ArrayList<String> compInserir(ArrayList<String> sql, AtividadeGeologia a) {
-		if (a.getDataTermino() == null)
-			sql.add("dataTermino='" + a.getDataTermino() + "'");
+		// TODO Auto-generated method stub
 		return sql;
 	}
 
@@ -40,8 +39,8 @@ public class AtividadeGeologiaDAO extends DAOAtividade<AtividadeGeologia> {
 
 	@Override
 	protected void getProjectWithFlexibleAttributes(ResultSet resultSet, AtividadeGeologia p) throws SQLException {
-		Date dataTermino = resultSet.getDate("dataTermino");
-		p.setDataTermino(dataTermino);
+		// TODO Auto-generated method stub
+		
 	}
-
+	
 }

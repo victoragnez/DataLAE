@@ -30,6 +30,18 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 		if(a.getDataTermino() != null)
 			campos.add("dataTermino='" + a.getDataTermino().toString() + "'");
 		
+		if(a.getProjeto() != null )
+		{
+			if (a.getProjeto().getCodigo() != null)
+				campos.add("codigoProjeto=" + a.getProjeto().getCodigo());
+		}
+		
+		if(a.getArea() != null)
+		{
+			if (a.getProjeto().getCodigo() != null)
+				campos.add("codigoArea=" + a.getArea().getCodigo());
+		}
+		
 		//chamar parte flexível
 		campos = compInserir(campos, a);
 		
@@ -40,6 +52,7 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 		}
 		
 		sql += ";";
+		System.out.println(sql);
 		int id;
 		try {
 			id = JDBC.runInsert(sql);
@@ -70,6 +83,18 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 		
 		if(a.getDataTermino() != null)
 			campos.add("dataTermino='" + a.getDataTermino().toString() + "'");
+		
+		if(a.getProjeto() != null )
+		{
+			if (a.getProjeto().getCodigo() != null)
+				campos.add("codigoProjeto=" + a.getProjeto().getCodigo());
+		}
+		
+		if(a.getArea() != null)
+		{
+			if (a.getProjeto().getCodigo() != null)
+				campos.add("codigoArea=" + a.getArea().getCodigo());
+		}
 			
 		//chamar parte flexível
 		campos = compAtualizar(campos, a);
@@ -92,7 +117,7 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 
 	@Override
 	public List<A> consultar(A a) throws DatabaseException {
-		String sql = "select * from Projeto ";
+		String sql = "select * from Pratica ";
 		
 		ArrayList<String> cond = new ArrayList<String>();
 		
@@ -110,6 +135,18 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 			cond.add("dataInicio >= '" + a.getDataInicio().toString() + "'");
 		}
 		
+		if(a.getProjeto() != null )
+		{
+			if (a.getProjeto().getCodigo() != null)
+				cond.add("codigoProjeto=" + a.getProjeto().getCodigo());
+		}
+		
+		if(a.getArea() != null)
+		{
+			if (a.getProjeto().getCodigo() != null)
+				cond.add("codigoArea=" + a.getArea().getCodigo());
+		}
+			
 		cond = compConsultar(cond, a);
 		
 		if (!cond.isEmpty())
