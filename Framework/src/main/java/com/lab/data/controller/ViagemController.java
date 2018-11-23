@@ -163,10 +163,12 @@ public class ViagemController {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
 		}
+<<<<<<< HEAD
 		List<Local> locais = localService.listar();
 		model.addAttribute("projetos", projetos);
 		model.addAttribute("locais", locais);
 		*/
+
 		return "viagem/search"; 
 	}
 	
