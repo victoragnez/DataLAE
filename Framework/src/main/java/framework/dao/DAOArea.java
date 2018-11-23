@@ -12,6 +12,8 @@ import java.util.List;
 import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOArea;
 import framework.model.Area;
+import framework.model.MarcadoresDAO.CompAtualizar;
+import framework.model.MarcadoresDAO.CompConsultar;
 import framework.model.MarcadoresDAO.CompInserir;
 import framework.model.MarcadoresDAO.RecuperaResultado;
 
@@ -31,14 +33,14 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 		if(a.getNome() != null && a.getNome().length() != 0)
 			campos.add("nome='" + a.getNome()+"'");
 		
+		campos = complemento(CompInserir.class, campos, a);
+		
 		String sql = "insert into Area set ";
 		for(int i = 0; i < campos.size(); i++) {
 			sql += campos.get(i);
 			if(i+1 < campos.size())
 				sql += ", ";
 		}
-		
-		sql = complemento(CompInserir.class, sql, a);
 		
 		sql += ";";
 		
@@ -57,16 +59,72 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 	}
 	
 	@Override
-	public void remover(A a) throws DatabaseException
-	{}
+	public void remover(A a) throws DatabaseException {
+		String sql = "delete from Area where codigoArea="+ a.getCodigo() + ";";
+		try {
+			JDBC.runRemove(sql);
+		} catch(Exception e)	{
+			throw new DatabaseException("Impossível remover o participante informado!");
+		}
+	}
 	
 	@Override
-	public void atualizar(A a) throws DatabaseException
-	{}
+	public void atualizar(A a) throws DatabaseException {
+		ArrayList<String> campos = new ArrayList<String>();
+		
+		if(a.getNome() != null && a.getNome().length() != 0)
+			campos.add("nome='" + a.getNome()+"'");
+		
+		campos = complemento(CompAtualizar.class, campos, a);
+		
+		String sql = "update Area set ";
+		
+		for(int i = 0; i < campos.size(); i++) {
+			sql += campos.get(i);
+			if(i+1 < campos.size())
+				sql += ", ";
+		}
+		
+		sql += " where codigoArea=" + a.getCodigo() + ";";
+		
+		try {
+			JDBC.runInsert(sql);
+		}catch(SQLException e) {
+			throw new DatabaseException("Não foi possível realizar a operação solicitada");
+		}
+	}
 	
 	@Override
-	public List<A> consultar(A a) throws DatabaseException
-	{return null;}
+	public List<A> consultar(A a) throws DatabaseException {
+		String sql = "select * from Area ";
+		ArrayList<String> campos = new ArrayList<String>();
+		
+		if(a.getCodigo() != null)
+			campos.add("codigoArea=" + a.getCodigo());
+	
+		if(a.getNome() != null && a.getNome().length() != 0)
+			campos.add("nome like '%" + a.getNome()+"%'");
+		
+		campos = complemento(CompConsultar.class, campos, a);
+		
+		if (!campos.isEmpty())
+		{
+			sql += "where";
+			for(int i = 0; i < campos.size(); i++) {
+				sql += " " + campos.get(i);
+				if(i + 1 < campos.size())
+					sql += " and";
+			}	
+		}
+		
+		sql += ";";
+		
+		try {
+			return getFromResult(JDBC.runQuery(sql));
+		} catch (SQLException | DatabaseException e) {
+			throw new DatabaseException("Erro durante a consulta");
+		}
+	}
 	
 	@Override
 	public List<A> listar() throws DatabaseException {
@@ -105,7 +163,8 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 		return retorno;
 	}
 	
-	private String complemento(Class<? extends Annotation> annotation, String sql, A a) 	{
+	@SuppressWarnings("unchecked")
+	private ArrayList<String> complemento(Class<? extends Annotation> annotation, ArrayList<String> campos, A a) 	{
 		Class<?> curClass = this.getClass();
 		
 		while (curClass != DAOArea.class) {
@@ -113,7 +172,7 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 			for (Method method : allMethods) {
 				if (method.isAnnotationPresent(annotation)) {
 					try {
-						sql = (String) method.invoke(this, sql, a);
+						campos = (ArrayList<String>) method.invoke(this, campos, a);
 					} catch (IllegalAccessException | IllegalArgumentException e) {
 						e.printStackTrace();
 					}
@@ -124,7 +183,7 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 			}
 			curClass = curClass.getSuperclass();
 		}
-		return sql;
+		return campos;
 	}
 	
 	private A recuperaResultado(ResultSet resultSet) throws DatabaseException {
