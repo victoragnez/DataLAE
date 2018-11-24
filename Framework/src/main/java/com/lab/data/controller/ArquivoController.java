@@ -1,16 +1,24 @@
 package com.lab.data.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.model.old.Arquivo;
@@ -36,7 +44,23 @@ public class ArquivoController {
 	}
 	
 	@PostMapping
-	public String create(@ModelAttribute("arquivo") Arquivo arquivo, RedirectAttributes redirectAtrributes) {
+	public String create(@ModelAttribute("arquivo") Arquivo arquivo, @PathVariable("file") MultipartFile file, RedirectAttributes redirectAtrributes) {
+	
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        
+		if(file.isEmpty()) {
+			redirectAtrributes.addFlashAttribute("erro", "Não foi possível salvar o arquivo!");
+			return "redirect:/arquivos";
+		}
+		
+		try {
+			arquivo.setDados(file.getBytes());
+			arquivo.setTipo(file.getContentType());
+		} catch (IOException e1) {
+			redirectAtrributes.addFlashAttribute("erro", "Não foi possível salvar o arquivo!");
+			return "redirect:/arquivos";
+		}
+		
 		try {
 			service.inserir(arquivo);
 			redirectAtrributes.addFlashAttribute("sucesso", "Arquivo inserido com sucesso!");
@@ -44,6 +68,16 @@ public class ArquivoController {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/arquivos";
+	}
+	
+	@GetMapping("/{id}/baixar")
+	public ResponseEntity<Resource> downloadFile(@PathVariable("id") Integer id) {
+		Arquivo a = service.buscarPorId(id);
+
+		return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(a.getTipo()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + a.getNome() + "\"")
+                .body(new ByteArrayResource(a.getDados()));
 	}
 	
 	@GetMapping("/{id}/editar")
