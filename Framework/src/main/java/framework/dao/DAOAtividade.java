@@ -32,17 +32,12 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 		if(a.getDataTermino() != null)
 			campos.add("dataTermino='" + a.getDataTermino().toString() + "'");
 		
-		if(a.getProjeto() != null )
-		{
-			if (a.getProjeto().getCodigo() != null)
-				campos.add("codigoProjeto=" + a.getProjeto().getCodigo());
-		}
-		
-		if(a.getArea() != null)
-		{
-			if (a.getProjeto().getCodigo() != null)
-				campos.add("codigoArea=" + a.getArea().getCodigo());
-		}
+		if(a.getReferenciaProjeto() != null )
+			campos.add("codigoProjeto=" + a.getReferenciaProjeto());
+				
+		if(a.getReferenciaArea() != null)
+			campos.add("codigoArea=" + a.getReferenciaArea());
+
 		
 		//chamar parte flexível
 		campos = compInserir(campos, a);
@@ -87,17 +82,11 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 		if(a.getDataTermino() != null)
 			campos.add("dataTermino='" + a.getDataTermino().toString() + "'");
 		
-		if(a.getProjeto() != null )
-		{
-			if (a.getProjeto().getCodigo() != null)
-				campos.add("codigoProjeto=" + a.getProjeto().getCodigo());
-		}
-		
-		if(a.getArea() != null)
-		{
-			if (a.getProjeto().getCodigo() != null)
-				campos.add("codigoArea=" + a.getArea().getCodigo());
-		}
+		if(a.getReferenciaProjeto() != null )
+			campos.add("codigoProjeto=" + a.getReferenciaProjeto());
+				
+		if(a.getReferenciaArea() != null)
+			campos.add("codigoArea=" + a.getReferenciaArea());
 			
 		//chamar parte flexível
 		campos = compAtualizar(campos, a);
