@@ -138,18 +138,12 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 			cond.add("dataInicio >= '" + a.getDataInicio().toString() + "'");
 		}
 		
-		if(a.getProjeto() != null )
-		{
-			if (a.getProjeto().getCodigo() != null)
-				cond.add("codigoProjeto=" + a.getProjeto().getCodigo());
-		}
-		
-		if(a.getArea() != null)
-		{
-			if (a.getProjeto().getCodigo() != null)
-				cond.add("codigoArea=" + a.getArea().getCodigo());
-		}
-			
+		if(a.getReferenciaProjeto() != null )
+			cond.add("codigoProjeto=" + a.getReferenciaProjeto());
+				
+		if(a.getReferenciaArea() != null)
+			cond.add("codigoArea=" + a.getReferenciaArea());
+					
 		cond = compConsultar(cond, a);
 		
 		if (!cond.isEmpty())
@@ -192,6 +186,8 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 				Integer codigo = (Integer)resultSet.getObject("codigoPratica");
 				Date inicio = resultSet.getDate("dataInicio");
 				Date termino = resultSet.getDate("dataTermino");
+				Integer referProjeto = (Integer)resultSet.getObject("codigoProjeto");
+				Integer referArea = (Integer)resultSet.getObject("codigoArea");
 				
 				A a;
 				
@@ -209,7 +205,9 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 				a.setCodigo(codigo);
 				a.setDataInicio(inicio);
 				a.setDataTermino(termino);
-						
+				a.setReferenciaProjeto(referProjeto);
+				a.setReferenciaArea(referArea);
+				
 				retorno.add(a);
 				
 			}
