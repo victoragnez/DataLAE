@@ -29,8 +29,8 @@
 			</thead>
 			<tbody>
 				<tr th:each="viagem : ${viagens}">
-					<td th:text="${viagem.area} == null ? '-' : ${viagem.area.nome}"></td>
-					<td th:text="${viagem.projeto} == null? '-' : ${viagem.projeto.nome}"></td>
+					<td th:text="${viagem.referenciaArea} == null ? '-' : ${viagem.referenciaArea}"></td>
+					<td th:text="${viagem.referenciaProjeto} == null? '-' : ${viagem.referenciaProjeto}"></td>
 					<td th:text="${viagem.dataInicio}"></td>
 					<td th:text="${viagem.dataTermino}"></td>
 					<td>
