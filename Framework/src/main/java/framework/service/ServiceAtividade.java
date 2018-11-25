@@ -9,14 +9,14 @@ import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOAtividade;
-import framework.model.Atividade;
+import framework.model.Pratica;
 import framework.model.MarcadoresService.ValidarAtualizar;
 import framework.model.MarcadoresService.ValidarConsultar;
 import framework.model.MarcadoresService.ValidarInserir;
 import framework.model.MarcadoresService.ValidarRemover;
 import framework.service.interfaces.IServiceAtividade;
 
-public abstract class ServiceAtividade<A extends Atividade> implements IServiceAtividade<A> {
+public abstract class ServiceAtividade<A extends Pratica<?, ?, ?>> implements IServiceAtividade<A> {
 
 	private final IDAOAtividade<A> dao;
 	

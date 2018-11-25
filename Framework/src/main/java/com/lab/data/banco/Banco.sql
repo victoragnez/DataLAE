@@ -49,15 +49,26 @@ create table Participante (
 
 ) engine=innodb;
 
+create table DadosArquivo (
+	codigoDados int auto_increment not null,
+	
+	primary key (codigoDados)
+) engine=innodb;
+
 create table Arquivo (
     
     codigoArquivo int auto_increment not null,
     nome varchar(255) not null,
     tamanho int not null,
+    codigoProjeto int not null,
+    codigoPratica int,
+    codigoDados int not null,
 
-    primary key (codigoArquivo)
+    primary key (codigoArquivo),
+    foreign key (codigoProjeto) references Projeto(codigoProjeto),
+    foreign key (codigoPratica) references Pratica(codigoPratica),
+    foreign key (codigoDados) references DadosArquivo(codigoDados)
 
 ) engine=innodb;
 
 
-	

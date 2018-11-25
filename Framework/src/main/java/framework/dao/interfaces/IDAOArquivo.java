@@ -4,12 +4,12 @@ import java.util.List;
 
 import framework.model.Arquivo;
 
-public interface IDAOArquivo {
+public interface IDAOArquivo<A extends Arquivo<?, ?> > {
 
-	public void inserir(Arquivo a) throws DatabaseException;
-	public void remover(Arquivo a) throws DatabaseException;
-	public void atualizar(Arquivo a) throws DatabaseException;
-	public List<Arquivo> consultar(Arquivo a) throws DatabaseException;
-	public List<Arquivo> listar() throws DatabaseException;
-	
+	public void inserir(A a) throws DatabaseException;
+	public void remover(A a) throws DatabaseException;
+	public void atualizar(A a) throws DatabaseException;
+	public List<A> consultar(A a) throws DatabaseException;
+	public List<A> listar() throws DatabaseException;
+	public A ler(A a) throws DatabaseException;
 }

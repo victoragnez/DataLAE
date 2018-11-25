@@ -16,3 +16,7 @@ ALTER TABLE Area ADD longitude float not null;
 ALTER TABLE Participante ADD cpfParticipante varchar(11);
 ALTER TABLE Participante ADD categoria 
 	enum('Professor', 'Mestrando', 'Doutorando', 'IC', 'Convidado') not null;
+
+-- Salvar arquivo em banco
+
+ALTER TABLE DadosArquivo ADD dados MEDIUMBLOB;
