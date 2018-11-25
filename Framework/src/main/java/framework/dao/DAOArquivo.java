@@ -6,36 +6,55 @@ import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOArquivo;
 import framework.model.Arquivo;
 
-public abstract class DAOArquivo implements IDAOArquivo {
+public class DAOArquivo<A extends Arquivo<?, ?> > implements IDAOArquivo<A> {
+	
+	private EstrategiaArquivo<A> estrategia;
+	
+	public DAOArquivo(){
+		this(true);
+	}
+	
+	public DAOArquivo(boolean salvarEmBanco) {
+		if(salvarEmBanco) {
+			estrategia = new ArquivoEmBanco<A>();
+		}
+		else
+			estrategia = new ArquivoNoSistema<A>();
+	}
+	
+	@Override
+	public void inserir(A a) throws DatabaseException {
+		estrategia.inserir(a);
+	}
 
 	@Override
-	public void inserir(Arquivo a) throws DatabaseException {
+	public void remover(A a) throws DatabaseException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void remover(Arquivo a) throws DatabaseException {
+	public void atualizar(A a) throws DatabaseException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void atualizar(Arquivo a) throws DatabaseException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<Arquivo> consultar(Arquivo a) throws DatabaseException {
+	public List<A> consultar(A a) throws DatabaseException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Arquivo> listar() throws DatabaseException {
+	public List<A> listar() throws DatabaseException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public A ler(A a) throws DatabaseException {
+		a.setDados(estrategia.ler(a));
+		return a;
 	}
 
 }

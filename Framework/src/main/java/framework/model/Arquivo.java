@@ -1,31 +1,24 @@
 package framework.model;
 
-public class Arquivo {
+public class Arquivo<P extends Projeto/*<?> TODO uncomment*/, A extends Atividade> {
 	
 	/** Atributos */
-	
 	private String nome;
 	private Long tamanho;
 	private byte[] dados;
-	private Projeto projeto;
+	private P projeto;
+	private A atividade;
 	private Integer codigo;
 
-	public Arquivo(String nome, 
-			Long tamanho, byte[] dados, 
-			Projeto projeto, Integer codigo) {
-		
+	public Arquivo() {}
+	
+	public Arquivo(String nome, Long tamanho, byte[] dados, P projeto, A atividade, Integer codigo) {
 		this.nome = nome;
 		this.tamanho = tamanho;
 		this.dados = dados;
-		this.setCodigo(codigo);
 		this.projeto = projeto;
-	}
-	
-	public Arquivo(String nome,
-			Long tamanho, byte[] dados, 
-			Projeto projeto) {
-		
-		this(nome, tamanho, dados, projeto, null);
+		this.atividade = atividade;
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -78,15 +71,29 @@ public class Arquivo {
 	/**
 	 * @return the projeto
 	 */
-	public Projeto getProjeto() {
+	public P getProjeto() {
 		return projeto;
 	}
 
 	/**
 	 * @param projeto the projeto to set
 	 */
-	public void setProjeto(Projeto projeto) {
+	public void setProjeto(P projeto) {
 		this.projeto = projeto;
+	}
+	
+	/**
+	 * @return the projeto
+	 */
+	public A getAtividade() {
+		return atividade;
+	}
+
+	/**
+	 * @param projeto the projeto to set
+	 */
+	public void setAtividade(A atividade) {
+		this.atividade = atividade;
 	}
 
 }
