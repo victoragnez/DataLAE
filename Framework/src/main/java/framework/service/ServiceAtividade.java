@@ -26,24 +26,39 @@ public abstract class ServiceAtividade<A extends Atividade> implements IServiceA
 	
 	@Override
 	public void inserir(A a) throws DatabaseException {
+		if (a == null)
+			throw new IllegalArgumentException("Parâmetro nulo");
+		if (a.getDataInicio() == null)
+			throw new IllegalArgumentException("Data de início da atividade nulo!");
+		
 		validate(ValidarInserir.class, a);
 		dao.inserir(a);
 	}
 	
 	@Override
 	public void remover(A a) throws DatabaseException {
+		if (a.getCodigo() == null)
+			throw new IllegalArgumentException("Identificador de projeto nulo!");
+		
 		validate(ValidarRemover.class, a);
 		dao.remover(a);
 	}
 	
 	@Override
 	public void atualizar(A a) throws DatabaseException {
+		if (a == null)
+			throw new IllegalArgumentException("Parâmetro nulo");
+		if (a.getDataInicio() == null)
+			throw new IllegalArgumentException("Data da atividade nulo!");
+		
 		validate(ValidarAtualizar.class, a);
 		dao.atualizar(a);
 	}
 	
 	@Override
 	public List<A> consultar(A a) throws DatabaseException {
+		if (a == null) return listar();
+		
 		validate(ValidarConsultar.class, a);
 		return dao.consultar(a);
 	}

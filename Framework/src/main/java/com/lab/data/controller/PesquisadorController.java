@@ -1,5 +1,6 @@
 package com.lab.data.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.exception.NenhumEncontradoException;
+import com.lab.data.model.Categoria;
 import com.lab.data.model.ParticipanteGeologia;
 
 import framework.dao.interfaces.DatabaseException;
@@ -36,6 +38,14 @@ public class PesquisadorController {
 		if(list == null || list.size() != 1)
 			throw new NenhumEncontradoException("Pesquisador com codigo igual a '" + id + "' não existe!");
 		return list.get(0);
+	}
+	
+	@ModelAttribute("categorias")
+	public List<Categoria> listarCategorias() {
+		List<Categoria> categorias = new ArrayList<>();
+		for(Categoria c : Categoria.values())
+			categorias.add(c);
+		return categorias;
 	}
 	
 	@GetMapping

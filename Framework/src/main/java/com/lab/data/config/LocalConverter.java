@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 
 import com.lab.data.model.AreaGeologia;
 
+import framework.model.Area;
 import framework.service.interfaces.IServiceArea;
 
 @Component
-public class LocalConverter implements Converter<String, AreaGeologia> {
+public class LocalConverter implements Converter<String, Area> {
 
 	@Autowired
 	private IServiceArea<AreaGeologia> service;

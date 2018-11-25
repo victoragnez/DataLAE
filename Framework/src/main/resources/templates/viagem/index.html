@@ -29,13 +29,13 @@
 			</thead>
 			<tbody>
 				<tr th:each="viagem : ${viagens}">
-					<td th:text="${viagem.local} == null ? '-' : ${viagem.local.nome}"></td>
-					<td th:text="${viagem.projeto} == null? '-' : ${viagem.projeto.nome}"></td>
-					<td th:text="${viagem.inicio}"></td>
-					<td th:text="${viagem.fim}"></td>
+					<td th:text="${viagem.referenciaArea} == null ? '-' : ${viagem.referenciaArea}"></td>
+					<td th:text="${viagem.referenciaProjeto} == null? '-' : ${viagem.referenciaProjeto}"></td>
+					<td th:text="${viagem.dataInicio}"></td>
+					<td th:text="${viagem.dataTermino}"></td>
 					<td>
-						<a th:href="@{/viagens/{id}/editar (id = ${viagem.id})}" class="btn btn-primary">Editar</a>
-						<a th:href="@{/viagens/{id}/apagar (id = ${viagem.id})}" class="btn btn-danger">Apagar</a>
+						<a th:href="@{/viagens/{id}/editar (id = ${viagem.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/viagens/{id}/apagar (id = ${viagem.codigo})}" class="btn btn-danger">Apagar</a>
 					</td>
 				</tr>
 			</tbody>

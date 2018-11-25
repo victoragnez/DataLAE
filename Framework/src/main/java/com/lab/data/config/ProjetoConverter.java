@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.interfaces.DatabaseException;
+import framework.model.Projeto;
 import framework.service.interfaces.IServiceProjeto;
 
 @Component
-public class ProjetoConverter implements Converter<String, ProjetoGeologia>{
+public class ProjetoConverter implements Converter<String, Projeto>{
 
 	@Autowired
 	private IServiceProjeto<ProjetoGeologia> service;
