@@ -50,7 +50,7 @@ public abstract class DAOProjeto<P extends Projeto<?>> implements IDAOProjeto<P>
 	
 		
 		sql += ";";
-		
+		System.out.println(sql);
 		int id;
 		try {
 			id = JDBC.runInsert(sql);
