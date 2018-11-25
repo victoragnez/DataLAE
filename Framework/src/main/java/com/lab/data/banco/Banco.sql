@@ -71,4 +71,24 @@ create table Arquivo (
 
 ) engine=innodb;
 
+create table ParticipanteProjeto (
+    
+    codigoParticipante int not null,
+    codigoProjeto int not null,
 
+    constraint primary key (codigoParticipante, codigoProjeto),
+    constraint foreign key (codigoProjeto) references Projeto(codigoProjeto),
+    constraint foreign key (codigoParticipante) references Participante(codigoParticipante)
+
+)engine=innodb;
+
+create table ParticipantePratica (
+
+    codigoPratica int not null,
+    codigoParticipante int not null,
+
+    constraint primary key (codigoPratica, codigoParticipante),
+    constraint foreign key (codigoPratica) references Pratica(codigoPratica),
+    constraint foreign key (codigoParticipante) references Participante(codigoParticipante)
+
+) engine=innodb;
