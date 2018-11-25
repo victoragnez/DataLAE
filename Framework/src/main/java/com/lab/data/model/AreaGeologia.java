@@ -2,41 +2,38 @@ package com.lab.data.model;
 
 import framework.model.Area;
 
-public class AreaGeologia extends Area{
+public class AreaGeologia extends Area {
 
+	/* Atributos */
 	private Double latitude;
 	private Double longitude;
 	private String cidade;
     private String estado;
     private String pais;
 	
+    /* Contrutores */
     public AreaGeologia() {
 		/* Nothing */
 	}
     
-	public AreaGeologia(String nome, Double latitude, Double longitude, String pais) {
-		super(nome);
-		this.setLatitude(latitude);
-		this.setLongitude(longitude);
-		this.setPais(pais);
-	}
-	
-	public AreaGeologia(String nome, String pais) {
-		super(nome);
-		this.setPais(pais);
-	}
-	
-	public AreaGeologia(String nome, Double latitude, Double longitude, 
-			String cidade, String estado, String pais)
+	public AreaGeologia(
+			Integer codigo, 
+			String nome, 
+			Double latitude, 
+			Double longitude,
+			String cidade,
+			String estado,
+			String pais)
 	{
-		super(nome);
-		this.setLatitude(latitude);
-		this.setLongitude(longitude);
-		this.setCidade(cidade);
-		this.setEstado(estado);
-		this.setPais(pais);
-		
+		super(codigo, nome);
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.pais = pais;
 	}
+	
+	/* Getters e setters */
 	public Double getLatitude() {
 		return latitude;
 	}
@@ -76,5 +73,4 @@ public class AreaGeologia extends Area{
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
-
 }

@@ -3,9 +3,9 @@ package framework.service.interfaces;
 import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
-import framework.model.Atividade;
+import framework.model.Pratica;
 
-public interface IServiceAtividade<A extends Atividade> {
+public interface IServiceAtividade<A extends Pratica> {
 
 	public void inserir(A a) throws DatabaseException;
 	public void remover(A a) throws DatabaseException;

@@ -1,34 +1,33 @@
 package framework.model;
 
 public abstract class Participante {
-
-	/** Atributos */
 	
+	/* Atributos */
+	private Integer codigo;
 	private String nome;
 	private String instituicao;
 	private String email;
-	private Integer codigo;
 	
+	/* Contrutores */
 	public Participante() {
 		/* Nothing */
 	}
 	
-	public Participante (String nome, String instituicao, String email)
-	{
-		this.nome = nome;
-		this.instituicao = instituicao;
-		this.email = email;
-	}
-	
-	public Participante(String nome, String instituicao, String email, 
-			Integer codigo) {
-		this.nome = nome;
-		this.instituicao = instituicao;
-		this.email = email;
+	public Participante(Integer codigo, String nome, String instituicao, String email) {
 		this.codigo = codigo;
+		this.nome = nome;
+		this.instituicao = instituicao;
+		this.email = email;
 	}
 
-	/** Getters and Setters*/
+	/* Getters e Setters*/
+	public Integer getCodigo() {
+		return codigo;
+	}
+	
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -52,15 +51,5 @@ public abstract class Participante {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	
-	public Integer getCodigo() {
-		return codigo;
-	}
-	
-
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
 	}
 }

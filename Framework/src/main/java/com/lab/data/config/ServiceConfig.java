@@ -8,7 +8,7 @@ import com.lab.data.dao.AtividadeGeologiaDAO;
 import com.lab.data.dao.ParticipanteGeologiaDAO;
 import com.lab.data.dao.ProjetoGeologiaDAO;
 import com.lab.data.model.AreaGeologia;
-import com.lab.data.model.AtividadeGeologia;
+import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ParticipanteGeologia;
 import com.lab.data.model.ProjetoGeologia;
 import com.lab.data.service.AreaGeologiaService;
@@ -19,7 +19,7 @@ import com.lab.data.service.old.ArquivoService;
 import com.lab.data.service.old.PesquisadorService;
 import com.lab.data.service.old.ViagemService;
 
-import framework.model.Atividade;
+import framework.model.Pratica;
 import framework.service.interfaces.IServiceArea;
 import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceParticipante;
@@ -45,7 +45,7 @@ public class ServiceConfig {
 	}
 	
 	@Bean
-	public IServiceAtividade<AtividadeGeologia> viagemService() {
+	public IServiceAtividade<PraticaGeologia> viagemService() {
 		return new AtividadeGeologiaService(
 				new AtividadeGeologiaDAO());
 	}

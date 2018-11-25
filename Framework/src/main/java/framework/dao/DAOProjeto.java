@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
+import framework.dao.interfaces.IDAOParticipante;
 import framework.dao.interfaces.IDAOProjeto;
 import framework.model.Participante;
 import framework.model.Projeto;
@@ -15,9 +16,11 @@ import framework.model.Projeto;
 public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
 	
 	private final Class<P> classe;
+	private IDAOParticipante<Participante> daoParticipante;
 	
-	public DAOProjeto(Class<P> classe) {
+	public DAOProjeto(Class<P> classe, IDAOParticipante<Participante> daoParticipante) {
 		this.classe = classe;
+		this.daoParticipante = daoParticipante;
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.AreaGeologia;
-import com.lab.data.model.AtividadeGeologia;
+import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.interfaces.DatabaseException;
@@ -33,17 +33,17 @@ public class ViagemController {
 	private static final String DELETE_SUCCESS = "Viagem deletada com sucesso!";
 	
 	
-	private AtividadeGeologia buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
-		AtividadeGeologia v = new AtividadeGeologia();
+	private PraticaGeologia buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+		PraticaGeologia v = new PraticaGeologia();
 		v.setCodigo(id);
-		List<AtividadeGeologia> list = viagemService.consultar(v);
+		List<PraticaGeologia> list = viagemService.consultar(v);
 		if(list == null || list.size() != 1)
 			throw new NenhumEncontradoException("Viagem com codigo igual a '" + id + "' não existe!");
 		return list.get(0);
 	}
 	
 	@Autowired
-	private IServiceAtividade<AtividadeGeologia> viagemService;
+	private IServiceAtividade<PraticaGeologia> viagemService;
 	
 	@Autowired
 	private IServiceArea<AreaGeologia> localService;
@@ -54,7 +54,7 @@ public class ViagemController {
 	@GetMapping
 	public String index(Model model) {
 		try {
-			List<AtividadeGeologia> viagens = viagemService.listar();
+			List<PraticaGeologia> viagens = viagemService.listar();
 			model.addAttribute("viagens", viagens);
 		} catch (DatabaseException e) {
 			model.addAttribute("erro", LIST_ERROR);
@@ -63,7 +63,7 @@ public class ViagemController {
 	}
 	
 	@GetMapping("/cadastrar")
-	public String formViagemCad(Model model, @ModelAttribute("viagem") AtividadeGeologia viagem, RedirectAttributes redirectAttributes) {
+	public String formViagemCad(Model model, @ModelAttribute("viagem") PraticaGeologia viagem, RedirectAttributes redirectAttributes) {
 		try {
 			List<ProjetoGeologia> projetos = projetoService.listar();
 			model.addAttribute("projetos", projetos);
@@ -82,7 +82,7 @@ public class ViagemController {
 	}
 	
 	@PostMapping
-	public String create(@ModelAttribute("viagem") AtividadeGeologia viagem, RedirectAttributes redirectAtrributes) {
+	public String create(@ModelAttribute("viagem") PraticaGeologia viagem, RedirectAttributes redirectAtrributes) {
 		try {
 			viagemService.inserir(viagem);
 			redirectAtrributes.addFlashAttribute("sucesso", INSERT_SUCCESS);
@@ -109,7 +109,7 @@ public class ViagemController {
 			return "redirect:/viagens";
 		}
 		try {
-			AtividadeGeologia v = buscarViagemPorId(id);
+			PraticaGeologia v = buscarViagemPorId(id);
 			model.addAttribute("viagem", v);
 			return "viagem/form";
 		} catch (DatabaseException | NenhumEncontradoException e) {
@@ -119,7 +119,7 @@ public class ViagemController {
 	}
 	
 	@PutMapping
-	public String edit(AtividadeGeologia viagem, RedirectAttributes redirectAttributes) {
+	public String edit(PraticaGeologia viagem, RedirectAttributes redirectAttributes) {
 		try {
 			viagemService.atualizar(viagem);
 			redirectAttributes.addFlashAttribute("sucesso", EDIT_SUCCESS);
@@ -132,7 +132,7 @@ public class ViagemController {
 	@GetMapping("/{id}/apagar")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		try {
-			AtividadeGeologia v = new AtividadeGeologia();
+			PraticaGeologia v = new PraticaGeologia();
 			v.setCodigo(id);
 			viagemService.remover(v);
 			redirectAttributes.addFlashAttribute("sucesso", DELETE_SUCCESS);
@@ -143,7 +143,7 @@ public class ViagemController {
 	}
 	
 	@GetMapping("/buscar")
-	public String filtros(Model model, @ModelAttribute("filtro") AtividadeGeologia  filtro, RedirectAttributes redirectAttributes) {
+	public String filtros(Model model, @ModelAttribute("filtro") PraticaGeologia  filtro, RedirectAttributes redirectAttributes) {
 		try {
 			List<ProjetoGeologia> projetos = projetoService.listar();
 			model.addAttribute("projetos", projetos);
@@ -162,7 +162,7 @@ public class ViagemController {
 	}
 	
 	@PostMapping("/buscar")
-	public String filtros(@ModelAttribute("filtro") AtividadeGeologia filtro, RedirectAttributes redirectAttributes) {		
+	public String filtros(@ModelAttribute("filtro") PraticaGeologia filtro, RedirectAttributes redirectAttributes) {		
 		/*
 		if(filtro.getInicio().trim().isEmpty())
 			filtro.setInicio(null);
