@@ -50,8 +50,10 @@ create table Participante (
 ) engine=innodb;
 
 create table DadosArquivo (
-	codigoDados int not null
-)
+	codigoDados int auto_increment not null,
+	
+	primary key (codigoDados)
+) engine=innodb;
 
 create table Arquivo (
     
