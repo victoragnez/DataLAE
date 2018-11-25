@@ -43,7 +43,7 @@ public class ViagemController {
 	}
 	
 	@Autowired
-	private IServiceAtividade<PraticaGeologia> viagemService;
+	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> viagemService;
 	
 	@Autowired
 	private IServiceArea<AreaGeologia> localService;

@@ -127,6 +127,26 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 	}
 	
 	@Override
+	public A consultar(Integer codigo) throws DatabaseException {
+		A a;
+		try {
+			a = classe.getDeclaredConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			throw new DatabaseException(e);
+		}
+		
+		a.setCodigo(codigo);
+		
+		List<A> as = consultar(a);
+		
+		if(as == null || as.size() != 1)
+			throw new DatabaseException("Objeto não existe");
+		else
+			return as.get(0);
+	}
+	
+	@Override
 	public List<A> listar() throws DatabaseException {
 		String sql = "select * from Area;";
 		
