@@ -43,10 +43,12 @@ public abstract class DAOAtividade<
 			campos.add("dataTermino='" + prat.getDataTermino().toString() + "'");
 		
 		if(prat.getProjeto() != null )
-			campos.add("codigoProjeto=" + prat.getProjeto());
+			if (prat.getProjeto() != null)
+				campos.add("codigoProjeto=" + prat.getProjeto().getCodigo());
 				
 		if(prat.getArea() != null)
-			campos.add("codigoArea=" + prat.getArea());
+			if (prat.getArea().getCodigo() != null)
+				campos.add("codigoArea=" + prat.getArea().getCodigo());
 
 		
 		//chamar parte flexível
@@ -90,10 +92,12 @@ public abstract class DAOAtividade<
 			campos.add("dataTermino='" + prat.getDataTermino().toString() + "'");
 		
 		if(prat.getProjeto() != null )
-			campos.add("codigoProjeto=" + prat.getProjeto());
+			if (prat.getProjeto() != null)
+				campos.add("codigoProjeto=" + prat.getProjeto().getCodigo());
 				
 		if(prat.getArea() != null)
-			campos.add("codigoArea=" + prat.getArea());
+			if (prat.getArea().getCodigo() != null)
+				campos.add("codigoArea=" + prat.getArea().getCodigo());
 			
 		//chamar parte flexível
 		campos = compAtualizar(campos, prat);
