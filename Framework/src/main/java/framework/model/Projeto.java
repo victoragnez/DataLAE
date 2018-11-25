@@ -3,69 +3,53 @@ package framework.model;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public abstract class Projeto {
+public abstract class Projeto<Part extends Participante> {
 	
-	/** Atributos */
+	/* Atributos */
 	
+	private Integer codigo;
 	private String nome;
-	private ArrayList<Participante> participantes;
 	private Date dataInicio;
 	private Date dataFim;
-	private Integer codigo;
+	private ArrayList<Part> participantes;
 	
-	public Projeto() {}
+	/* Contrutores */
+	public Projeto() {
+		/* Nothing */
+	}
 	
 	/**
 	 * Construtor para Projeto
+	 * @param codigo			O código que identifica o projeto  
 	 * @param nome              O nome do projeto
-	 * @param participantes     Uma lista de participantes que trabalham no projeto
 	 * @param dataInicio        A data de Início do projeto
 	 * @param dataFim           A data de Termino do projeto
+	 * @param participantes     Uma lista de participantes que trabalham no projeto
 	 */
-	public Projeto(String nome, ArrayList<Participante> participantes, 
-				   Date dataInicio, Date dataFim) 
+	public Projeto(Integer codigo, String nome, Date dataInicio,
+			Date dataFim, ArrayList<Part> participantes) 
 	{
 		this.nome = nome;
-		this.participantes = participantes;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
-	}
-	
-	/**
-	 * Construtor para projeto sem data de término definida
-	 * @param nome              O nome do projeto
-	 * @param participantes     Uma lista de participantes que trabalham no projeto
-	 * @param dataInicio        A data de Início do projeto
-	 */
-	public Projeto(String nome, ArrayList<Participante> participantes, 
-			   Date dataInicio) 
-	{
-		this.nome = nome;
 		this.participantes = participantes;
-		this.dataInicio = dataInicio;
 	}
 	
-	public Projeto(String nome, Integer codigo)
-	{
-		this.nome = nome;
+	/* Getters and Setters */
+	public Integer getCodigo() {
+		return codigo;
+	}
+	
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 	
-	/** Getters and Setters */
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public ArrayList<Participante> getParticipantes() {
-		return participantes;
-	}
-
-	public void setParticipantes(ArrayList<Participante> participantes) {
-		this.participantes = participantes;
 	}
 
 	public Date getDataInicio() {
@@ -84,18 +68,11 @@ public abstract class Projeto {
 		this.dataFim = dataFim;
 	}
 
-	/**
-	 * @return the codigo
-	 */
-	public Integer getCodigo() {
-		return codigo;
+	public ArrayList<Part> getParticipantes() {
+		return participantes;
 	}
 
-	/**
-	 * @param codigo the codigo to set
-	 */
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
+	public void setParticipantes(ArrayList<Part> participantes) {
+		this.participantes = participantes;
 	}
-	
 }

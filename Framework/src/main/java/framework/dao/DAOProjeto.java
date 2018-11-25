@@ -12,7 +12,7 @@ import framework.dao.interfaces.IDAOProjeto;
 import framework.model.Participante;
 import framework.model.Projeto;
 
-public abstract class DAOProjeto<P extends Projeto> implements IDAOProjeto<P> {
+public abstract class DAOProjeto<P extends Projeto<?>> implements IDAOProjeto<P> {
 	
 	private final Class<P> classe;
 	

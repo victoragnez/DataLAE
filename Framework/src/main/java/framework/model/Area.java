@@ -1,34 +1,22 @@
 package framework.model;
 
 public abstract class Area {
-
-	private String nome;
-	private Integer codigo;
 	
+	/* Atributos */
+	private Integer codigo;
+	private String nome;
+	
+	/* Contrutores */
 	public Area() {
 		/* Nothing */
 	}
 	
-	public Area(String nome, Integer codigo) {
+	public Area(Integer codigo, String nome) {
 		this.nome = nome;
 		this.codigo = codigo;
 	}
-	
-	public Area(String nome) {
-		super();
-		this.nome = nome;
-	}
 
 	/** Getters and Setters */
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -37,4 +25,11 @@ public abstract class Area {
 		this.codigo = codigo;
 	}
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 }

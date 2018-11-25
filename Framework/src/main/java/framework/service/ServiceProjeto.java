@@ -7,7 +7,7 @@ import framework.dao.interfaces.IDAOProjeto;
 import framework.model.Projeto;
 import framework.service.interfaces.IServiceProjeto;
 
-public abstract class ServiceProjeto<P extends Projeto> implements IServiceProjeto<P> {
+public abstract class ServiceProjeto<P extends Projeto<?> > implements IServiceProjeto<P> {
 
 	private final IDAOProjeto<P> dao;
 	

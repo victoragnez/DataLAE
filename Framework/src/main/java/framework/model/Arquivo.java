@@ -1,6 +1,6 @@
 package framework.model;
 
-public class Arquivo<P extends Projeto/*<?> TODO uncomment*/, A extends Atividade> {
+public class Arquivo<P extends Projeto<?>, A extends Pratica<?, ?, ?> > {
 	
 	/** Atributos */
 	private String nome;

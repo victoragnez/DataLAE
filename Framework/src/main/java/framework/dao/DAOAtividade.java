@@ -9,13 +9,12 @@ import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOAtividade;
-import framework.model.Area;
-import framework.model.Atividade;
-import framework.model.Projeto;
+import framework.model.Pratica;
 
-public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade<A> {
+public abstract class DAOAtividade<A extends Pratica<?,?,?>> implements IDAOAtividade<A> {
 
 	private final Class<A> classe;
+	
 	
 	public DAOAtividade(Class<A> classe) {
 		this.classe = classe;
@@ -32,11 +31,11 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 		if(a.getDataTermino() != null)
 			campos.add("dataTermino='" + a.getDataTermino().toString() + "'");
 		
-		if(a.getReferenciaProjeto() != null )
-			campos.add("codigoProjeto=" + a.getReferenciaProjeto());
+		if(a.getProjeto() != null )
+			campos.add("codigoProjeto=" + a.getProjeto());
 				
-		if(a.getReferenciaArea() != null)
-			campos.add("codigoArea=" + a.getReferenciaArea());
+		if(a.getArea() != null)
+			campos.add("codigoArea=" + a.getArea());
 
 		
 		//chamar parte flexível
@@ -49,14 +48,12 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 		}
 		
 		sql += ";";
-		System.out.println(sql);
-		int id;
+		System.out.println(sql); // Remover depois
 		try {
-			id = JDBC.runInsert(sql);
-		}catch (SQLException e) {
+			JDBC.runInsert(sql);
+		} catch (SQLException e) {
 			throw new DatabaseException("Não foi possível realizar a operação solicitada");
-		}
-				
+		}	
 	}
 
 	@Override
@@ -65,7 +62,7 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 		System.out.println(sql);
 		try {
 			JDBC.runRemove(sql);
-		}catch(Exception e)
+		} catch(Exception e)
 		{
 			throw new DatabaseException("Impossível remover o projeto informado");
 		}
@@ -82,11 +79,11 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 		if(a.getDataTermino() != null)
 			campos.add("dataTermino='" + a.getDataTermino().toString() + "'");
 		
-		if(a.getReferenciaProjeto() != null )
-			campos.add("codigoProjeto=" + a.getReferenciaProjeto());
+		if(a.getProjeto() != null )
+			campos.add("codigoProjeto=" + a.getProjeto());
 				
-		if(a.getReferenciaArea() != null)
-			campos.add("codigoArea=" + a.getReferenciaArea());
+		if(a.getArea() != null)
+			campos.add("codigoArea=" + a.getArea());
 			
 		//chamar parte flexível
 		campos = compAtualizar(campos, a);
@@ -127,11 +124,11 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 			cond.add("dataInicio >= '" + a.getDataInicio().toString() + "'");
 		}
 		
-		if(a.getReferenciaProjeto() != null )
-			cond.add("codigoProjeto=" + a.getReferenciaProjeto());
+		if(a.getProjeto() != null )
+			cond.add("codigoProjeto=" + a.getProjeto());
 				
-		if(a.getReferenciaArea() != null)
-			cond.add("codigoArea=" + a.getReferenciaArea());
+		if(a.getArea() != null)
+			cond.add("codigoArea=" + a.getArea());
 					
 		cond = compConsultar(cond, a);
 		
@@ -175,8 +172,8 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 				Integer codigo = (Integer)resultSet.getObject("codigoPratica");
 				Date inicio = resultSet.getDate("dataInicio");
 				Date termino = resultSet.getDate("dataTermino");
-				Integer referProjeto = (Integer)resultSet.getObject("codigoProjeto");
-				Integer referArea = (Integer)resultSet.getObject("codigoArea");
+				//Integer referProjeto = (Integer)resultSet.getObject("codigoProjeto");
+				//Integer referArea = (Integer)resultSet.getObject("codigoArea");
 				
 				A a;
 				
@@ -194,8 +191,8 @@ public abstract class DAOAtividade<A extends Atividade> implements IDAOAtividade
 				a.setCodigo(codigo);
 				a.setDataInicio(inicio);
 				a.setDataTermino(termino);
-				a.setReferenciaProjeto(referProjeto);
-				a.setReferenciaArea(referArea);
+				//a.setProjeto(referProjeto);
+				//a.setArea(referArea);
 				
 				retorno.add(a);
 				
