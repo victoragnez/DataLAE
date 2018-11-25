@@ -19,7 +19,6 @@ import com.lab.data.service.old.ArquivoService;
 import com.lab.data.service.old.PesquisadorService;
 import com.lab.data.service.old.ViagemService;
 
-import framework.model.Pratica;
 import framework.service.interfaces.IServiceArea;
 import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceParticipante;
@@ -45,9 +44,14 @@ public class ServiceConfig {
 	}
 	
 	@Bean
-	public IServiceAtividade<PraticaGeologia> viagemService() {
+	public IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> viagemService() {
 		return new AtividadeGeologiaService(
-				new AtividadeGeologiaDAO());
+				new AreaGeologiaDAO(), 
+				new ProjetoGeologiaDAO(),
+				new AtividadeGeologiaDAO(
+						AreaGeologia.class,
+						ProjetoGeologia.class,
+						PraticaGeologia.class));
 	}
 	
 	@Bean

@@ -2,13 +2,18 @@ package framework.dao.interfaces;
 
 import java.util.List;
 
+import framework.model.Area;
 import framework.model.Pratica;
+import framework.model.Projeto;
 
-public interface IDAOAtividade <A extends Pratica<?, ?, ?> > {
-	
-	public void inserir(A a) throws DatabaseException;
-	public void remover(A a) throws DatabaseException;
-	public void atualizar(A a) throws DatabaseException;
-	public List<A> consultar(A a) throws DatabaseException;
-	public List<A> listar() throws DatabaseException;
+public interface IDAOAtividade<
+		A extends Area,
+		Proj extends Projeto<?>, 
+		Prat extends Pratica<?, ?, Proj> > 
+{
+	public void inserir(Prat a) throws DatabaseException;
+	public void remover(Prat a) throws DatabaseException;
+	public void atualizar(Prat a) throws DatabaseException;
+	public List<Prat> consultar(Prat a) throws DatabaseException;
+	public List<Prat> listar() throws DatabaseException;
 }

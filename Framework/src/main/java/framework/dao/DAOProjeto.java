@@ -137,7 +137,7 @@ public abstract class DAOProjeto<P extends Projeto<?>> implements IDAOProjeto<P>
 		}
 		
 		sql += " where codigoProjeto=" + p.getCodigo() + ";";
-		System.out.println(sql);
+		System.out.println("Atualizar: " + sql);
 		try {
 			JDBC.runUpdate(sql);
 		}catch(Exception e) {
@@ -176,13 +176,33 @@ public abstract class DAOProjeto<P extends Projeto<?>> implements IDAOProjeto<P>
 		}
 	
 		sql += ";";
-		System.out.println(sql);
+		System.out.println("Consultar: " + sql);
 		try {
 			return getFromResult(JDBC.runQuery(sql));
-		}catch (Exception e) {
+		} catch (Exception e) {
 			throw new DatabaseException("Erro durante a consulta");
 		}
 		
+	}
+	
+	@Override
+	public P consultar(Integer codigo) throws DatabaseException {
+		P p;
+		try {
+			p = classe.getDeclaredConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			throw new DatabaseException(e);
+		}
+		
+		p.setCodigo(codigo);
+		
+		List<P> ps = this.consultar(p);
+		
+		if(ps == null || ps.size() != 1)
+			throw new DatabaseException("Objeto não existe");
+		else
+			return ps.get(0); 
 	}
 	
 	@Override
