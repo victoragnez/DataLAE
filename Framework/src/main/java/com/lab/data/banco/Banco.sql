@@ -10,24 +10,16 @@ create table Projeto (
     nome varchar(255) not null,
     dataInicio date not null,
     dataTermino date,
-
-    financiador varchar(255) not null,
-    contato varchar(255) not null,
-    
+   
     primary key (codigoProjeto)
+
 ) engine=innodb;
 
 create table Area (
     
     codigoArea int auto_increment not null,
     nome varchar(255) not null,
-    
-    cidade varchar(255),
-    estado varchar(255),
-    pais varchar(255) not null,
-    latitude float not null,
-    longitude float not null,
-    
+
     primary key (codigoArea)
     
 ) engine=innodb;
@@ -52,21 +44,29 @@ create table Participante (
     nome varchar(255) not null,
     email varchar(255) not null,
     instituicao varchar(255) not null,
-
-    cpfParticipante varchar(11),
-    categoria enum('Professor', 'Mestrando', 'Doutorando', 'IC', 'Convidado') not null,
     
     primary key (codigoParticipante)
+
 ) engine=innodb;
+
+create table DadosArquivo (
+	codigoDados int not null
+)
 
 create table Arquivo (
     
     codigoArquivo int auto_increment not null,
     nome varchar(255) not null,
     tamanho int not null,
+    codigoProjeto int not null,
+    codigoPratica int,
+    codigoDados int not null,
 
-    primary key (codigoArquivo)
+    primary key (codigoArquivo),
+    foreign key (codigoProjeto) references Projeto(codigoProjeto),
+    foreign key (codigoPratica) references Pratica(codigoPratica),
+    foreign key (codigoDados) references DadosArquivo(codigoDados)
+
 ) engine=innodb;
 
 
-	
