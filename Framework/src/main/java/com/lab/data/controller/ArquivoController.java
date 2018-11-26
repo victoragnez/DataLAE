@@ -21,12 +21,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lab.data.model.AreaGeologia;
 import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.model.Arquivo;
 import framework.service.interfaces.IServiceArquivo;
+import framework.service.interfaces.IServiceAtividade;
+import framework.service.interfaces.IServiceProjeto;
 
 @Controller
 @RequestMapping("/arquivos")
@@ -36,6 +39,12 @@ public class ArquivoController {
 	
 	@Autowired
 	private IServiceArquivo<Arquivo<ProjetoGeologia, PraticaGeologia>> service;
+	
+	@Autowired
+	private IServiceProjeto<ProjetoGeologia> projetoService;
+	
+	@Autowired
+	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> praticaService;
 	
 	@GetMapping
 	public String index(Model model, RedirectAttributes redirectAttributes) {
@@ -51,15 +60,32 @@ public class ArquivoController {
 	}
 	
 	@GetMapping("/cadastrar")
-	public String formArquivoCad(@ModelAttribute("arquivo") Arquivo<ProjetoGeologia, PraticaGeologia> arquivo) {
+	public String formArquivoCad(
+			Model model, 
+			@ModelAttribute("arquivo") Arquivo<ProjetoGeologia, PraticaGeologia> arquivo, 
+			RedirectAttributes redirectAttributes) 
+	{
+		try {
+			List<ProjetoGeologia> projetos = projetoService.listar();
+			model.addAttribute("projetos", projetos);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/arquivos";
+		}
+		try {
+			List<PraticaGeologia> praticas = praticaService.listar();
+			model.addAttribute("praticas", praticas);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/arquivos";
+		}
 		return "arquivo/form";
 	}
 	
 	@PostMapping
-	public String create(@ModelAttribute("arquivo") Arquivo arquivo, @PathVariable("file") MultipartFile file, RedirectAttributes redirectAtrributes) {
-		/*
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        
+	public String create(@ModelAttribute("arquivo") Arquivo<ProjetoGeologia, PraticaGeologia> arquivo, @PathVariable("file") MultipartFile file, RedirectAttributes redirectAtrributes) {
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		
 		if(file.isEmpty()) {
 			redirectAtrributes.addFlashAttribute("erro", "Não foi possível salvar o arquivo!");
 			return "redirect:/arquivos";
@@ -68,6 +94,7 @@ public class ArquivoController {
 		try {
 			arquivo.setDados(file.getBytes());
 			arquivo.setTipo(file.getContentType());
+			System.out.println("> " + arquivo.getTipo());
 		} catch (IOException e1) {
 			redirectAtrributes.addFlashAttribute("erro", "Não foi possível salvar o arquivo!");
 			return "redirect:/arquivos";
@@ -76,10 +103,10 @@ public class ArquivoController {
 		try {
 			service.inserir(arquivo);
 			redirectAtrributes.addFlashAttribute("sucesso", "Arquivo inserido com sucesso!");
-		} catch (Exception e) {
+		} catch (DatabaseException e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
-		*/
+		
 		return "redirect:/arquivos";
 	}
 	

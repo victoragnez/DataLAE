@@ -15,9 +15,6 @@ import com.lab.data.service.AreaGeologiaService;
 import com.lab.data.service.AtividadeGeologiaService;
 import com.lab.data.service.ParticipanteGeologiaService;
 import com.lab.data.service.ProjetoGeologiaService;
-import com.lab.data.service.old.ArquivoService;
-import com.lab.data.service.old.PesquisadorService;
-import com.lab.data.service.old.ViagemService;
 
 import framework.dao.DAOArquivo;
 import framework.model.Arquivo;
@@ -61,20 +58,5 @@ public class ServiceConfig {
 	@Bean
 	public IServiceArquivo<Arquivo<ProjetoGeologia, PraticaGeologia>> arquivoService() {
 		return new ServiceArquivo<>(new DAOArquivo<>());
-	}
-	
-	@Bean
-	public ViagemService viagemServiceOld() {
-		return new ViagemService();
-	}
-	
-	@Bean
-	public PesquisadorService pesquisadorServiceOld() {
-		return new PesquisadorService();
-	}
-	
-	@Bean
-	public ArquivoService arquivoServiceOld() {
-		return new ArquivoService();
 	}
 }
