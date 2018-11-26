@@ -160,6 +160,21 @@ public abstract class DAOAtividade<
 			throw new DatabaseException("Erro durante a consulta");
 		}
 	}
+	
+	@Override
+	public Prat consultar(Integer codigoPratica) throws DatabaseException {
+		String sql = "select * from Pratica where codigoPratica=";
+		
+		if (codigoPratica == null)
+			throw new IllegalArgumentException("Código de prática precisa ser fornecido");
+		
+		sql += codigoPratica + ";";
+		try {
+			return getFromResult(JDBC.runQuery(sql)).get(0);
+		} catch (SQLException e) {
+			throw new DatabaseException("Não foi possível realizar a operação solicitada");
+		}
+	}
 
 	@Override
 	public List<Prat> listar() throws DatabaseException {

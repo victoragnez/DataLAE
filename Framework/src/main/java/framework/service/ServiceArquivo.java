@@ -1,6 +1,5 @@
 package framework.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
@@ -76,8 +75,7 @@ A extends Arquivo<Proj, Prat> > implements IServiceArquivo<Proj, Prat, A> {
 				arq.setProjeto(daoProj.consultar(arq.getProjeto().getCodigo()));
 					
 			if(arq.getAtividade() != null && arq.getAtividade().getCodigo() != null)
-				arq.setAtividade(daoPrat.consultar(arq.getAtividade().getCodigo()));	
-				
+				arq.setAtividade(daoPrat.consultar(arq.getAtividade().getCodigo()));
 		}
 		
 		return results;
