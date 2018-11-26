@@ -42,11 +42,11 @@ public abstract class DAOAtividade<
 		if(prat.getDataTermino() != null)
 			campos.add("dataTermino='" + prat.getDataTermino().toString() + "'");
 		
-		if(prat.getProjeto() != null )
-			campos.add("codigoProjeto=" + prat.getProjeto());
+		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null)
+				campos.add("codigoProjeto=" + prat.getProjeto().getCodigo());
 				
-		if(prat.getArea() != null)
-			campos.add("codigoArea=" + prat.getArea());
+		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
+			campos.add("codigoArea=" + prat.getArea().getCodigo());
 
 		
 		//chamar parte flexível
@@ -89,11 +89,11 @@ public abstract class DAOAtividade<
 		if(prat.getDataTermino() != null)
 			campos.add("dataTermino='" + prat.getDataTermino().toString() + "'");
 		
-		if(prat.getProjeto() != null )
-			campos.add("codigoProjeto=" + prat.getProjeto());
-				
-		if(prat.getArea() != null)
-			campos.add("codigoArea=" + prat.getArea());
+		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null)
+			campos.add("codigoProjeto=" + prat.getProjeto().getCodigo());
+			
+		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
+			campos.add("codigoArea=" + prat.getArea().getCodigo());
 			
 		//chamar parte flexível
 		campos = compAtualizar(campos, prat);
@@ -104,7 +104,7 @@ public abstract class DAOAtividade<
 				sql += ", ";
 		}
 		
-		sql += " where codigoProjeto=" + prat.getCodigo() + ";";
+		sql += " where codigoPratica=" + prat.getCodigo() + ";";
 		System.out.println(sql);
 		try {
 			JDBC.runUpdate(sql);
@@ -133,11 +133,11 @@ public abstract class DAOAtividade<
 			cond.add("dataInicio >= '" + prat.getDataInicio().toString() + "'");
 		}
 		
-		if(prat.getProjeto() != null )
-			cond.add("codigoProjeto=" + prat.getProjeto());
-				
-		if(prat.getArea() != null)
-			cond.add("codigoArea=" + prat.getArea());
+		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null)
+			cond.add("codigoProjeto=" + prat.getProjeto().getCodigo());
+			
+		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
+			cond.add("codigoArea=" + prat.getArea().getCodigo());
 					
 		cond = compConsultar(cond, prat);
 		

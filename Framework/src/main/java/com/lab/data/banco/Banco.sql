@@ -59,15 +59,16 @@ create table Arquivo (
     
     codigoArquivo int auto_increment not null,
     nome varchar(255) not null,
+    tipo varchar(255),
     tamanho int not null,
     codigoProjeto int not null,
     codigoPratica int,
     codigoDados int not null,
 
     primary key (codigoArquivo),
-    foreign key (codigoProjeto) references Projeto(codigoProjeto),
-    foreign key (codigoPratica) references Pratica(codigoPratica),
-    foreign key (codigoDados) references DadosArquivo(codigoDados)
+    constraint foreign key (codigoProjeto) references Projeto(codigoProjeto),
+    constraint foreign key (codigoPratica) references Pratica(codigoPratica),
+    constraint foreign key (codigoDados) references DadosArquivo(codigoDados)
 
 ) engine=innodb;
 
