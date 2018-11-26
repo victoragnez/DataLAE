@@ -13,13 +13,13 @@ import framework.model.Projeto;
 import framework.service.interfaces.IServiceProjeto;
 
 @Component
-public class ProjetoConverter implements Converter<String, Projeto<?>>{
+public class ProjetoConverter implements Converter<String, ProjetoGeologia>{
 
 	@Autowired
 	private IServiceProjeto<ProjetoGeologia> service;
 	
 	@Override
-	public Projeto<?> convert(String source) {
+	public ProjetoGeologia convert(String source) {
 		try {
 			Integer id = Integer.valueOf(source);
 			ProjetoGeologia p = new ProjetoGeologia();
