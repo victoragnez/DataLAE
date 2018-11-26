@@ -66,9 +66,9 @@ create table Arquivo (
     codigoDados int not null,
 
     primary key (codigoArquivo),
-    foreign key (codigoProjeto) references Projeto(codigoProjeto),
-    foreign key (codigoPratica) references Pratica(codigoPratica),
-    foreign key (codigoDados) references DadosArquivo(codigoDados)
+    constraint foreign key (codigoProjeto) references Projeto(codigoProjeto),
+    constraint foreign key (codigoPratica) references Pratica(codigoPratica),
+    constraint foreign key (codigoDados) references DadosArquivo(codigoDados)
 
 ) engine=innodb;
 
