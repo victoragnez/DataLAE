@@ -36,7 +36,7 @@ public class DAOArquivo<A extends Arquivo<?, ?> > implements IDAOArquivo<A> {
 			campos.add("codigoArquivo=" + a.getCodigo());
 		
 		if(a.getNome() != null)
-			campos.add("nome=" + a.getNome());
+			campos.add("nome='" + a.getNome() + "'");
 		
 		if(a.getProjeto() != null && a.getProjeto().getCodigo() != null)
 			campos.add("codigoProjeto=" + a.getProjeto().getCodigo());
@@ -72,7 +72,7 @@ public class DAOArquivo<A extends Arquivo<?, ?> > implements IDAOArquivo<A> {
 		String sql = "delete from Arquivo where codigoArquivo= " + a.getCodigo() + ";";
 		try {
 			JDBC.runRemove(sql);
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 			throw new DatabaseException("Não foi possível realizar a operação solicitada");
 		}
