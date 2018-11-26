@@ -71,4 +71,29 @@ create table Arquivo (
 
 ) engine=innodb;
 
+create table ParticipanteProjeto (
+    
+    codigoParticipante int not null,
+    codigoProjeto int not null,
+
+    constraint primary key (codigoParticipante, codigoProjeto),
+    constraint foreign key (codigoProjeto) references Projeto(codigoProjeto),
+    constraint foreign key (codigoParticipante) references Participante(codigoParticipante)
+
+)engine=innodb;
+
+create table ParticipantePratica (
+
+    codigoPratica int not null,
+    codigoParticipante int not null,
+
+    constraint primary key (codigoPratica, codigoParticipante),
+    constraint foreign key (codigoPratica) references Pratica(codigoPratica),
+    constraint foreign key (codigoParticipante) references Participante(codigoParticipante)
+
+) engine=innodb;
+
+create view DadosProjetoParticipante as (select Projeto.codigoProjeto, Projeto.nome as nomeProjeto, Projeto.dataInicio, Projeto.dataTermino, Participante.* from Projeto left join ParticipanteProjeto on Projeto.codigoProjeto = ParticipanteProjeto.codigoProjeto inner join Participante on ParticipanteProjeto.codigoParticipante = Participante.codigoParticipante);
+
+create view DadosPraticaParticipante as (select Pratica.codigoPratica, Pratica.dataInicio, Pratica.dataTermino, Participante.* from Pratica left join ParticipantePratica on Pratica.codigoPratica = ParticipantePratica.codigoPratica inner join Participante on ParticipantePratica.codigoParticipante = Participante.codigoParticipante);
 
