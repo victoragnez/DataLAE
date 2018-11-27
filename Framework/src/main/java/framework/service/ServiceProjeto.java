@@ -66,7 +66,17 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 			throw new IllegalArgumentException("Parâmetro fornecido nulo");
 		
 		validarConsultar(p);
-		return dao.consultar(p);
+		List<P> projetos = dao.consultar(p);
+		for (P cur : projetos)
+		{
+			if (cur.getParticipantes() != null) {
+				ArrayList<Part> nv = new ArrayList<Part>();
+				for (Part part : cur.getParticipantes())
+					nv.add(daoPart.consultar(part.getCodigo()));
+				cur.setParticipantes(nv);
+			}
+		}
+		return projetos;
 	}
 	
 	@Override
@@ -75,10 +85,12 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 		
 		for (P p : projetos)
 		{
-			if (p.getParticipantes() != null)
+			if (p.getParticipantes() != null) {
+				ArrayList<Part> nv = new ArrayList<Part>();
 				for (Part part : p.getParticipantes())
-					part = daoPart.consultar(part.getCodigo());
-				
+					nv.add(daoPart.consultar(part.getCodigo()));
+				p.setParticipantes(nv);
+			}
 		}
 		
 		return projetos;
