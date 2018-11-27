@@ -147,4 +147,18 @@ public class ProjetoController {
 		redirectAttributes.addFlashAttribute("projetos", projetos);
 		return "redirect:/projetos/buscar";
 	}
+	
+	@GetMapping("/{id}/detalhes")
+	public String detalhes(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+		
+		try {
+			ProjetoGeologia p = buscarProjetoPorId(id);
+			model.addAttribute("projeto", p);
+		} catch (DatabaseException | NenhumEncontradoException e1) {
+			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar o projeto com id = " + id);
+			return "redirect:/projetos";
+		}
+		
+		return "projeto/details";
+	}
 }
