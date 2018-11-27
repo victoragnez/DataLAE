@@ -4,14 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +34,7 @@ public class ArquivoController {
 	private static final String LIST_ERROR = "Falha ao listar arquivos!";
 	
 	@Autowired
-	private IServiceArquivo<Arquivo<ProjetoGeologia, PraticaGeologia>> service;
+	private IServiceArquivo<ProjetoGeologia, PraticaGeologia> service;
 	
 	@Autowired
 	private IServiceProjeto<ProjetoGeologia> projetoService;
@@ -84,7 +80,6 @@ public class ArquivoController {
 	
 	@PostMapping
 	public String create(@ModelAttribute("arquivo") Arquivo<ProjetoGeologia, PraticaGeologia> arquivo, @PathVariable("file") MultipartFile file, RedirectAttributes redirectAtrributes) {
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		
 		if(file.isEmpty()) {
 			redirectAtrributes.addFlashAttribute("erro", "Não foi possível salvar o arquivo!");
@@ -94,7 +89,6 @@ public class ArquivoController {
 		try {
 			arquivo.setDados(file.getBytes());
 			arquivo.setTipo(file.getContentType());
-			System.out.println("> " + arquivo.getTipo());
 		} catch (IOException e1) {
 			redirectAtrributes.addFlashAttribute("erro", "Não foi possível salvar o arquivo!");
 			return "redirect:/arquivos";
@@ -139,7 +133,7 @@ public class ArquivoController {
 	}
 	
 	@PutMapping
-	public String edit(Arquivo arquivo, RedirectAttributes redirectAttributes) {
+	public String edit(Arquivo<ProjetoGeologia, PraticaGeologia> arquivo, RedirectAttributes redirectAttributes) {
 		/*
 		try {
 			service.atualizar(arquivo);

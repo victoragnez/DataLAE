@@ -31,7 +31,7 @@
 					<option value="">-- Selecione --</option>
 					<option th:each="pratica : ${praticas}"
 							th:value="${pratica.codigo}"
-							th:text="${pratica.nome}"></option>
+							th:text="${pratica.area.nome} + ' (' + ${pratica.dataInicio} + ' / ' + ${pratica.dataTermino} + ')'"></option>
 				</select>
 			</div>
 			

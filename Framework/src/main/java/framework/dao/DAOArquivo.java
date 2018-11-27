@@ -1,7 +1,6 @@
 package framework.dao;
 
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,31 +12,28 @@ import framework.model.Arquivo;
 import framework.model.Pratica;
 import framework.model.Projeto;
 
-public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj>, 
-	A extends Arquivo<Proj, Prat> > implements IDAOArquivo<Proj, Prat, A> {
+public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj>> implements IDAOArquivo<Proj, Prat> {
 	
-	private final EstrategiaArquivo<A> estrategia;
+	private final EstrategiaArquivo<Arquivo<Proj, Prat>> estrategia;
 	private final Class<Proj> classeProjeto;
 	private final Class<Prat> classePratica;
-	private final Class<A> classeArquivo;
 		
-	public DAOArquivo(Class<Proj> classeProjeto, Class<Prat> classePratica, Class<A> classeArquivo){
-		this(classeProjeto, classePratica, classeArquivo, true);
+	public DAOArquivo(Class<Proj> classeProjeto, Class<Prat> classePratica){
+		this(classeProjeto, classePratica, true);
 	}
 	
-	public DAOArquivo(Class<Proj> classeProjeto, Class<Prat> classePratica, Class<A> classeArquivo, boolean salvarEmBanco) {
+	public DAOArquivo(Class<Proj> classeProjeto, Class<Prat> classePratica, boolean salvarEmBanco) {
 		if(salvarEmBanco) {
-			estrategia = new ArquivoEmBanco<A>();
+			estrategia = new ArquivoEmBanco<Arquivo<Proj, Prat>>();
 		}
 		else
-			estrategia = new ArquivoNoSistema<A>();
+			estrategia = new ArquivoNoSistema<Arquivo<Proj,Prat>>();
 		this.classeProjeto = classeProjeto;
-		this.classePratica = classePratica;	
-		this.classeArquivo = classeArquivo;
+		this.classePratica = classePratica;
 	}
 	
 	@Override
-	public void inserir(A a) throws DatabaseException {
+	public void inserir(Arquivo<Proj,Prat> a) throws DatabaseException {
 		
 		int id  = estrategia.inserir(a);
 		
@@ -79,7 +75,7 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 	}
 
 	@Override
-	public void remover(A a) throws DatabaseException {
+	public void remover(Arquivo<Proj,Prat> a) throws DatabaseException {
 		String sql = "delete from Arquivo where codigoArquivo= " + a.getCodigo() + ";";
 		try {
 			JDBC.runRemove(sql);
@@ -90,7 +86,7 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 	}
 
 	@Override
-	public void atualizar(A a) throws DatabaseException {
+	public void atualizar(Arquivo<Proj,Prat> a) throws DatabaseException {
 		
 		int id;
 		
@@ -138,13 +134,13 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 	}
 
 	@Override
-	public List<A> consultar(A a) throws DatabaseException {
+	public List<Arquivo<Proj,Prat>> consultar(Arquivo<Proj,Prat> a) throws DatabaseException {
 		// TODO Auto-generated method stub
 		return listar();
 	}
 
 	@Override
-	public List<A> listar() throws DatabaseException {
+	public List<Arquivo<Proj,Prat>> listar() throws DatabaseException {
 		String sql = "select * from Arquivo;";
 		System.out.println(sql);
 		try {
@@ -155,13 +151,13 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 	}
 
 	@Override
-	public A ler(A a) throws DatabaseException {
+	public Arquivo<Proj,Prat> ler(Arquivo<Proj,Prat> a) throws DatabaseException {
 		a.setDados(estrategia.ler(a));
 		return a;
 	}
 	
-	private ArrayList<A> getFromResult(ResultSet resultSet) throws DatabaseException {
-		ArrayList<A> retorno = new ArrayList<>();
+	private ArrayList<Arquivo<Proj,Prat>> getFromResult(ResultSet resultSet) throws DatabaseException {
+		ArrayList<Arquivo<Proj,Prat>> retorno = new ArrayList<>();
 
 		try {
 			while(resultSet.next()) {
@@ -173,14 +169,7 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 				Integer codigoPratica = (Integer)resultSet.getObject("codigoPratica");
 //				Integer codigoDados = (Integer)resultSet.getObject("codigoDados");
 				
-				A arq;
-				
-				try {
-					arq = classeArquivo.getDeclaredConstructor().newInstance();
-				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException 
-						| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-					throw new DatabaseException(e);
-				}
+				Arquivo<Proj,Prat> arq = new Arquivo<>();
 										
 				arq.setCodigo(codigo);
 				arq.setNome(nome);
