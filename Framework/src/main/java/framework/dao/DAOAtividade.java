@@ -48,7 +48,6 @@ public abstract class DAOAtividade<
 		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
 			campos.add("codigoArea=" + prat.getArea().getCodigo());
 
-		
 		//chamar parte flexível
 		campos = compInserir(campos, prat);
 		
@@ -132,10 +131,10 @@ public abstract class DAOAtividade<
 		else if (prat.getDataInicio() != null) {
 			cond.add("dataInicio >= '" + prat.getDataInicio().toString() + "'");
 		}
-		
+
 		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null)
 			cond.add("codigoProjeto=" + prat.getProjeto().getCodigo());
-			
+
 		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
 			cond.add("codigoArea=" + prat.getArea().getCodigo());
 					
@@ -158,6 +157,21 @@ public abstract class DAOAtividade<
 			return getFromResult(JDBC.runQuery(sql));
 		} catch (Exception e) {
 			throw new DatabaseException("Erro durante a consulta");
+		}
+	}
+	
+	@Override
+	public Prat consultar(Integer codigoPratica) throws DatabaseException {
+		String sql = "select * from Pratica where codigoPratica=";
+		
+		if (codigoPratica == null)
+			throw new IllegalArgumentException("Código de prática precisa ser fornecido");
+		
+		sql += codigoPratica + ";";
+		try {
+			return getFromResult(JDBC.runQuery(sql)).get(0);
+		} catch (SQLException e) {
+			throw new DatabaseException("Não foi possível realizar a operação solicitada");
 		}
 	}
 

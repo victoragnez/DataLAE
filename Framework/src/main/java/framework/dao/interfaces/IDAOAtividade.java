@@ -15,5 +15,6 @@ public interface IDAOAtividade<
 	public void remover(Prat a) throws DatabaseException;
 	public void atualizar(Prat a) throws DatabaseException;
 	public List<Prat> consultar(Prat a) throws DatabaseException;
+	public Prat consultar(Integer codigo) throws DatabaseException;
 	public List<Prat> listar() throws DatabaseException;
 }

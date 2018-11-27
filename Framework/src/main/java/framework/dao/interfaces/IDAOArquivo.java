@@ -3,8 +3,11 @@ package framework.dao.interfaces;
 import java.util.List;
 
 import framework.model.Arquivo;
+import framework.model.Pratica;
+import framework.model.Projeto;
 
-public interface IDAOArquivo<A extends Arquivo<?, ?> > {
+public interface IDAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj>, 
+A extends Arquivo<Proj, Prat> > {
 
 	public void inserir(A a) throws DatabaseException;
 	public void remover(A a) throws DatabaseException;
