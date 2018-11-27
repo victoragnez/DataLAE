@@ -27,6 +27,8 @@ import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.model.Arquivo;
+import framework.model.Pratica;
+import framework.model.Projeto;
 import framework.service.interfaces.IServiceArquivo;
 import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceProjeto;
@@ -38,7 +40,8 @@ public class ArquivoController {
 	private static final String LIST_ERROR = "Falha ao listar arquivos!";
 	
 	@Autowired
-	private IServiceArquivo<Arquivo<ProjetoGeologia, PraticaGeologia>> service;
+	private IServiceArquivo<ProjetoGeologia, PraticaGeologia, 
+		Arquivo<ProjetoGeologia, PraticaGeologia>> service;
 	
 	@Autowired
 	private IServiceProjeto<ProjetoGeologia> projetoService;

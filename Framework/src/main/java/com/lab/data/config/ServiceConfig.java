@@ -55,8 +55,8 @@ public class ServiceConfig {
 						PraticaGeologia.class));
 	}
 	
-	@Bean
-	public IServiceArquivo<Arquivo<ProjetoGeologia, PraticaGeologia>> arquivoService() {
-		return new ServiceArquivo<>(new DAOArquivo<>());
-	}
+//	@Bean
+//	public IServiceArquivo<Arquivo<ProjetoGeologia, PraticaGeologia>> arquivoService() {
+//		return new ServiceArquivo<>(new DAOArquivo<>());
+//	}
 }
