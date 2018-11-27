@@ -29,7 +29,7 @@ public class ServiceConfig {
 	@Bean
 	public IServiceProjeto<ProjetoGeologia> projetoService() {
 		return new ProjetoGeologiaService(
-				new ProjetoGeologiaDAO());
+				new ProjetoGeologiaDAO(), new ParticipanteGeologiaDAO());
 	}
 	
 	@Bean

@@ -2,9 +2,10 @@ package framework.dao.interfaces;
 
 import java.util.List;
 
+import framework.model.Participante;
 import framework.model.Projeto;
 
-public interface IDAOProjeto <P extends Projeto<?>> {
+public interface IDAOProjeto <P extends Projeto<?>, Part extends Participante> {
 	
 	public void inserir(P p) throws DatabaseException;
 	public void remover(P p) throws DatabaseException;

@@ -1,18 +1,23 @@
 package framework.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import framework.dao.interfaces.DatabaseException;
+import framework.dao.interfaces.IDAOParticipante;
 import framework.dao.interfaces.IDAOProjeto;
+import framework.model.Participante;
 import framework.model.Projeto;
 import framework.service.interfaces.IServiceProjeto;
 
-public abstract class ServiceProjeto<P extends Projeto<?> > implements IServiceProjeto<P> {
+public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Participante > implements IServiceProjeto<P> {
 
-	private final IDAOProjeto<P> dao;
+	private final IDAOProjeto<P, Part> dao;
+	private final IDAOParticipante<Part> daoPart;
 	
-	public ServiceProjeto (IDAOProjeto<P> dao)	{
+	public ServiceProjeto (IDAOProjeto<P, Part> dao, IDAOParticipante<Part> daoPart)	{
 		this.dao = dao;
+		this.daoPart = daoPart;
 	}
 	
 	@Override
@@ -66,7 +71,17 @@ public abstract class ServiceProjeto<P extends Projeto<?> > implements IServiceP
 	
 	@Override
 	public List<P> listar() throws DatabaseException {
-		return dao.listar();
+		List<P> projetos = dao.listar();
+		
+		for (P p : projetos)
+		{
+			if (p.getParticipantes() != null)
+				for (Part part : p.getParticipantes())
+					part = daoPart.consultar(part.getCodigo());
+				
+		}
+		
+		return projetos;
 	}
 
 	/** Metodos que precisam ser implementados */

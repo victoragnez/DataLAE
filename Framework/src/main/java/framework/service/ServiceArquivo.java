@@ -14,11 +14,11 @@ import framework.service.interfaces.IServiceArquivo;
 public class ServiceArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj>> implements IServiceArquivo<Proj, Prat> {
 	
 	private final IDAOArquivo<Proj, Prat> dao;
-	private final IDAOProjeto<Proj> daoProj;
+	private final IDAOProjeto<Proj,?> daoProj;
 	private final IDAOAtividade<?, Proj,Prat> daoPrat;
 	
 	public ServiceArquivo (IDAOArquivo<Proj, Prat> dao, 
-			IDAOProjeto<Proj> daoProj, IDAOAtividade<?, Proj, Prat> daoPrat) {
+			IDAOProjeto<Proj,?> daoProj, IDAOAtividade<?, Proj, Prat> daoPrat) {
 		this.dao = dao;
 		this.daoProj = daoProj;
 		this.daoPrat = daoPrat;
