@@ -4,6 +4,7 @@ public class Arquivo<P extends Projeto<?>, A extends Pratica<?, ?, ?> > {
 	
 	/** Atributos */
 	private String nome;
+	private String tipo;
 	private Long tamanho;
 	private byte[] dados;
 	private P projeto;
@@ -12,8 +13,9 @@ public class Arquivo<P extends Projeto<?>, A extends Pratica<?, ?, ?> > {
 
 	public Arquivo() {}
 	
-	public Arquivo(String nome, Long tamanho, byte[] dados, P projeto, A atividade, Integer codigo) {
+	public Arquivo(String nome, String tipo, Long tamanho, byte[] dados, P projeto, A atividade, Integer codigo) {
 		this.nome = nome;
+		this.tipo = tipo;
 		this.tamanho = tamanho;
 		this.dados = dados;
 		this.projeto = projeto;
@@ -27,6 +29,14 @@ public class Arquivo<P extends Projeto<?>, A extends Pratica<?, ?, ?> > {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public Integer getCodigo() {

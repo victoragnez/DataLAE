@@ -20,6 +20,7 @@ A extends Arquivo<Proj, Prat> > implements IServiceArquivo<Proj, Prat, A> {
 	
 	public ServiceArquivo (IDAOArquivo<Proj, Prat, A> dao, 
 			IDAOProjeto<Proj> daoProj, IDAOAtividade<?, Proj,Prat> daoPrat)	{
+
 		this.dao = dao;
 		this.daoProj = daoProj;
 		this.daoPrat = daoPrat;
@@ -27,6 +28,7 @@ A extends Arquivo<Proj, Prat> > implements IServiceArquivo<Proj, Prat, A> {
 	
 	@Override
 	public void inserir(A a) throws DatabaseException {
+
 		if (a.getNome() == null)
 			throw new IllegalArgumentException("Nome de arquivo não fornecido");
 		if (a.getProjeto() == null)
@@ -39,6 +41,7 @@ A extends Arquivo<Proj, Prat> > implements IServiceArquivo<Proj, Prat, A> {
 
 	@Override
 	public void remover(A a) throws DatabaseException {
+
 		if (a.getCodigo() == null)
 			throw new IllegalArgumentException("Impossível deletar arquivo informado");
 		
@@ -60,6 +63,7 @@ A extends Arquivo<Proj, Prat> > implements IServiceArquivo<Proj, Prat, A> {
 	}
 
 	@Override
+
 	public List<A> consultar(A a) throws DatabaseException {
 		if (a == null) return listar();
 		

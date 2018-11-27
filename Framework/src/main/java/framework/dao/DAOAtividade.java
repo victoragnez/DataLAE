@@ -42,12 +42,12 @@ public abstract class DAOAtividade<
 		if(prat.getDataTermino() != null)
 			campos.add("dataTermino='" + prat.getDataTermino().toString() + "'");
 		
-		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null )
-			campos.add("codigoProjeto=" + prat.getProjeto().getCodigo());
+		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null)
+				campos.add("codigoProjeto=" + prat.getProjeto().getCodigo());
 				
 		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
 			campos.add("codigoArea=" + prat.getArea().getCodigo());
-		
+
 		//chamar parte flexível
 		campos = compInserir(campos, prat);
 		
@@ -88,9 +88,9 @@ public abstract class DAOAtividade<
 		if(prat.getDataTermino() != null)
 			campos.add("dataTermino='" + prat.getDataTermino().toString() + "'");
 		
-		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null )
+		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null)
 			campos.add("codigoProjeto=" + prat.getProjeto().getCodigo());
-				
+			
 		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
 			campos.add("codigoArea=" + prat.getArea().getCodigo());
 			
@@ -131,10 +131,10 @@ public abstract class DAOAtividade<
 		else if (prat.getDataInicio() != null) {
 			cond.add("dataInicio >= '" + prat.getDataInicio().toString() + "'");
 		}
-		
-		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null )
+
+		if(prat.getProjeto() != null && prat.getProjeto().getCodigo() != null)
 			cond.add("codigoProjeto=" + prat.getProjeto().getCodigo());
-				
+
 		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
 			cond.add("codigoArea=" + prat.getArea().getCodigo());
 					

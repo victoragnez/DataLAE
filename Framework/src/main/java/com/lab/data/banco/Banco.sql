@@ -59,15 +59,16 @@ create table Arquivo (
     
     codigoArquivo int auto_increment not null,
     nome varchar(255) not null,
+    tipo varchar(255),
     tamanho int not null,
     codigoProjeto int not null,
     codigoPratica int,
     codigoDados int not null,
 
     primary key (codigoArquivo),
-    foreign key (codigoProjeto) references Projeto(codigoProjeto),
-    foreign key (codigoPratica) references Pratica(codigoPratica),
-    foreign key (codigoDados) references DadosArquivo(codigoDados)
+    constraint foreign key (codigoProjeto) references Projeto(codigoProjeto),
+    constraint foreign key (codigoPratica) references Pratica(codigoPratica),
+    constraint foreign key (codigoDados) references DadosArquivo(codigoDados)
 
 ) engine=innodb;
 
@@ -91,4 +92,9 @@ create table ParticipantePratica (
     constraint foreign key (codigoPratica) references Pratica(codigoPratica),
     constraint foreign key (codigoParticipante) references Participante(codigoParticipante)
 
+
 ) engine=innodb;
+
+create view DadosProjetoParticipante as (select Projeto.codigoProjeto, Projeto.nome as nomeProjeto, Projeto.dataInicio, Projeto.dataTermino, Participante.* from Projeto left join ParticipanteProjeto on Projeto.codigoProjeto = ParticipanteProjeto.codigoProjeto inner join Participante on ParticipanteProjeto.codigoParticipante = Participante.codigoParticipante);
+
+create view DadosPraticaParticipante as (select Pratica.codigoPratica, Pratica.dataInicio, Pratica.dataTermino, Participante.* from Pratica left join ParticipantePratica on Pratica.codigoPratica = ParticipantePratica.codigoPratica inner join Participante on ParticipantePratica.codigoParticipante = Participante.codigoParticipante);
