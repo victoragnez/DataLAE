@@ -76,8 +76,8 @@ public class ServiceArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, 
 			if (arq.getProjeto() != null && arq.getCodigo() != null)
 				arq.setProjeto(daoProj.consultar(arq.getProjeto().getCodigo()));
 					
-			if(arq.getAtividade() != null && arq.getAtividade().getCodigo() != null)
-				arq.setAtividade(daoPrat.consultar(arq.getAtividade().getCodigo()));
+			if(arq.getPratica() != null && arq.getPratica().getCodigo() != null)
+				arq.setPratica(daoPrat.consultar(arq.getPratica().getCodigo()));
 		}
 		
 		return results;

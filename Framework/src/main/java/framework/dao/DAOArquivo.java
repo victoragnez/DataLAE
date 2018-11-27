@@ -48,8 +48,8 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 		if(a.getProjeto() != null && a.getProjeto().getCodigo() != null)
 			campos.add("codigoProjeto=" + a.getProjeto().getCodigo());
 		
-		if(a.getAtividade() != null && a.getAtividade().getCodigo() != null)
-			campos.add("codigoPratica=" + a.getAtividade().getCodigo());
+		if(a.getPratica() != null && a.getPratica().getCodigo() != null)
+			campos.add("codigoPratica=" + a.getPratica().getCodigo());
 		
 		campos.add("codigoDados=" + id);
 		
@@ -106,8 +106,8 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 		if(a.getProjeto() != null && a.getProjeto().getCodigo() != null)
 			campos.add("codigoProjeto=" + a.getProjeto().getCodigo());
 		
-		if(a.getAtividade() != null && a.getAtividade().getCodigo() != null)
-			campos.add("codigoPratica=" + a.getAtividade().getCodigo());
+		if(a.getPratica() != null && a.getPratica().getCodigo() != null)
+			campos.add("codigoPratica=" + a.getPratica().getCodigo());
 		
 		if(a.getTamanho() != null)
 			campos.add("tamanho=" + a.getTamanho());
@@ -135,8 +135,46 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 
 	@Override
 	public List<Arquivo<Proj,Prat>> consultar(Arquivo<Proj,Prat> a) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return listar();
+		String sql = "select * from Arquivo ";
+		
+		ArrayList<String> cond = new ArrayList<String>();
+		
+		if(a.getCodigo() != null) {
+			cond.add("codigoArquivo = " + a.getCodigo());
+		}
+		if(a.getNome() != null) {
+			cond.add("nome like '%" + a.getNome() + "%'");
+		}
+		if(a.getTipo() != null) {
+			cond.add("tipo like '% " + a.getTipo() + "%'");
+		}
+		if(a.getTamanho() != null) {
+			cond.add("tamanho = " + a.getTamanho());
+		}
+		if(a.getProjeto() != null && a.getProjeto().getCodigo() != null) {
+			cond.add("codigoProjeto = " + a.getProjeto().getCodigo());
+		}
+		if(a.getPratica() != null && a.getPratica().getCodigo() != null) {
+			cond.add("codigoPratica = " + a.getPratica().getCodigo());
+		}
+		
+		if (!cond.isEmpty()) {
+			sql += "where ";
+			for(int i = 0; i < cond.size(); i++) {
+				sql += " " + cond.get(i);
+				if(i + 1 < cond.size())
+					sql += " and";
+			}
+		}
+		
+		sql += ";";
+		
+		System.out.println(sql);
+		try {
+			return getFromResult(JDBC.runQuery(sql));
+		} catch (Exception e) {
+			throw new DatabaseException("Erro durante a consulta");
+		}
 	}
 
 	@Override
@@ -188,8 +226,8 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 				
 				if(codigoPratica != null) {
 					try {
-						arq.setAtividade(classePratica.getDeclaredConstructor().newInstance());
-						arq.getAtividade().setCodigo(codigoPratica);
+						arq.setPratica(classePratica.getDeclaredConstructor().newInstance());
+						arq.getPratica().setCodigo(codigoPratica);
 					} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 							| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 						throw new DatabaseException(e);
