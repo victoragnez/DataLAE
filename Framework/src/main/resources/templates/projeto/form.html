@@ -39,6 +39,16 @@
 				<input id="dataFim" name="dataFim" type="date" class="form-control" th:field="*{dataFim}" />
 			</div>
 			
+			<div class="form-group">
+				<label for="participantes">Pesquisadores</label>
+				<select name="participantes" th:field="*{participantes}" class="form-control"
+					 multiple = "multiple" size = "8">
+					<option th:each="participante : ${participantes}"
+							th:value="${participante.codigo}"
+							th:text="${participante.nome}"></option>
+				</select>
+			</div>
+			
 			<a th:href="@{/projetos}" class="btn btn-default">Voltar</a>
 			<button type="submit" class="btn btn-success">Salvar</button>
 		</form>

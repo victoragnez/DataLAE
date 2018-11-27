@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.exception.NenhumEncontradoException;
+import com.lab.data.model.ParticipanteGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.interfaces.DatabaseException;
+import framework.service.interfaces.IServiceParticipante;
 import framework.service.interfaces.IServiceProjeto;
 
 @Controller
@@ -40,6 +42,9 @@ public class ProjetoController {
 	@Autowired
 	private IServiceProjeto<ProjetoGeologia> service;
 	
+	@Autowired
+	private IServiceParticipante<ParticipanteGeologia> serviceParticipante;
+	
 	@GetMapping
 	public String index(Model model, RedirectAttributes redirectAttributes) {
 		List<ProjetoGeologia> projs;
@@ -54,7 +59,14 @@ public class ProjetoController {
 	}
 	
 	@GetMapping("/cadastrar")
-	public String formProjetoCad(@ModelAttribute("projeto") ProjetoGeologia projeto) {
+	public String formProjetoCad(@ModelAttribute("projeto") ProjetoGeologia projeto, Model model, RedirectAttributes redirectAttributes) {
+		try {
+			List<ParticipanteGeologia> participantes = serviceParticipante.listar();
+			model.addAttribute("participantes", participantes);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar pesquisadores");
+			return "redirect:/projetos";
+		}
 		return "projeto/form";
 	}
 	

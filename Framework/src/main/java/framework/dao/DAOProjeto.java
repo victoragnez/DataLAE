@@ -162,6 +162,10 @@ public abstract class DAOProjeto<P extends Projeto<?>> implements IDAOProjeto<P>
 					pj.getDataInicio().toString() + "')");
 		}
 		
+		if (pj.getNome() != null) {
+			cond.add("nome = '" + pj.getNome() + "'");
+		}
+		
 		cond = compConsultar(cond, pj);
 		
 		if (!cond.isEmpty())
