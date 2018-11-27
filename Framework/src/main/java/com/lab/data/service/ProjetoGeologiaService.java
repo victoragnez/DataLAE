@@ -3,8 +3,10 @@
  */
 package com.lab.data.service;
 
+import com.lab.data.model.ParticipanteGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
+import framework.dao.interfaces.IDAOParticipante;
 import framework.dao.interfaces.IDAOProjeto;
 import framework.service.ServiceProjeto;
 
@@ -12,10 +14,12 @@ import framework.service.ServiceProjeto;
  * @author victoragnez
  *
  */
-public class ProjetoGeologiaService extends ServiceProjeto<ProjetoGeologia> {
+public class ProjetoGeologiaService extends 
+	ServiceProjeto<ProjetoGeologia, ParticipanteGeologia> {
 
-	public ProjetoGeologiaService(IDAOProjeto<ProjetoGeologia> dao) {
-		super(dao);
+	public ProjetoGeologiaService(IDAOProjeto<ProjetoGeologia, ParticipanteGeologia> dao,
+			IDAOParticipante<ParticipanteGeologia> daoPart) {
+		super(dao, daoPart);
 	}
 
 	@Override

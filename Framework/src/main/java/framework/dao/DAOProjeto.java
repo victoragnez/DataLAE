@@ -12,12 +12,16 @@ import framework.dao.interfaces.IDAOProjeto;
 import framework.model.Participante;
 import framework.model.Projeto;
 
-public abstract class DAOProjeto<P extends Projeto<?>> implements IDAOProjeto<P> {
+public abstract class DAOProjeto<P extends Projeto<Part>, Part extends Participante> 
+	implements IDAOProjeto<P,Part> 
+{
 	
 	private final Class<P> classe;
+	private final Class<Part> partClass;
 	
-	public DAOProjeto(Class<P> classe) {
+	public DAOProjeto(Class<P> classe, Class<Part> partClass) {
 		this.classe = classe;
+		this.partClass = partClass;
 	}
 	
 	@Override
@@ -143,6 +147,8 @@ public abstract class DAOProjeto<P extends Projeto<?>> implements IDAOProjeto<P>
 		}catch(Exception e) {
 			throw new DatabaseException("Não foi possível atualizar o projeto");
 		}
+		
+		
 	}
 	
 	@Override
@@ -249,6 +255,48 @@ public abstract class DAOProjeto<P extends Projeto<?>> implements IDAOProjeto<P>
 				p.setDataInicio(inicio);
 				p.setDataFim(termino);
 				
+				/**
+				 * Resgatar todos os participantes de um projeto.
+				 * Aqui é necessário verificar a tabela ParticipanteProjeto
+				 * do banco.
+				 */
+				String sqlPart = "select * from ParticipanteProjeto where codigoProjeto=" + codigo + ";";
+				ArrayList<Integer> codParticipantes = new ArrayList<Integer>();
+				try {
+					ResultSet partProj = JDBC.runQuery(sqlPart);
+					
+					/**
+					 * Nesse passo resgatamos todos os códigos de Participantes
+					 * que fazem parte do projeto em questão.
+					 */
+					while(partProj.next())
+						codParticipantes.add((Integer)partProj.getObject("codigoParticipante"));
+				
+				} catch (Exception e) {
+					throw new DatabaseException("Erro durante a consulta - "
+							+ "Tentativa falha de resgatar Participantes do Projeto "+ codigo); 
+				}
+				
+				/**
+				 * Agora criamos os objetos participantes e inserimos no 
+				 * projeto que está sendo construído
+				 */
+				ArrayList<Part> participantes = new ArrayList<Part>();
+				for (Integer cod : codParticipantes)
+				{
+					if(cod != null) {
+						try {
+							Part newPart = partClass.getDeclaredConstructor().newInstance();
+							newPart.setCodigo(cod);
+							participantes.add(newPart);
+						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+								| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+							throw new DatabaseException(e);
+						}
+					}
+				}
+				
+				p.setParticipantes(participantes);
 				retorno.add(p);
 				
 			}

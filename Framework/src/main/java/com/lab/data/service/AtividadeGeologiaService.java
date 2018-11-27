@@ -12,7 +12,7 @@ import framework.service.ServiceAtividade;
 public class AtividadeGeologiaService extends 
 		ServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia>
 {
-	public AtividadeGeologiaService(IDAOArea<AreaGeologia> daoArea, IDAOProjeto<ProjetoGeologia> daoProjeto,
+	public AtividadeGeologiaService(IDAOArea<AreaGeologia> daoArea, IDAOProjeto<ProjetoGeologia, ?> daoProjeto,
 			IDAOAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> dao) {
 		super(daoArea, daoProjeto, dao);
 	}

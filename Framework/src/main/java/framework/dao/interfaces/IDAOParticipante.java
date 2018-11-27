@@ -11,5 +11,6 @@ public interface IDAOParticipante <P extends Participante> {
 	public void atualizar(P p) throws DatabaseException;
 	public List<P> consultar(P p) throws DatabaseException;
 	public List<P> listar() throws DatabaseException;
+	P consultar(Integer codigo) throws DatabaseException;
 	
 }

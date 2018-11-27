@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.lab.data.model.ParticipanteGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.DAOProjeto;
@@ -15,9 +16,9 @@ import framework.dao.DAOProjeto;
  * @author victoragnez
  *
  */
-public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia> {
+public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia, ParticipanteGeologia> {
 
-	public ProjetoGeologiaDAO() { super(ProjetoGeologia.class); }
+	public ProjetoGeologiaDAO() { super(ProjetoGeologia.class, ParticipanteGeologia.class); }
 	
 	@Override
 	protected ArrayList<String> compInserir(ArrayList<String> campos, ProjetoGeologia p) {

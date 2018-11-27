@@ -27,12 +27,12 @@ public abstract class ServiceAtividade<
 			implements IServiceAtividade<A, Proj, Prat> 
 {
 	private final IDAOAtividade<A, Proj, Prat> dao;
-	private final IDAOProjeto<Proj> daoProjeto;
+	private final IDAOProjeto<Proj, ?> daoProjeto;
 	private final IDAOArea<A> daoArea;
 	
 	public ServiceAtividade(
 			IDAOArea<A> daoArea,
-			IDAOProjeto<Proj> daoProjeto,
+			IDAOProjeto<Proj, ?> daoProjeto,
 			IDAOAtividade<A, Proj, Prat> dao)
 	{
 		this.dao = dao;

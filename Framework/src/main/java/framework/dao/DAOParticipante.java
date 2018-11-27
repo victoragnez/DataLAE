@@ -127,6 +127,26 @@ public abstract class DAOParticipante<P extends Participante> implements IDAOPar
 	}
 	
 	@Override
+	public P consultar(Integer codigo) throws DatabaseException {
+		P p;
+		try {
+			p = classe.getDeclaredConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			throw new DatabaseException(e);
+		}
+		
+		p.setCodigo(codigo);
+		
+		List<P> ps = this.consultar(p);
+		
+		if(ps == null || ps.size() != 1)
+			throw new DatabaseException("Objeto não existe");
+		else
+			return ps.get(0); 
+	}
+	
+	@Override
 	public List<P> listar() throws DatabaseException
 	{
 		String sql = "select * from Participante;";
