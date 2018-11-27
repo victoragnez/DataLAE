@@ -35,15 +35,10 @@
 					<td th:text="${projeto.dataInicio}"></td>
 					<td th:text="${projeto.dataFim}"></td>
 					<td>
+						<a th:href="@{/projetos/{id}/detalhes (id = ${projeto.codigo})}" class="btn btn-success">Detalhes</a>
 						<a th:href="@{/projetos/{id}/editar (id = ${projeto.codigo})}" class="btn btn-primary">Editar</a>
 						<a th:href="@{/projetos/{id}/apagar (id = ${projeto.codigo})}" class="btn btn-danger">Apagar</a>
 					</td>
-					
-					<!-- <td>
-						<a th:href="@{/students/{id}(id = ${student.id})}" class="btn btn-primary" >Show</a> 
-						<a th:href="@{/students/{id}/edit(id = ${student.id})}" class="btn btn-info">Edit</a> 
-						<a th:href="${'students/'+ student.id +'/delete'}" class="btn btn-danger">Destroy</a>
-					</td> -->
 				</tr>
 			</tbody>
 		</table>
