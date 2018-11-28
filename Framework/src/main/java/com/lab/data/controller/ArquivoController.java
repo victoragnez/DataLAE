@@ -104,6 +104,7 @@ public class ArquivoController {
 		try {
 			arquivo.setDados(file.getBytes());
 			arquivo.setTipo(file.getContentType());
+			arquivo.setTamanho(file.getSize());
 		} catch (IOException e1) {
 			redirectAtrributes.addFlashAttribute("erro", "Não foi possível salvar o arquivo!");
 			return "redirect:/arquivos";
@@ -127,8 +128,11 @@ public class ArquivoController {
 	
 	@GetMapping("/{id}/baixar")
 	public ResponseEntity<Resource> downloadFile(@PathVariable("id") Integer id) throws ResourceException {
+		
 		try {
 			Arquivo<ProjetoGeologia, PraticaGeologia> a = buscarArquivoPorId(id);
+			
+			//a = service.ler(a);
 			return ResponseEntity.ok()
 					.contentType(MediaType.parseMediaType(a.getTipo() != null ? a.getTipo() : ""))
 					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + a.getNome() + "\"")
@@ -170,8 +174,12 @@ public class ArquivoController {
 		try {
 			service.atualizar(arquivo);
 			redirectAttributes.addFlashAttribute("sucesso", "Arquivo editado com sucesso!");
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | IllegalArgumentException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			if(arquivo != null && arquivo.getCodigo() != null) {
+				redirectAttributes.addFlashAttribute("arquivo", arquivo);
+				return "redirect:/arquivos/" + arquivo.getCodigo() + "/editar";
+			}
 		}
 		return "redirect:/arquivos";
 	}

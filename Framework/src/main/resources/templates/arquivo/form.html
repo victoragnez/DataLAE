@@ -17,11 +17,12 @@
 			
 			<div class="form-group">
 				<label for="projeto">Projeto</label>
-				<select name="projeto" th:field="*{projeto}" class="form-control">
+				<select name="projeto" id="projeto" class="form-control">
 					<option value="">-- Selecione --</option>
 					<option th:each="projeto : ${projetos}"
 							th:value="${projeto.codigo}"
-							th:text="${projeto.nome}"></option>
+							th:text="${projeto.nome}"
+							th:selected="${arquivo.projeto != null && projeto.codigo.equals(arquivo.projeto.codigo)}"></option>
 				</select>
 			</div>
 			
@@ -32,7 +33,7 @@
 					<option th:each="pratica : ${praticas}"
 							th:value="${pratica.codigo}"
 							th:text="${pratica.area.nome} + ' (' + ${pratica.dataInicio} + ' / ' + ${pratica.dataTermino} + ')'"
-							th:selected="${pratica.codigo.equals(arquivo.pratica.codigo)}"></option>
+							th:selected="${arquivo.pratica != null && pratica.codigo.equals(arquivo.pratica.codigo)}"></option>
 				</select>
 			</div>
 			
