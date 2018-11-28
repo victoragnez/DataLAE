@@ -45,6 +45,9 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 		if(a.getNome() != null)
 			campos.add("nome='" + a.getNome() + "'");
 		
+		if(a.getTipo() != null)
+			campos.add("tipo='" + a.getTipo() + "'");
+		
 		if(a.getProjeto() != null && a.getProjeto().getCodigo() != null)
 			campos.add("codigoProjeto=" + a.getProjeto().getCodigo());
 		
@@ -111,6 +114,9 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 		
 		if(a.getTamanho() != null)
 			campos.add("tamanho=" + a.getTamanho());
+		
+		if(a.getTipo() != null)
+			campos.add("tipo='" + a.getTipo() + "'");
 		
 		campos.add("codigoDados=" + id);
 		
