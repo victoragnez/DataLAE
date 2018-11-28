@@ -170,6 +170,7 @@ public class ProjetoController {
 		try {
 			ProjetoEstatistica p = buscarProjetoPorId(id);
 			model.addAttribute("projeto", p);
+			model.addAttribute("pesquisadores", p.getParticipantes());
 		} catch (DatabaseException | NenhumEncontradoException e1) {
 			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar o projeto com id = " + id);
 			return "redirect:/projetos";
