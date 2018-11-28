@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorator="datalae/layout">
+	  layout:decorator="dataest/layout">
 <head>
  	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>DataLAE</title>
+    <title>DataEST</title>
 </head>
 <body>
 	<div layout:fragment="content">
@@ -21,8 +21,13 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="financiador">Financiador</label> 
-				<input id="financiador" name="financiador" type="text" class="form-control" th:field="*{financiador}" />
+				<label for="professor">Professor</label> 
+				<input id="professor" name="professor" type="text" class="form-control" th:field="*{professor}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="orgao">Órgão</label> 
+				<input id="orgao" name="orgao" type="text" class="form-control" th:field="*{orgao}" />
 			</div>
 			
 			<div class="form-group">
@@ -41,8 +46,8 @@
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<th>Financiador</th>
-					<th>Contato</th>
+					<th>Professor</th>
+					<th>Órgão</th>
 					<th>Data de Início</th>
 					<th>Data de Término</th>
 				</tr>
@@ -50,8 +55,8 @@
 			<tbody>
 				<tr th:each="projeto : ${projetos}">
 					<td th:text="${projeto.nome}"></td>
-					<td th:text="${projeto.financiador}"></td>
-					<td th:text="${projeto.contatoFinanciador}"></td>
+					<td th:text="${projeto.professor}"></td>
+					<td th:text="${projeto.orgao}"></td>
 					<td th:text="${projeto.dataInicio}"></td>
 					<td th:text="${projeto.dataFim}"></td>
 					<td>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="dataae/layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DataAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Experimentos</h1>
+		<hr />
+		<div class="container row">
+			<a th:href="@{/experimentos/cadastrar}" class="btn btn-success" style="float:right; margin-left: 10px;">Novo Experimento</a>
+			<a th:href="@{/experimentos/buscar}" class="btn btn-primary" style="float:right;" >Buscar Experimentos</a>
+		</div>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Local</th>
+					<th>Projeto</th>
+					<th>Data de Início</th> 
+					<th>Data de Término</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="experimento : ${experimentos}">
+					<td th:text="${experimento.area} == null ? '-' : (${experimento.area.nome} == null ? '-' : ${experimento.area.nome})"></td>
+					<td th:text="${experimento.projeto} == null? '-' : (${experimento.projeto.nome} == null ? '-' : ${experimento.projeto.nome})"></td>
+					<td th:text="${experimento.dataInicio}"></td>
+					<td th:text="${experimento.dataTermino}"></td>
+					<td th:text="${experimento.status}"></td>
+					<td>
+						<a th:href="@{/experimentos/{id}/editar (id = ${experimento.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/experimentos/{id}/apagar (id = ${experimento.codigo})}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

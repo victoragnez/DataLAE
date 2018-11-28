@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="dataest/layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DataEST</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Buscar Pesquisas</h1>
+		<hr />
+		<form th:method="post" th:object="${filtro}">
+			<div class="form-group">
+				<label for="projeto">Projeto</label>
+				<select name="projeto" th:field="*{projeto}" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="projeto : ${projetos}"
+							th:value="${projeto.codigo}"
+							th:text="${projeto.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="local">Local</label>
+				<select name="local" th:field="*{area}" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="local : ${locais}"
+							th:value="${local.codigo}"
+							th:text="${local.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="dataInicio">Data entre início e término</label> 
+				<input id="dataInicio" name="dataInicio" type="date" class="form-control" th:field="*{dataInicio}" />
+			</div>
+			
+			<a th:href="@{/pesquisas}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Buscar</button>
+		</form>
+		
+		<hr />
+		<h2>Resultados</h2>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Local</th>
+					<th>Projeto</th>
+					<th>Data de Início</th> 
+					<th>Data de Término</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pesquisa : ${pesquisas}">
+					<td th:text="${pesquisa.area} == null ? '-' : (${pesquisa.area.nome} == null ? '-' : ${pesquisa.area.nome})"></td>
+					<td th:text="${pesquisa.projeto} == null? '-' : (${pesquisa.projeto.nome} == null ? '-' : ${pesquisa.projeto.nome})"></td>
+					<td th:text="${pesquisa.dataInicio}"></td>
+					<td th:text="${pesquisa.dataTermino}"></td>
+					<td>
+						<a th:href="@{/pesquisas/{id}/editar (id = ${pesquisas.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/pesquisas/{id}/apagar (id = ${pesquisas.codigo})}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
