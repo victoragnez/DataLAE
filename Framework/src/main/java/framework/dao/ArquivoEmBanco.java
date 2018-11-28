@@ -24,8 +24,8 @@ class ArquivoEmBanco<A extends Arquivo<?, ?> > implements EstrategiaArquivo<A> {
 	private String toHexa(byte[] dados) {
 		String ret = "";
 		for(byte b : dados) {
-			ret += hexaDigits.charAt(b&15);
 			ret += hexaDigits.charAt((b>>4)&15);
+			ret += hexaDigits.charAt(b&15);
 		}
 		return ret;
 	}
@@ -37,6 +37,7 @@ class ArquivoEmBanco<A extends Arquivo<?, ?> > implements EstrategiaArquivo<A> {
 				+ "Arquivo.codigoArquivo=" + a.getCodigo() + ";";
 		try {
 			ResultSet resultSet = JDBC.runQuery(sql);
+			resultSet.next();
 			return resultSet.getBlob("dados").getBytes(1, (int)(long)a.getTamanho());
 		} catch (SQLException e) {
 			e.printStackTrace();
