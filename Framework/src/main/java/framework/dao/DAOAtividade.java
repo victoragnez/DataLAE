@@ -149,41 +149,41 @@ public abstract class DAOAtividade<
 			throw new DatabaseException("Não foi possível atualizar o projeto");
 		}
 		
-		if(prat.getParticipantes() != null) {
+		try {
+			JDBC.runRemove("delete from ParticipantePratica where codigoPratica=" +
+					prat.getCodigo() + ";");
+			if(prat.getParticipantes() != null) {
+					
+					ArrayList<String> commands = new ArrayList<String>();
+					
+					for(Participante pesq : prat.getParticipantes()) {
+						campos = new ArrayList<String>();
+						campos.add("codigoPratica=" + prat.getCodigo());
+						campos.add("codigoParticipante=" + pesq.getCodigo());
+						
+						sql = "insert into ParticipantePratica set ";
+						for(int i = 0; i < campos.size(); i++) {
+							sql += campos.get(i);
+							if(i+1 < campos.size())
+								sql += ", ";
+						}
+						sql += ";";
+						commands.add(sql);
+					}
+					
+					if(commands.size() > 0) {
+						JDBC.runMultipleInserts(commands);
+					}
+				}
+			}
+		catch(SQLException e) {
 			try {
 				JDBC.runRemove("delete from ParticipantePratica where codigoPratica=" +
 						prat.getCodigo() + ";");
-				
-				ArrayList<String> commands = new ArrayList<String>();
-				
-				for(Participante pesq : prat.getParticipantes()) {
-					campos = new ArrayList<String>();
-					campos.add("codigoPratica=" + prat.getCodigo());
-					campos.add("codigoParticipante=" + pesq.getCodigo());
-					
-					sql = "insert into ParticipantePratica set ";
-					for(int i = 0; i < campos.size(); i++) {
-						sql += campos.get(i);
-						if(i+1 < campos.size())
-							sql += ", ";
-					}
-					sql += ";";
-					commands.add(sql);
-				}
-				
-				if(commands.size() > 0) {
-					JDBC.runMultipleInserts(commands);
-				}
-			} catch(SQLException e) {
-				try {
-					JDBC.runRemove("delete from ParticipantePratica where codigoPratica=" +
-							prat.getCodigo() + ";");
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				throw new DatabaseException(e);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-			
+			throw new DatabaseException(e);
 		}
 	}
 
