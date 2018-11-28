@@ -39,6 +39,16 @@ public class ProjetoController {
 		return list.get(0);
 	}
 	
+	private class Comparador {
+		@SuppressWarnings("unused") // usado pelo thymeleaf
+		public boolean compare(List<ParticipanteGeologia> p1, ParticipanteGeologia p2) {
+			for(ParticipanteGeologia p : p1)
+				if(p.getCodigo().equals(p2.getCodigo()))
+					return true;
+			return false;
+		}
+	}
+	
 	@Autowired
 	private IServiceProjeto<ProjetoGeologia> service;
 	
@@ -84,6 +94,13 @@ public class ProjetoController {
 	
 	@GetMapping("/{id}/editar")
 	public String formProjetoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+		try {
+			List<ParticipanteGeologia> participantes = serviceParticipante.listar();
+			model.addAttribute("participantes", participantes);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar pesquisadores");
+			return "redirect:/projetos";
+		}
 		if(id != null) {
 			ProjetoGeologia p;
 			try {
@@ -98,6 +115,7 @@ public class ProjetoController {
 			
 			model.addAttribute("projeto", p);
 		}
+		model.addAttribute("comparador", new Comparador());
 		return "projeto/form";
 	}
 	
