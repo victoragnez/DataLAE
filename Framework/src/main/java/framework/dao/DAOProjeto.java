@@ -154,18 +154,18 @@ public abstract class DAOProjeto<P extends Projeto<Part>, Part extends Participa
 		 * A metodologia aqui é apagar todos os participantes do projeto
 		 * e inserir os novos passados. Cabe a GUI mandar de voltar os 
 		 * participantes que foram passados pelo DAO no momento da 
-		 * listangem. Se o array vier vazio, nada mais ocorre.
+		 * listangem.
 		 */
+		String sqlDelete = "delete from ParticipanteProjeto where codigoProjeto="+p.getCodigo()+";";
+		System.out.println(sqlDelete);
+		try {
+			JDBC.runRemove(sqlDelete);
+		}catch(Exception e) {
+			throw new DatabaseException("Não foi atualizar participantes do projeto");
+		}
+		
 		if (p.getParticipantes() != null) {
 			
-			String sqlDelete = "delete from ParticipanteProjeto where codigoProjeto="+p.getCodigo()+";";
-			System.out.println(sqlDelete);
-			try {
-				JDBC.runRemove(sqlDelete);
-			}catch(Exception e) {
-				throw new DatabaseException("Não foi atualizar participantes do projeto");
-			}
-		
 			// Agora inserimos a nova lista de participantes
 			try {
 				ArrayList<String> commands = new ArrayList<String>();
