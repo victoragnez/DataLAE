@@ -100,7 +100,7 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 		ArrayList<String> campos = new ArrayList<String>();
 		
 		if(a.getNome() != null)
-			campos.add("nome=" + a.getNome());
+			campos.add("nome='" + a.getNome() + "'");
 		
 		if(a.getProjeto() != null && a.getProjeto().getCodigo() != null)
 			campos.add("codigoProjeto=" + a.getProjeto().getCodigo());

@@ -131,8 +131,11 @@ public class ArquivoController {
 		
 		try {
 			Arquivo<ProjetoGeologia, PraticaGeologia> a = buscarArquivoPorId(id);
+			a = service.ler(a);
 			
-			//a = service.ler(a);
+			if(a.getDados().length == 0)
+				throw new ResourceException("Não foi possível baixar, pois o arquivo está vazio!");
+			
 			return ResponseEntity.ok()
 					.contentType(MediaType.parseMediaType(a.getTipo() != null ? a.getTipo() : ""))
 					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + a.getNome() + "\"")

@@ -54,8 +54,6 @@ public class ServiceArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, 
 			throw new IllegalArgumentException("Nome de arquivo não fornecido");
 		if (a.getProjeto() == null)
 			throw new IllegalArgumentException("Projeto de arquivo nulo!");
-		if (a.getDados() == null)
-			throw new IllegalArgumentException("Arquivo inválido");
 		
 		dao.atualizar(a);
 	}
