@@ -10,6 +10,7 @@ import java.util.List;
 import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOAtividade;
 import framework.model.Area;
+import framework.model.Participante;
 import framework.model.Pratica;
 import framework.model.Projeto;
 
@@ -58,12 +59,50 @@ public abstract class DAOAtividade<
 		}
 		
 		sql += ";";
-		System.out.println(sql); // Remover depois
+		int id;
+		
 		try {
-			JDBC.runInsert(sql);
+			id = JDBC.runInsert(sql);
 		} catch (SQLException e) {
 			throw new DatabaseException("Não foi possível realizar a operação solicitada");
-		}	
+		}
+		
+		if(prat.getCodigo() == null) {
+			prat.setCodigo(id);
+		}
+		
+		if(prat.getParticipantes() != null) {
+			try {
+				ArrayList<String> commands = new ArrayList<String>();
+				
+				for(Participante pesq : prat.getParticipantes()) {
+					campos = new ArrayList<String>();
+					campos.add("codigoPratica=" + prat.getCodigo());
+					campos.add("codigoParticipante=" + pesq.getCodigo());
+					
+					sql = "insert into ParticipantePratica set ";
+					for(int i = 0; i < campos.size(); i++) {
+						sql += campos.get(i);
+						if(i+1 < campos.size())
+							sql += ", ";
+					}
+					sql += ";";
+					commands.add(sql);
+				}
+				
+				if(commands.size() > 0) {
+					JDBC.runMultipleInserts(commands);
+				}
+			} catch(SQLException e) {
+				try {
+					JDBC.runRemove("delete from Pratica where codigoPratica=" + prat.getCodigo() + ";");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				throw new DatabaseException(e);
+			}
+		}
+		
 	}
 
 	@Override
@@ -94,7 +133,6 @@ public abstract class DAOAtividade<
 		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
 			campos.add("codigoArea=" + prat.getArea().getCodigo());
 			
-		//chamar parte flexível
 		campos = compAtualizar(campos, prat);
 		
 		for(int i = 0; i < campos.size(); i++) {
@@ -104,11 +142,48 @@ public abstract class DAOAtividade<
 		}
 		
 		sql += " where codigoPratica=" + prat.getCodigo() + ";";
-		System.out.println(sql);
+
 		try {
 			JDBC.runUpdate(sql);
 		} catch(Exception e) {
 			throw new DatabaseException("Não foi possível atualizar o projeto");
+		}
+		
+		if(prat.getParticipantes() != null) {
+			try {
+				JDBC.runRemove("delete from ParticipantePratica where codigoPratica=" +
+						prat.getCodigo() + ";");
+				
+				ArrayList<String> commands = new ArrayList<String>();
+				
+				for(Participante pesq : prat.getParticipantes()) {
+					campos = new ArrayList<String>();
+					campos.add("codigoPratica=" + prat.getCodigo());
+					campos.add("codigoParticipante=" + pesq.getCodigo());
+					
+					sql = "insert into ParticipantePratica set ";
+					for(int i = 0; i < campos.size(); i++) {
+						sql += campos.get(i);
+						if(i+1 < campos.size())
+							sql += ", ";
+					}
+					sql += ";";
+					commands.add(sql);
+				}
+				
+				if(commands.size() > 0) {
+					JDBC.runMultipleInserts(commands);
+				}
+			} catch(SQLException e) {
+				try {
+					JDBC.runRemove("delete from ParticipantePratica where codigoPratica=" +
+							prat.getCodigo() + ";");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				throw new DatabaseException(e);
+			}
+			
 		}
 	}
 
@@ -140,19 +215,16 @@ public abstract class DAOAtividade<
 					
 		cond = compConsultar(cond, prat);
 		
-		if (!cond.isEmpty())
-		{
+		if (!cond.isEmpty()) {
 			sql += "where ";
 			for(int i = 0; i < cond.size(); i++) {
 				sql += " " + cond.get(i);
 				if(i + 1 < cond.size())
 					sql += " and";
 			}
-			
 		}
 	
 		sql += ";";
-		System.out.println(sql);
 		try {
 			return getFromResult(JDBC.runQuery(sql));
 		} catch (Exception e) {
