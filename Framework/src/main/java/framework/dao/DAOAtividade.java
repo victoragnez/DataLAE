@@ -152,6 +152,7 @@ public abstract class DAOAtividade<
 		try {
 			JDBC.runRemove("delete from ParticipantePratica where codigoPratica=" +
 					prat.getCodigo() + ";");
+			
 			if(prat.getParticipantes() != null) {
 					
 					ArrayList<String> commands = new ArrayList<String>();
