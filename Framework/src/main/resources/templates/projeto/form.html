@@ -51,7 +51,7 @@
 			
 			<div class="form-group" th:if="${projeto.codigo != null}">
 				<label for="participantes">Pesquisadores</label>
-				<select id="projeto.participantes" name="projeto.participantes" class="form-control"
+				<select id="participantes" name="participantes" class="form-control"
 					 multiple = "multiple" size = "8">
 					<option th:each="participante : ${participantes}"
 							th:value="${participante.codigo}"
