@@ -65,7 +65,7 @@ public class ProjetoController {
 			return "redirect:/";
 		}
 		model.addAttribute("projetos", projs);
-		return "projeto/index";
+		return "datalae/projeto/index";
 	}
 	
 	@GetMapping("/cadastrar")
@@ -77,7 +77,7 @@ public class ProjetoController {
 			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar pesquisadores");
 			return "redirect:/projetos";
 		}
-		return "projeto/form";
+		return "datalae/projeto/form";
 	}
 	
 	@PostMapping
@@ -116,7 +116,7 @@ public class ProjetoController {
 			model.addAttribute("projeto", p);
 		}
 		model.addAttribute("comparador", new Comparador());
-		return "projeto/form";
+		return "datalae/projeto/form";
 	}
 	
 	@PutMapping
@@ -177,6 +177,6 @@ public class ProjetoController {
 			return "redirect:/projetos";
 		}
 		
-		return "projeto/details";
+		return "datalae/projeto/details";
 	}
 }

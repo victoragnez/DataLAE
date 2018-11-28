@@ -1,4 +1,4 @@
-package com.lab.data.controller;
+package com.lab.estatistica.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +8,6 @@ public class MainController {
 	
 	@GetMapping(value = "/")
 	public String home() {
-		return "datalae/index"; 
+		return "dataest/index"; 
 	}
 }
