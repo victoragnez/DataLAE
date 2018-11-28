@@ -118,7 +118,7 @@ public abstract class DAOArea<A extends Area> implements IDAOArea<A> {
 		}
 		
 		sql += ";";
-		
+		System.out.println(sql);
 		try {
 			return getFromResult(JDBC.runQuery(sql));
 		} catch (SQLException | DatabaseException e) {
