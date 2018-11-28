@@ -24,7 +24,6 @@ public class ParticipanteGeologiaDAO extends DAOParticipante<ParticipanteGeologi
 
 	@Override
 	protected String compRemover(String sql, ParticipanteGeologia p) {
-		// TODO Auto-generated method stub
 		return sql;
 	}
 
