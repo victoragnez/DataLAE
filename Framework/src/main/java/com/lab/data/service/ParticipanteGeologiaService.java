@@ -19,7 +19,7 @@ public class ParticipanteGeologiaService extends ServiceParticipante<Participant
 
 	@Override
 	protected void validarRemover(ParticipanteGeologia p) {
-		// TODO Auto-generated method stub			
+		/* nothing */		
 	}
 
 	@Override
