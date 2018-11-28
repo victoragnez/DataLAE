@@ -27,11 +27,12 @@
 			
 			<div class="form-group">
 				<label for="pratica">Viagem</label>
-				<select name="pratica" th:field="*{pratica}" class="form-control">
+				<select name="pratica" id="pratica" class="form-control">
 					<option value="">-- Selecione --</option>
 					<option th:each="pratica : ${praticas}"
 							th:value="${pratica.codigo}"
-							th:text="${pratica.area.nome} + ' (' + ${pratica.dataInicio} + ' / ' + ${pratica.dataTermino} + ')'"></option>
+							th:text="${pratica.area.nome} + ' (' + ${pratica.dataInicio} + ' / ' + ${pratica.dataTermino} + ')'"
+							th:selected="${pratica.codigo.equals(arquivo.pratica.codigo)}"></option>
 				</select>
 			</div>
 			
@@ -40,8 +41,8 @@
 				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
 			</div>
 			
-			<div class="form-group">
-				<label for="file">Arquivo</label> 
+			<div class="form-group" th:if="${arquivo.codigo == null}">
+				<label for="file">Arquivo</label>
 				<input id="file" name="file" type="file" class="form-control" />
 			</div>
 			

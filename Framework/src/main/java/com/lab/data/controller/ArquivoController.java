@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.AreaGeologia;
 import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ProjetoGeologia;
@@ -26,6 +31,7 @@ import framework.model.Arquivo;
 import framework.service.interfaces.IServiceArquivo;
 import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceProjeto;
+import groovy.util.ResourceException;
 
 @Controller
 @RequestMapping("/arquivos")
@@ -41,6 +47,15 @@ public class ArquivoController {
 	
 	@Autowired
 	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> praticaService;
+	
+	private Arquivo<ProjetoGeologia, PraticaGeologia> buscarArquivoPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+		Arquivo<ProjetoGeologia, PraticaGeologia> a = new Arquivo<>();
+		a.setCodigo(id);
+		List<Arquivo<ProjetoGeologia, PraticaGeologia>> list = service.consultar(a);
+		if(list == null || list.size() != 1)
+			throw new NenhumEncontradoException("Arquivo com codigo igual a '" + id + "' não existe!");
+		return list.get(0);
+	}
 	
 	@GetMapping
 	public String index(Model model, RedirectAttributes redirectAttributes) {
@@ -104,57 +119,74 @@ public class ArquivoController {
 		return "redirect:/arquivos";
 	}
 	
+	@ExceptionHandler(ResourceException.class)
+	public String handlerResourceException(ResourceException e, RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("erro", e.getMessage());
+		return "redirect:/arquivos";
+	}
+	
 	@GetMapping("/{id}/baixar")
-	public ResponseEntity<Resource> downloadFile(@PathVariable("id") Integer id) {
-		/*
-		Arquivo a = service.buscarPorId(id);
-		
-		return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(a.getTipo()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + a.getNome() + "\"")
-                .body(new ByteArrayResource(a.getDados()));
-        */
-		return null;
+	public ResponseEntity<Resource> downloadFile(@PathVariable("id") Integer id) throws ResourceException {
+		try {
+			Arquivo<ProjetoGeologia, PraticaGeologia> a = buscarArquivoPorId(id);
+			return ResponseEntity.ok()
+					.contentType(MediaType.parseMediaType(a.getTipo() != null ? a.getTipo() : ""))
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + a.getNome() + "\"")
+	                .body(new ByteArrayResource(a.getDados()));
+		} catch (DatabaseException | NenhumEncontradoException e) {
+			throw new ResourceException(e);
+		}
 	}
 	
 	@GetMapping("/{id}/editar")
 	public String formArquivoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		/*
-		if(id != null) {
-			Arquivo a = service.buscarPorId(id);
-			if(a == null) {
-				redirectAttributes.addFlashAttribute("erro", "Falha ao tentar editar Arquivo: Arquivo não existe!");
-				return "redirect:/arquivos";
-			}
-			model.addAttribute("arquivo", a);
+		try {
+			List<ProjetoGeologia> projetos = projetoService.listar();
+			model.addAttribute("projetos", projetos);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/arquivos";
 		}
-		*/
-		return "arquivo/form";
+		try {
+			List<PraticaGeologia> praticas = praticaService.listar();
+			model.addAttribute("praticas", praticas);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/arquivos";
+		}
+		
+		try {
+			Arquivo<ProjetoGeologia, PraticaGeologia> a = buscarArquivoPorId(id);
+			model.addAttribute("arquivo", a);
+			return "arquivo/form";
+		} catch (DatabaseException | NenhumEncontradoException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/arquivos";
+		}
 	}
 	
 	@PutMapping
 	public String edit(Arquivo<ProjetoGeologia, PraticaGeologia> arquivo, RedirectAttributes redirectAttributes) {
-		/*
 		try {
 			service.atualizar(arquivo);
 			redirectAttributes.addFlashAttribute("sucesso", "Arquivo editado com sucesso!");
-		} catch (Exception e) {
+		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
-		*/
 		return "redirect:/arquivos";
 	}
 	
 	@GetMapping("/{id}/apagar")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		/*
+		
 		try {
-			service.removerPorId(id);
+			Arquivo<ProjetoGeologia, PraticaGeologia> a = new Arquivo<>();
+			a.setCodigo(id);
+			service.remover(a);
 			redirectAttributes.addFlashAttribute("sucesso", "Arquivo deletado com sucesso!");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
-		*/
 		return "redirect:/arquivos";
 	}
 }
