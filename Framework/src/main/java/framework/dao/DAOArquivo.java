@@ -18,10 +18,6 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 	private final Class<Proj> classeProjeto;
 	private final Class<Prat> classePratica;
 		
-	public DAOArquivo(Class<Proj> classeProjeto, Class<Prat> classePratica){
-		this(classeProjeto, classePratica, true);
-	}
-	
 	public DAOArquivo(Class<Proj> classeProjeto, Class<Prat> classePratica, boolean salvarEmBanco) {
 		if(salvarEmBanco) {
 			estrategia = new ArquivoEmBanco<Arquivo<Proj, Prat>>();

@@ -57,7 +57,7 @@ public class ServiceConfig {
 	@Bean
 	public IServiceArquivo<ProjetoGeologia, PraticaGeologia> arquivoService() {
 		return new ServiceArquivo<>(
-				new DAOArquivo<>(ProjetoGeologia.class, PraticaGeologia.class), 
+				new DAOArquivo<>(ProjetoGeologia.class, PraticaGeologia.class, true), 
 				new ProjetoGeologiaDAO(), 
 				new AtividadeGeologiaDAO(AreaGeologia.class, ProjetoGeologia.class, PraticaGeologia.class));
 	}

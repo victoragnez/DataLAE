@@ -14,5 +14,5 @@ public interface IServiceArquivo<Proj extends Projeto<?>, Prat extends Pratica<?
 	public void atualizar(Arquivo<Proj, Prat> a) throws DatabaseException;
 	public List<Arquivo<Proj, Prat>> consultar(Arquivo<Proj, Prat> a) throws DatabaseException;
 	public List<Arquivo<Proj, Prat> > listar() throws DatabaseException;
-	
+	Arquivo<Proj, Prat> ler(Arquivo<Proj, Prat> a) throws DatabaseException;
 }

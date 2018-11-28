@@ -82,4 +82,13 @@ public class ServiceArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, 
 		
 		return results;
 	}
+
+	@Override
+	public Arquivo<Proj, Prat> ler(Arquivo<Proj, Prat> a) throws DatabaseException {
+		if(a == null)
+			throw new IllegalArgumentException("Arquivo nulo!");
+		if(a.getCodigo() == null)
+			throw new IllegalArgumentException("Arquivo com codigo nulo!");
+		return dao.ler(a);
+	}
 }
