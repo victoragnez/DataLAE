@@ -24,11 +24,6 @@ public class ProjetoAEDAO extends DAOProjeto<ProjetoAE, ParticipanteAE> {
 	}
 
 	@Override
-	protected ArrayList<String> compRemover(ArrayList<String> campos, ProjetoAE p) {
-		return campos;
-	}
-
-	@Override
 	protected ArrayList<String> compAtualizar(ArrayList<String> campos, ProjetoAE p) {
 		if(p.getFinanciador() != null && p.getFinanciador().length() != 0) {
 			campos.add("financiador = '" + p.getFinanciador() + "'");

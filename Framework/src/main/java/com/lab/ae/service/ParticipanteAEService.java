@@ -16,10 +16,6 @@ public class ParticipanteAEService extends ServiceParticipante<ParticipanteAE>{
 	}
 
 	@Override
-	protected void validarRemover(ParticipanteAE p) {
-	}
-
-	@Override
 	protected void validarAtualizar(ParticipanteAE p) {
 	}
 

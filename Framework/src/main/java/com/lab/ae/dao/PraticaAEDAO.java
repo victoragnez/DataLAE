@@ -25,11 +25,6 @@ public class PraticaAEDAO extends DAOAtividade<AreaAE, ProjetoAE, PraticaAE> {
 	}
 
 	@Override
-	protected ArrayList<String> compRemover(ArrayList<String> campos, PraticaAE a) {
-		return campos;
-	}
-
-	@Override
 	protected ArrayList<String> compAtualizar(ArrayList<String> campos, PraticaAE a) {
 		if(a.getStatus() != null && a.getStatus().length() != 0) {
 			campos.add("status = '" + a.getStatus() + "'");

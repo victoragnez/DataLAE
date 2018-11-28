@@ -23,10 +23,6 @@ public class ProjetoAEService extends
 	}
 
 	@Override
-	protected void validarRemover(ProjetoAE p) {	
-	}
-
-	@Override
 	protected void validarAtulizar(ProjetoAE p) {
 		if (p.getFinanciador() == null)
 			throw new IllegalArgumentException("Campo Financiador nulo!");

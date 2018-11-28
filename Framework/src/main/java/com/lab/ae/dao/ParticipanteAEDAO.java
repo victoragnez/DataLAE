@@ -23,11 +23,6 @@ public class ParticipanteAEDAO extends DAOParticipante<ParticipanteAE> {
 	}
 
 	@Override
-	protected String compRemover(String sql, ParticipanteAE p) {
-		return sql;
-	}
-
-	@Override
 	protected ArrayList<String> compAtualizar(ArrayList<String> campos, ParticipanteAE p) {
 		if(p.getLattes() != null && p.getLattes().length() != 0) {
 			campos.add("lattes = '" + p.getLattes() + "'");
