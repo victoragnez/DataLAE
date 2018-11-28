@@ -23,11 +23,6 @@ public class PraticaEstatisticaDAO extends DAOAtividade<AreaEstatistica, Projeto
 	}
 
 	@Override
-	protected ArrayList<String> compRemover(ArrayList<String> sql, PraticaEstatistica a) {
-		return sql;
-	}
-
-	@Override
 	protected ArrayList<String> compAtualizar(ArrayList<String> sql, PraticaEstatistica a) {
 		return sql;
 	}

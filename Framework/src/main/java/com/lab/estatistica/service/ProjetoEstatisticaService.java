@@ -21,11 +21,6 @@ public class ProjetoEstatisticaService extends ServiceProjeto<ProjetoEstatistica
 	}
 
 	@Override
-	protected void validarRemover(ProjetoEstatistica p) {
-		/* nothing */
-	}
-
-	@Override
 	protected void validarAtulizar(ProjetoEstatistica p) {
 		if(p.getProfessor() == null || p.getProfessor().length() == 0)
 			throw new IllegalArgumentException("Profesor do projeto nulo!");

@@ -23,11 +23,6 @@ public class AtividadeGeologiaDAO extends DAOAtividade<AreaGeologia, ProjetoGeol
 	}
 
 	@Override
-	protected ArrayList<String> compRemover(ArrayList<String> sql, PraticaGeologia a) {
-		return sql;
-	}
-
-	@Override
 	protected ArrayList<String> compAtualizar(ArrayList<String> sql, PraticaGeologia a) {
 		return sql;
 	}

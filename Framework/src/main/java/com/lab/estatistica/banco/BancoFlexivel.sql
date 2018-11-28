@@ -5,7 +5,8 @@ ALTER TABLE Projeto ADD orgao varchar(255);
 
 -- Parte flexível de Area
 
-ALTER TABLE Area ADD local varchar(255);
+ALTER TABLE Area ADD cidade varchar(255);
+ALTER TABLE Area ADD estado varchar(255) not null;
 
 -- Parte flexível de Participante
 

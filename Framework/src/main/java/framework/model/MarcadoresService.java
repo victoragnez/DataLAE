@@ -13,10 +13,6 @@ public interface MarcadoresService {
 	
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.METHOD)
-	public @interface ValidarRemover{ }
-	
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.METHOD)
 	public @interface ValidarAtualizar{	}
 	
 	@Retention(RetentionPolicy.RUNTIME)

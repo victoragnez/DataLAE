@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorator="datalae/layout">
+	  layout:decorator="dataae/layout">
 <head>
  	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>DataLAE</title>
+    <title>DataAE</title>
 </head>
 <body>
 	<div layout:fragment="content">
@@ -42,7 +42,6 @@
 				<tr>
 					<th>Nome</th>
 					<th>Financiador</th>
-					<th>Contato</th>
 					<th>Data de Início</th>
 					<th>Data de Término</th>
 				</tr>
@@ -51,7 +50,6 @@
 				<tr th:each="projeto : ${projetos}">
 					<td th:text="${projeto.nome}"></td>
 					<td th:text="${projeto.financiador}"></td>
-					<td th:text="${projeto.contatoFinanciador}"></td>
 					<td th:text="${projeto.dataInicio}"></td>
 					<td th:text="${projeto.dataFim}"></td>
 					<td>

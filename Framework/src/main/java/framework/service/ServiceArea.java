@@ -13,7 +13,6 @@ import framework.model.Area;
 import framework.model.MarcadoresService.ValidarAtualizar;
 import framework.model.MarcadoresService.ValidarConsultar;
 import framework.model.MarcadoresService.ValidarInserir;
-import framework.model.MarcadoresService.ValidarRemover;
 import framework.service.interfaces.IServiceArea;
 
 public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
@@ -44,7 +43,6 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 		if (a.getCodigo() == null)
 			throw new IllegalArgumentException("Falha ao tentar remover Area! Codigo nulo!");
 
-		validate(ValidarRemover.class, a);
 		dao.remover(a);
 	}
 	

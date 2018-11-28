@@ -30,10 +30,6 @@ public class ProjetoGeologiaService extends
 			throw new IllegalArgumentException("Financiador nulo");
 	}
 
-	protected void validarRemover(ProjetoGeologia p) {
-		/* Nothing */
-	}
-
 	@Override
 	protected void validarAtulizar(ProjetoGeologia p) {
 		if (p.getContatoFinanciador() == null)
