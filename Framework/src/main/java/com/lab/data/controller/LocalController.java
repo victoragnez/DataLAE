@@ -50,12 +50,12 @@ public class LocalController {
 			return "redirect:/";
 		}
 		model.addAttribute("locais", locais);
-		return "local/index";
+		return "datalae/local/index";
 	}
 	
 	@GetMapping("/cadastrar")
 	public String formLocalCad(@ModelAttribute("local") AreaGeologia local) {
-		return "local/form";
+		return "datalae/local/form";
 	}
 	
 	@PostMapping
@@ -79,7 +79,7 @@ public class LocalController {
 		try {
 			AreaGeologia a = buscarAreaPorId(id);
 			model.addAttribute("local", a);
-			return "local/form";
+			return "datalae/local/form";
 		} catch (DatabaseException | NenhumEncontradoException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/locais";
@@ -116,7 +116,7 @@ public class LocalController {
 	
 	@GetMapping("/buscar")
 	public String filtros(@ModelAttribute("filtro") AreaGeologia filtro) {
-		return "local/search"; 
+		return "datalae/local/search"; 
 	}
 	
 	@PostMapping("/buscar")

@@ -59,7 +59,7 @@ public class ViagemController {
 		} catch (DatabaseException e) {
 			model.addAttribute("erro", LIST_ERROR);
 		}
-		return "viagem/index";
+		return "datalae/viagem/index";
 	}
 	
 	@GetMapping("/cadastrar")
@@ -78,7 +78,7 @@ public class ViagemController {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
 		}
-		return "viagem/form";
+		return "datalae/viagem/form";
 	}
 	
 	@PostMapping
@@ -111,7 +111,7 @@ public class ViagemController {
 		try {
 			PraticaGeologia v = buscarViagemPorId(id);
 			model.addAttribute("viagem", v);
-			return "viagem/form";
+			return "datalae/viagem/form";
 		} catch (DatabaseException | NenhumEncontradoException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
@@ -158,7 +158,7 @@ public class ViagemController {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
 		}
-		return "viagem/search"; 
+		return "datalae/viagem/search"; 
 	}
 	
 	@PostMapping("/buscar")

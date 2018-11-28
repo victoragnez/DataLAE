@@ -67,7 +67,7 @@ public class ArquivoController {
 			return "redirect:/";
 		}
 		model.addAttribute("arquivos", arquivos);
-		return "arquivo/index";
+		return "datalae/arquivo/index";
 	}
 	
 	@GetMapping("/cadastrar")
@@ -90,7 +90,7 @@ public class ArquivoController {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/arquivos";
 		}
-		return "arquivo/form";
+		return "datalae/arquivo/form";
 	}
 	
 	@PostMapping

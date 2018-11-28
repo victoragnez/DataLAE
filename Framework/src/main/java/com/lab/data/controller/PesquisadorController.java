@@ -56,12 +56,12 @@ public class PesquisadorController {
 		} catch (DatabaseException e) {
 			model.addAttribute("erro", ERROR);
 		}	
-		return "pesquisador/index";
+		return "datalae/pesquisador/index";
 	}
 	
 	@GetMapping("/cadastrar")
 	public String formPesquisadorCad(@ModelAttribute("pesquisador") ParticipanteGeologia pesquisador) {
-		return "pesquisador/form";
+		return "datalae/pesquisador/form";
 	}
 	
 	@PostMapping
@@ -80,7 +80,7 @@ public class PesquisadorController {
 		try {
 			ParticipanteGeologia p = buscarParticipantePorId(id);
 			model.addAttribute("pesquisador", p);
-			return "pesquisador/form";
+			return "datalae/pesquisador/form";
 		} catch (DatabaseException | NenhumEncontradoException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/pesquisadores";
