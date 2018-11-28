@@ -107,6 +107,7 @@ public abstract class DAOProjeto<P extends Projeto<Part>, Part extends Participa
 	@Override
 	public void remover(P p) throws DatabaseException
 	{
+		
 		String sql = "delete from Projeto where codigoProjeto= " + p.getCodigo() + ";";
 		try {
 			JDBC.runRemove(sql);
@@ -148,6 +149,58 @@ public abstract class DAOProjeto<P extends Projeto<Part>, Part extends Participa
 			throw new DatabaseException("Não foi possível atualizar o projeto");
 		}
 		
+		/**
+		 * Verificar se foram passados participantes.
+		 * A metodologia aqui é apagar todos os participantes do projeto
+		 * e inserir os novos passados. Cabe a GUI mandar de voltar os 
+		 * participantes que foram passados pelo DAO no momento da 
+		 * listangem. Se o array vier vazio, nada mais ocorre.
+		 */
+		if (p.getParticipantes() != null) {
+			
+			String sqlDelete = "delete from ParticipanteProjeto where codigoProjeto="+p.getCodigo()+";";
+			System.out.println(sqlDelete);
+			try {
+				JDBC.runRemove(sqlDelete);
+			}catch(Exception e) {
+				throw new DatabaseException("Não foi atualizar participantes do projeto");
+			}
+		
+			// Agora inserimos a nova lista de participantes
+			try {
+				ArrayList<String> commands = new ArrayList<String>();
+				
+				if(p.getParticipantes() != null) {
+					for(Participante pesq : p.getParticipantes()) {
+						campos = new ArrayList<String>();
+						campos.add("codigoProjeto=" + p.getCodigo());
+						campos.add("codigoParticipante=" + pesq.getCodigo());
+						
+						sql = "insert into ParticipanteProjeto set ";
+						for(int i = 0; i < campos.size(); i++) {
+							sql += campos.get(i);
+							if(i+1 < campos.size())
+								sql += ", ";
+						}
+						sql += ";";
+						commands.add(sql);
+					}
+				}
+				
+				if(commands.size() > 0) {
+					System.out.println("inserção multipla");
+					JDBC.runMultipleInserts(commands);
+				}
+			}
+			catch(SQLException e) {
+				try {
+					JDBC.runRemove("delete from Projeto where codigoProjeto=" + p.getCodigo() + ";");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				throw new DatabaseException(e);
+			}
+		}else System.out.println("lista de partticipantes vazia");
 		
 	}
 	

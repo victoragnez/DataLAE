@@ -78,8 +78,8 @@ create table ParticipanteProjeto (
     codigoProjeto int not null,
 
     constraint primary key (codigoParticipante, codigoProjeto),
-    constraint foreign key (codigoProjeto) references Projeto(codigoProjeto),
-    constraint foreign key (codigoParticipante) references Participante(codigoParticipante)
+    constraint foreign key (codigoProjeto) references Projeto(codigoProjeto) on delete cascade,
+    constraint foreign key (codigoParticipante) references Participante(codigoParticipante) on delete cascade
 
 )engine=innodb;
 
@@ -89,8 +89,8 @@ create table ParticipantePratica (
     codigoParticipante int not null,
 
     constraint primary key (codigoPratica, codigoParticipante),
-    constraint foreign key (codigoPratica) references Pratica(codigoPratica),
-    constraint foreign key (codigoParticipante) references Participante(codigoParticipante)
+    constraint foreign key (codigoPratica) references Pratica(codigoPratica) on delete cascade,
+    constraint foreign key (codigoParticipante) references Participante(codigoParticipante) on delete cascade
 
 
 ) engine=innodb;
