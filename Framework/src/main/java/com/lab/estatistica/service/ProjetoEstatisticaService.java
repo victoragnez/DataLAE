@@ -17,13 +17,13 @@ public class ProjetoEstatisticaService extends ServiceProjeto<ProjetoEstatistica
 	@Override
 	protected void validarInserir(ProjetoEstatistica p) {
 		if(p.getProfessor() == null || p.getProfessor().length() == 0)
-			throw new IllegalArgumentException("Profesor do projeto nulo!");
+			throw new IllegalArgumentException("Professor do projeto nulo!");
 	}
 
 	@Override
 	protected void validarAtulizar(ProjetoEstatistica p) {
 		if(p.getProfessor() == null || p.getProfessor().length() == 0)
-			throw new IllegalArgumentException("Profesor do projeto nulo!");
+			throw new IllegalArgumentException("Professor do projeto nulo!");
 	}
 
 	@Override
