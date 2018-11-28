@@ -70,7 +70,7 @@ public class PesquisadorController {
 		try {
 			ParticipanteEstatistica p = buscarParticipantePorId(id);
 			model.addAttribute("pesquisador", p);
-			return "datalae/pesquisador/form";
+			return "dataest/pesquisador/form";
 		} catch (DatabaseException | NenhumEncontradoException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/pesquisadores";
