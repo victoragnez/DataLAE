@@ -23,11 +23,6 @@ public class ParticipanteGeologiaDAO extends DAOParticipante<ParticipanteGeologi
 	}
 
 	@Override
-	protected String compRemover(String sql, ParticipanteGeologia p) {
-		return sql;
-	}
-
-	@Override
 	protected ArrayList<String> compAtualizar(ArrayList<String> campos, ParticipanteGeologia p) {
 		if(p.getCpf() != null)
 			campos.add("cpfParticipante='" + p.getCpf() + "'");

@@ -41,7 +41,6 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 		if (p.getCodigo() == null )
 			throw new IllegalArgumentException("Identificador de projeto nulo!");
 		
-		validarRemover(p);
 		dao.remover(p);
 	}
 	
@@ -98,7 +97,6 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 
 	/** Metodos que precisam ser implementados */
 	protected abstract void validarInserir(P p);
-	protected abstract void validarRemover(P p);
 	protected abstract void validarAtulizar(P p);
 	protected abstract void validarConsultar(P p);
 

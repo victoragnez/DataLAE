@@ -22,11 +22,6 @@ public class ParticipanteEstatisticaDAO extends DAOParticipante<ParticipanteEsta
 	}
 
 	@Override
-	protected String compRemover(String sql, ParticipanteEstatistica p) {
-		return sql;
-	}
-
-	@Override
 	protected ArrayList<String> compAtualizar(ArrayList<String> campos, ParticipanteEstatistica p) {
 		if(p.getCpf() != null)
 			campos.add("cpf = '" + p.getCpf() + "'");

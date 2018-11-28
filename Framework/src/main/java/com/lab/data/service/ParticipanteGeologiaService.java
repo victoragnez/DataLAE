@@ -18,11 +18,6 @@ public class ParticipanteGeologiaService extends ServiceParticipante<Participant
 	}
 
 	@Override
-	protected void validarRemover(ParticipanteGeologia p) {
-		/* nothing */		
-	}
-
-	@Override
 	protected void validarAtualizar(ParticipanteGeologia p) {
 		if (p.getCategoria() == null)
 			throw new IllegalArgumentException("Categoria nulo!");
