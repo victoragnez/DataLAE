@@ -209,6 +209,7 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 				Integer codigo = (Integer)resultSet.getObject("codigoArquivo");
 				String nome = (String)resultSet.getObject("nome");
 				Long tamanho = (Long)resultSet.getObject("tamanho");
+				String tipo = resultSet.getString("tipo");
 				Integer codigoProjeto = (Integer)resultSet.getObject("codigoProjeto");
 				Integer codigoPratica = (Integer)resultSet.getObject("codigoPratica");
 //				Integer codigoDados = (Integer)resultSet.getObject("codigoDados");
@@ -217,6 +218,7 @@ public class DAOArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, Proj
 										
 				arq.setCodigo(codigo);
 				arq.setNome(nome);
+				arq.setTipo(tipo);
 				arq.setTamanho(tamanho);
 				arq.setDados(null);
 				
