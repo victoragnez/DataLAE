@@ -16,7 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.AreaGeologia;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceArea;
 
 @Controller
@@ -31,7 +32,7 @@ public class LocalController {
 	@Autowired
 	private IServiceArea<AreaGeologia> service;
 	
-	private AreaGeologia buscarAreaPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private AreaGeologia buscarAreaPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		AreaGeologia a = new AreaGeologia();
 		a.setCodigo(id);
 		List<AreaGeologia> list = service.consultar(a);
@@ -80,7 +81,7 @@ public class LocalController {
 			AreaGeologia a = buscarAreaPorId(id);
 			model.addAttribute("local", a);
 			return "datalae/local/form";
-		} catch (DatabaseException | NenhumEncontradoException e) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/locais";
 		}
@@ -92,7 +93,7 @@ public class LocalController {
 			service.atualizar(local);
 			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_EDIT);
 			return "redirect:/locais";
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			if(local == null)
 				return "redirect:/locais"; 
@@ -108,7 +109,7 @@ public class LocalController {
 		try {
 			service.remover(a);
 			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_DELETE);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/locais";
@@ -127,7 +128,7 @@ public class LocalController {
 		try {
 			List<AreaGeologia> locais = service.consultar(filtro);
 			redirectAttributes.addFlashAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/locais/buscar";

@@ -17,7 +17,8 @@ import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.estatistica.model.ParticipanteEstatistica;
 import com.lab.estatistica.model.ProjetoEstatistica;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceParticipante;
 import framework.service.interfaces.IServiceProjeto;
 
@@ -30,7 +31,7 @@ public class ProjetoController {
 	private static final String SUCCESS_EDIT = "Projeto editado com sucesso!";
 	private static final String SUCCESS_DELETE = "Projeto deletado com sucesso!";
 
-	private ProjetoEstatistica buscarProjetoPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private ProjetoEstatistica buscarProjetoPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		ProjetoEstatistica p = new ProjetoEstatistica();
 		p.setCodigo(id);
 		List<ProjetoEstatistica> list = service.consultar(p);
@@ -124,7 +125,7 @@ public class ProjetoController {
 		try {
 			service.atualizar(projeto);
 			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_EDIT);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/projetos";
@@ -156,7 +157,7 @@ public class ProjetoController {
 		List<ProjetoEstatistica> projetos;
 		try {
 			projetos = service.consultar(filtro);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			projetos = null;
 		}
@@ -171,7 +172,7 @@ public class ProjetoController {
 			ProjetoEstatistica p = buscarProjetoPorId(id);
 			model.addAttribute("projeto", p);
 			model.addAttribute("pesquisadores", p.getParticipantes());
-		} catch (DatabaseException | NenhumEncontradoException e1) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e1) {
 			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar o projeto com id = " + id);
 			return "redirect:/projetos";
 		}

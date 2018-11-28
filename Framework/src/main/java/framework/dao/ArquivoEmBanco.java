@@ -3,8 +3,8 @@ package framework.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.model.Arquivo;
+import framework.model.DatabaseException;
 
 class ArquivoEmBanco<A extends Arquivo<?, ?> > implements EstrategiaArquivo<A> {
 

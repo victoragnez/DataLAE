@@ -1,4 +1,4 @@
-package framework.dao.interfaces;
+package framework.model;
 
 public class DatabaseException extends Exception {
 	

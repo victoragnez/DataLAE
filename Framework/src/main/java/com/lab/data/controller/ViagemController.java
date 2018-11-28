@@ -18,7 +18,8 @@ import com.lab.data.model.AreaGeologia;
 import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceArea;
 import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceProjeto;
@@ -33,7 +34,7 @@ public class ViagemController {
 	private static final String DELETE_SUCCESS = "Viagem deletada com sucesso!";
 	
 	
-	private PraticaGeologia buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private PraticaGeologia buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		PraticaGeologia v = new PraticaGeologia();
 		v.setCodigo(id);
 		List<PraticaGeologia> list = viagemService.consultar(v);
@@ -74,7 +75,7 @@ public class ViagemController {
 		try {
 			List<AreaGeologia> locais = localService.listar();
 			model.addAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
 		}
@@ -86,7 +87,7 @@ public class ViagemController {
 		try {
 			viagemService.inserir(viagem);
 			redirectAtrributes.addFlashAttribute("sucesso", INSERT_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/viagens";
@@ -104,7 +105,7 @@ public class ViagemController {
 		try {
 			List<AreaGeologia> locais = localService.listar();
 			model.addAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
 		}
@@ -112,7 +113,7 @@ public class ViagemController {
 			PraticaGeologia v = buscarViagemPorId(id);
 			model.addAttribute("viagem", v);
 			return "datalae/viagem/form";
-		} catch (DatabaseException | NenhumEncontradoException e) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
 		}
@@ -123,7 +124,7 @@ public class ViagemController {
 		try {
 			viagemService.atualizar(viagem);
 			redirectAttributes.addFlashAttribute("sucesso", EDIT_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/viagens";
@@ -136,7 +137,7 @@ public class ViagemController {
 			v.setCodigo(id);
 			viagemService.remover(v);
 			redirectAttributes.addFlashAttribute("sucesso", DELETE_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/viagens";
@@ -154,7 +155,7 @@ public class ViagemController {
 		try {
 			List<AreaGeologia> locais = localService.listar();
 			model.addAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
 		}

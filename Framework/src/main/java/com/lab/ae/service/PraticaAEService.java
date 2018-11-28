@@ -7,6 +7,7 @@ import com.lab.ae.model.ProjetoAE;
 import framework.dao.interfaces.IDAOArea;
 import framework.dao.interfaces.IDAOAtividade;
 import framework.dao.interfaces.IDAOProjeto;
+import framework.model.BadAttributeException;
 import framework.model.MarcadoresService.ValidarAtualizar;
 import framework.model.MarcadoresService.ValidarInserir;
 import framework.service.ServiceAtividade;
@@ -21,9 +22,9 @@ public class PraticaAEService extends
 	
 	@ValidarInserir
 	@ValidarAtualizar
-	public void validaFinanciador (PraticaAE a)	{
+	public void validaFinanciador (PraticaAE a) throws BadAttributeException	{
 		if (a.getStatus() == null || a.getStatus().length() == 0)
-			throw new IllegalArgumentException("É necessário definir o status dos Experimento");
+			throw new BadAttributeException("É necessário definir o status dos Experimento");
 	}
 
 }

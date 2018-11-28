@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOArea;
 import framework.model.Area;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.model.MarcadoresService.ValidarAtualizar;
 import framework.model.MarcadoresService.ValidarConsultar;
 import framework.model.MarcadoresService.ValidarInserir;
@@ -24,47 +25,47 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 	}
 	
 	@Override
-	public void inserir(A a) throws DatabaseException {
+	public void inserir(A a) throws DatabaseException, BadAttributeException {
 		if (a == null)
-			throw new IllegalArgumentException("Falha ao tentar inserir Area! Argumento nulo!");
+			throw new BadAttributeException("Falha ao tentar inserir Area! Argumento nulo!");
 		
 		if(a.getNome() == null)
-			throw new IllegalArgumentException("Falha ao tentar inserir Area! Nome nulo.");
+			throw new BadAttributeException("Falha ao tentar inserir Area! Nome nulo.");
 		
 		validate(ValidarInserir.class, a);
 		dao.inserir(a);
 	}
 	
 	@Override
-	public void remover(A a) throws DatabaseException {
+	public void remover(A a) throws DatabaseException, BadAttributeException {
 		if (a == null)
-			throw new IllegalArgumentException("Falha ao tentar remover Area! Argumento nulo!");
+			throw new BadAttributeException("Falha ao tentar remover Area! Argumento nulo!");
 		
 		if (a.getCodigo() == null)
-			throw new IllegalArgumentException("Falha ao tentar remover Area! Codigo nulo!");
+			throw new BadAttributeException("Falha ao tentar remover Area! Codigo nulo!");
 
 		dao.remover(a);
 	}
 	
 	@Override
-	public void atualizar(A a) throws DatabaseException {
+	public void atualizar(A a) throws DatabaseException, BadAttributeException {
 		if (a == null)
-			throw new IllegalArgumentException("Falha ao tentar atualizar Area! Argumento nulo!");
+			throw new BadAttributeException("Falha ao tentar atualizar Area! Argumento nulo!");
 		
 		if(a.getCodigo() == null)
-			throw new IllegalArgumentException("Falha ao tentar atualizar Area! Codigo nulo.");
+			throw new BadAttributeException("Falha ao tentar atualizar Area! Codigo nulo.");
 		
 		if(a.getNome() == null)
-			throw new IllegalArgumentException("Falha ao tentar atualizar Area! Nome nulo.");
+			throw new BadAttributeException("Falha ao tentar atualizar Area! Nome nulo.");
 		
 		validate(ValidarAtualizar.class, a);
 		dao.atualizar(a);
 	}
 	
 	@Override
-	public List<A> consultar(A a) throws DatabaseException {
+	public List<A> consultar(A a) throws DatabaseException, BadAttributeException {
 		if (a == null)
-			throw new IllegalArgumentException("Falha ao tentar consultar Areas! Argumento nulo!");
+			throw new BadAttributeException("Falha ao tentar consultar Areas! Argumento nulo!");
 		
 		validate(ValidarConsultar.class, a);
 		return dao.consultar(a);
@@ -75,7 +76,7 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 		return dao.listar();
 	}
 	
-	private void validate(Class<? extends Annotation> annotation, A a) {
+	private void validate(Class<? extends Annotation> annotation, A a) throws BadAttributeException {
 		Class<?> curClass = this.getClass();
 	    
 		while (curClass != ServiceArea.class) {
@@ -88,7 +89,7 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 						e.printStackTrace();
 					}
 	            	catch (InvocationTargetException e) {
-						throw new IllegalArgumentException(e.getMessage());
+						throw new BadAttributeException(e.getMessage());
 					}
 	            }
 	        }

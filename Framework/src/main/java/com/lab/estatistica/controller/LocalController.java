@@ -17,7 +17,8 @@ import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.AreaGeologia;
 import com.lab.estatistica.model.AreaEstatistica;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceArea;
 
 @Controller
@@ -32,7 +33,7 @@ public class LocalController {
 	@Autowired
 	private IServiceArea<AreaEstatistica> service;
 	
-	private AreaEstatistica buscarAreaPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private AreaEstatistica buscarAreaPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		AreaEstatistica a = new AreaEstatistica();
 		a.setCodigo(id);
 		List<AreaEstatistica> list = service.consultar(a);
@@ -81,7 +82,7 @@ public class LocalController {
 			AreaEstatistica a = buscarAreaPorId(id);
 			model.addAttribute("local", a);
 			return "dataest/local/form";
-		} catch (DatabaseException | NenhumEncontradoException e) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/locais";
 		}
@@ -93,7 +94,7 @@ public class LocalController {
 			service.atualizar(local);
 			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_EDIT);
 			return "redirect:/locais";
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			if(local == null)
 				return "redirect:/locais"; 
@@ -109,7 +110,7 @@ public class LocalController {
 		try {
 			service.remover(a);
 			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_DELETE);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/locais";
@@ -128,7 +129,7 @@ public class LocalController {
 		try {
 			List<AreaEstatistica> locais = service.consultar(filtro);
 			redirectAttributes.addFlashAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/locais/buscar";

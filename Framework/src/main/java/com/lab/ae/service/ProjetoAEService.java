@@ -5,6 +5,7 @@ import com.lab.ae.model.ProjetoAE;
 
 import framework.dao.interfaces.IDAOParticipante;
 import framework.dao.interfaces.IDAOProjeto;
+import framework.model.BadAttributeException;
 import framework.service.ServiceProjeto;
 
 public class ProjetoAEService extends 
@@ -16,16 +17,16 @@ public class ProjetoAEService extends
 	}
 
 	@Override
-	protected void validarInserir(ProjetoAE p) {
+	protected void validarInserir(ProjetoAE p) throws BadAttributeException {
 		if (p.getFinanciador() != null || p.getFinanciador().length() == 0)
-			throw new IllegalArgumentException("Campo Financiador nulo!");
+			throw new BadAttributeException("Campo Financiador nulo!");
 		
 	}
 
 	@Override
-	protected void validarAtulizar(ProjetoAE p) {
+	protected void validarAtulizar(ProjetoAE p) throws BadAttributeException {
 		if (p.getFinanciador() == null || p.getFinanciador().length() == 0)
-			throw new IllegalArgumentException("Campo Financiador nulo!");
+			throw new BadAttributeException("Campo Financiador nulo!");
 	
 	}
 

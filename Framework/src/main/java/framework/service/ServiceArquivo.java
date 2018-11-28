@@ -2,11 +2,12 @@ package framework.service;
 
 import java.util.List;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOArquivo;
 import framework.dao.interfaces.IDAOAtividade;
 import framework.dao.interfaces.IDAOProjeto;
 import framework.model.Arquivo;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.model.Pratica;
 import framework.model.Projeto;
 import framework.service.interfaces.IServiceArquivo;
@@ -25,44 +26,44 @@ public class ServiceArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, 
 	}
 	
 	@Override
-	public void inserir(Arquivo<Proj, Prat> a) throws DatabaseException {
+	public void inserir(Arquivo<Proj, Prat> a) throws DatabaseException, BadAttributeException {
 
 		if (a.getNome() == null)
-			throw new IllegalArgumentException("Nome de arquivo não fornecido");
+			throw new BadAttributeException("Nome de arquivo não fornecido");
 		if (a.getProjeto() == null)
-			throw new IllegalArgumentException("Projeto de arquivo nulo!");
+			throw new BadAttributeException("Projeto de arquivo nulo!");
 		if (a.getDados() == null)
-			throw new IllegalArgumentException("Arquivo inválido");
+			throw new BadAttributeException("Arquivo inválido");
 				
 		dao.inserir(a);
 	}
 
 	@Override
-	public void remover(Arquivo<Proj,Prat> a) throws DatabaseException {
+	public void remover(Arquivo<Proj,Prat> a) throws DatabaseException, BadAttributeException {
 
 		if (a.getCodigo() == null)
-			throw new IllegalArgumentException("Impossível deletar arquivo informado");
+			throw new BadAttributeException("Impossível deletar arquivo informado");
 		
 		dao.remover(a);
 	}
 
 	@Override
-	public void atualizar(Arquivo<Proj,Prat> a) throws DatabaseException {
+	public void atualizar(Arquivo<Proj,Prat> a) throws DatabaseException, BadAttributeException {
 		if (a.getTamanho() == null)
-			throw new IllegalArgumentException("Tamanho de arquivo desconhecido");
+			throw new BadAttributeException("Tamanho de arquivo desconhecido");
 		if (a.getNome() == null)
-			throw new IllegalArgumentException("Nome de arquivo não fornecido");
+			throw new BadAttributeException("Nome de arquivo não fornecido");
 		if (a.getProjeto() == null)
-			throw new IllegalArgumentException("Projeto de arquivo nulo!");
+			throw new BadAttributeException("Projeto de arquivo nulo!");
 		
 		dao.atualizar(a);
 	}
 
 	@Override
 
-	public List<Arquivo<Proj,Prat>> consultar(Arquivo<Proj,Prat> a) throws DatabaseException {
+	public List<Arquivo<Proj,Prat>> consultar(Arquivo<Proj,Prat> a) throws DatabaseException, BadAttributeException {
 		if(a == null)
-			throw new IllegalArgumentException("Arquivo nulo!");
+			throw new BadAttributeException("Arquivo nulo!");
 		return dao.consultar(a);
 	}
 
@@ -82,11 +83,11 @@ public class ServiceArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, 
 	}
 
 	@Override
-	public Arquivo<Proj, Prat> ler(Arquivo<Proj, Prat> a) throws DatabaseException {
+	public Arquivo<Proj, Prat> ler(Arquivo<Proj, Prat> a) throws DatabaseException, BadAttributeException {
 		if(a == null)
-			throw new IllegalArgumentException("Arquivo nulo!");
+			throw new BadAttributeException("Arquivo nulo!");
 		if(a.getCodigo() == null)
-			throw new IllegalArgumentException("Arquivo com codigo nulo!");
+			throw new BadAttributeException("Arquivo com codigo nulo!");
 		return dao.ler(a);
 	}
 }

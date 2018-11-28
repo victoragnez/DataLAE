@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOArquivo;
 import framework.model.Arquivo;
+import framework.model.DatabaseException;
 import framework.model.Pratica;
 import framework.model.Projeto;
 

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOParticipante;
+import framework.model.DatabaseException;
 import framework.model.Participante;
 
 public abstract class DAOParticipante<P extends Participante> implements IDAOParticipante<P> {

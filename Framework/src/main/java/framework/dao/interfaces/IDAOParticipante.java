@@ -2,6 +2,7 @@ package framework.dao.interfaces;
 
 import java.util.List;
 
+import framework.model.DatabaseException;
 import framework.model.Participante;
 
 public interface IDAOParticipante <P extends Participante> {
