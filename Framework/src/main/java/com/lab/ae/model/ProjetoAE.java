@@ -3,7 +3,7 @@ package com.lab.ae.model;
 import framework.model.Projeto;
 
 public class ProjetoAE extends Projeto<ParticipanteAE> {
-	private String financiador;
+	private String financiador;	
 
 	/**
 	 * @return the financiador
