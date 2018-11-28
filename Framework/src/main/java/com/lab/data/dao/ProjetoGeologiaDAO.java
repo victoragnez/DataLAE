@@ -49,7 +49,7 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia, Participante
 	@Override
 	protected ArrayList<String> compConsultar(ArrayList<String> campos, ProjetoGeologia p) {
 		if (p.getFinanciador() != null)
-			campos.add("financiador='" + p.getFinanciador() + "'"); 
+			campos.add("financiador like '%" + p.getFinanciador() + "%'"); 
 		if (p.getContatoFinanciador() != null)
 			campos.add("contato='" + p.getContatoFinanciador() + "'");
 			
