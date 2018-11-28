@@ -196,7 +196,6 @@ public abstract class DAOParticipante<P extends Participante> implements IDAOPar
 	/** Metodos que devem ser implementados*/
 	
 	protected abstract ArrayList<String> compInserir(ArrayList<String> campos, P p);
-	protected abstract String compRemover(String sql, P p);
 	protected abstract ArrayList<String> compAtualizar(ArrayList<String> campos, P p);
 	protected abstract ArrayList<String> compConsultar(ArrayList<String> campos, P p);
 	protected abstract void getParticipanteWithFlexibleAttributes(ResultSet resultSet, P p) throws SQLException;

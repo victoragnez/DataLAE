@@ -25,11 +25,6 @@ public class ProjetoEstatisticaDAO extends DAOProjeto<ProjetoEstatistica, Partic
 	}
 
 	@Override
-	protected ArrayList<String> compRemover(ArrayList<String> campos, ProjetoEstatistica p) {
-		return campos;
-	}
-
-	@Override
 	protected ArrayList<String> compAtualizar(ArrayList<String> campos, ProjetoEstatistica p) {
 		if (p.getProfessor() != null)
 			campos.add("professor='" + p.getProfessor() + "'");

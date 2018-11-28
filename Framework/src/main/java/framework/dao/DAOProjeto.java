@@ -362,7 +362,6 @@ public abstract class DAOProjeto<P extends Projeto<Part>, Part extends Participa
 	/** Metodos que devem ser implementados*/
 	
 	protected abstract ArrayList<String> compInserir(ArrayList<String> campos, P p);
-	protected abstract ArrayList<String> compRemover(ArrayList<String> campos, P p);
 	protected abstract ArrayList<String> compAtualizar(ArrayList<String> campos, P p);
 	protected abstract ArrayList<String> compConsultar(ArrayList<String> campos, P p);
 

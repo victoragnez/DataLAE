@@ -318,7 +318,6 @@ public abstract class DAOAtividade<
 	
 	/** Metodos que devem ser implementados*/
 	protected abstract ArrayList<String> compInserir(ArrayList<String> sql, Prat a);
-	protected abstract ArrayList<String> compRemover(ArrayList<String> sql, Prat a);
 	protected abstract ArrayList<String> compAtualizar(ArrayList<String> sql, Prat a);
 	protected abstract ArrayList<String> compConsultar(ArrayList<String> sql, Prat a);
 	protected abstract void getProjectWithFlexibleAttributes(ResultSet resultSet, Prat p) throws SQLException;

@@ -18,11 +18,6 @@ public class ParticipanteEstatisticaService extends ServiceParticipante<Particip
 	}
 
 	@Override
-	protected void validarRemover(ParticipanteEstatistica p) {
-		/* nothing */
-	}
-
-	@Override
 	protected void validarAtualizar(ParticipanteEstatistica p) {
 		if(p.getCpf() == null || p.getCpf().length() == 0)
 			throw new IllegalArgumentException("Cpf nulo!");

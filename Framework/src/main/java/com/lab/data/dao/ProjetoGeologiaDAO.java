@@ -32,11 +32,6 @@ public class ProjetoGeologiaDAO extends DAOProjeto<ProjetoGeologia, Participante
 	}
 
 	@Override
-	protected ArrayList<String> compRemover(ArrayList<String> campos, ProjetoGeologia p) {
-		return campos;
-	}
-
-	@Override
 	protected ArrayList<String> compAtualizar(ArrayList<String> campos, ProjetoGeologia p) {
 		if (p.getFinanciador() != null)
 			campos.add("financiador='" + p.getFinanciador() + "'");

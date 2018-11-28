@@ -13,10 +13,6 @@ public interface MarcadoresDAO {
 	
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.METHOD)
-	public @interface CompRemover{ }
-	
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.METHOD)
 	public @interface CompAtualizar{ }
 	
 	@Retention(RetentionPolicy.RUNTIME)

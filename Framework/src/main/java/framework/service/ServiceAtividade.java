@@ -17,7 +17,6 @@ import framework.model.Area;
 import framework.model.MarcadoresService.ValidarAtualizar;
 import framework.model.MarcadoresService.ValidarConsultar;
 import framework.model.MarcadoresService.ValidarInserir;
-import framework.model.MarcadoresService.ValidarRemover;
 import framework.service.interfaces.IServiceAtividade;
 
 public abstract class ServiceAtividade<
@@ -56,7 +55,6 @@ public abstract class ServiceAtividade<
 		if (prat.getCodigo() == null)
 			throw new IllegalArgumentException("Identificador de projeto nulo!");
 		
-		validate(ValidarRemover.class, prat);
 		dao.remover(prat);
 	}
 	

@@ -37,7 +37,6 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 		if (p.getCodigo() == null)
 			throw new IllegalArgumentException("Identificação de participante nula!");
 
-		validarRemover(p);
 		dao.remover(p);
 	}
 	
@@ -74,7 +73,6 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 
 	/** Metodos que precisam ser implementados */
 	protected abstract void validarInserir(P p);
-	protected abstract void validarRemover(P p);
 	protected abstract void validarAtualizar(P p);
 	protected abstract void validarConsultar(P p);
 }
