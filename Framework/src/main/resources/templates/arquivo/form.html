@@ -27,7 +27,7 @@
 			
 			<div class="form-group">
 				<label for="pratica">Viagem</label>
-				<select name="pratica" th:field="*{atividade}" class="form-control">
+				<select name="pratica" th:field="*{pratica}" class="form-control">
 					<option value="">-- Selecione --</option>
 					<option th:each="pratica : ${praticas}"
 							th:value="${pratica.codigo}"
