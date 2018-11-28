@@ -22,7 +22,7 @@ public class PraticaAEService extends
 	@ValidarInserir
 	@ValidarAtualizar
 	public void validaFinanciador (PraticaAE a)	{
-		if (a.getStatus() == null)
+		if (a.getStatus() == null || a.getStatus().length() == 0)
 			throw new IllegalArgumentException("É necessário definir o status dos Experimento");
 	}
 

@@ -16,7 +16,7 @@ public class AreaEstatisticaService extends ServiceArea<AreaEstatistica> {
 	@ValidarInserir
 	@ValidarAtualizar
 	public void verificaEstado(AreaEstatistica a) {
-		if (a.getEstado() == null)
+		if (a.getEstado() == null || a.getEstado().length() == 0)
 			throw new IllegalArgumentException("Estado nulo");
 	}
 	

@@ -16,14 +16,14 @@ public class AreaAEService extends ServiceArea<AreaAE> {
 	@ValidarInserir
 	@ValidarAtualizar
 	public void validaIP (AreaAE a){
-		if (a.getIp() == null)
+		if (a.getIp() == null || a.getIp().length() == 0)
 			throw new IllegalArgumentException("Campo IP nulo!");
 	}
 	
 	@ValidarInserir
 	@ValidarAtualizar
 	public void validaModelo (AreaAE a) {
-		if (a.getModelo() == null)
+		if (a.getModelo() == null || a.getModelo().length() == 0)
 			throw new IllegalArgumentException("Campo Modelo nulo!");
 	}
 	

@@ -16,7 +16,7 @@ public class AreaGeologiaService extends ServiceArea<AreaGeologia>{
 	@ValidarInserir
 	@ValidarAtualizar
 	public void validarPais(AreaGeologia a) {
-		if (a.getPais() == null)
+		if (a.getPais() == null || a.getPais().length() == 0)
 			throw new IllegalArgumentException("País nulo");
 	}
 	

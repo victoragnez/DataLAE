@@ -17,14 +17,14 @@ public class ProjetoAEService extends
 
 	@Override
 	protected void validarInserir(ProjetoAE p) {
-		if (p.getFinanciador() != null)
+		if (p.getFinanciador() != null || p.getFinanciador().length() == 0)
 			throw new IllegalArgumentException("Campo Financiador nulo!");
 		
 	}
 
 	@Override
 	protected void validarAtulizar(ProjetoAE p) {
-		if (p.getFinanciador() == null)
+		if (p.getFinanciador() == null || p.getFinanciador().length() == 0)
 			throw new IllegalArgumentException("Campo Financiador nulo!");
 	
 	}
