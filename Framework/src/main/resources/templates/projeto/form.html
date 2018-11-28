@@ -39,13 +39,24 @@
 				<input id="dataFim" name="dataFim" type="date" class="form-control" th:field="*{dataFim}" />
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group" th:if="${projeto.codigo == null}">
 				<label for="participantes">Pesquisadores</label>
 				<select name="participantes" th:field="*{participantes}" class="form-control"
 					 multiple = "multiple" size = "8">
 					<option th:each="participante : ${participantes}"
 							th:value="${participante.codigo}"
 							th:text="${participante.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group" th:if="${projeto.codigo != null}">
+				<label for="participantes">Pesquisadores</label>
+				<select id="projeto.participantes" name="projeto.participantes" class="form-control"
+					 multiple = "multiple" size = "8">
+					<option th:each="participante : ${participantes}"
+							th:value="${participante.codigo}"
+							th:text="${participante.nome}"
+							th:selected="${comparador.compare(projeto.participantes, participante)}"></option>
 				</select>
 			</div>
 			
