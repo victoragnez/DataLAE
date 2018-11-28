@@ -222,7 +222,7 @@ public abstract class DAOProjeto<P extends Projeto<Part>, Part extends Participa
 		}
 		
 		if (pj.getNome() != null) {
-			cond.add("nome = '" + pj.getNome() + "'");
+			cond.add("nome like '%" + pj.getNome() + "%'");
 		}
 		
 		cond = compConsultar(cond, pj);
