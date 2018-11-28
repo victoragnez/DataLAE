@@ -26,8 +26,9 @@ import com.lab.ae.model.PraticaAE;
 import com.lab.ae.model.ProjetoAE;
 import com.lab.data.exception.NenhumEncontradoException;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.DatabaseException;
 import framework.model.Arquivo;
+import framework.model.BadAttributeException;
 import framework.service.interfaces.IServiceArquivo;
 import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceProjeto;
@@ -48,7 +49,7 @@ public class ArquivoController {
 	@Autowired
 	private IServiceAtividade<AreaAE, ProjetoAE, PraticaAE> praticaService;
 	
-	private Arquivo<ProjetoAE, PraticaAE> buscarArquivoPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private Arquivo<ProjetoAE, PraticaAE> buscarArquivoPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		Arquivo<ProjetoAE, PraticaAE> a = new Arquivo<>();
 		a.setCodigo(id);
 		List<Arquivo<ProjetoAE, PraticaAE>> list = service.consultar(a);
@@ -113,7 +114,7 @@ public class ArquivoController {
 		try {
 			service.inserir(arquivo);
 			redirectAtrributes.addFlashAttribute("sucesso", "Arquivo inserido com sucesso!");
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
 		
@@ -140,7 +141,7 @@ public class ArquivoController {
 					.contentType(MediaType.parseMediaType(a.getTipo() != null ? a.getTipo() : ""))
 					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + a.getNome() + "\"")
 	                .body(new ByteArrayResource(a.getDados()));
-		} catch (DatabaseException | NenhumEncontradoException e) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			throw new ResourceException(e);
 		}
 	}
@@ -166,7 +167,7 @@ public class ArquivoController {
 			Arquivo<ProjetoAE, PraticaAE> a = buscarArquivoPorId(id);
 			model.addAttribute("arquivo", a);
 			return "dataae/arquivo/form";
-		} catch (DatabaseException | NenhumEncontradoException e) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/arquivos";
 		}
@@ -177,7 +178,7 @@ public class ArquivoController {
 		try {
 			service.atualizar(arquivo);
 			redirectAttributes.addFlashAttribute("sucesso", "Arquivo editado com sucesso!");
-		} catch (DatabaseException | IllegalArgumentException e) {
+		} catch (DatabaseException | IllegalArgumentException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			if(arquivo != null && arquivo.getCodigo() != null) {
 				redirectAttributes.addFlashAttribute("arquivo", arquivo);

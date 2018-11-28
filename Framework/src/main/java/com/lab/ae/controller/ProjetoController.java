@@ -17,7 +17,8 @@ import com.lab.ae.model.ParticipanteAE;
 import com.lab.ae.model.ProjetoAE;
 import com.lab.data.exception.NenhumEncontradoException;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceParticipante;
 import framework.service.interfaces.IServiceProjeto;
 
@@ -30,7 +31,7 @@ public class ProjetoController {
 	private static final String SUCCESS_EDIT = "Projeto editado com sucesso!";
 	private static final String SUCCESS_DELETE = "Projeto deletado com sucesso!";
 
-	private ProjetoAE buscarProjetoPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private ProjetoAE buscarProjetoPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		ProjetoAE p = new ProjetoAE();
 		p.setCodigo(id);
 		List<ProjetoAE> list = service.consultar(p);
@@ -124,7 +125,7 @@ public class ProjetoController {
 		try {
 			service.atualizar(projeto);
 			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_EDIT);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/projetos";
@@ -158,7 +159,7 @@ public class ProjetoController {
 		List<ProjetoAE> projetos;
 		try {
 			projetos = service.consultar(filtro);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			projetos = null;
 		}
@@ -172,7 +173,7 @@ public class ProjetoController {
 		try {
 			ProjetoAE p = buscarProjetoPorId(id);
 			model.addAttribute("projeto", p);
-		} catch (DatabaseException | NenhumEncontradoException e1) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e1) {
 			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar o projeto com id = " + id);
 			return "redirect:/projetos";
 		}
