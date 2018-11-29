@@ -58,7 +58,7 @@ public class ServiceConfig {
 	@Bean
 	public IServiceArquivo<ProjetoAE, PraticaAE> arquivoService() {
 		return new ServiceArquivo<>(
-				new DAOArquivo<>(ProjetoAE.class, PraticaAE.class, true), 
+				new DAOArquivo<>(ProjetoAE.class, PraticaAE.class, false), 
 				new ProjetoAEDAO(null, null), 
 				new PraticaAEDAO(AreaAE.class, ProjetoAE.class, PraticaAE.class));
 	}
