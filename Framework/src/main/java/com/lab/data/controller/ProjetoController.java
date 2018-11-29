@@ -89,7 +89,7 @@ public class ProjetoController {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/projetos/cadastrar";
 		}
-		return "redirect:/projetos/";
+		return "redirect:/projetos";
 	}
 	
 	@GetMapping("/{id}/editar")
@@ -145,7 +145,7 @@ public class ProjetoController {
 	
 	@GetMapping("/buscar")
 	public String filtros(@ModelAttribute("filtro") ProjetoGeologia filtro) {
-		return "projeto/search"; 
+		return "datalae/projeto/search"; 
 	}
 	
 	@PostMapping("/buscar")

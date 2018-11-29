@@ -1,4 +1,4 @@
-package com.lab.data.controller;
+package com.lab.estatistica.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,9 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.exception.NenhumEncontradoException;
-import com.lab.data.model.AreaGeologia;
-import com.lab.data.model.PraticaGeologia;
-import com.lab.data.model.ProjetoGeologia;
+import com.lab.estatistica.model.AreaEstatistica;
+import com.lab.estatistica.model.PraticaEstatistica;
+import com.lab.estatistica.model.ProjetoEstatistica;
 
 import framework.dao.interfaces.DatabaseException;
 import framework.model.Arquivo;
@@ -40,18 +40,18 @@ public class ArquivoController {
 	private static final String LIST_ERROR = "Falha ao listar arquivos!";
 	
 	@Autowired
-	private IServiceArquivo<ProjetoGeologia, PraticaGeologia> service;
+	private IServiceArquivo<ProjetoEstatistica, PraticaEstatistica> service;
 	
 	@Autowired
-	private IServiceProjeto<ProjetoGeologia> projetoService;
+	private IServiceProjeto<ProjetoEstatistica> projetoService;
 	
 	@Autowired
-	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> praticaService;
+	private IServiceAtividade<AreaEstatistica, ProjetoEstatistica, PraticaEstatistica> praticaService;
 	
-	private Arquivo<ProjetoGeologia, PraticaGeologia> buscarArquivoPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
-		Arquivo<ProjetoGeologia, PraticaGeologia> a = new Arquivo<>();
+	private Arquivo<ProjetoEstatistica, PraticaEstatistica> buscarArquivoPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+		Arquivo<ProjetoEstatistica, PraticaEstatistica> a = new Arquivo<>();
 		a.setCodigo(id);
-		List<Arquivo<ProjetoGeologia, PraticaGeologia>> list = service.consultar(a);
+		List<Arquivo<ProjetoEstatistica, PraticaEstatistica>> list = service.consultar(a);
 		if(list == null || list.size() != 1)
 			throw new NenhumEncontradoException("Arquivo com codigo igual a '" + id + "' não existe!");
 		return list.get(0);
@@ -59,7 +59,7 @@ public class ArquivoController {
 	
 	@GetMapping
 	public String index(Model model, RedirectAttributes redirectAttributes) {
-		List<Arquivo<ProjetoGeologia, PraticaGeologia>> arquivos;
+		List<Arquivo<ProjetoEstatistica, PraticaEstatistica>> arquivos;
 		try {
 			arquivos = service.listar();
 		} catch (DatabaseException e) {
@@ -67,34 +67,34 @@ public class ArquivoController {
 			return "redirect:/";
 		}
 		model.addAttribute("arquivos", arquivos);
-		return "datalae/arquivo/index";
+		return "dataest/arquivo/index";
 	}
 	
 	@GetMapping("/cadastrar")
 	public String formArquivoCad(
 			Model model, 
-			@ModelAttribute("arquivo") Arquivo<ProjetoGeologia, PraticaGeologia> arquivo, 
+			@ModelAttribute("arquivo") Arquivo<ProjetoEstatistica, PraticaEstatistica> arquivo, 
 			RedirectAttributes redirectAttributes) 
 	{
 		try {
-			List<ProjetoGeologia> projetos = projetoService.listar();
+			List<ProjetoEstatistica> projetos = projetoService.listar();
 			model.addAttribute("projetos", projetos);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/arquivos";
 		}
 		try {
-			List<PraticaGeologia> praticas = praticaService.listar();
+			List<PraticaEstatistica> praticas = praticaService.listar();
 			model.addAttribute("praticas", praticas);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/arquivos";
 		}
-		return "datalae/arquivo/form";
+		return "dataest/arquivo/form";
 	}
 	
 	@PostMapping
-	public String create(@ModelAttribute("arquivo") Arquivo<ProjetoGeologia, PraticaGeologia> arquivo, @PathVariable("file") MultipartFile file, RedirectAttributes redirectAtrributes) {
+	public String create(@ModelAttribute("arquivo") Arquivo<ProjetoEstatistica, PraticaEstatistica> arquivo, @PathVariable("file") MultipartFile file, RedirectAttributes redirectAtrributes) {
 		
 		if(file.isEmpty()) {
 			redirectAtrributes.addFlashAttribute("erro", "Não foi possível salvar o arquivo!");
@@ -130,7 +130,7 @@ public class ArquivoController {
 	public ResponseEntity<Resource> downloadFile(@PathVariable("id") Integer id) throws ResourceException {
 		
 		try {
-			Arquivo<ProjetoGeologia, PraticaGeologia> a = buscarArquivoPorId(id);
+			Arquivo<ProjetoEstatistica, PraticaEstatistica> a = buscarArquivoPorId(id);
 			a = service.ler(a);
 			
 			if(a.getDados().length == 0)
@@ -148,14 +148,14 @@ public class ArquivoController {
 	@GetMapping("/{id}/editar")
 	public String formArquivoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		try {
-			List<ProjetoGeologia> projetos = projetoService.listar();
+			List<ProjetoEstatistica> projetos = projetoService.listar();
 			model.addAttribute("projetos", projetos);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/arquivos";
 		}
 		try {
-			List<PraticaGeologia> praticas = praticaService.listar();
+			List<PraticaEstatistica> praticas = praticaService.listar();
 			model.addAttribute("praticas", praticas);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
@@ -163,9 +163,9 @@ public class ArquivoController {
 		}
 		
 		try {
-			Arquivo<ProjetoGeologia, PraticaGeologia> a = buscarArquivoPorId(id);
+			Arquivo<ProjetoEstatistica, PraticaEstatistica> a = buscarArquivoPorId(id);
 			model.addAttribute("arquivo", a);
-			return "datalae/arquivo/form";
+			return "dataest/arquivo/form";
 		} catch (DatabaseException | NenhumEncontradoException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/arquivos";
@@ -173,7 +173,7 @@ public class ArquivoController {
 	}
 	
 	@PutMapping
-	public String edit(Arquivo<ProjetoGeologia, PraticaGeologia> arquivo, RedirectAttributes redirectAttributes) {
+	public String edit(Arquivo<ProjetoEstatistica, PraticaEstatistica> arquivo, RedirectAttributes redirectAttributes) {
 		try {
 			service.atualizar(arquivo);
 			redirectAttributes.addFlashAttribute("sucesso", "Arquivo editado com sucesso!");
@@ -191,7 +191,7 @@ public class ArquivoController {
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		
 		try {
-			Arquivo<ProjetoGeologia, PraticaGeologia> a = new Arquivo<>();
+			Arquivo<ProjetoEstatistica, PraticaEstatistica> a = new Arquivo<>();
 			a.setCodigo(id);
 			service.remover(a);
 			redirectAttributes.addFlashAttribute("sucesso", "Arquivo deletado com sucesso!");
