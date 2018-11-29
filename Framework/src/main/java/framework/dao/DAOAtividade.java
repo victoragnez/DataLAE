@@ -198,10 +198,12 @@ public abstract class DAOAtividade<
 			cond.add("codigoPratica = " + prat.getCodigo());
 		}
 		
-		if(prat.getDataInicio() != null && prat.getDataTermino() != null) {
+		if(prat.getDataInicio() != null) {
 			cond.add("dataInicio <= '" + prat.getDataInicio().toString() + "'");
+		}
+		if(prat.getDataTermino() != null) {
 			cond.add("(dataTermino is null or dataTermino >= '" + 
-					prat.getDataInicio().toString() + "')");
+				prat.getDataInicio().toString() + "')");
 		}
 		else if (prat.getDataInicio() != null) {
 			cond.add("dataInicio >= '" + prat.getDataInicio().toString() + "'");
