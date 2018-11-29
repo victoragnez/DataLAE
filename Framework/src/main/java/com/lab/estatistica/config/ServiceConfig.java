@@ -63,7 +63,7 @@ public class ServiceConfig {
 				new DAOArquivo<>(
 						ProjetoEstatistica.class, 
 						PraticaEstatistica.class, 
-						true), 
+						false), 
 				new ProjetoEstatisticaDAO(
 						ProjetoEstatistica.class, 
 						ParticipanteEstatistica.class),
