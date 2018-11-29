@@ -199,10 +199,9 @@ public abstract class DAOAtividade<
 		}
 		
 		if(prat.getDataInicio() != null && prat.getDataTermino() != null) {
-			cond.add("dataInicio >= '" + prat.getDataInicio().toString() + "'");
-			cond.add("(dataTermino is null or (dataTermino >= '" + 
-					prat.getDataInicio().toString() + "' and dataTermino <='" 
-					+ prat.getDataTermino().toString() + "'))");
+			cond.add("dataInicio <= '" + prat.getDataInicio().toString() + "'");
+			cond.add("(dataTermino is null or dataTermino >= '" + 
+					prat.getDataInicio().toString() + "')");
 		}
 		else if (prat.getDataInicio() != null) {
 			cond.add("dataInicio >= '" + prat.getDataInicio().toString() + "'");
