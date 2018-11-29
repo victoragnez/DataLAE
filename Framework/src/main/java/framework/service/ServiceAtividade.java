@@ -46,6 +46,8 @@ public abstract class ServiceAtividade<
 			throw new BadAttributeException("Parâmetro nulo");
 		if (prat.getDataInicio() == null)
 			throw new BadAttributeException("Data de início da atividade nulo!");
+		if(prat.getDataTermino() != null && prat.getDataTermino().before(prat.getDataInicio()))
+			throw new BadAttributeException("A data de témino deve ser maior ou igual a data de início");
 		
 		validate(ValidarInserir.class, prat);
 		dao.inserir(prat);
@@ -65,6 +67,8 @@ public abstract class ServiceAtividade<
 			throw new BadAttributeException("Parâmetro nulo");
 		if (prat.getDataInicio() == null)
 			throw new BadAttributeException("Data da atividade nulo!");
+		if(prat.getDataTermino() != null && prat.getDataTermino().before(prat.getDataInicio()))
+				throw new BadAttributeException("A data de témino deve ser maior ou igual a data de início");
 		
 		validate(ValidarAtualizar.class, prat);
 		dao.atualizar(prat);

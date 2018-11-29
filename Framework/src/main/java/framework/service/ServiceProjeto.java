@@ -29,8 +29,7 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 			throw new BadAttributeException("Data de início nula");
 		if(p.getNome() == null || p.getNome().length() == 0)
 			throw new BadAttributeException("Nome nulo");
-		if(p.getDataFim() != null)
-			if (p.getDataFim().before(p.getDataInicio()))
+		if(p.getDataFim() != null && p.getDataFim().before(p.getDataInicio()))
 				throw new BadAttributeException("A data de témino deve ser maior ou igual a data de início");
 		
 		
@@ -59,8 +58,7 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 			throw new BadAttributeException("Data inicio nula!");
 		if(p.getNome() == null)
 			throw new BadAttributeException("Nome nulo!");
-		if(p.getDataFim() != null)
-			if (p.getDataFim().before(p.getDataInicio()))
+		if(p.getDataFim() != null && p.getDataFim().before(p.getDataInicio()))
 				throw new BadAttributeException("A data de témino deve ser maior ou igual a data de início");
 		
 		validarAtulizar(p);
