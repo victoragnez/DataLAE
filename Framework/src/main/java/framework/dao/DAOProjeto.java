@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOProjeto;
+import framework.model.DatabaseException;
 import framework.model.Participante;
 import framework.model.Projeto;
 

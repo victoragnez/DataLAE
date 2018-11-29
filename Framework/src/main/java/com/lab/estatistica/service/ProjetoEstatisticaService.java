@@ -5,6 +5,7 @@ import com.lab.estatistica.model.ProjetoEstatistica;
 
 import framework.dao.interfaces.IDAOParticipante;
 import framework.dao.interfaces.IDAOProjeto;
+import framework.model.BadAttributeException;
 import framework.service.ServiceProjeto;
 
 public class ProjetoEstatisticaService extends ServiceProjeto<ProjetoEstatistica, ParticipanteEstatistica> {
@@ -15,15 +16,15 @@ public class ProjetoEstatisticaService extends ServiceProjeto<ProjetoEstatistica
 	}
 
 	@Override
-	protected void validarInserir(ProjetoEstatistica p) {
+	protected void validarInserir(ProjetoEstatistica p) throws BadAttributeException {
 		if(p.getProfessor() == null || p.getProfessor().length() == 0)
-			throw new IllegalArgumentException("Profesor do projeto nulo!");
+			throw new BadAttributeException("Professor do projeto nulo!");
 	}
 
 	@Override
-	protected void validarAtulizar(ProjetoEstatistica p) {
+	protected void validarAtulizar(ProjetoEstatistica p) throws BadAttributeException {
 		if(p.getProfessor() == null || p.getProfessor().length() == 0)
-			throw new IllegalArgumentException("Profesor do projeto nulo!");
+			throw new BadAttributeException("Professor do projeto nulo!");
 	}
 
 	@Override

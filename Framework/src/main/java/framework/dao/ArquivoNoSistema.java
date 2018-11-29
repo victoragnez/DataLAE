@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.model.Arquivo;
+import framework.model.DatabaseException;
 
 class ArquivoNoSistema<A extends Arquivo<?, ?> > implements EstrategiaArquivo<A> {
 

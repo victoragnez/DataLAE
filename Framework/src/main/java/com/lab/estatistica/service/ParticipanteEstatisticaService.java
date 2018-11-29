@@ -3,6 +3,7 @@ package com.lab.estatistica.service;
 import com.lab.estatistica.model.ParticipanteEstatistica;
 
 import framework.dao.interfaces.IDAOParticipante;
+import framework.model.BadAttributeException;
 import framework.service.ServiceParticipante;
 
 public class ParticipanteEstatisticaService extends ServiceParticipante<ParticipanteEstatistica> {
@@ -12,15 +13,15 @@ public class ParticipanteEstatisticaService extends ServiceParticipante<Particip
 	}
 
 	@Override
-	protected void validarInserir(ParticipanteEstatistica p) {
+	protected void validarInserir(ParticipanteEstatistica p) throws BadAttributeException {
 		if(p.getCpf() == null || p.getCpf().length() == 0)
-			throw new IllegalArgumentException("Cpf nulo!");
+			throw new BadAttributeException("Cpf nulo!");
 	}
 
 	@Override
-	protected void validarAtualizar(ParticipanteEstatistica p) {
+	protected void validarAtualizar(ParticipanteEstatistica p) throws BadAttributeException {
 		if(p.getCpf() == null || p.getCpf().length() == 0)
-			throw new IllegalArgumentException("Cpf nulo!");
+			throw new BadAttributeException("Cpf nulo!");
 	}
 
 	@Override

@@ -10,7 +10,8 @@ import com.lab.data.model.AreaGeologia;
 import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.model.Pratica;
 import framework.service.interfaces.IServiceAtividade;
 
@@ -31,6 +32,8 @@ public class PraticaConverter implements Converter<String, Pratica<?, ?, ?>> {
 		} catch(NumberFormatException e) {
 			return null;
 		} catch (DatabaseException e) {
+			return null;
+		} catch (BadAttributeException e) {
 			return null;
 		}
 	}

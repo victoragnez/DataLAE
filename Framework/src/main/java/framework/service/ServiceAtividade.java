@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOArea;
 import framework.dao.interfaces.IDAOAtividade;
 import framework.dao.interfaces.IDAOProjeto;
 import framework.model.Pratica;
 import framework.model.Projeto;
 import framework.model.Area;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.model.MarcadoresService.ValidarAtualizar;
 import framework.model.MarcadoresService.ValidarConsultar;
 import framework.model.MarcadoresService.ValidarInserir;
@@ -40,37 +41,37 @@ public abstract class ServiceAtividade<
 	}
 	
 	@Override
-	public void inserir(Prat prat) throws DatabaseException {
+	public void inserir(Prat prat) throws DatabaseException, BadAttributeException {
 		if (prat == null)
-			throw new IllegalArgumentException("Parâmetro nulo");
+			throw new BadAttributeException("Parâmetro nulo");
 		if (prat.getDataInicio() == null)
-			throw new IllegalArgumentException("Data de início da atividade nulo!");
+			throw new BadAttributeException("Data de início da atividade nulo!");
 		
 		validate(ValidarInserir.class, prat);
 		dao.inserir(prat);
 	}
 	
 	@Override
-	public void remover(Prat prat) throws DatabaseException {
+	public void remover(Prat prat) throws DatabaseException, BadAttributeException {
 		if (prat.getCodigo() == null)
-			throw new IllegalArgumentException("Identificador de projeto nulo!");
+			throw new BadAttributeException("Identificador de projeto nulo!");
 		
 		dao.remover(prat);
 	}
 	
 	@Override
-	public void atualizar(Prat prat) throws DatabaseException {
+	public void atualizar(Prat prat) throws DatabaseException, BadAttributeException {
 		if (prat == null)
-			throw new IllegalArgumentException("Parâmetro nulo");
+			throw new BadAttributeException("Parâmetro nulo");
 		if (prat.getDataInicio() == null)
-			throw new IllegalArgumentException("Data da atividade nulo!");
+			throw new BadAttributeException("Data da atividade nulo!");
 		
 		validate(ValidarAtualizar.class, prat);
 		dao.atualizar(prat);
 	}
 	
 	@Override
-	public List<Prat> consultar(Prat prat) throws DatabaseException {
+	public List<Prat> consultar(Prat prat) throws DatabaseException, BadAttributeException {
 		if (prat == null) return listar();
 		
 		validate(ValidarConsultar.class, prat);
@@ -92,7 +93,7 @@ public abstract class ServiceAtividade<
 		return praticas;
 	}
 	
-	private void validate(Class<? extends Annotation> annotation, Prat prat) {
+	private void validate(Class<? extends Annotation> annotation, Prat prat) throws BadAttributeException {
 		Class<?> curClass = this.getClass();
 	    
 		while (curClass != ServiceAtividade.class) {
@@ -105,7 +106,7 @@ public abstract class ServiceAtividade<
 						e.printStackTrace();
 					}
 	            	catch (InvocationTargetException e) {
-						throw new IllegalArgumentException(e.getMessage());
+						throw new BadAttributeException(e.getMessage());
 					}
 	            }
 	        }

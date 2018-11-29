@@ -3,6 +3,7 @@ package framework.dao.interfaces;
 import java.util.List;
 
 import framework.model.Arquivo;
+import framework.model.DatabaseException;
 import framework.model.Pratica;
 import framework.model.Projeto;
 

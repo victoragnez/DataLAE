@@ -3,6 +3,7 @@ package com.lab.data.service;
 import com.lab.data.model.ParticipanteGeologia;
 
 import framework.dao.interfaces.IDAOParticipante;
+import framework.model.BadAttributeException;
 import framework.service.ServiceParticipante;
 
 public class ParticipanteGeologiaService extends ServiceParticipante<ParticipanteGeologia>{
@@ -12,15 +13,15 @@ public class ParticipanteGeologiaService extends ServiceParticipante<Participant
 	}
 
 	@Override
-	protected void validarInserir(ParticipanteGeologia p) {
+	protected void validarInserir(ParticipanteGeologia p) throws BadAttributeException {
 		if (p.getCategoria() == null)
-			throw new IllegalArgumentException("Categoria nulo!");
+			throw new BadAttributeException("Categoria nulo!");
 	}
 
 	@Override
-	protected void validarAtualizar(ParticipanteGeologia p) {
+	protected void validarAtualizar(ParticipanteGeologia p) throws BadAttributeException {
 		if (p.getCategoria() == null)
-			throw new IllegalArgumentException("Categoria nulo!");
+			throw new BadAttributeException("Categoria nulo!");
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.interfaces.IDAOParticipante;
 import framework.dao.interfaces.IDAOProjeto;
+import framework.model.BadAttributeException;
 import framework.service.ServiceProjeto;
 
 /**
@@ -23,19 +24,19 @@ public class ProjetoGeologiaService extends
 	}
 
 	@Override
-	protected void validarInserir(ProjetoGeologia p) {
-		if(p.getContatoFinanciador() == null)
-			throw new IllegalArgumentException("Contato nulo");
+	protected void validarInserir(ProjetoGeologia p) throws BadAttributeException {
+		if(p.getContatoFinanciador() == null || p.getFinanciador().length() == 0)
+			throw new BadAttributeException("Contato nulo");
 		if(p.getFinanciador() == null)
-			throw new IllegalArgumentException("Financiador nulo");
+			throw new BadAttributeException("Financiador nulo");
 	}
 
 	@Override
-	protected void validarAtulizar(ProjetoGeologia p) {
-		if (p.getContatoFinanciador() == null)
-			throw new IllegalArgumentException("Contato de Financiador nulo!");
+	protected void validarAtulizar(ProjetoGeologia p) throws BadAttributeException {
+		if (p.getContatoFinanciador() == null || p.getContatoFinanciador().length() == 0)
+			throw new BadAttributeException("Contato de Financiador nulo!");
 		if (p.getFinanciador() == null)
-			throw new IllegalArgumentException("Financiador nulo!");
+			throw new BadAttributeException("Financiador nulo!");
 	}
 
 	@Override

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOArea;
 import framework.model.Area;
+import framework.model.DatabaseException;
 import framework.model.MarcadoresDAO.CompAtualizar;
 import framework.model.MarcadoresDAO.CompConsultar;
 import framework.model.MarcadoresDAO.CompInserir;

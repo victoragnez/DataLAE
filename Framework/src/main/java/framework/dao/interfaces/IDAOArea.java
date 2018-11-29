@@ -3,6 +3,7 @@ package framework.dao.interfaces;
 import java.util.List;
 
 import framework.model.Area;
+import framework.model.DatabaseException;
 
 public interface IDAOArea<A extends Area> {
 

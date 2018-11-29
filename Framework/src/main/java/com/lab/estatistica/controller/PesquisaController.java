@@ -18,7 +18,8 @@ import com.lab.estatistica.model.AreaEstatistica;
 import com.lab.estatistica.model.PraticaEstatistica;
 import com.lab.estatistica.model.ProjetoEstatistica;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceArea;
 import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceProjeto;
@@ -33,7 +34,7 @@ public class PesquisaController {
 	private static final String DELETE_SUCCESS = "Viagem deletada com sucesso!";
 	
 	
-	private PraticaEstatistica buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private PraticaEstatistica buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		PraticaEstatistica v = new PraticaEstatistica();
 		v.setCodigo(id);
 		List<PraticaEstatistica> list = pesquisaService.consultar(v);
@@ -74,7 +75,7 @@ public class PesquisaController {
 		try {
 			List<AreaEstatistica> locais = localService.listar();
 			model.addAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/pesquisas";
 		}
@@ -86,7 +87,7 @@ public class PesquisaController {
 		try {
 			pesquisaService.inserir(pesquisa);
 			redirectAtrributes.addFlashAttribute("sucesso", INSERT_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/pesquisas";
@@ -104,7 +105,7 @@ public class PesquisaController {
 		try {
 			List<AreaEstatistica> locais = localService.listar();
 			model.addAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/pesquisas";
 		}
@@ -112,7 +113,7 @@ public class PesquisaController {
 			PraticaEstatistica pesq = buscarViagemPorId(id);
 			model.addAttribute("pesquisa", pesq);
 			return "dataest/pesquisa/form";
-		} catch (DatabaseException | NenhumEncontradoException e) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/pesquisas";
 		}
@@ -123,7 +124,7 @@ public class PesquisaController {
 		try {
 			pesquisaService.atualizar(pesquisa);
 			redirectAttributes.addFlashAttribute("sucesso", EDIT_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/pesquisas";
@@ -136,7 +137,7 @@ public class PesquisaController {
 			pesq.setCodigo(id);
 			pesquisaService.remover(pesq);
 			redirectAttributes.addFlashAttribute("sucesso", DELETE_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/pesquisas";
@@ -154,7 +155,7 @@ public class PesquisaController {
 		try {
 			List<AreaEstatistica> locais = localService.listar();
 			model.addAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/pesquisas";
 		}
@@ -167,7 +168,7 @@ public class PesquisaController {
 		try {
 			List<PraticaEstatistica> pesquisas = pesquisaService.consultar(filtro);
 			redirectAttributes.addFlashAttribute("pesquisas", pesquisas);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		

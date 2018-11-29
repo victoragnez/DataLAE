@@ -3,9 +3,10 @@ package framework.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOParticipante;
 import framework.dao.interfaces.IDAOProjeto;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.model.Participante;
 import framework.model.Projeto;
 import framework.service.interfaces.IServiceProjeto;
@@ -21,48 +22,48 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 	}
 	
 	@Override
-	public void inserir(P p) throws DatabaseException {
+	public void inserir(P p) throws DatabaseException, BadAttributeException {
 		if(p == null)
-			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+			throw new BadAttributeException("Parâmetro fornecido nulo");
 		if(p.getDataInicio() == null)
-			throw new IllegalArgumentException("Data de início nula");
+			throw new BadAttributeException("Data de início nula");
 		if(p.getNome() == null)
-			throw new IllegalArgumentException("Nome nulo");
+			throw new BadAttributeException("Nome nulo");
 		
 		validarInserir(p);
 		dao.inserir(p);
 	}
 	
 	@Override
-	public void remover(P p) throws DatabaseException {
+	public void remover(P p) throws DatabaseException, BadAttributeException {
 
 		if (p == null) 
-			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+			throw new BadAttributeException("Parâmetro fornecido nulo");
 		if (p.getCodigo() == null )
-			throw new IllegalArgumentException("Identificador de projeto nulo!");
+			throw new BadAttributeException("Identificador de projeto nulo!");
 		
 		dao.remover(p);
 	}
 	
 	@Override
-	public void atualizar(P p) throws DatabaseException {
+	public void atualizar(P p) throws DatabaseException, BadAttributeException {
 		if (p == null)
-			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+			throw new BadAttributeException("Parâmetro fornecido nulo");
 		if (p.getCodigo() == null) 
-			throw new IllegalArgumentException("Identificador de projeto nulo!");
+			throw new BadAttributeException("Identificador de projeto nulo!");
 		if(p.getDataInicio() == null)
-			throw new IllegalArgumentException("Data inicio nula!");
+			throw new BadAttributeException("Data inicio nula!");
 		if(p.getNome() == null)
-			throw new IllegalArgumentException("Nome nulo!");
+			throw new BadAttributeException("Nome nulo!");
 		
 		validarAtulizar(p);
 		dao.atualizar(p);
 	}
 	
 	@Override
-	public List<P> consultar(P p) throws DatabaseException{
+	public List<P> consultar(P p) throws DatabaseException, BadAttributeException{
 		if(p == null)
-			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+			throw new BadAttributeException("Parâmetro fornecido nulo");
 		
 		validarConsultar(p);
 		List<P> projetos = dao.consultar(p);
@@ -96,8 +97,8 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 	}
 
 	/** Metodos que precisam ser implementados */
-	protected abstract void validarInserir(P p);
-	protected abstract void validarAtulizar(P p);
-	protected abstract void validarConsultar(P p);
+	protected abstract void validarInserir(P p) throws BadAttributeException;
+	protected abstract void validarAtulizar(P p) throws BadAttributeException;
+	protected abstract void validarConsultar(P p) throws BadAttributeException;
 
 }	

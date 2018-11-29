@@ -2,8 +2,9 @@ package framework.service;
 
 import java.util.List;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.dao.interfaces.IDAOParticipante;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.model.Participante;
 import framework.service.interfaces.IServiceParticipante;
 
@@ -16,51 +17,51 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 	}
 	
 	@Override
-	public void inserir(P p) throws DatabaseException {
+	public void inserir(P p) throws DatabaseException, BadAttributeException {
 		if (p == null)
-			throw new IllegalArgumentException("Falha ao tentar inserir participante! O particiante fornecido possui um valor nulo.");
+			throw new BadAttributeException("Falha ao tentar inserir participante! O particiante fornecido possui um valor nulo.");
 		if (p.getNome() == null) 
-			throw new IllegalArgumentException("Nome do particiante é nulo! Por favor, forneça um nome válido.");
+			throw new BadAttributeException("Nome do particiante é nulo! Por favor, forneça um nome válido.");
 		if (p.getEmail() == null)
-			throw new IllegalArgumentException("E-mail do particiante é nulo! Por favor, forneça um e-mail válido.");
+			throw new BadAttributeException("E-mail do particiante é nulo! Por favor, forneça um e-mail válido.");
 		if (p.getInstituicao() == null)
-			throw new IllegalArgumentException("Instituição do particiante é nula! Por favor, forneça uma instituição válida.");
+			throw new BadAttributeException("Instituição do particiante é nula! Por favor, forneça uma instituição válida.");
 		
 		validarInserir(p);
 		dao.inserir(p);
 	}
 	
 	@Override
-	public void remover(P p) throws DatabaseException {
+	public void remover(P p) throws DatabaseException, BadAttributeException {
 		if (p == null)
-			throw new IllegalArgumentException("Falha ao tentar remover particiante! O particiante fornecido possui um valor nulo.");
+			throw new BadAttributeException("Falha ao tentar remover particiante! O particiante fornecido possui um valor nulo.");
 		if (p.getCodigo() == null)
-			throw new IllegalArgumentException("Identificação de participante nula!");
+			throw new BadAttributeException("Identificação de participante nula!");
 
 		dao.remover(p);
 	}
 	
 	@Override
-	public void atualizar(P p) throws DatabaseException {
+	public void atualizar(P p) throws DatabaseException, BadAttributeException {
 		if (p == null)
-			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+			throw new BadAttributeException("Parâmetro fornecido nulo");
 		if (p.getCodigo() == null)
-			throw new IllegalArgumentException("Identificação de participante nula!");
+			throw new BadAttributeException("Identificação de participante nula!");
 		if (p.getNome() == null) 
-			throw new IllegalArgumentException("Nome nulo!");
+			throw new BadAttributeException("Nome nulo!");
 		if (p.getEmail() == null)
-			throw new IllegalArgumentException("Email nulo");
+			throw new BadAttributeException("Email nulo");
 		if (p.getInstituicao() == null)
-			throw new IllegalArgumentException("Instituição nula");
+			throw new BadAttributeException("Instituição nula");
 		
 		validarAtualizar(p);
 		dao.atualizar(p);
 	}
 	
 	@Override
-	public List<P> consultar(P p) throws DatabaseException {
+	public List<P> consultar(P p) throws DatabaseException, BadAttributeException {
 		if (p == null)
-			throw new IllegalArgumentException("Parâmetro fornecido nulo");
+			throw new BadAttributeException("Parâmetro fornecido nulo");
 				
 		validarConsultar(p);
 		return dao.consultar(p);
@@ -72,7 +73,7 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 	}
 
 	/** Metodos que precisam ser implementados */
-	protected abstract void validarInserir(P p);
-	protected abstract void validarAtualizar(P p);
-	protected abstract void validarConsultar(P p);
+	protected abstract void validarInserir(P p) throws BadAttributeException;
+	protected abstract void validarAtualizar(P p) throws BadAttributeException;
+	protected abstract void validarConsultar(P p) throws BadAttributeException;
 }

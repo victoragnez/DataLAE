@@ -1,7 +1,7 @@
 package framework.dao;
 
-import framework.dao.interfaces.DatabaseException;
 import framework.model.Arquivo;
+import framework.model.DatabaseException;
 
 interface EstrategiaArquivo<A extends Arquivo<?, ?> > {
 	public int inserir(A a) throws DatabaseException;
