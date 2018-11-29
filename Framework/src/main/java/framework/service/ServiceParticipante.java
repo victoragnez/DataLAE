@@ -20,11 +20,11 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 	public void inserir(P p) throws DatabaseException, BadAttributeException {
 		if (p == null)
 			throw new BadAttributeException("Falha ao tentar inserir participante! O particiante fornecido possui um valor nulo.");
-		if (p.getNome() == null) 
+		if (p.getNome() == null || p.getNome().length() == 0) 
 			throw new BadAttributeException("Nome do particiante é nulo! Por favor, forneça um nome válido.");
-		if (p.getEmail() == null)
+		if (p.getEmail() == null || p.getEmail().length() == 0)
 			throw new BadAttributeException("E-mail do particiante é nulo! Por favor, forneça um e-mail válido.");
-		if (p.getInstituicao() == null)
+		if (p.getInstituicao() == null || p.getInstituicao().length() == 0)
 			throw new BadAttributeException("Instituição do particiante é nula! Por favor, forneça uma instituição válida.");
 		
 		validarInserir(p);
@@ -47,11 +47,11 @@ public abstract class ServiceParticipante<P extends Participante> implements ISe
 			throw new BadAttributeException("Parâmetro fornecido nulo");
 		if (p.getCodigo() == null)
 			throw new BadAttributeException("Identificação de participante nula!");
-		if (p.getNome() == null) 
+		if (p.getNome() == null || p.getNome().length() == 0) 
 			throw new BadAttributeException("Nome nulo!");
-		if (p.getEmail() == null)
+		if (p.getEmail() == null || p.getEmail().length() == 0)
 			throw new BadAttributeException("Email nulo");
-		if (p.getInstituicao() == null)
+		if (p.getInstituicao() == null || p.getInstituicao().length() == 0)
 			throw new BadAttributeException("Instituição nula");
 		
 		validarAtualizar(p);

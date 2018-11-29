@@ -28,7 +28,7 @@ public class ServiceArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, 
 	@Override
 	public void inserir(Arquivo<Proj, Prat> a) throws DatabaseException, BadAttributeException {
 
-		if (a.getNome() == null)
+		if (a.getNome() == null || a.getNome().length() == 0)
 			throw new BadAttributeException("Nome de arquivo não fornecido");
 		if (a.getProjeto() == null)
 			throw new BadAttributeException("Projeto de arquivo nulo!");
@@ -51,7 +51,7 @@ public class ServiceArquivo<Proj extends Projeto<?>, Prat extends Pratica<?, ?, 
 	public void atualizar(Arquivo<Proj,Prat> a) throws DatabaseException, BadAttributeException {
 		if (a.getTamanho() == null)
 			throw new BadAttributeException("Tamanho de arquivo desconhecido");
-		if (a.getNome() == null)
+		if (a.getNome() == null || a.getNome().length() == 0)
 			throw new BadAttributeException("Nome de arquivo não fornecido");
 		if (a.getProjeto() == null)
 			throw new BadAttributeException("Projeto de arquivo nulo!");

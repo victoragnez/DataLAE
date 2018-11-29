@@ -29,7 +29,7 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 		if (a == null)
 			throw new BadAttributeException("Falha ao tentar inserir Area! Argumento nulo!");
 		
-		if(a.getNome() == null)
+		if(a.getNome() == null || a.getNome().length() == 0)
 			throw new BadAttributeException("Falha ao tentar inserir Area! Nome nulo.");
 		
 		validate(ValidarInserir.class, a);
@@ -55,7 +55,7 @@ public abstract class ServiceArea<A extends Area> implements IServiceArea <A>{
 		if(a.getCodigo() == null)
 			throw new BadAttributeException("Falha ao tentar atualizar Area! Codigo nulo.");
 		
-		if(a.getNome() == null)
+		if(a.getNome() == null || a.getNome().length() == 0)
 			throw new BadAttributeException("Falha ao tentar atualizar Area! Nome nulo.");
 		
 		validate(ValidarAtualizar.class, a);
