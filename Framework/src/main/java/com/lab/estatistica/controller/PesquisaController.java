@@ -25,7 +25,7 @@ import framework.service.interfaces.IServiceProjeto;
 
 @Controller
 @RequestMapping("/pesquisas")
-public class ExperimentoController {
+public class PesquisaController {
 	
 	private static final String LIST_ERROR = "Falha ao tentar acessar banco de dados. Não foi possível listar as viagens.";
 	private static final String INSERT_SUCCESS = "Viagem inserida com sucesso!";
