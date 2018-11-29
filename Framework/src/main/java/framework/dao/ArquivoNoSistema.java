@@ -51,6 +51,7 @@ class ArquivoNoSistema<A extends Arquivo<?, ?> > implements EstrategiaArquivo<A>
 				+ "Arquivo.codigoArquivo=" + a.getCodigo() + ";";
 		try {
 			ResultSet resultSet = JDBC.runQuery(sql);
+			resultSet.next();
 			return Files.readAllBytes(new File(resultSet.getString("path")).toPath());
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
