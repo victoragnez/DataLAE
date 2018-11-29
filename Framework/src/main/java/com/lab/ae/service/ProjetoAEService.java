@@ -18,7 +18,7 @@ public class ProjetoAEService extends
 
 	@Override
 	protected void validarInserir(ProjetoAE p) throws BadAttributeException {
-		if (p.getFinanciador() != null || p.getFinanciador().length() == 0)
+		if (p.getFinanciador() == null || p.getFinanciador().length() == 0)
 			throw new BadAttributeException("Campo Financiador nulo!");
 		
 	}
