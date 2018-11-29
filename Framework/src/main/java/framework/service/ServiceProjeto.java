@@ -27,8 +27,12 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 			throw new BadAttributeException("Parâmetro fornecido nulo");
 		if(p.getDataInicio() == null)
 			throw new BadAttributeException("Data de início nula");
-		if(p.getNome() == null)
+		if(p.getNome() == null || p.getNome().length() == 0)
 			throw new BadAttributeException("Nome nulo");
+		if(p.getDataFim() != null)
+			if (p.getDataFim().before(p.getDataInicio()))
+				throw new BadAttributeException("A data de témino deve ser maior ou igual a data de início");
+		
 		
 		validarInserir(p);
 		dao.inserir(p);
@@ -55,6 +59,9 @@ public abstract class ServiceProjeto<P extends Projeto<Part>, Part extends Parti
 			throw new BadAttributeException("Data inicio nula!");
 		if(p.getNome() == null)
 			throw new BadAttributeException("Nome nulo!");
+		if(p.getDataFim() != null)
+			if (p.getDataFim().before(p.getDataInicio()))
+				throw new BadAttributeException("A data de témino deve ser maior ou igual a data de início");
 		
 		validarAtulizar(p);
 		dao.atualizar(p);
