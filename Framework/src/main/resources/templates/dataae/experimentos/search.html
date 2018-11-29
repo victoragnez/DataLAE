@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="dataae/layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DataAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Buscar Experimentos</h1>
+		<hr />
+		<form th:method="post" th:object="${filtro}">
+			<div class="form-group">
+				<label for="projeto">Projeto</label>
+				<select name="projeto" th:field="*{projeto}" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="projeto : ${projetos}"
+							th:value="${projeto.codigo}"
+							th:text="${projeto.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="local">Local</label>
+				<select name="local" th:field="*{area}" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="local : ${locais}"
+							th:value="${local.codigo}"
+							th:text="${local.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="dataInicio">Data entre início e término</label> 
+				<input id="dataInicio" name="dataInicio" type="date" class="form-control" th:field="*{dataInicio}" />
+			</div>
+			
+			<a th:href="@{/experimentos}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Buscar</button>
+		</form>
+		
+		<hr />
+		<h2>Resultados</h2>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Local</th>
+					<th>Projeto</th>
+					<th>Data de Início</th> 
+					<th>Data de Término</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="experimento : ${experimentos}">
+					<td th:text="${experimento.area} == null ? '-' : (${experimento.area.nome} == null ? '-' : ${experimento.area.nome})"></td>
+					<td th:text="${experimento.projeto} == null? '-' : (${experimento.projeto.nome} == null ? '-' : ${experimento.projeto.nome})"></td>
+					<td th:text="${experimento.dataInicio}"></td>
+					<td th:text="${experimento.dataTermino}"></td>
+					<td th:text="${experimento.status}"></td>
+					<td>
+						<a th:href="@{/experimentos/{id}/editar (id = ${experimento.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/experimentos/{id}/apagar (id = ${experimento.codigo})}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

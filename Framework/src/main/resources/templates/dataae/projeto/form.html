@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="dataae/layout">
+<head>
+	<meta charset="utf-8" />
+	<title>DataAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${projeto.codigo == null}">Novo Projeto</h1>
+		<h1 th:if="${projeto.codigo != null}">Editar Projeto</h1>
+		<hr />
+		
+		<form th:action="@{/projetos}" th:method="@{${projeto.codigo == null} ? 'post' : 'put'}" th:object="${projeto}">
+			<input type="hidden" th:field="*{codigo}" />
+			<div class="form-group">
+				<label for="nome">Nome</label> 
+				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="financiador">Financiador</label> 
+				<input id="financiador" name="financiador" type="text" class="form-control" th:field="*{financiador}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="dataInicio">Data de Início</label> 
+				<input id="dataInicio" name="dataInicio" type="date" class="form-control" th:field="*{dataInicio}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="dataFim">Data de Término</label> 
+				<input id="dataFim" name="dataFim" type="date" class="form-control" th:field="*{dataFim}" />
+			</div>
+			
+			<div class="form-group"  th:if="${projeto.codigo == null}">
+				<label for="participantes">Pesquisadores</label>
+				<select name="participantes" th:field="*{participantes}" class="form-control"
+					 multiple = "multiple" size = "8">
+					<option th:each="participante : ${participantes}"
+							th:value="${participante.codigo}"
+							th:text="${participante.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group" th:if="${projeto.codigo != null}">
+				<label for="participantes">Pesquisadores</label>
+				<select id="participantes" name="participantes" class="form-control"
+					 multiple = "multiple" size = "8">
+					<option th:each="participante : ${participantes}"
+							th:value="${participante.codigo}"
+							th:text="${participante.nome}"
+							th:selected="${comparador.compare(projeto.participantes, participante)}"></option>
+				</select>
+			</div>
+			
+			<a th:href="@{/projetos}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>

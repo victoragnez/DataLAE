@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="datalae/layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DataLAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Viagens</h1>
+		<hr />
+		<div class="container row">
+			<a th:href="@{/viagens/cadastrar}" class="btn btn-success" style="float:right; margin-left: 10px;">Nova Viagem</a>
+			<a th:href="@{/viagens/buscar}" class="btn btn-primary" style="float:right;" >Buscar Viagens</a>
+		</div>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Local</th>
+					<th>Projeto</th>
+					<th>Data de Início</th> 
+					<th>Data de Término</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="viagem : ${viagens}">
+					<td th:text="${viagem.area} == null ? '-' : (${viagem.area.nome} == null ? '-' : ${viagem.area.nome})"></td>
+					<td th:text="${viagem.projeto} == null? '-' : (${viagem.projeto.nome} == null ? '-' : ${viagem.projeto.nome})"></td>
+					<td th:text="${viagem.dataInicio}"></td>
+					<td th:text="${viagem.dataTermino}"></td>
+					<td>
+						<a th:href="@{/viagens/{id}/editar (id = ${viagem.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/viagens/{id}/apagar (id = ${viagem.codigo})}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
