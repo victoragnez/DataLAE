@@ -75,7 +75,15 @@ public abstract class ServiceAtividade<
 		if (prat == null) return listar();
 		
 		validate(ValidarConsultar.class, prat);
-		return dao.consultar(prat);
+		List<Prat> praticas = dao.consultar(prat);
+		for(Prat pratica : praticas) {
+			if(pratica.getProjeto() != null)
+				pratica.setProjeto(daoProjeto.consultar(pratica.getProjeto().getCodigo()));
+				
+			if(pratica.getArea() != null)
+				pratica.setArea(daoArea.consultar(pratica.getArea().getCodigo()));
+		}
+		return praticas;
 	}
 	
 	@Override

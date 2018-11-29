@@ -34,8 +34,8 @@
 					<td th:text="${pesquisa.dataInicio}"></td>
 					<td th:text="${pesquisa.dataTermino}"></td>
 					<td>
-						<a th:href="@{/pesquisas/{id}/editar (id = ${pesquisas.codigo})}" class="btn btn-primary">Editar</a>
-						<a th:href="@{/pesquisas/{id}/apagar (id = ${pesquisas.codigo})}" class="btn btn-danger">Apagar</a>
+						<a th:href="@{/pesquisas/{id}/editar (id = ${pesquisa.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/pesquisas/{id}/apagar (id = ${pesquisa.codigo})}" class="btn btn-danger">Apagar</a>
 					</td>
 				</tr>
 			</tbody>

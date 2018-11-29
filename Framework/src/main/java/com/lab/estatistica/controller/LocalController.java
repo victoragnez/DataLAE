@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.exception.NenhumEncontradoException;
-import com.lab.data.model.AreaGeologia;
 import com.lab.estatistica.model.AreaEstatistica;
 
 import framework.model.BadAttributeException;
@@ -117,7 +116,7 @@ public class LocalController {
 	}
 	
 	@GetMapping("/buscar")
-	public String filtros(@ModelAttribute("filtro") AreaGeologia filtro) {
+	public String filtros(@ModelAttribute("filtro") AreaEstatistica filtro) {
 		return "dataest/local/search"; 
 	}
 	
