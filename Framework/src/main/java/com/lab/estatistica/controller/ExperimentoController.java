@@ -24,7 +24,7 @@ import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceProjeto;
 
 @Controller
-@RequestMapping("/experimentos")
+@RequestMapping("/pesquisas")
 public class ExperimentoController {
 	
 	private static final String LIST_ERROR = "Falha ao tentar acessar banco de dados. Não foi possível listar as viagens.";
@@ -36,14 +36,14 @@ public class ExperimentoController {
 	private PraticaEstatistica buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
 		PraticaEstatistica v = new PraticaEstatistica();
 		v.setCodigo(id);
-		List<PraticaEstatistica> list = experimentoService.consultar(v);
+		List<PraticaEstatistica> list = pesquisaService.consultar(v);
 		if(list == null || list.size() != 1)
-			throw new NenhumEncontradoException("Viagem com codigo igual a '" + id + "' não existe!");
+			throw new NenhumEncontradoException("Pesquisa com codigo igual a '" + id + "' não existe!");
 		return list.get(0);
 	}
 	
 	@Autowired
-	private IServiceAtividade<AreaEstatistica, ProjetoEstatistica, PraticaEstatistica> experimentoService;
+	private IServiceAtividade<AreaEstatistica, ProjetoEstatistica, PraticaEstatistica> pesquisaService;
 	
 	@Autowired
 	private IServiceArea<AreaEstatistica> localService;
@@ -54,42 +54,42 @@ public class ExperimentoController {
 	@GetMapping
 	public String index(Model model) {
 		try {
-			List<PraticaEstatistica> experimentos = experimentoService.listar();
-			model.addAttribute("experimentos", experimentos);
+			List<PraticaEstatistica> pesquisas = pesquisaService.listar();
+			model.addAttribute("pesquisas", pesquisas);
 		} catch (DatabaseException e) {
 			model.addAttribute("erro", LIST_ERROR);
 		}
-		return "dataest/experimento/index";
+		return "dataest/pesquisa/index";
 	}
 	
 	@GetMapping("/cadastrar")
-	public String formViagemCad(Model model, @ModelAttribute("experimento") PraticaEstatistica experimento, RedirectAttributes redirectAttributes) {
+	public String formViagemCad(Model model, @ModelAttribute("pesquisa") PraticaEstatistica pesquisa, RedirectAttributes redirectAttributes) {
 		try {
 			List<ProjetoEstatistica> projetos = projetoService.listar();
 			model.addAttribute("projetos", projetos);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
-			return "redirect:/experimentos";
+			return "redirect:/pesquisas";
 		}
 		try {
 			List<AreaEstatistica> locais = localService.listar();
 			model.addAttribute("locais", locais);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
-			return "redirect:/experimentos";
+			return "redirect:/pesquisas";
 		}
-		return "dataest/experimento/form";
+		return "dataest/pesquisa/form";
 	}
 	
 	@PostMapping
-	public String create(@ModelAttribute("experimento") PraticaEstatistica viagem, RedirectAttributes redirectAtrributes) {
+	public String create(@ModelAttribute("pesquisa") PraticaEstatistica pesquisa, RedirectAttributes redirectAtrributes) {
 		try {
-			experimentoService.inserir(viagem);
+			pesquisaService.inserir(pesquisa);
 			redirectAtrributes.addFlashAttribute("sucesso", INSERT_SUCCESS);
 		} catch (DatabaseException e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
-		return "redirect:/experimentos";
+		return "redirect:/pesquisas";
 	}
 	
 	@GetMapping("/{id}/editar")
@@ -99,47 +99,47 @@ public class ExperimentoController {
 			model.addAttribute("projetos", projetos);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
-			return "redirect:/experimentos";
+			return "redirect:/pesquisas";
 		}
 		try {
 			List<AreaEstatistica> locais = localService.listar();
 			model.addAttribute("locais", locais);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
-			return "redirect:/experimentos";
+			return "redirect:/pesquisas";
 		}
 		try {
-			PraticaEstatistica exp = buscarViagemPorId(id);
-			model.addAttribute("experimento", exp);
-			return "dataest/experimento/form";
+			PraticaEstatistica pesq = buscarViagemPorId(id);
+			model.addAttribute("pesquisa", pesq);
+			return "dataest/pesquisa/form";
 		} catch (DatabaseException | NenhumEncontradoException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
-			return "redirect:/experimentos";
+			return "redirect:/pesquisas";
 		}
 	}
 	
 	@PutMapping
-	public String edit(PraticaEstatistica experimento, RedirectAttributes redirectAttributes) {
+	public String edit(PraticaEstatistica pesquisa, RedirectAttributes redirectAttributes) {
 		try {
-			experimentoService.atualizar(experimento);
+			pesquisaService.atualizar(pesquisa);
 			redirectAttributes.addFlashAttribute("sucesso", EDIT_SUCCESS);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
-		return "redirect:/experimentos";
+		return "redirect:/pesquisas";
 	}
 	
 	@GetMapping("/{id}/apagar")
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		try {
-			PraticaEstatistica exp = new PraticaEstatistica();
-			exp.setCodigo(id);
-			experimentoService.remover(exp);
+			PraticaEstatistica pesq = new PraticaEstatistica();
+			pesq.setCodigo(id);
+			pesquisaService.remover(pesq);
 			redirectAttributes.addFlashAttribute("sucesso", DELETE_SUCCESS);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
-		return "redirect:/experimentos";
+		return "redirect:/pesquisas";
 	}
 	
 	@GetMapping("/buscar")
@@ -149,29 +149,28 @@ public class ExperimentoController {
 			model.addAttribute("projetos", projetos);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
-			return "redirect:/experimentos";
+			return "redirect:/pesquisas";
 		}
 		try {
 			List<AreaEstatistica> locais = localService.listar();
 			model.addAttribute("locais", locais);
 		} catch (DatabaseException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
-			return "redirect:/experimentos";
+			return "redirect:/pesquisas";
 		}
-		return "dataest/experimento/search"; 
+		return "dataest/pesquisa/search"; 
 	}
 	
 	@PostMapping("/buscar")
 	public String filtros(@ModelAttribute("filtro") PraticaEstatistica filtro, RedirectAttributes redirectAttributes) {		
-		/*
-		if(filtro.getInicio().trim().isEmpty())
-			filtro.setInicio(null);
-		if(filtro.getFim().trim().isEmpty())
-			filtro.setFim(null);
+		redirectAttributes.addFlashAttribute("filtro", filtro);
+		try {
+			List<PraticaEstatistica> pesquisas = pesquisaService.consultar(filtro);
+			redirectAttributes.addFlashAttribute("pesquisas", pesquisas);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+		}
 		
-		List<Viagem> viagens = viagemService.buscar(filtro);
-		redirectAttributes.addFlashAttribute("viagens", viagens);
-		*/
-		return "redirect:/experimentos/buscar";
+		return "redirect:/pesquisas/buscar";
 	}
 }
