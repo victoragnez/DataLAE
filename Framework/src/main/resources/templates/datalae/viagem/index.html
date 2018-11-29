@@ -34,6 +34,7 @@
 					<td th:text="${viagem.dataInicio}"></td>
 					<td th:text="${viagem.dataTermino}"></td>
 					<td>
+						<a th:href="@{/viagens/{id}/detalhes (id = ${viagem.codigo})}" class="btn btn-success">Detalhes</a>
 						<a th:href="@{/viagens/{id}/editar (id = ${viagem.codigo})}" class="btn btn-primary">Editar</a>
 						<a th:href="@{/viagens/{id}/apagar (id = ${viagem.codigo})}" class="btn btn-danger">Apagar</a>
 					</td>

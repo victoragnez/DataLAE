@@ -214,8 +214,8 @@ public abstract class DAOAtividade<
 		if(prat.getArea() != null && prat.getArea().getCodigo() != null)
 			cond.add("codigoArea=" + prat.getArea().getCodigo());
 					
-		cond = compConsultar(cond, prat);
 		
+		cond = compConsultar(cond, prat);
 		if (!cond.isEmpty()) {
 			sql += "where ";
 			for(int i = 0; i < cond.size(); i++) {
