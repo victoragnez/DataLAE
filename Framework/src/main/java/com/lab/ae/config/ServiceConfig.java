@@ -30,7 +30,7 @@ public class ServiceConfig {
 	@Bean
 	public IServiceProjeto<ProjetoAE> projetoService() {
 		return new ProjetoAEService(
-				new ProjetoAEDAO(ProjetoAE.class, ParticipanteAE.class), new ParticipanteAEDAO(null));
+				new ProjetoAEDAO(ProjetoAE.class, ParticipanteAE.class), new ParticipanteAEDAO(ParticipanteAE.class));
 	}
 	
 	@Bean
@@ -59,7 +59,7 @@ public class ServiceConfig {
 	public IServiceArquivo<ProjetoAE, PraticaAE> arquivoService() {
 		return new ServiceArquivo<>(
 				new DAOArquivo<>(ProjetoAE.class, PraticaAE.class, false), 
-				new ProjetoAEDAO(null, null), 
+				new ProjetoAEDAO(ProjetoAE.class, ParticipanteAE.class), 
 				new PraticaAEDAO(AreaAE.class, ProjetoAE.class, PraticaAE.class));
 	}
 }
