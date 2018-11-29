@@ -25,17 +25,21 @@ public class ProjetoGeologiaService extends
 
 	@Override
 	protected void validarInserir(ProjetoGeologia p) throws BadAttributeException {
-		if(p.getContatoFinanciador() == null || p.getContatoFinanciador().length() == 0)
-			throw new BadAttributeException("Contato nulo");
-		if(p.getFinanciador() == null || p.getFinanciador().length() == 0)
+		if(p.getContatoFinanciador() == null)
+			throw new BadAttributeException("Contato de financiador nulo");
+		else if(p.getFinanciador().length() == 0)
+			throw new BadAttributeException("Contato de financiador incompleto");
+		if(p.getFinanciador() == null)
 			throw new BadAttributeException("Financiador nulo");
 	}
 
 	@Override
 	protected void validarAtulizar(ProjetoGeologia p) throws BadAttributeException {
-		if (p.getContatoFinanciador() == null || p.getContatoFinanciador().length() == 0)
-			throw new BadAttributeException("Contato de Financiador nulo!");
-		if (p.getFinanciador() == null || p.getFinanciador().length() == 0)
+		if(p.getContatoFinanciador() == null)
+			throw new BadAttributeException("Contato de financiador nulo");
+		else if(p.getFinanciador().length() == 0)
+			throw new BadAttributeException("Contato de financiador incompleto");
+		if (p.getFinanciador() == null)
 			throw new BadAttributeException("Financiador nulo!");
 	}
 
