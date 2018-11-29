@@ -51,7 +51,7 @@ public class MaquinaController {
 			return "redirect:/";
 		}
 		model.addAttribute("maquinas", maquinas);
-		return "dataae/maquinas/index";
+		return "dataae/maquina/index";
 	}
 	
 	@GetMapping("/cadastrar")
