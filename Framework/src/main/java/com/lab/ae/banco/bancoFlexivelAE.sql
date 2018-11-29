@@ -16,3 +16,5 @@ ALTER TABLE Participante ADD lattes varchar(255);
 -- Parte flexível de Pratica
 
 ALTER TABLE Pratica ADD status varchar(255) not null;
+
+ALTER TABLE DadosArquivo ADD path varchar(1023);
