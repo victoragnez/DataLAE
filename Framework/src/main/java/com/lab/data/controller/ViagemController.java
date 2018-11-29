@@ -168,7 +168,7 @@ public class ViagemController {
 		try {
 			List<PraticaGeologia> viagens = viagemService.consultar(filtro);
 			redirectAttributes.addFlashAttribute("viagens", viagens);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/viagens/buscar";

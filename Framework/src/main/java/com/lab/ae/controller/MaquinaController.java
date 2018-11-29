@@ -16,7 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lab.ae.model.AreaAE;
 import com.lab.data.exception.NenhumEncontradoException;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceArea;
 
 @Controller
@@ -31,7 +32,7 @@ public class MaquinaController {
 	@Autowired
 	private IServiceArea<AreaAE> service;
 	
-	private AreaAE buscarAreaPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private AreaAE buscarAreaPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		AreaAE maquina = new AreaAE();
 		maquina.setCodigo(id);
 		List<AreaAE> list = service.consultar(maquina);
@@ -80,7 +81,7 @@ public class MaquinaController {
 			AreaAE m = buscarAreaPorId(id);
 			model.addAttribute("maquina", m);
 			return "dataae/maquina/form";
-		} catch (DatabaseException | NenhumEncontradoException e) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/maquinas";
 		}
@@ -92,7 +93,7 @@ public class MaquinaController {
 			service.atualizar(maquina);
 			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_EDIT);
 			return "redirect:/maquinas";
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			if(maquina == null)
 				return "redirect:/maquinas"; 
@@ -108,7 +109,7 @@ public class MaquinaController {
 		try {
 			service.remover(maquina);
 			redirectAttributes.addFlashAttribute("sucesso", SUCCESS_DELETE);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/maquinas";
@@ -127,7 +128,7 @@ public class MaquinaController {
 		try {
 			List<AreaAE> maquinas = service.consultar(filtro);
 			redirectAttributes.addFlashAttribute("maquinas", maquinas);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/maquinas/buscar";

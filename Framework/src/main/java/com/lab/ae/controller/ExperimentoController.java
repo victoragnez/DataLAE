@@ -18,7 +18,8 @@ import com.lab.ae.model.PraticaAE;
 import com.lab.ae.model.ProjetoAE;
 import com.lab.data.exception.NenhumEncontradoException;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceArea;
 import framework.service.interfaces.IServiceAtividade;
 import framework.service.interfaces.IServiceProjeto;
@@ -33,7 +34,7 @@ public class ExperimentoController {
 	private static final String DELETE_SUCCESS = "Viagem deletada com sucesso!";
 	
 	
-	private PraticaAE buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private PraticaAE buscarViagemPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		PraticaAE v = new PraticaAE();
 		v.setCodigo(id);
 		List<PraticaAE> list = experimentoService.consultar(v);
@@ -74,7 +75,7 @@ public class ExperimentoController {
 		try {
 			List<AreaAE> locais = localService.listar();
 			model.addAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/experimentos";
 		}
@@ -86,7 +87,7 @@ public class ExperimentoController {
 		try {
 			experimentoService.inserir(experimento);
 			redirectAtrributes.addFlashAttribute("sucesso", INSERT_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/experimentos";
@@ -104,7 +105,7 @@ public class ExperimentoController {
 		try {
 			List<AreaAE> locais = localService.listar();
 			model.addAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/experimentos";
 		}
@@ -112,7 +113,7 @@ public class ExperimentoController {
 			PraticaAE experimento = buscarViagemPorId(id);
 			model.addAttribute("experimento", experimento);
 			return "dataae/experimento/form";
-		} catch (DatabaseException | NenhumEncontradoException e) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/experimentos";
 		}
@@ -123,7 +124,7 @@ public class ExperimentoController {
 		try {
 			experimentoService.atualizar(experimento);
 			redirectAttributes.addFlashAttribute("sucesso", EDIT_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/experimentos";
@@ -136,7 +137,7 @@ public class ExperimentoController {
 			experimento.setCodigo(id);
 			experimentoService.remover(experimento);
 			redirectAttributes.addFlashAttribute("sucesso", DELETE_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/experimentos";
@@ -154,7 +155,7 @@ public class ExperimentoController {
 		try {
 			List<AreaAE> locais = localService.listar();
 			model.addAttribute("locais", locais);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/experimentos";
 		}
@@ -167,7 +168,7 @@ public class ExperimentoController {
 		try {
 			List<PraticaAE> experimentos = experimentoService.consultar(filtro);
 			redirectAttributes.addFlashAttribute("experimentos", experimentos);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/viagens/buscar";

@@ -16,7 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lab.ae.model.ParticipanteAE;
 import com.lab.data.exception.NenhumEncontradoException;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceParticipante;
 
 @Controller
@@ -29,7 +30,7 @@ public class PesquisadorController {
 	private static final String INSERT_SUCCESS = "Pesquisador inserido com sucesso!";
 	private static final String EDIT_SUCCESS = "Pesquisador editado com sucesso!";
 	
-	private ParticipanteAE buscarParticipantePorId(Integer id) throws DatabaseException, NenhumEncontradoException {
+	private ParticipanteAE buscarParticipantePorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		ParticipanteAE p = new ParticipanteAE();
 		p.setCodigo(id);
 		List<ParticipanteAE> list = service.consultar(p);
@@ -71,7 +72,7 @@ public class PesquisadorController {
 			ParticipanteAE p = buscarParticipantePorId(id);
 			model.addAttribute("pesquisador", p);
 			return "dataae/pesquisador/form";
-		} catch (DatabaseException | NenhumEncontradoException e) {
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/pesquisadores";
 		}
@@ -82,7 +83,7 @@ public class PesquisadorController {
 		try {
 			service.atualizar(pesquisador);
 			redirectAttributes.addFlashAttribute("sucesso", EDIT_SUCCESS);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/pesquisadores";
@@ -95,7 +96,7 @@ public class PesquisadorController {
 			p.setCodigo(id);
 			service.remover(p);
 			redirectAttributes.addFlashAttribute("sucesso", "Pesquisador deletado com sucesso!");
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/pesquisadores";

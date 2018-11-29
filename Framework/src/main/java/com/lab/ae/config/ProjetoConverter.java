@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.lab.ae.model.ProjetoAE;
 
-import framework.dao.interfaces.DatabaseException;
+import framework.model.BadAttributeException;
+import framework.model.DatabaseException;
 import framework.model.Projeto;
 import framework.service.interfaces.IServiceProjeto;
 
@@ -30,6 +31,8 @@ public class ProjetoConverter implements Converter<String, Projeto<?>>{
 		catch(NumberFormatException e) {
 			return null;
 		} catch (DatabaseException e) {
+			return null;
+		} catch (BadAttributeException e) {
 			return null;
 		}
 	}
