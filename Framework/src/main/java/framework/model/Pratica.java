@@ -2,7 +2,6 @@ package framework.model;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.ArrayList;
 
 public abstract class Pratica<
 		A extends Area, 
@@ -84,7 +83,7 @@ public abstract class Pratica<
 		return participantes;
 	}
 
-	public void setParticipantes(ArrayList<Part> participantes) {
+	public void setParticipantes(List<Part> participantes) {
 		this.participantes = participantes;
 	}
 }

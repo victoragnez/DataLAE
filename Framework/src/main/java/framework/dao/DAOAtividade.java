@@ -16,8 +16,8 @@ import framework.model.Projeto;
 
 public abstract class DAOAtividade<
 		A extends Area, 
-		Proj extends Projeto<?>,
-		Prat extends Pratica<A,?,Proj>,
+		Proj extends Projeto<Part>,
+		Prat extends Pratica<A,Part,Proj>,
 		Part extends Participante> 
 			implements IDAOAtividade<A, Proj, Prat, Part>
 	{
@@ -172,14 +172,15 @@ public abstract class DAOAtividade<
 								sql += ", ";
 						}
 						sql += ";";
+						System.out.println(sql);
 						commands.add(sql);
 					}
 					
 					if(commands.size() > 0) {
 						JDBC.runMultipleInserts(commands);
 					}
-				}
-			}
+				}else System.out.println("A lista de participante veio vazia");
+			} 
 		catch(SQLException e) {
 			try {
 				JDBC.runRemove("delete from ParticipantePratica where codigoPratica=" +
@@ -315,7 +316,8 @@ public abstract class DAOAtividade<
 				 * Aqui é necessário verificar a tabela ParticipanteProjeto
 				 * do banco.
 				 */
-				String sqlPart = "select * from ParticipantePratica where codigoProjeto=" + codigo + ";";
+				String sqlPart = "select * from ParticipantePratica where codigoPratica=" + codigo + ";";
+				System.out.println(sqlPart);
 				ArrayList<Integer> codParticipantes = new ArrayList<Integer>();
 				try {
 					ResultSet partProj = JDBC.runQuery(sqlPart);
@@ -366,3 +368,4 @@ public abstract class DAOAtividade<
 	protected abstract ArrayList<String> compConsultar(ArrayList<String> sql, Prat a);
 	protected abstract void getProjectWithFlexibleAttributes(ResultSet resultSet, Prat p) throws SQLException;
 }
+	

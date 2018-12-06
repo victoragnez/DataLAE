@@ -24,8 +24,8 @@ import framework.service.interfaces.IServiceAtividade;
 
 public abstract class ServiceAtividade<
 		A extends Area,
-		Proj extends Projeto<?>,
-		Prat extends Pratica<A, ?, Proj>,
+		Proj extends Projeto<Part>,
+		Prat extends Pratica<A, Part, Proj>,
 		Part extends Participante> 
 			implements IServiceAtividade<A, Proj, Prat, Part> 
 {
@@ -92,6 +92,13 @@ public abstract class ServiceAtividade<
 				
 			if(pratica.getArea() != null)
 				pratica.setArea(daoArea.consultar(pratica.getArea().getCodigo()));
+		
+			if (pratica.getParticipantes() != null) {
+				ArrayList<Part> nv = new ArrayList<Part>();
+				for (Part part : pratica.getParticipantes())
+					nv.add(daoPart.consultar(part.getCodigo()));
+				pratica.setParticipantes(nv);
+			}
 		}
 		return praticas;
 	}
