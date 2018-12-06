@@ -5,16 +5,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.lab.data.model.AreaGeologia;
+import com.lab.data.model.ParticipanteGeologia;
 import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
 import framework.dao.DAOAtividade;
 
-public class AtividadeGeologiaDAO extends DAOAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> {
+public class AtividadeGeologiaDAO extends DAOAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia, ParticipanteGeologia> {
 
 	public AtividadeGeologiaDAO(Class<AreaGeologia> areaClass, Class<ProjetoGeologia> projClass,
-			Class<PraticaGeologia> pratClass) {
-		super(areaClass, projClass, pratClass);
+			Class<PraticaGeologia> pratClass, Class<ParticipanteGeologia> partClass) {
+		super(areaClass, projClass, pratClass, partClass);
 	}
 
 	@Override

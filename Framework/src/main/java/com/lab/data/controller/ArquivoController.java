@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.AreaGeologia;
+import com.lab.data.model.ParticipanteGeologia;
 import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
@@ -47,7 +48,7 @@ public class ArquivoController {
 	private IServiceProjeto<ProjetoGeologia> projetoService;
 	
 	@Autowired
-	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> praticaService;
+	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia, ParticipanteGeologia> praticaService;
 	
 	private Arquivo<ProjetoGeologia, PraticaGeologia> buscarArquivoPorId(Integer id) throws DatabaseException, NenhumEncontradoException, BadAttributeException {
 		Arquivo<ProjetoGeologia, PraticaGeologia> a = new Arquivo<>();
