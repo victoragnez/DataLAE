@@ -98,3 +98,15 @@ create table ParticipantePratica (
 create view DadosProjetoParticipante as (select Projeto.codigoProjeto, Projeto.nome as nomeProjeto, Projeto.dataInicio, Projeto.dataTermino, Participante.* from Projeto left join ParticipanteProjeto on Projeto.codigoProjeto = ParticipanteProjeto.codigoProjeto inner join Participante on ParticipanteProjeto.codigoParticipante = Participante.codigoParticipante);
 
 create view DadosPraticaParticipante as (select Pratica.codigoPratica, Pratica.dataInicio, Pratica.dataTermino, Participante.* from Pratica left join ParticipantePratica on Pratica.codigoPratica = ParticipantePratica.codigoPratica inner join Participante on ParticipantePratica.codigoParticipante = Participante.codigoParticipante);
+
+delimiter $
+
+create trigger Tgr_Remove_DadosArquivo after delete
+on Arquivo
+for each row
+begin
+	delete from DadosArquivo
+		where codigoDados = old.codigoDados;
+end$
+
+delimiter ;
