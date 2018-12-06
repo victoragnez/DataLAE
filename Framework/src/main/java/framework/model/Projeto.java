@@ -73,7 +73,7 @@ public abstract class Projeto<Part extends Participante> {
 		return participantes;
 	}
 
-	public void setParticipantes(ArrayList<Part> participantes) {
+	public void setParticipantes(List<Part> participantes) {
 		this.participantes = participantes;
 	}
 }
