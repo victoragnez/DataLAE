@@ -9,6 +9,7 @@ import java.util.List;
 
 import framework.dao.interfaces.IDAOArea;
 import framework.dao.interfaces.IDAOAtividade;
+import framework.dao.interfaces.IDAOParticipante;
 import framework.dao.interfaces.IDAOProjeto;
 import framework.model.Pratica;
 import framework.model.Projeto;
@@ -18,26 +19,31 @@ import framework.model.DatabaseException;
 import framework.model.MarcadoresService.ValidarAtualizar;
 import framework.model.MarcadoresService.ValidarConsultar;
 import framework.model.MarcadoresService.ValidarInserir;
+import framework.model.Participante;
 import framework.service.interfaces.IServiceAtividade;
 
 public abstract class ServiceAtividade<
 		A extends Area,
-		Proj extends Projeto<?>,
-		Prat extends Pratica<A, ?, Proj>> 
-			implements IServiceAtividade<A, Proj, Prat> 
+		Proj extends Projeto<Part>,
+		Prat extends Pratica<A, Part, Proj>,
+		Part extends Participante> 
+			implements IServiceAtividade<A, Proj, Prat, Part> 
 {
-	private final IDAOAtividade<A, Proj, Prat> dao;
+	private final IDAOAtividade<A, Proj, Prat, Part> dao;
 	private final IDAOProjeto<Proj, ?> daoProjeto;
 	private final IDAOArea<A> daoArea;
+	private final IDAOParticipante<Part> daoPart;
 	
 	public ServiceAtividade(
 			IDAOArea<A> daoArea,
 			IDAOProjeto<Proj, ?> daoProjeto,
-			IDAOAtividade<A, Proj, Prat> dao)
+			IDAOAtividade<A, Proj, Prat, Part> dao,
+			IDAOParticipante<Part> daoPart)
 	{
 		this.dao = dao;
 		this.daoProjeto = daoProjeto;
 		this.daoArea = daoArea;
+		this.daoPart = daoPart;
 	}
 	
 	@Override
@@ -86,6 +92,13 @@ public abstract class ServiceAtividade<
 				
 			if(pratica.getArea() != null)
 				pratica.setArea(daoArea.consultar(pratica.getArea().getCodigo()));
+		
+			if (pratica.getParticipantes() != null) {
+				ArrayList<Part> nv = new ArrayList<Part>();
+				for (Part part : pratica.getParticipantes())
+					nv.add(daoPart.consultar(part.getCodigo()));
+				pratica.setParticipantes(nv);
+			}
 		}
 		return praticas;
 	}
@@ -100,6 +113,13 @@ public abstract class ServiceAtividade<
 				
 			if(pratica.getArea() != null)
 				pratica.setArea(daoArea.consultar(pratica.getArea().getCodigo()));
+			
+			if (pratica.getParticipantes() != null) {
+				ArrayList<Part> nv = new ArrayList<Part>();
+				for (Part part : pratica.getParticipantes())
+					nv.add(daoPart.consultar(part.getCodigo()));
+				pratica.setParticipantes(nv);
+			}
 		}
 		
 		return praticas;

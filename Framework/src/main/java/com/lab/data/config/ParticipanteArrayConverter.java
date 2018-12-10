@@ -5,14 +5,16 @@ import org.springframework.stereotype.Component;
 import com.lab.data.model.ParticipanteGeologia;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.core.convert.converter.Converter;
 
 @Component
 public class ParticipanteArrayConverter 
-implements Converter<String[], ArrayList<ParticipanteGeologia>>
+implements Converter<String[], List<ParticipanteGeologia>>
 {
 	@Override
-	public ArrayList<ParticipanteGeologia> convert(String[] source) {
+	public List<ParticipanteGeologia> convert(String[] source) {
 		ArrayList<ParticipanteGeologia> participantes = new ArrayList<ParticipanteGeologia>();
 		for (int i=0; i < source.length; i++)
 		{

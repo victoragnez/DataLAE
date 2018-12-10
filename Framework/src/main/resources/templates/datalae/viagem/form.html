@@ -45,6 +45,27 @@
 				<input id="dataTermino" name="dataTermino" type="date" class="form-control" th:field="*{dataTermino}" />
 			</div>
 			
+			<div class="form-group"  th:if="${viagem.codigo == null}">
+				<label for="participantes">Pesquisadores</label>
+				<select name="participantes" th:field="*{participantes}" class="form-control"
+					 multiple = "multiple" size = "8">
+					<option th:each="participante : ${participantes}"
+							th:value="${participante.codigo}"
+							th:text="${participante.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group" th:if="${viagem.codigo != null}">
+				<label for="participantes">Pesquisadores</label>
+				<select id="participantes" name="participantes" class="form-control"
+					 multiple = "multiple" size = "8">
+					<option th:each="participante : ${participantes}"
+							th:value="${participante.codigo}"
+							th:text="${participante.nome}"
+							th:selected="${comparador.compare(viagem.participantes, participante)}"></option>
+				</select>
+			</div>
+			
 			<a th:href="@{/viagens}" class="btn btn-default">Voltar</a>
 			<button type="submit" class="btn btn-success">Salvar</button>
 		</form>

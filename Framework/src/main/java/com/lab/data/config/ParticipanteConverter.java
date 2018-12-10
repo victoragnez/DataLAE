@@ -2,14 +2,16 @@ package com.lab.data.config;
 
 import com.lab.data.model.ParticipanteGeologia;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ParticipanteConverter implements Converter<String, ArrayList<ParticipanteGeologia>>{
+public class ParticipanteConverter implements Converter<String, List<ParticipanteGeologia>>{
 
 	@Override
-	public ArrayList<ParticipanteGeologia> convert(String source) {
+	public List<ParticipanteGeologia> convert(String source) {
 		ArrayList<ParticipanteGeologia> participantes = new ArrayList<ParticipanteGeologia>();
 		ParticipanteGeologia p = new ParticipanteGeologia();
 		try {

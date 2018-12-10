@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lab.data.exception.NenhumEncontradoException;
 import com.lab.data.model.AreaGeologia;
+import com.lab.data.model.ParticipanteGeologia;
 import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
@@ -22,6 +23,7 @@ import framework.model.BadAttributeException;
 import framework.model.DatabaseException;
 import framework.service.interfaces.IServiceArea;
 import framework.service.interfaces.IServiceAtividade;
+import framework.service.interfaces.IServiceParticipante;
 import framework.service.interfaces.IServiceProjeto;
 
 @Controller
@@ -44,13 +46,31 @@ public class ViagemController {
 	}
 	
 	@Autowired
-	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> viagemService;
+	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia, ParticipanteGeologia> viagemService;
 	
 	@Autowired
 	private IServiceArea<AreaGeologia> localService;
 	
 	@Autowired
 	private IServiceProjeto<ProjetoGeologia> projetoService;
+	
+	@Autowired
+	private IServiceParticipante<ParticipanteGeologia> serviceParticipante;
+	
+	private class Comparador {
+		@SuppressWarnings("unused") // usado pelo thymeleaf
+		public boolean compare(List<ParticipanteGeologia> p1, ParticipanteGeologia p2) {
+			if(p1 != null) {			
+				for(ParticipanteGeologia p : p1) {
+					if(p2 == null)
+						System.out.println("> Erro");
+					if(p.getCodigo().equals(p2.getCodigo()))
+						return true;
+				}
+			}
+			return false;
+		}
+	}
 	
 	@GetMapping
 	public String index(Model model) {
@@ -78,6 +98,13 @@ public class ViagemController {
 		} catch (DatabaseException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/viagens";
+		}		
+		try {
+			List<ParticipanteGeologia> participantes = serviceParticipante.listar();
+			model.addAttribute("participantes", participantes);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar pesquisadores");
+			return "redirect:/viagens";
 		}
 		return "datalae/viagem/form";
 	}
@@ -96,6 +123,13 @@ public class ViagemController {
 	@GetMapping("/{id}/editar")
 	public String formProjetoEdit(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 		try {
+			List<ParticipanteGeologia> participantes = serviceParticipante.listar();
+			model.addAttribute("participantes", participantes);
+		} catch (DatabaseException e) {
+			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar pesquisadores");
+			return "redirect:/viagens";
+		}		
+		try {
 			List<ProjetoGeologia> projetos = projetoService.listar();
 			model.addAttribute("projetos", projetos);
 		} catch (DatabaseException e) {
@@ -112,6 +146,7 @@ public class ViagemController {
 		try {
 			PraticaGeologia v = buscarViagemPorId(id);
 			model.addAttribute("viagem", v);
+			model.addAttribute("comparador", new Comparador());
 			return "datalae/viagem/form";
 		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
@@ -172,5 +207,19 @@ public class ViagemController {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 		}
 		return "redirect:/viagens/buscar";
+	}
+	
+	@GetMapping("/{id}/detalhes")
+	public String detalhes(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+		
+		try {
+			PraticaGeologia p = buscarViagemPorId(id);
+			model.addAttribute("viagem", p);
+		} catch (DatabaseException | NenhumEncontradoException | BadAttributeException e1) {
+			redirectAttributes.addFlashAttribute("erro", "Não foi possível encontrar viagem com id = " + id);
+			return "redirect:/viagens";
+		}
+		
+		return "datalae/viagem/details";
 	}
 }

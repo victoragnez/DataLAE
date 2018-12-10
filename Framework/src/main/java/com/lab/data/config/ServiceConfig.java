@@ -44,14 +44,16 @@ public class ServiceConfig {
 	}
 	
 	@Bean
-	public IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> viagemService() {
+	public IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia, ParticipanteGeologia> viagemService() {
 		return new AtividadeGeologiaService(
 				new AreaGeologiaDAO(), 
 				new ProjetoGeologiaDAO(),
 				new AtividadeGeologiaDAO(
 						AreaGeologia.class,
 						ProjetoGeologia.class,
-						PraticaGeologia.class));
+						PraticaGeologia.class,
+						ParticipanteGeologia.class),
+				new ParticipanteGeologiaDAO());
 	}
 	
 	@Bean
@@ -59,6 +61,7 @@ public class ServiceConfig {
 		return new ServiceArquivo<>(
 				new DAOArquivo<>(ProjetoGeologia.class, PraticaGeologia.class, true), 
 				new ProjetoGeologiaDAO(), 
-				new AtividadeGeologiaDAO(AreaGeologia.class, ProjetoGeologia.class, PraticaGeologia.class));
+				new AtividadeGeologiaDAO(AreaGeologia.class, ProjetoGeologia.class, 
+						PraticaGeologia.class, ParticipanteGeologia.class));
 	}
 }

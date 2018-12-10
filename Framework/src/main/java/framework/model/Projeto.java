@@ -2,6 +2,7 @@ package framework.model;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Projeto<Part extends Participante> {
 	
@@ -11,7 +12,7 @@ public abstract class Projeto<Part extends Participante> {
 	private String nome;
 	private Date dataInicio;
 	private Date dataFim;
-	private ArrayList<Part> participantes;
+	private List<Part> participantes;
 	
 	/* Contrutores */
 	public Projeto() {
@@ -68,11 +69,11 @@ public abstract class Projeto<Part extends Participante> {
 		this.dataFim = dataFim;
 	}
 
-	public ArrayList<Part> getParticipantes() {
+	public List<Part> getParticipantes() {
 		return participantes;
 	}
 
-	public void setParticipantes(ArrayList<Part> participantes) {
+	public void setParticipantes(List<Part> participantes) {
 		this.participantes = participantes;
 	}
 }

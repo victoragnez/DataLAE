@@ -7,6 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.lab.data.model.AreaGeologia;
+import com.lab.data.model.ParticipanteGeologia;
 import com.lab.data.model.PraticaGeologia;
 import com.lab.data.model.ProjetoGeologia;
 
@@ -19,7 +20,7 @@ import framework.service.interfaces.IServiceAtividade;
 public class PraticaConverter implements Converter<String, Pratica<?, ?, ?>> {
 
 	@Autowired
-	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia> service;
+	private IServiceAtividade<AreaGeologia, ProjetoGeologia, PraticaGeologia, ParticipanteGeologia> service;
 	
 	@Override
 	public Pratica<?, ?, ?> convert(String source) {

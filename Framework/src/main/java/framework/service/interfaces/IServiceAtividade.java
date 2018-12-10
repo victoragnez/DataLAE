@@ -7,11 +7,13 @@ import framework.model.BadAttributeException;
 import framework.model.DatabaseException;
 import framework.model.Pratica;
 import framework.model.Projeto;
+import framework.model.Participante;
 
 public interface IServiceAtividade<
 		A extends Area,
 		Proj extends Projeto<?>,
-		Prat extends Pratica<A, ?, Proj>> 
+		Prat extends Pratica<A, ?, Proj>,
+		Part extends Participante> 
 {
 
 	public void inserir(Prat a) throws DatabaseException, BadAttributeException;
