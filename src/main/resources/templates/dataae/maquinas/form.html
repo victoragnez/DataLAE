@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="dataae/layout">
+<head>
+	<meta charset="utf-8" />
+	<title>DataAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${maquina.codigo == null}">Nova Máquina</h1>
+		<h1 th:if="${maquina.codigo != null}">Editar Máquina</h1>
+		<hr />
+		
+		<form th:action="@{/maquinas}" th:method="@{${maquina.codigo == null} ? 'post' : 'put'}" th:object="${maquina}">
+			<input type="hidden" th:field="*{codigo}" />
+			<div class="form-group">
+				<label for="nome">Nome</label> 
+				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="ip">Endereço IP</label> 
+				<input id="ip" name="ip" type="text" class="form-control" th:field="*{ip}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="modelo">Modelo</label> 
+				<input id="modelo" name="modelo" type="text" class="form-control" th:field="*{modelo}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="estaMontada">Está Montada</label> 
+				<input id="estaMontada" name="estaMontada" type="text" class="form-control" th:field="*{estaMontada}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="observacao">Observação</label>
+				<input id="observacao" name="observacao" type="text" class="form-control" th:field="*{observacao}" />
+			</div>
+			
+			<a th:href="@{/maquinas}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Salvar</button>
+		</form>
+	</div>
+</body>

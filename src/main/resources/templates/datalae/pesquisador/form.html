@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="datalae/layout">
+<head>
+	<meta charset="utf-8" />
+	<title>DataLAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${pesquisador.codigo == null}">Novo Pesquisador</h1>
+		<h1 th:if="${pesquisador.codigo != null}">Editar Pesquisador</h1>
+		<hr />
+		
+		<form th:action="@{/pesquisadores}" th:method="@{${pesquisador.codigo == null} ? 'post' : 'put'}" th:object="${pesquisador}">
+			<input type="hidden" th:field="*{codigo}" />
+			<div class="form-group">
+				<label for="nome">Nome</label> 
+				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="email">E-mail</label> 
+				<input id="email" name="email" type="text" class="form-control" th:field="*{email}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="instituicao">Instituição</label> 
+				<input id="instituicao" name="instituicao" type="text" class="form-control" th:field="*{instituicao}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="cpf">CPF</label> 
+				<input id="cpf" name="cpf" type="text" class="form-control" th:field="*{cpf}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="categoria">Formação</label>
+				<select name="categoria" th:field="*{categoria}" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="c : ${categorias}"
+							th:value="${c}"
+							th:text="${c}"></option>
+				</select>
+			</div>
+			
+			<a th:href="@{/pesquisadores}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>

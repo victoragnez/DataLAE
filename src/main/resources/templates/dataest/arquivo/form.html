@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="dataest/layout">
+<head>
+	<meta charset="utf-8" />
+	<title>DataEST</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${arquivo.codigo == null}">Novo Arquivo</h1>
+		<h1 th:if="${arquivo.codigo != null}">Editar Arquivo</h1>
+		<hr />
+		
+		<form th:action="@{/arquivos}" th:method="@{${arquivo.codigo == null} ? 'post' : 'put'}" th:object="${arquivo}" enctype="multipart/form-data">
+			<input type="hidden" th:field="*{codigo}" />
+			<input type="hidden" th:field="*{tamanho}" />
+			
+			<div class="form-group">
+				<label for="projeto">Projeto</label>
+				<select name="projeto" id="projeto" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="projeto : ${projetos}"
+							th:value="${projeto.codigo}"
+							th:text="${projeto.nome}"
+							th:selected="${arquivo.projeto != null && projeto.codigo.equals(arquivo.projeto.codigo)}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="pratica">Pesquisa</label>
+				<select name="pratica" id="pratica" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="pratica : ${praticas}"
+							th:value="${pratica.codigo}"
+							th:text="${pratica.area.nome} + ' (' + ${pratica.dataInicio} + ' / ' + ${pratica.dataTermino} + ')'"
+							th:selected="${arquivo.pratica != null && pratica.codigo.equals(arquivo.pratica.codigo)}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="nome">Nome</label> 
+				<input id="nome" name="nome" type="text" class="form-control" th:field="*{nome}" />
+			</div>
+			
+			<div class="form-group" th:if="${arquivo.codigo == null}">
+				<label for="file">Arquivo</label>
+				<input id="file" name="file" type="file" class="form-control" />
+			</div>
+			
+			<a th:href="@{/arquivos}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>

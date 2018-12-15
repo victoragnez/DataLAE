@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="datalae/layout">
+<head>
+	<meta charset="utf-8" />
+	<title>DataLAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:if="${viagem.codigo == null}">Nova Viagem</h1>
+		<h1 th:if="${viagem.codigo != null}">Editar Viagem</h1>
+		<hr />
+		
+		<form th:action="@{/viagens}" th:method="@{${viagem.codigo == null} ? 'post' : 'put'}" th:object="${viagem}">
+			<input type="hidden" th:field="*{codigo}" />
+			
+			<div class="form-group">
+				<label for="projeto">Projeto</label>
+				<select name="projeto" th:field="*{projeto}" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="projeto : ${projetos}"
+							th:value="${projeto.codigo}"
+							th:text="${projeto.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="local">Local</label>
+				<select name="local" th:field="*{area}" class="form-control">
+					<option value="">-- Selecione --</option>
+					<option th:each="local : ${locais}"
+							th:value="${local.codigo}"
+							th:text="${local.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="dataInicio">Data de Início</label> 
+				<input id="dataInicio" name="dataInicio" type="date" class="form-control" th:field="*{dataInicio}" />
+			</div>
+			
+			<div class="form-group">
+				<label for="dataTermino">Data de Término</label> 
+				<input id="dataTermino" name="dataTermino" type="date" class="form-control" th:field="*{dataTermino}" />
+			</div>
+			
+			<div class="form-group"  th:if="${viagem.codigo == null}">
+				<label for="participantes">Pesquisadores</label>
+				<select name="participantes" th:field="*{participantes}" class="form-control"
+					 multiple = "multiple" size = "8">
+					<option th:each="participante : ${participantes}"
+							th:value="${participante.codigo}"
+							th:text="${participante.nome}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group" th:if="${viagem.codigo != null}">
+				<label for="participantes">Pesquisadores</label>
+				<select id="participantes" name="participantes" class="form-control"
+					 multiple = "multiple" size = "8">
+					<option th:each="participante : ${participantes}"
+							th:value="${participante.codigo}"
+							th:text="${participante.nome}"
+							th:selected="${comparador.compare(viagem.participantes, participante)}"></option>
+				</select>
+			</div>
+			
+			<a th:href="@{/viagens}" class="btn btn-default">Voltar</a>
+			<button type="submit" class="btn btn-success">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="datalae/layout">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<title>DataLAE</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<h1>Detalhes da Viagem</h1>
+			<hr />
+			<div class="form-group" style="float: right;">
+				<a th:href="@{/viagens}" class="btn btn-default" >Voltar</a> 
+				<a th:href="@{/viagens/{id}/editar(id = ${viagem.codigo})}" class="btn btn-primary">Editar</a>
+				<a th:href="${'/viagens/'+ viagem.codigo +'/apagar'}" class="btn btn-danger">Apagar</a>
+			</div>
+			<div class="form-group"> 
+				<label for="local">Local: </label>  
+				<span th:text="${viagem.area} == null ? '-' : (${viagem.area.nome} == null ? '-' : ${viagem.area.nome})"></span> 
+			</div> 
+			<div class="form-group"> 
+				<label for="projeto">Projeto: </label>  
+				<span th:text="${viagem.projeto} == null? '-' : (${viagem.projeto.nome} == null ? '-' : ${viagem.projeto.nome})"></span> 
+			</div>
+						
+			<div class="form-group"> 
+				<label for="dataInicio">Data de Início: </label>  
+				<span th:text="${viagem.dataInicio}"></span> 
+			</div>
+			
+			<div class="form-group"> 
+				<label for="dataFim">Data de Término: </label>  
+				<span th:text="${viagem.dataTermino}"></span> 
+			</div>
+			
+			<div class="form-group"> 
+				<label for="participantes">Pesquisadores que fazem parte da viagem: </label>  
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Nome</th> 
+							<th>E-mail</th> 
+							<th>Instituição</th>
+							<th>CPF</th>
+							<th>Formação</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pesquisador : ${viagem.participantes}">
+							<td th:text="${pesquisador.nome}"></td>
+							<td th:text="${pesquisador.email}"></td>
+							<td th:text="${pesquisador.instituicao}"></td>
+							<td th:text="${pesquisador.cpf}"></td>
+							<td th:text="${pesquisador.categoria}"></td>
+							<td>
+								<a th:href="@{/pesquisadores/{id}/editar (id = ${pesquisador.codigo})}" class="btn btn-primary">Editar</a>
+								<a th:href="@{/pesquisadores/{id}/apagar (id = ${pesquisador.codigo})}" class="btn btn-danger">Apagar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
