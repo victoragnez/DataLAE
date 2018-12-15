@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="dataae/layout">
+<head>
+ 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DataAE</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1>Máquinas</h1>
+		<hr />
+		
+		<div class="container row">
+			<a th:href="@{/maquinas/cadastrar}" class="btn btn-success" style="float:right; margin-left: 10px;">Nova Máquina</a>
+			<a th:href="@{/maquinas/buscar}" class="btn btn-primary" style="float:right;" >Buscar Máquinas</a>
+		</div>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Endereço IP</th>
+					<th>Modelo</th>
+					<th>Está Montada</th>
+					<th>Observação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="maquina : ${maquinas}">
+					<td th:text="${maquina.nome}"></td>
+					<td th:text="${maquina.ip}"></td>
+					<td th:text="${maquina.modelo}"></td>
+					<td th:text="${maquina.estaMontada}"></td>
+					<td th:text="${maquina.observacao}"></td>
+					<td>
+						<a th:href="@{/maquinas/{id}/editar (id = ${maquina.codigo})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/maquinas/{id}/apagar (id = ${maquina.codigo})}" class="btn btn-danger">Apagar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>

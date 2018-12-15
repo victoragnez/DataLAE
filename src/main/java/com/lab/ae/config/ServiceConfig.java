@@ -30,25 +30,25 @@ public class ServiceConfig {
 	@Bean
 	public IServiceProjeto<ProjetoAE> projetoService() {
 		return new ProjetoAEService(
-				new ProjetoAEDAO(null, null), new ParticipanteAEDAO(null));
+				new ProjetoAEDAO(ProjetoAE.class, ParticipanteAE.class), new ParticipanteAEDAO(ParticipanteAE.class));
 	}
 	
 	@Bean
 	public IServiceArea<AreaAE> localService() {
-		return new AreaAEService(new AreaAEDAO(null));
+		return new AreaAEService(new AreaAEDAO(AreaAE.class));
 	}
 	
 	@Bean
 	public IServiceParticipante<ParticipanteAE> pesquisadorService() {
 		return new ParticipanteAEService(
-				new ParticipanteAEDAO(null));
+				new ParticipanteAEDAO(ParticipanteAE.class));
 	}
 	
 	@Bean
 	public IServiceAtividade<AreaAE, ProjetoAE, PraticaAE> viagemService() {
 		return new PraticaAEService(
-				new AreaAEDAO(null), 
-				new ProjetoAEDAO(null, null),
+				new AreaAEDAO(AreaAE.class), 
+				new ProjetoAEDAO(ProjetoAE.class, ParticipanteAE.class),
 				new PraticaAEDAO(
 						AreaAE.class,
 						ProjetoAE.class,
@@ -59,7 +59,7 @@ public class ServiceConfig {
 	public IServiceArquivo<ProjetoAE, PraticaAE> arquivoService() {
 		return new ServiceArquivo<>(
 				new DAOArquivo<>(ProjetoAE.class, PraticaAE.class, false), 
-				new ProjetoAEDAO(null, null), 
+				new ProjetoAEDAO(ProjetoAE.class, ParticipanteAE.class), 
 				new PraticaAEDAO(AreaAE.class, ProjetoAE.class, PraticaAE.class));
 	}
 }
